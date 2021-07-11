@@ -11,7 +11,7 @@ struct CanvasView: UIViewControllerRepresentable {
     typealias UIViewControllerType = CanvasViewController
     
     func makeUIViewController(context: Context) -> CanvasViewController {
-        let vc = UIViewControllerType()
+        let vc = UIViewControllerType(coordinator: context.coordinator)
         return vc
     }
     
@@ -19,3 +19,4 @@ struct CanvasView: UIViewControllerRepresentable {
         /// nothing
     }
 }
+

@@ -9,7 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        KeyboardEditorView()
+        ZStack {
+            KeyboardEditorView()
+                .border(Color.red)
+            CanvasView()
+                .border(Color.red)
+        }
+        
     }
 }
 

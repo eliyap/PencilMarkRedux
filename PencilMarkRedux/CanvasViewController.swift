@@ -12,9 +12,16 @@ import PencilKit
 final class CanvasViewController: UIViewController {
     let canvasView = PKCanvasView()
     
-    init() {
+    init(coordinator: CanvasView.Coordinator) {
         super.init(nibName: nil, bundle: nil)
         self.view = canvasView
+        
+        /// Assign PencilKit delegate
+        canvasView.delegate = coordinator
+        
+        /// Allows text to show through
+        canvasView.backgroundColor = .clear
+        canvasView.isOpaque = false
     }
     
     required init?(coder: NSCoder) {
