@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var strokeC = StrokeConduit()
+    let mdast: MDAST = MDAST.shared
     
     var body: some View {
         ZStack {
