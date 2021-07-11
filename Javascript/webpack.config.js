@@ -4,6 +4,7 @@ module.exports = {
     entry: './src/index.ts',
     output: {
         filename: 'main.js',
+        library: 'PMJS',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
