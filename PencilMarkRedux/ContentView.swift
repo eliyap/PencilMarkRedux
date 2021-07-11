@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var strokeC = StrokeConduit()
+    
     var body: some View {
         ZStack {
-            KeyboardEditorView()
+            KeyboardEditorView(strokeC: strokeC)
                 .border(Color.red)
-            CanvasView()
+            CanvasView(strokeC: strokeC)
                 .border(Color.red)
-        }
-        
+        }   
     }
 }
 

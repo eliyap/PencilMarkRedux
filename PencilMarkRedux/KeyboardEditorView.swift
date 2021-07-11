@@ -9,10 +9,13 @@ import Foundation
 import SwiftUI
 
 struct KeyboardEditorView: UIViewControllerRepresentable {
+    
     typealias UIViewControllerType = KeyboardEditorViewController
     
+    let strokeC: StrokeConduit
+    
     func makeUIViewController(context: Context) -> KeyboardEditorViewController {
-        let vc = UIViewControllerType()
+        let vc = UIViewControllerType(strokeC: strokeC)
         return vc
     }
     

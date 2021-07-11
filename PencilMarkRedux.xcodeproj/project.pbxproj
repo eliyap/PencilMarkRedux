@@ -16,6 +16,9 @@
 		22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CC269BA795007D9891 /* CanvasView.swift */; };
 		22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CE269BA79E007D9891 /* CanvasViewController.swift */; };
 		22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */; };
+		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
+		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
+		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		22AF74CC269BA795007D9891 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		22AF74CE269BA79E007D9891 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.Coordinator.swift; sourceTree = "<group>"; };
+		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
+		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
+		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				22AF74D4269BABF4007D9891 /* Extensions */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 				22AF74B7269BA5F1007D9891 /* Products */,
 			);
@@ -68,6 +75,7 @@
 				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
 				22AF74CC269BA795007D9891 /* CanvasView.swift */,
 				22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */,
+				22AF74D2269BABA1007D9891 /* StrokeConduit.swift */,
 				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
@@ -82,6 +90,23 @@
 				22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		22AF74D4269BABF4007D9891 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74D5269BABF9007D9891 /* PencilKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		22AF74D5269BABF9007D9891 /* PencilKit */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */,
+				22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */,
+			);
+			path = PencilKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +182,10 @@
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
+				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
+				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */,
+				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 			);

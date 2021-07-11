@@ -8,7 +8,10 @@
 import Foundation
 import SwiftUI
 struct CanvasView: UIViewControllerRepresentable {
+    
     typealias UIViewControllerType = CanvasViewController
+    
+    let strokeC: StrokeConduit
     
     func makeUIViewController(context: Context) -> CanvasViewController {
         let vc = UIViewControllerType(coordinator: context.coordinator)
