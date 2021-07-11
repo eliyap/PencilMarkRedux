@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22AF74B6269BA5F1007D9891 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AF74B6269BA5F1007D9891 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = PencilMarkRedux.app; path = "/Users/SAM/Documents/PencilMarkRedux/build/Debug-iphoneos/PencilMarkRedux.app"; sourceTree = "<absolute>"; };
 		22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilMarkReduxApp.swift; sourceTree = "<group>"; };
 		22AF74BB269BA5F1007D9891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,16 +54,7 @@
 			children = (
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
-				22AF74B7269BA5F1007D9891 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		22AF74B7269BA5F1007D9891 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22AF74B6269BA5F1007D9891 /* PencilMarkRedux.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		22AF74B8269BA5F1007D9891 /* PencilMarkRedux */ = {
@@ -71,12 +62,9 @@
 			children = (
 				22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */,
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
-				22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */,
-				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
-				22AF74CC269BA795007D9891 /* CanvasView.swift */,
-				22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */,
+				22AF74DE269BB3E3007D9891 /* KeyboardEditor */,
+				22AF74DF269BB3F1007D9891 /* CanvasView */,
 				22AF74D2269BABA1007D9891 /* StrokeConduit.swift */,
-				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -107,6 +95,25 @@
 				22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */,
 			);
 			path = PencilKit;
+			sourceTree = "<group>";
+		};
+		22AF74DE269BB3E3007D9891 /* KeyboardEditor */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */,
+				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
+			);
+			path = KeyboardEditor;
+			sourceTree = "<group>";
+		};
+		22AF74DF269BB3F1007D9891 /* CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74CC269BA795007D9891 /* CanvasView.swift */,
+				22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */,
+				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
+			);
+			path = CanvasView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +159,7 @@
 				Base,
 			);
 			mainGroup = 22AF74AD269BA5F0007D9891;
-			productRefGroup = 22AF74B7269BA5F1007D9891 /* Products */;
+			productRefGroup = 22AF74AD269BA5F0007D9891;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
