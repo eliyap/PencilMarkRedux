@@ -1,0 +1,21 @@
+//
+//  CanvasView.swift
+//  PencilMarkRedux
+//
+//  Created by Secret Asian Man Dev on 11/7/21.
+//
+
+import Foundation
+import SwiftUI
+struct CanvasView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = CanvasViewController
+    
+    func makeUIViewController(context: Context) -> CanvasViewController {
+        let vc = UIViewControllerType()
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: CanvasViewController, context: Context) {
+        /// nothing
+    }
+}

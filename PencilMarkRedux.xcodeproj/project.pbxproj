@@ -13,6 +13,8 @@
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */; };
 		22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */; };
+		22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CC269BA795007D9891 /* CanvasView.swift */; };
+		22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CE269BA79E007D9891 /* CanvasViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController.swift; sourceTree = "<group>"; };
 		22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorView.swift; sourceTree = "<group>"; };
+		22AF74CC269BA795007D9891 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		22AF74CE269BA79E007D9891 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */,
 				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
+				22AF74CC269BA795007D9891 /* CanvasView.swift */,
+				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -146,7 +152,9 @@
 			files = (
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
+				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */,
+				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
