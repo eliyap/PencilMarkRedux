@@ -18,4 +18,12 @@ final class MDAST {
     init() {
         context.evaluateScript(try! String(contentsOf: url), withSourceURL: url)
     }
+    
+    func parse(markdown: String) -> Void {
+        let result = context
+            .objectForKeyedSubscript("PMJS")
+            .objectForKeyedSubscript("parse")
+            .call(withArguments: [markdown])
+        print(result)
+    }
 }

@@ -18,7 +18,10 @@ struct ContentView: View {
                 .border(Color.red)
             CanvasView(strokeC: strokeC)
                 .border(Color.red)
-        }   
+        }
+        .onAppear {
+            mdast.parse(markdown: "# TEST")
+        }
     }
 }
 
