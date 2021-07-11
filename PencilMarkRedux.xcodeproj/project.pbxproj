@@ -19,6 +19,7 @@
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
+		22AF74E4269BB882007D9891 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74E3269BB882007D9891 /* main.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
+		22AF74E3269BB882007D9891 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +122,17 @@
 		22AF74E0269BB43A007D9891 /* Javascript */ = {
 			isa = PBXGroup;
 			children = (
+				22AF74E2269BB875007D9891 /* dist */,
 			);
 			path = Javascript;
+			sourceTree = "<group>";
+		};
+		22AF74E2269BB875007D9891 /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74E3269BB882007D9891 /* main.js */,
+			);
+			path = dist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AF74E4269BB882007D9891 /* main.js in Resources */,
 				22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */,
 				22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */,
 			);
