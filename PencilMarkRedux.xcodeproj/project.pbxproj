@@ -52,6 +52,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				22AF74E0269BB43A007D9891 /* Javascript */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 			);
@@ -114,6 +115,13 @@
 				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
 			);
 			path = CanvasView;
+			sourceTree = "<group>";
+		};
+		22AF74E0269BB43A007D9891 /* Javascript */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Javascript;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
