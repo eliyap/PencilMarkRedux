@@ -14,9 +14,7 @@ final class Heading: Node {
     
     let depth: Int
     
-    required init?(
-        dict: [AnyHashable: Any]?
-    ) {
+    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
         guard
             let depth = dict?["depth"] as? Int
         else {
@@ -24,7 +22,7 @@ final class Heading: Node {
             return nil
         }
         self.depth = depth
-        super.init(dict: dict)
+        super.init(dict: dict, parent: parent)
     }
     
     override func style(_ string: inout NSMutableAttributedString) {

@@ -20,15 +20,17 @@ class Node: Content {
     class var type: String { "Node" }
     
     /// Child Nodes
-    let children: [Content]
+    var children: [Content]
     
-    required init?(dict: [AnyHashable: Any]?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
-            let children = (dict?["children"] as? [[AnyHashable: Any]])?.compactMap({ construct(from: $0) })
+            let children = dict?["children"] as? [[AnyHashable: Any]]
         {
+            self.parent = parent
             self.position = position
-            self.children = children
+            self.children = [] /// initialize before self is captured in closure below
+            self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
             return nil
         }
@@ -52,25 +54,25 @@ class Node: Content {
     }
 }
 
-func construct(from dict: [AnyHashable: Any]?) -> Content? {
+func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
     let type = dict?["type"] as? String
     switch type {
     case Heading.type:
-        return Heading(dict: dict)
+        return Heading(dict: dict, parent: parent)
     case Root.type:
-        return Root(dict: dict)
+        return Root(dict: dict, parent: parent)
     case ThematicBreak.type:
-        return ThematicBreak(dict: dict)
+        return ThematicBreak(dict: dict, parent: parent)
     case List.type:
-        return List(dict: dict)
+        return List(dict: dict, parent: parent)
     case ListItem.type:
-        return ListItem(dict: dict)
+        return ListItem(dict: dict, parent: parent)
     case Paragraph.type:
-        return Paragraph(dict: dict)
+        return Paragraph(dict: dict, parent: parent)
     case Delete.type:
-        return Delete(dict: dict)
+        return Delete(dict: dict, parent: parent)
     case Text.type:
-        return Text(dict: dict)
+        return Text(dict: dict, parent: parent)
     default:
         print("Unrecognized type \(type ?? "No Type")")
         print("\(String(describing: dict?.keys))")

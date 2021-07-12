@@ -13,13 +13,13 @@ class ListItem: Node {
     let checked: Bool?
     let spread: Bool?
     
-    required init?(dict: [AnyHashable: Any]?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
         let checked = dict?["checked"] as? Bool
         let spread = dict?["spread"] as? Bool
     
         self.checked = checked
         self.spread = spread
-        super.init(dict: dict)
+        super.init(dict: dict, parent: parent)
     }
 }
 
