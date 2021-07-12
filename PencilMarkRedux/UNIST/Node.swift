@@ -45,8 +45,8 @@ func construct(from dict: [AnyHashable: Any]?) -> Content? {
     case Text.type:
         return Text(dict: dict)
     default:
-        print("Unrecognized type \(type)")
-        print("\(dict?.keys)")
+        print("Unrecognized type \(type ?? "No Type")")
+        print("\(String(describing: dict?.keys))")
         return nil
     }
 }
