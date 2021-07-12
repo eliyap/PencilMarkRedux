@@ -18,18 +18,21 @@ struct StyledMarkdown: FileDocument {
     
     var text: String
     var styledText: NSMutableAttributedString
+    var ast: Root
     
     /// a simple initializer that creates new, empty documents
     init(text: String = "") {
         self.text = text
         self.styledText = styledMarkdown(from: text)
+        self.ast = Parser.shared.parse(markdown: text)
     }
 
     /// Loads data that has been saved previously.
     init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             text = String(decoding: data, as: UTF8.self)
-            self.styledText = styledMarkdown(from: text)
+            styledText = styledMarkdown(from: text)
+            ast = Parser.shared.parse(markdown: text)
         } else {
             throw CocoaError(.fileReadCorruptFile)
         }
