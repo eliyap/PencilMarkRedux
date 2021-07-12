@@ -62,8 +62,8 @@ class Node: Content {
             .forEach { $0.style(&string) }
     }
     
-    /// what text replacements need to happen when applying this change?
-    func getReplacement() -> [Replacement] {
+    /// The text replacements that need to happen when this part of the tree is changed.
+    func getReplacement() -> [StyledMarkdown.Replacement] {
         return [] /// override to replace this
     }
 }
