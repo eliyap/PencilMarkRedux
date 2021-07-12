@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class Heading: Node {
     
@@ -24,6 +25,11 @@ final class Heading: Node {
         }
         self.depth = depth
         super.init(dict: dict)
+    }
+    
+    override func style(_ string: inout NSMutableAttributedString) {
+        super.style(&string)
+        string.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .headline), range: position.nsRange)
     }
 }
 

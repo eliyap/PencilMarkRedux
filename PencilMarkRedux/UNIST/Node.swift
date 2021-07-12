@@ -36,6 +36,12 @@ class Node: Content {
             }
         }
     }
+    
+    func style(_ string: inout NSMutableAttributedString) -> Void {
+        children
+            .compactMap { $0 as? Node }
+            .forEach { $0.style(&string) }
+    }
 }
 
 func construct(from dict: [AnyHashable: Any]?) -> Content? {
@@ -83,10 +89,6 @@ class Literal: Content {
 
 class Text: Node {
     override class var type: String { "text" }
-}
-
-class Delete: Node {
-    override class var type: String { "delete" }
 }
 
 class Paragraph: Node {

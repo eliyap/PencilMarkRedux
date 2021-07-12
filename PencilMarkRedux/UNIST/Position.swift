@@ -11,6 +11,14 @@ struct Position {
     let start: Point
     let end: Point
 
+    var length: Int {
+        end.offset - start.offset
+    }
+    
+    var nsRange: NSRange {
+        _NSRange(location: start.offset, length: length)
+    }
+    
     init?(dict: [AnyHashable: Any]?) {
         guard
             let dict = dict,

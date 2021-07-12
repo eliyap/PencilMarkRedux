@@ -20,7 +20,8 @@ final class KeyboardEditorViewController: UIViewController {
         self.strokeC = strokeC
         super.init(nibName: nil, bundle: nil)
         self.view = textView
-        textView.text = coordinator.text
+        
+        textView.attributedText = styledMarkdown(from: coordinator.text)
         textView.delegate = coordinator
         
         strokeC.$stroke
@@ -42,8 +43,6 @@ final class KeyboardEditorViewController: UIViewController {
         }
     
         print(textView.text(in: range) ?? "No Text" )
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -56,4 +55,11 @@ final class KeyboardEditorViewController: UIViewController {
         
         print("KeyboardEditorViewController de-initialized")
     }
+}
+
+func styledMarkdown(from markdown: String) -> NSMutableAttributedString {
+    let mdast = Parser.shared.parse(markdown: markdown)
+    var result = NSMutableAttributedString(string: markdown)
+    mdast.style(&result)
+    return result
 }

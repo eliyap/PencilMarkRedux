@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */; };
 		22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74BB269BA5F1007D9891 /* ContentView.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilMarkReduxApp.swift; sourceTree = "<group>"; };
 		22AF74BB269BA5F1007D9891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				2214E121269BDBCE0046EF32 /* Delete.swift */,
 				22AF74E0269BB43A007D9891 /* Javascript */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
@@ -247,6 +250,7 @@
 				22AF74E6269BB91D007D9891 /* Parser.swift in Sources */,
 				22CDCB1A269BCB3700988085 /* Root.swift in Sources */,
 				22CDCB18269BC75C00988085 /* Heading.swift in Sources */,
+				2214E122269BDC1B0046EF32 /* Delete.swift in Sources */,
 				22CDCB12269BC71200988085 /* Point.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,

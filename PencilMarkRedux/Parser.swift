@@ -19,7 +19,7 @@ final class Parser {
         context.evaluateScript(try! String(contentsOf: url), withSourceURL: url)
     }
     
-    func parse(markdown: String) -> Void {
+    func parse(markdown: String) -> Root {
         let result = context
             .objectForKeyedSubscript("PMJS")
             .objectForKeyedSubscript("parse")
@@ -28,8 +28,7 @@ final class Parser {
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
         
-        let root = Root(dict: dict)!
-        root.walk()
+        return Root(dict: dict)!
+        
     }
 }
-
