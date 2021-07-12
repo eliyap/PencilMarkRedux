@@ -9,11 +9,39 @@ import Foundation
 import UIKit
 import OrderedCollections
 
+struct Replacement {
+    let range: NSRange
+    let replacement: String
+}
+
 extension StyledMarkdown {
-    func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
+    mutating func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
         #warning("Todo")
         let (partial, complete) = ast.intersectingText(in: range)
         partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
+        
+        let changes = ast.gatherChanges()
+        let replacements = changes
+            .flatMap { $0.getReplacement() }
+            /// sort in descending order
+            .sorted { $0.range.lowerBound > $1.range.lowerBound }
+        print("Replacements: \(replacements)")
+        replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
+        
+        print(text)
+        
+        updateAttributes()
+    }
+}
+
+extension Node {
+    func gatherChanges() -> [Node] {
+        /// include self if has changes
+        ((_change == nil) ? [] : [self])
+            /// and all changes from children
+            + children
+                .compactMap { $0 as? Node }
+                .flatMap { $0.gatherChanges() }
     }
 }
 
@@ -57,19 +85,15 @@ extension Node {
                 "type": style.type,
                 "children": [],
             ],
-            parent: parent
+            parent: self
         )!
+        styled._change = .toAdd
         
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: range, with: styled)
         
-        /// replace self with broken up nodes
-        let index = parent.children
-            .compactMap{ $0 as? Node }
-            .firstIndex(where: {$0 == self})!
-        parent.children.remove(at: index)
-        parent.children.insert(contentsOf: [prefix, middle, suffix], at: index)
-        parent = nil /// remove reference to parent, should de-init after this
+        children = [prefix, styled, suffix]
+        print(children)
         
         print(document.text(for: middle))
     }

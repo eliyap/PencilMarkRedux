@@ -61,4 +61,9 @@ class Node: Content {
             .compactMap { $0 as? Node }
             .forEach { $0.style(&string) }
     }
+    
+    /// what text replacements need to happen when applying this change?
+    func getReplacement() -> [Replacement] {
+        return [] /// override to replace this
+    }
 }

@@ -51,7 +51,7 @@ final class KeyboardEditorViewController: UIViewController {
 //        var text = textView.text!
 //        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
 //        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
-//        textView.attributedText = styledMarkdown(from: text)
+        textView.attributedText = coordinator.document.styledText
     }
     
     required init?(coder: NSCoder) {

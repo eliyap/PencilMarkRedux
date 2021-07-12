@@ -15,4 +15,17 @@ final class Delete: Node {
         super.style(&string)
         string.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: position.nsRange)
     }
+    
+    override func getReplacement() -> [Replacement] {
+        [
+            Replacement(
+                range: _NSRange(location: position.nsRange.lowerBound, length: 0),
+                replacement: "~~"
+            ),
+            Replacement(
+                range: _NSRange(location: position.nsRange.upperBound, length: 0),
+                replacement: "~~"
+            ),
+        ]
+    }
 }

@@ -12,8 +12,8 @@ final class Text: Node {
 }
 
 extension Node {
-    func split(on range: NSRange, with styled: Node) -> (Node, Node, Node) {
-        let prefix: Self = Self.init(
+    func split(on range: NSRange, with styled: Node) -> (Text, Text, Text) {
+        let prefix: Text = Text(
             dict: [
                 "position": [
                     "start": [
@@ -30,9 +30,9 @@ extension Node {
                 "type": Text.type,
                 "children": [],
             ],
-            parent: parent
+            parent: self
         )!
-        let middle: Self = Self.init(
+        let middle: Text = Text(
             dict: [
                 "position": [
                     "start": [
@@ -51,7 +51,7 @@ extension Node {
             ],
             parent: styled
         )!
-        let suffix: Self = Self.init(
+        let suffix: Text = Text(
             dict: [
                 "position": [
                     "start": [
@@ -68,7 +68,7 @@ extension Node {
                 "type": Text.type,
                 "children": [],
             ],
-            parent: parent
+            parent: self
         )!
         
         return (

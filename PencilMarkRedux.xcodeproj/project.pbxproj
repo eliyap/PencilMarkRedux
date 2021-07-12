@@ -112,7 +112,6 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
-				2214E121269BDBCE0046EF32 /* Delete.swift */,
 				22AF74E0269BB43A007D9891 /* Javascript */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
@@ -211,6 +210,7 @@
 				22E8531C269CD64100E82CE4 /* Content_Construct.swift */,
 				22E85317269CD5F800E82CE4 /* Node */,
 				2214E125269C80950046EF32 /* Literal.swift */,
+				2214E121269BDBCE0046EF32 /* Delete.swift */,
 				2214E127269C80AD0046EF32 /* Text.swift */,
 				2214E129269C80E10046EF32 /* Paragraph.swift */,
 				2214E12B269C80F40046EF32 /* ThematicBreak.swift */,
