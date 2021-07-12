@@ -38,8 +38,9 @@ extension StyledMarkdown {
 }
 
 extension Node {
+    /// Recursive function that gathers all nodes which are marked as having changed.
     func gatherChanges() -> [Node] {
-        /// include self if has changes
+        /// include `self` if we are flagged for change
         ((_change == nil) ? [] : [self])
             /// and all changes from children
             + children
