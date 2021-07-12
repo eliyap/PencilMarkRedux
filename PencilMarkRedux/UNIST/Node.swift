@@ -79,3 +79,15 @@ func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
         return nil
     }
 }
+
+extension Node: Equatable {
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        lhs.position == rhs.position
+    }
+}
+
+extension Node: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(position)
+    }
+}
