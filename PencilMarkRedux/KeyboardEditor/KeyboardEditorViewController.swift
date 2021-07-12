@@ -66,10 +66,3 @@ final class KeyboardEditorViewController: UIViewController {
     }
 }
 
-extension UITextInput {
-    func nsRange(from textRange: UITextRange) -> NSRange {
-        let start = offset(from: beginningOfDocument, to: textRange.start)
-        let end = offset(from: beginningOfDocument, to: textRange.end)
-        return _NSRange(location: start, length: end - start)
-    }
-}

@@ -44,6 +44,7 @@
 		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
 		22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531C269CD64100E82CE4 /* Content_Construct.swift */; };
 		22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */; };
+		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
 		22E8531C269CD64100E82CE4 /* Content_Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Construct.swift; sourceTree = "<group>"; };
 		22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown_FileDocument.swift; sourceTree = "<group>"; };
+		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				2214E13B269CAC3B0046EF32 /* String_Subscript.swift */,
+				22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */,
 				22AF74D5269BABF9007D9891 /* PencilKit */,
 				22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */,
 			);
@@ -317,6 +320,7 @@
 				22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
+				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */,
