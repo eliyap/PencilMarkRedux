@@ -9,5 +9,5 @@ import Foundation
 import PencilKit
 
 final class StrokeConduit: ObservableObject {
-    @Published var stroke: PKStroke = PKStroke()
+    @Published var stroke: PKStroke? = nil
 }
