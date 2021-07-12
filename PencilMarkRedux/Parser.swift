@@ -28,7 +28,7 @@ final class Parser {
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
         
-        print(Node.construct(from: dict))
+        print(Root(dict: dict))
     }
 }
 
