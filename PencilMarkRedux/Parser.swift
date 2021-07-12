@@ -8,9 +8,9 @@
 import Foundation
 import JavaScriptCore
 
-final class MDAST {
+final class Parser {
     
-    public static let shared = MDAST()
+    public static let shared = Parser()
     
     let context: JSContext = JSContext()!
     let url: URL = Bundle.main.url(forResource: "main", withExtension: "js")!
@@ -24,6 +24,10 @@ final class MDAST {
             .objectForKeyedSubscript("PMJS")
             .objectForKeyedSubscript("parse")
             .call(withArguments: [markdown])
-        print(result)
+        
+        #warning("Unsafe Unwrap!")
+        let dict = result!.toDictionary()!
+        
+        print(dict.keys)
     }
 }
