@@ -19,6 +19,7 @@ struct Point {
             let line = dict["line"] as? Int,
             let offset = dict["offset"] as? Int
         else {
+            print("Failed to initialize Point")
             return nil
         }
         

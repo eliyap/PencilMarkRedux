@@ -17,6 +17,7 @@ struct Position {
             let start = Point(dict: dict["start"] as? [AnyHashable: Any]),
             let end = Point(dict: dict["end"] as? [AnyHashable: Any])
         else {
+            print("Failed to initialize \(Self.self)")
             return nil
         }
         
