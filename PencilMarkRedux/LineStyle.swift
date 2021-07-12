@@ -153,18 +153,18 @@ extension Node {
 extension Root {
     func intersectingText(in range: NSRange) -> (partial: OrderedSet<Node>, complete: OrderedSet<Node>) {
         let textNodes: [Node] = intersectingLeaves(in: range)
-        print(textNodes.count)
+        
+        /// Use `OrderedSet` to avoid possibility of duplicate nodes.
         var partial: OrderedSet<Node> = []
         var complete: OrderedSet<Node> = []
+        
+        /// Sort nodes based on the extent of their intersection with the `range`.
         textNodes.forEach {
-            if $0.skewered(by: range) == false {
-                /// partially intersected elements go into one pile
-                partial.append($0)
-            } else {
-                /// complete elements are processed, then go in the other pile
-                let skeweredAncestor = $0.highestSkeweredAncestor(in: range)
-                complete.append(skeweredAncestor)
-            }
+            /// Can append without checking for duplicates.
+            /// Discard result from `append`.
+            _ = $0.skewered(by: range)
+                ? complete.append($0.highestSkeweredAncestor(in: range))
+                : partial.append($0)
         }
         return (partial, complete)
     }
