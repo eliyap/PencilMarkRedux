@@ -39,6 +39,7 @@
 		22CDCB18269BC75C00988085 /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB17269BC75C00988085 /* Heading.swift */; };
 		22CDCB1A269BCB3700988085 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB19269BCB3700988085 /* Root.swift */; };
 		22CDCB1C269BCB4E00988085 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB1B269BCB4E00988085 /* List.swift */; };
+		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		22CDCB17269BC75C00988085 /* Heading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heading.swift; sourceTree = "<group>"; };
 		22CDCB19269BCB3700988085 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		22CDCB1B269BCB4E00988085 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				2214E13B269CAC3B0046EF32 /* String_Subscript.swift */,
 				22AF74D5269BABF9007D9891 /* PencilKit */,
+				22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
+				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,

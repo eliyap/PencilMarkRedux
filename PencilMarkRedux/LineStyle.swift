@@ -116,7 +116,7 @@ extension Node {
     
     /// whether the provided range totally encloses this node
     func skewered(by range: NSRange) -> Bool {
-        range.lowerBound <= position.nsRange.lowerBound && range.upperBound >= position.nsRange.upperBound
+        range.lowerBound <= position.nsRange.lowerBound && position.nsRange.upperBound <= range.upperBound 
     }
 }
 
