@@ -22,6 +22,9 @@ class Node: Content {
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String = "Node"
     
+    /// An internal, transient marker signalling that this tag is part of a modification we want to make
+    var _change: StyledMarkdown.Change? = nil
+    
     /// Child Nodes
     var children: [Content]
     
