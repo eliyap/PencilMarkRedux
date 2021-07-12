@@ -40,6 +40,8 @@
 		22CDCB1A269BCB3700988085 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB19269BCB3700988085 /* Root.swift */; };
 		22CDCB1C269BCB4E00988085 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB1B269BCB4E00988085 /* List.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
+		22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Node_Equatable.swift */; };
+		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		22CDCB19269BCB3700988085 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		22CDCB1B269BCB4E00988085 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
+		22E85318269CD60A00E82CE4 /* Node_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Equatable.swift; sourceTree = "<group>"; };
+		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				2214E123269C80860046EF32 /* Content.swift */,
-				22CDCB15269BC74700988085 /* Node.swift */,
+				22E85317269CD5F800E82CE4 /* Node */,
 				2214E125269C80950046EF32 /* Literal.swift */,
 				2214E127269C80AD0046EF32 /* Text.swift */,
 				2214E129269C80E10046EF32 /* Paragraph.swift */,
@@ -209,6 +213,16 @@
 				22CDCB13269BC73200988085 /* Position.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		22E85317269CD5F800E82CE4 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				22CDCB15269BC74700988085 /* Node.swift */,
+				22E85318269CD60A00E82CE4 /* Node_Equatable.swift */,
+				22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */,
+			);
+			path = Node;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +304,7 @@
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
+				22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */,
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
@@ -313,6 +328,7 @@
 				2214E124269C80860046EF32 /* Content.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
+				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 				22CDCB16269BC74700988085 /* Node.swift in Sources */,
