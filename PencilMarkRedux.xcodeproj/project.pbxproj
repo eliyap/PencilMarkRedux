@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
+		2214E124269C80860046EF32 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Content.swift */; };
+		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
+		2214E128269C80AD0046EF32 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E127269C80AD0046EF32 /* Text.swift */; };
+		2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E129269C80E10046EF32 /* Paragraph.swift */; };
+		2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E12B269C80F40046EF32 /* ThematicBreak.swift */; };
+		2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E12D269C80FE0046EF32 /* ListItem.swift */; };
 		22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */; };
 		22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74BB269BA5F1007D9891 /* ContentView.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
@@ -32,6 +38,12 @@
 
 /* Begin PBXFileReference section */
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
+		2214E123269C80860046EF32 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
+		2214E127269C80AD0046EF32 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		2214E129269C80E10046EF32 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
+		2214E12B269C80F40046EF32 /* ThematicBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThematicBreak.swift; sourceTree = "<group>"; };
+		2214E12D269C80FE0046EF32 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilMarkReduxApp.swift; sourceTree = "<group>"; };
 		22AF74BB269BA5F1007D9891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +171,12 @@
 			isa = PBXGroup;
 			children = (
 				22CDCB15269BC74700988085 /* Node.swift */,
+				2214E125269C80950046EF32 /* Literal.swift */,
+				2214E127269C80AD0046EF32 /* Text.swift */,
+				2214E129269C80E10046EF32 /* Paragraph.swift */,
+				2214E12B269C80F40046EF32 /* ThematicBreak.swift */,
+				2214E12D269C80FE0046EF32 /* ListItem.swift */,
+				2214E123269C80860046EF32 /* Content.swift */,
 				22CDCB17269BC75C00988085 /* Heading.swift */,
 				22CDCB19269BCB3700988085 /* Root.swift */,
 				22CDCB1B269BCB4E00988085 /* List.swift */,
@@ -240,6 +258,7 @@
 			files = (
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
+				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
@@ -248,12 +267,17 @@
 				22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */,
 				22CDCB14269BC73200988085 /* Position.swift in Sources */,
 				22AF74E6269BB91D007D9891 /* Parser.swift in Sources */,
+				2214E128269C80AD0046EF32 /* Text.swift in Sources */,
+				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
 				22CDCB1A269BCB3700988085 /* Root.swift in Sources */,
 				22CDCB18269BC75C00988085 /* Heading.swift in Sources */,
 				2214E122269BDC1B0046EF32 /* Delete.swift in Sources */,
+				2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */,
 				22CDCB12269BC71200988085 /* Point.swift in Sources */,
+				2214E124269C80860046EF32 /* Content.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
+				2214E126269C80950046EF32 /* Literal.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 				22CDCB16269BC74700988085 /* Node.swift in Sources */,
 			);

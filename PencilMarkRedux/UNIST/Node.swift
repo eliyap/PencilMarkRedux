@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol Content { }
-
 class Node: Content {
     let position: Position
     class var type: String { "Node" }
@@ -67,50 +65,5 @@ func construct(from dict: [AnyHashable: Any]?) -> Content? {
         print("Unrecognized type \(type ?? "No Type")")
         print("\(String(describing: dict?.keys))")
         return nil
-    }
-}
-
-class Literal: Content {
-    
-    class var type: String { "literal" }
-    
-    let text: String
-    
-    init?(dict: [AnyHashable: Any]?) {
-        print(dict?.keys)
-        guard let text = dict?["text"] as? String else {
-            print("Failed to initialize \(Self.type)")
-            return nil
-        }
-        
-        self.text = text
-    }
-}
-
-class Text: Node {
-    override class var type: String { "text" }
-}
-
-class Paragraph: Node {
-    override class var type: String { "paragraph" }
-}
-
-class ThematicBreak: Node {
-    override class var type: String { "thematicBreak" }
-}
-
-class ListItem: Node {
-    override class var type: String { "listItem" }
-    
-    let checked: Bool?
-    let spread: Bool?
-    
-    required init?(dict: [AnyHashable: Any]?) {
-        let checked = dict?["checked"] as? Bool
-        let spread = dict?["spread"] as? Bool
-    
-        self.checked = checked
-        self.spread = spread
-        super.init(dict: dict)
     }
 }
