@@ -8,8 +8,18 @@
 import Foundation
 
 class Node: Content {
+    /// This ``Node``'s parent ``Node``.
+    /// `weak` to avoid a strong reference cycle.
+    /// Optional because ``Root`` has no parent.
+    weak var parent: Node!
+    
+    /// The position of the substring in the source Markdown that this Node represents.
     let position: Position
+    
+    /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
+    
+    /// Child Nodes
     let children: [Content]
     
     required init?(dict: [AnyHashable: Any]?) {
