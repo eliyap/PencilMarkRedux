@@ -13,16 +13,21 @@ import PencilKit
 final class KeyboardEditorViewController: UIViewController {
     let textView = UITextView()
     let strokeC: StrokeConduit
+    let coordinator: KeyboardEditorView.Coordinator
     
     var observers = Set<AnyCancellable>()
     
-    init(strokeC: StrokeConduit) {
+    init(coordinator: KeyboardEditorView.Coordinator, strokeC: StrokeConduit) {
         self.strokeC = strokeC
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = textView
-        textView.text = "Spicy jalapeno bacon ipsum dolor amet salami meatball venison filet mignon turducken. Cow ribeye pancetta prosciutto. Corned beef bacon alcatra beef frankfurter salami short ribs turkey kevin shank leberkas tongue venison. Picanha capicola brisket strip steak sausage bresaola beef ham hock alcatra tail turkey rump. Fatback kielbasa strip steak burgdoggen turducken shoulder beef. Sausage ham doner pastrami."
+        
+        textView.attributedText = styledMarkdown(from: coordinator.text)
+        textView.delegate = coordinator
         
         strokeC.$stroke
+            .compactMap { $0 }
             .sink { [weak self] stroke in
                 self?.test(stroke: stroke)
             }.store(in: &observers)
@@ -39,10 +44,12 @@ final class KeyboardEditorViewController: UIViewController {
             print("Could not get path bounds!")
             return
         }
-    
-        print(textView.text(in: range) ?? "No Text" )
         
-        
+        let nsRange = textView.nsRange(from: range)
+        var text = textView.text!
+        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
+        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
+        textView.attributedText = styledMarkdown(from: text)
     }
     
     required init?(coder: NSCoder) {
@@ -54,5 +61,39 @@ final class KeyboardEditorViewController: UIViewController {
         observers.forEach{ $0.cancel() }
         
         print("KeyboardEditorViewController de-initialized")
+    }
+}
+
+func styledMarkdown(from markdown: String) -> NSMutableAttributedString {
+    let mdast = Parser.shared.parse(markdown: markdown)
+    var result = NSMutableAttributedString(string: markdown)
+    mdast.style(&result)
+    return result
+}
+
+extension UITextInput {
+    func nsRange(from textRange: UITextRange) -> NSRange {
+        let start = offset(from: beginningOfDocument, to: textRange.start)
+        let end = offset(from: beginningOfDocument, to: textRange.end)
+        return _NSRange(location: start, length: end - start)
+    }
+}
+
+/// define accessor via int
+extension String {
+    subscript(idx: Int) -> Index {
+        get {
+            index(startIndex, offsetBy: idx)
+        }
+    }
+    
+    subscript(range: Range<Int>) -> Substring {
+        get {
+            self[self[range.lowerBound]..<self[range.upperBound]]
+        }
+    }
+    
+    mutating func replace<T: StringProtocol>(from start: Int, to end: Int, with replacement: T) -> Void {
+        replaceSubrange(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end), with: replacement)
     }
 }
