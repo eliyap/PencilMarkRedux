@@ -41,3 +41,15 @@ struct Position {
     }
 }
 
+extension Position: Equatable {
+    static func == (lhs: Position, rhs: Position) -> Bool {
+        lhs.start == rhs.start && lhs.end == rhs.end
+    }
+}
+
+extension Position: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(start)
+        hasher.combine(end)
+    }
+}
