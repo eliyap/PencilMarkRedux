@@ -16,7 +16,7 @@ struct KeyboardEditorView: UIViewControllerRepresentable {
     @Binding var text: String
     
     func makeUIViewController(context: Context) -> KeyboardEditorViewController {
-        let vc = UIViewControllerType(strokeC: strokeC)
+        let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC)
         return vc
     }
     
