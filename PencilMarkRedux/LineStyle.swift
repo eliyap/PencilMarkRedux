@@ -11,20 +11,28 @@ import OrderedCollections
 
 extension StyledMarkdown {
     mutating func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
-        #warning("Todo")
+        /// Find which parts of the document were partially or completely intersected by this line.
         let (partial, complete) = ast.intersectingText(in: range)
-        partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
         
-        let changes = ast.gatherChanges()
-        let replacements = changes
+        /// Apply changes to AST
+        partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
+        #warning("Todo: Port Complete Skewer Code")
+        
+        /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
+        let replacements = ast
+            .gatherChanges()
             .flatMap { $0.getReplacement() }
-            /// sort in descending order
+            /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted { $0.range.lowerBound > $1.range.lowerBound }
+        
         print("Replacements: \(replacements)")
+        
+        /// Perform replacements in source Markdown.
         replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
         
         print(text)
         
+        /// Finally, reformat document based on updated source Markdown.
         updateAttributes()
     }
 }
