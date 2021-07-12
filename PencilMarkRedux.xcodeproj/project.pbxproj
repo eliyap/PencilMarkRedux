@@ -139,6 +139,7 @@
 		22AF74D4269BABF4007D9891 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2214E13B269CAC3B0046EF32 /* String_Subscript.swift */,
 				22AF74D5269BABF9007D9891 /* PencilKit */,
 			);
 			path = Extensions;
@@ -149,7 +150,6 @@
 			children = (
 				22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */,
 				22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */,
-				2214E13B269CAC3B0046EF32 /* String_Subscript.swift */,
 			);
 			path = PencilKit;
 			sourceTree = "<group>";
