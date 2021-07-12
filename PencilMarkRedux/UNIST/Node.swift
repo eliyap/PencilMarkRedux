@@ -19,16 +19,21 @@ class Node: Content {
     /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
     
+    /// An internal string for figuring out node type independent of class hierarchy
+    var _type: String = "Node"
+    
     /// Child Nodes
     var children: [Content]
     
     required init?(dict: [AnyHashable: Any]?, parent: Node?) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
-            let children = dict?["children"] as? [[AnyHashable: Any]]
+            let children = dict?["children"] as? [[AnyHashable: Any]],
+            let _type = dict?["type"] as? String
         {
             self.parent = parent
             self.position = position
+            self._type = _type
             self.children = [] /// initialize before self is captured in closure below
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
@@ -82,12 +87,13 @@ func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
 
 extension Node: Equatable {
     static func == (lhs: Node, rhs: Node) -> Bool {
-        lhs.position == rhs.position
+        lhs.position == rhs.position && lhs._type == rhs._type
     }
 }
 
 extension Node: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(position)
+        hasher.combine(_type)
     }
 }
