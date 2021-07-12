@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import OrderedCollections
 
 extension StyledMarkdown {
     func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
@@ -15,7 +16,6 @@ extension StyledMarkdown {
 }
 
 extension Node {
-    
     func intersectingText(in range: NSRange) -> [Text] {
         intersectingLeaves(in: range)
             /// Filter out non text nodes and warn me about them.
@@ -45,5 +45,38 @@ extension Node {
                 .compactMap { $0 as? Node }
                 .flatMap { $0.intersectingLeaves(in: range) }
         }
+    }
+    
+    /// Find the top level skewered node
+    func highestSkeweredAncestor(in range: NSRange) -> Node {
+        var node: Node = self
+        while (node.parent.skewered(by: range)) {
+            node = node.parent
+        }
+        return node
+    }
+    
+    /// whether the provided range totally encloses this node
+    func skewered(by range: NSRange) -> Bool {
+        range.lowerBound <= position.nsRange.lowerBound && range.upperBound >= position.nsRange.upperBound
+    }
+}
+
+extension Root {
+    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Node>, complete: OrderedSet<Node>) {
+        let textNodes: [Text] = intersectingText(in: range)
+        var partial: OrderedSet<Node> = []
+        var complete: OrderedSet<Node> = []
+        textNodes.forEach {
+            if $0.skewered(by: range) == false {
+                /// partially intersected elements go into one pile
+                partial.append($0)
+            } else {
+                /// complete elements are processed, then go in the other pile
+                let skeweredAncestor = $0.highestSkeweredAncestor(in: range)
+                complete.append(skeweredAncestor)
+            }
+        }
+        return (partial, complete)
     }
 }
