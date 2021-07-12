@@ -66,13 +66,6 @@ final class KeyboardEditorViewController: UIViewController {
     }
 }
 
-func styledMarkdown(from markdown: String) -> NSMutableAttributedString {
-    let mdast = Parser.shared.parse(markdown: markdown)
-    var result = NSMutableAttributedString(string: markdown)
-    mdast.style(&result)
-    return result
-}
-
 extension UITextInput {
     func nsRange(from textRange: UITextRange) -> NSRange {
         let start = offset(from: beginningOfDocument, to: textRange.start)

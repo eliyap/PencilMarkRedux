@@ -23,8 +23,8 @@ struct StyledMarkdown {
     /// a simple initializer that creates new, empty documents
     init(text: String = "") {
         self.text = text
-        self.styledText = styledMarkdown(from: text)
         self.ast = Parser.shared.parse(markdown: text)
+        self.styledText = Self.attributedText(from: text, with: ast)
     }
 }
 
@@ -34,3 +34,21 @@ extension StyledMarkdown {
     }
 }
 
+extension StyledMarkdown {
+    /// Call this function to update after the text is updated.
+    mutating func updateAttributes() -> Void {
+        /// re-formulate AST
+        ast = Parser.shared.parse(markdown: text)
+        
+        /// re-format string based on AST
+        self.styledText = Self.attributedText(from: text, with: ast)
+    }
+    
+    /// Uses the AST to style an attributed string
+    /// - Note: make sure the passed AST matches the passed text!
+    static func attributedText(from markdown: String, with ast: Root) -> NSMutableAttributedString {
+        var result = NSMutableAttributedString(string: markdown)
+        ast.style(&result)
+        return result
+    }
+}

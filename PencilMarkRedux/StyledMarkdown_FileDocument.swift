@@ -13,8 +13,8 @@ extension StyledMarkdown: FileDocument {
     init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             text = String(decoding: data, as: UTF8.self)
-            styledText = styledMarkdown(from: text)
             ast = Parser.shared.parse(markdown: text)
+            styledText = Self.attributedText(from: text, with: ast)
         } else {
             throw CocoaError(.fileReadCorruptFile)
         }
