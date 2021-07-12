@@ -43,6 +43,7 @@
 		22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Node_Equatable.swift */; };
 		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
 		22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531C269CD64100E82CE4 /* Content_Construct.swift */; };
+		22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		22E85318269CD60A00E82CE4 /* Node_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Equatable.swift; sourceTree = "<group>"; };
 		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
 		22E8531C269CD64100E82CE4 /* Content_Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Construct.swift; sourceTree = "<group>"; };
+		22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown_FileDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74E5269BB91D007D9891 /* Parser.swift */,
 				2214E133269C85750046EF32 /* StyledMarkdown.swift */,
+				22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */,
 				2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */,
 				2214E131269C84D70046EF32 /* LineStyle.swift */,
 				22AF74DE269BB3E3007D9891 /* KeyboardEditor */,
@@ -311,6 +314,7 @@
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
+				22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
