@@ -55,35 +55,10 @@ class Node: Content {
         }
     }
     
+    /// Applies an initial styling.
     func style(_ string: inout NSMutableAttributedString) -> Void {
         children
             .compactMap { $0 as? Node }
             .forEach { $0.style(&string) }
-    }
-}
-
-func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
-    let type = dict?["type"] as? String
-    switch type {
-    case Heading.type:
-        return Heading(dict: dict, parent: parent)
-    case Root.type:
-        return Root(dict: dict, parent: parent)
-    case ThematicBreak.type:
-        return ThematicBreak(dict: dict, parent: parent)
-    case List.type:
-        return List(dict: dict, parent: parent)
-    case ListItem.type:
-        return ListItem(dict: dict, parent: parent)
-    case Paragraph.type:
-        return Paragraph(dict: dict, parent: parent)
-    case Delete.type:
-        return Delete(dict: dict, parent: parent)
-    case Text.type:
-        return Text(dict: dict, parent: parent)
-    default:
-        print("Unrecognized type \(type ?? "No Type")")
-        print("\(String(describing: dict?.keys))")
-        return nil
     }
 }

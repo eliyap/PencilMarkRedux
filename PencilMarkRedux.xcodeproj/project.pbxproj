@@ -42,6 +42,7 @@
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Node_Equatable.swift */; };
 		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
+		22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531C269CD64100E82CE4 /* Content_Construct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85318269CD60A00E82CE4 /* Node_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Equatable.swift; sourceTree = "<group>"; };
 		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
+		22E8531C269CD64100E82CE4 /* Content_Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Construct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				2214E123269C80860046EF32 /* Content.swift */,
+				22E8531C269CD64100E82CE4 /* Content_Construct.swift */,
 				22E85317269CD5F800E82CE4 /* Node */,
 				2214E125269C80950046EF32 /* Literal.swift */,
 				2214E127269C80AD0046EF32 /* Text.swift */,
@@ -326,6 +329,7 @@
 				2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */,
 				22CDCB12269BC71200988085 /* Point.swift in Sources */,
 				2214E124269C80860046EF32 /* Content.swift in Sources */,
+				22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
