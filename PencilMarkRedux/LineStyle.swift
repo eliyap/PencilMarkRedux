@@ -12,6 +12,64 @@ import OrderedCollections
 extension StyledMarkdown {
     func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
         #warning("Todo")
+        let (partial, complete) = ast.intersectingText(in: range)
+        partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
+    }
+}
+
+extension Text {
+    
+    /// Walks up the tree, looking for a node with the given type
+    func has<T: Node>(style: T.Type) -> Bool {
+        var node: Node = self
+        while(parent._type != Root.type) {
+            if node._type == style.type {
+                return true
+            }
+            node = parent
+        }
+        return false
+    }
+    
+    func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
+        assert(children.isEmpty, "Partial apply to node with children!")
+        
+        guard has(style: style) == false else {
+            /// Style is already applied, no need to continue.
+            return
+        }
+        
+        /// construct styled node
+        let styled: Node = style.init(
+            dict: [
+                "position": [
+                    "start": [
+                        "line": position.start.line,
+                        "column": position.start.column,
+                        "offset": range.lowerBound,
+                    ],
+                    "end": [
+                        "line": position.end.line,
+                        "column": position.end.column,
+                        "offset": range.upperBound,
+                    ],
+                ],
+                "type": style.type,
+                "children": [],
+            ],
+            parent: parent
+        )!
+        
+        /// construct broken up nodes
+        let (prefix, middle, suffix) = split(on: range, with: styled)
+        
+        /// replace self with broken up nodes
+        let index = parent.children
+            .compactMap{ $0 as? Node }
+            .firstIndex(where: {$0 == self})!
+        parent.children.remove(at: index)
+        parent.children.insert(contentsOf: [prefix, middle, suffix], at: index)
+        parent = nil /// remove reference to parent, should de-init after this
     }
 }
 
@@ -63,9 +121,9 @@ extension Node {
 }
 
 extension Root {
-    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Node>, complete: OrderedSet<Node>) {
+    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Node>) {
         let textNodes: [Text] = intersectingText(in: range)
-        var partial: OrderedSet<Node> = []
+        var partial: OrderedSet<Text> = []
         var complete: OrderedSet<Node> = []
         textNodes.forEach {
             if $0.skewered(by: range) == false {

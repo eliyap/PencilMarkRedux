@@ -23,7 +23,7 @@ final class KeyboardEditorViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.view = textView
         
-        textView.attributedText = styledMarkdown(from: coordinator.text)
+        textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
         
         strokeC.$stroke
@@ -76,24 +76,5 @@ extension UITextInput {
         let start = offset(from: beginningOfDocument, to: textRange.start)
         let end = offset(from: beginningOfDocument, to: textRange.end)
         return _NSRange(location: start, length: end - start)
-    }
-}
-
-/// define accessor via int
-extension String {
-    subscript(idx: Int) -> Index {
-        get {
-            index(startIndex, offsetBy: idx)
-        }
-    }
-    
-    subscript(range: Range<Int>) -> Substring {
-        get {
-            self[self[range.lowerBound]..<self[range.upperBound]]
-        }
-    }
-    
-    mutating func replace<T: StringProtocol>(from start: Int, to end: Int, with replacement: T) -> Void {
-        replaceSubrange(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end), with: replacement)
     }
 }

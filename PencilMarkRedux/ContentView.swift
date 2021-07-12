@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var strokeC = StrokeConduit()
-    @State var text = """
+    @State var document = StyledMarkdown(text: """
 # 21.06.21
 ### OMM
 Lab Meeting
@@ -47,18 +47,13 @@ Bed
 MR4
 Lab Work
 
-"""
-    let mdast: Parser = .shared
-    
+""")
     var body: some View {
         ZStack {
-            KeyboardEditorView(strokeC: strokeC, text: $text)
+            KeyboardEditorView(strokeC: strokeC, document: $document)
                 .border(Color.red)
             CanvasView(strokeC: strokeC)
                 .border(Color.red)
-        }
-        .onAppear {
-            mdast.parse(markdown: text)
         }
     }
 }
