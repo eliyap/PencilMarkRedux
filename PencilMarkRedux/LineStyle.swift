@@ -17,16 +17,16 @@ extension StyledMarkdown {
     }
 }
 
-extension Text {
+extension Node {
     
     /// Walks up the tree, looking for a node with the given type
     func has<T: Node>(style: T.Type) -> Bool {
         var node: Node = self
-        while(parent._type != Root.type) {
+        while(node._type != Root.type) {
             if node._type == style.type {
                 return true
             }
-            node = parent
+            node = node.parent
         }
         return false
     }
@@ -70,6 +70,8 @@ extension Text {
         parent.children.remove(at: index)
         parent.children.insert(contentsOf: [prefix, middle, suffix], at: index)
         parent = nil /// remove reference to parent, should de-init after this
+        
+        print(document.text(for: middle))
     }
 }
 
@@ -81,7 +83,7 @@ extension Node {
                 if let text = node as? Text {
                     return text
                 } else {
-                    print("Intersected non text node: \(node)")
+                    print("Intersected non text node: \(node) with \(node.children.count) children")
                     return nil
                 }
             }
@@ -90,7 +92,7 @@ extension Node {
     /// Get all leaf nodes in the AST which intersect the provided range.
     func intersectingLeaves(in range: NSRange) -> [Node] {
         /// If this does not intersect, none of its children will either
-        guard range.lowerBound < position.nsRange.upperBound || range.upperBound > position.nsRange.lowerBound else {
+        guard position.nsRange.intersects(with: range) else {
             return []
         }
         
@@ -116,14 +118,15 @@ extension Node {
     
     /// whether the provided range totally encloses this node
     func skewered(by range: NSRange) -> Bool {
-        range.lowerBound <= position.nsRange.lowerBound && position.nsRange.upperBound <= range.upperBound 
+        range.lowerBound <= position.nsRange.lowerBound && position.nsRange.upperBound <= range.upperBound
     }
 }
 
 extension Root {
-    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Node>) {
-        let textNodes: [Text] = intersectingText(in: range)
-        var partial: OrderedSet<Text> = []
+    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Node>, complete: OrderedSet<Node>) {
+        let textNodes: [Node] = intersectingLeaves(in: range)
+        print(textNodes.count)
+        var partial: OrderedSet<Node> = []
         var complete: OrderedSet<Node> = []
         textNodes.forEach {
             if $0.skewered(by: range) == false {

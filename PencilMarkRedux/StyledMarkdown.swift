@@ -44,3 +44,9 @@ struct StyledMarkdown: FileDocument {
         return FileWrapper(regularFileWithContents: data)
     }
 }
+
+extension StyledMarkdown {
+    func text(for node: Node) -> Substring {
+        text[node.position.nsRange.lowerBound..<node.position.nsRange.upperBound]
+    }
+}

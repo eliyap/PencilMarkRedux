@@ -11,8 +11,8 @@ final class Text: Node {
     override class var type: String { "text" }
 }
 
-extension Text {
-    func split(on range: NSRange, with styled: Node) -> (Text, Text, Text) {
+extension Node {
+    func split(on range: NSRange, with styled: Node) -> (Node, Node, Node) {
         let prefix: Self = Self.init(
             dict: [
                 "position": [
