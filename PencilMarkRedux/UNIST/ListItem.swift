@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListItem: Node {
+final class ListItem: Node {
     override class var type: String { "listItem" }
     
     let checked: Bool?

@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Text: Node {
+final class Text: Node {
     override class var type: String { "text" }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Root: Node {
+final class Root: Node {
     override class var type: String { "root" }
     
     required init?(dict: [AnyHashable: Any]?, parent: Node?) {

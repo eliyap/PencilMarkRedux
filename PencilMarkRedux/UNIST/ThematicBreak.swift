@@ -7,6 +7,6 @@
 
 import Foundation
 
-class ThematicBreak: Node {
+final class ThematicBreak: Node {
     override class var type: String { "thematicBreak" }
 }

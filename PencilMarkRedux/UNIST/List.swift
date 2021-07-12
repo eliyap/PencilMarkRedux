@@ -7,7 +7,7 @@
 
 import Foundation
 
-class List: Node {
+final class List: Node {
     
     override class var type: String { "list" }
     
