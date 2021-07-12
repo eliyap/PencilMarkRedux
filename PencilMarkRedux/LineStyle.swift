@@ -11,7 +11,7 @@ import OrderedCollections
 
 extension StyledMarkdown {
     func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
-        
+        #warning("Todo")
     }
 }
 
