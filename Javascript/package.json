@@ -16,6 +16,7 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "mdast-util-gfm": "^1.0.0"
+    "mdast-util-gfm": "^1.0.0",
+    "micromark-extension-gfm": "^1.0.0"
   }
 }
