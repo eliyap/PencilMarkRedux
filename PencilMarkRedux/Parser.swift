@@ -28,7 +28,8 @@ final class Parser {
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
         
-        print(Root(dict: dict))
+        let root = Root(dict: dict)!
+        root.walk()
     }
 }
 

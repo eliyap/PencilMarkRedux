@@ -10,7 +10,7 @@ import Foundation
 class Root: Node {
     override class var type: String { "root" }
     
-    override init?(dict: [AnyHashable: Any]?) {
+    required init?(dict: [AnyHashable: Any]?) {
         if
             let dict = dict
         {

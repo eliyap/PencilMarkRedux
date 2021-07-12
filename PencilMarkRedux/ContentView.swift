@@ -14,7 +14,7 @@ struct ContentView: View {
 # 21.06.21
 ### OMM
 Lab Meeting
-- [x] Amazon Package o/
+- [x] Amazon ~~Package~~ o/
 MR4 Reading
 WRIT revised proposal
 Coding

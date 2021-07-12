@@ -15,7 +15,7 @@ class List: Node {
     let start: Int?
     let spread: Bool?
     
-    override init?( dict: [AnyHashable: Any]?) {
+    required init?( dict: [AnyHashable: Any]?) {
         let ordered = dict?["ordered"] as? Bool
         let start = dict?["start"] as? Int
         let spread = dict?["spread"] as? Bool

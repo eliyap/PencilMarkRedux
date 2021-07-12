@@ -13,7 +13,7 @@ final class Heading: Node {
     
     let depth: Int
     
-    override init?(
+    required init?(
         dict: [AnyHashable: Any]?
     ) {
         guard

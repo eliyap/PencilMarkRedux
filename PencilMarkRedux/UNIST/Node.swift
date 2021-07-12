@@ -14,7 +14,7 @@ class Node: Content {
     class var type: String { "Node" }
     let children: [Content]
     
-    init?(dict: [AnyHashable: Any]?) {
+    required init?(dict: [AnyHashable: Any]?) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let children = (dict?["children"] as? [[AnyHashable: Any]])?.compactMap({ construct(from: $0) })
@@ -23,6 +23,17 @@ class Node: Content {
             self.children = children
         } else {
             return nil
+        }
+    }
+    
+    func walk() -> Void {
+        print(Self.type)
+        children.forEach {
+            if let node = $0 as? Node {
+                node.walk()
+            } else {
+                print("Non Node")
+            }
         }
     }
 }
@@ -42,6 +53,8 @@ func construct(from dict: [AnyHashable: Any]?) -> Content? {
         return ListItem(dict: dict)
     case Paragraph.type:
         return Paragraph(dict: dict)
+    case Delete.type:
+        return Delete(dict: dict)
     case Text.type:
         return Text(dict: dict)
     default:
@@ -72,6 +85,10 @@ class Text: Node {
     override class var type: String { "text" }
 }
 
+class Delete: Node {
+    override class var type: String { "delete" }
+}
+
 class Paragraph: Node {
     override class var type: String { "paragraph" }
 }
@@ -86,7 +103,7 @@ class ListItem: Node {
     let checked: Bool?
     let spread: Bool?
     
-    override init?(dict: [AnyHashable: Any]?) {
+    required init?(dict: [AnyHashable: Any]?) {
         let checked = dict?["checked"] as? Bool
         let spread = dict?["spread"] as? Bool
     
