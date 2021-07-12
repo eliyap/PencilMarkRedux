@@ -45,11 +45,13 @@ final class KeyboardEditorViewController: UIViewController {
             return
         }
         
+        
         let nsRange = textView.nsRange(from: range)
-        var text = textView.text!
-        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
-        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
-        textView.attributedText = styledMarkdown(from: text)
+        coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
+//        var text = textView.text!
+//        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
+//        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
+//        textView.attributedText = styledMarkdown(from: text)
     }
     
     required init?(coder: NSCoder) {
