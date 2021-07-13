@@ -20,7 +20,6 @@ extension StyledMarkdown {
         partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
-        #warning("Todo: Port Complete Skewer Code, Merge Code")
         
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
@@ -129,7 +128,7 @@ extension Text {
         styled._change = .toAdd
         
         /// construct broken up nodes
-        let (prefix, middle, suffix) = split(on: intersection, with: styled)
+        let (prefix, _, suffix) = split(on: intersection, with: styled)
         let pieces = [prefix, styled, suffix]
             /// remove any zero width text nodes
             .compactMap { $0 }
@@ -139,8 +138,6 @@ extension Text {
         
         /// release reference, should now be de-allocated
         parent = nil
-        
-        print("Partial Format Applied to: '\(middle?.value)'")
     }
 }
 

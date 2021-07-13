@@ -81,4 +81,20 @@ class PhrasingTests: XCTestCase {
         
         #warning("TODO: add other phasing content")
     }
+    
+    func testExtensionLeading() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "~~AAA BBB~~ CCC")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 6, length: 9)) /// strike `BBB~~ CCC`
+        XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
+    }
+    
+    func testExtensionTrailing() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "AAA ~~BBB CCC~~")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 0, length: 9)) /// strike `AAA ~~BBB`
+        XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
+    }
 }
