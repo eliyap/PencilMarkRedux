@@ -67,3 +67,17 @@ class Node: Content {
         return [] /// override to replace this
     }
 }
+
+// MARK:- Convenience Methods
+extension Node {
+    /// Children that are of the ``Node`` type.
+    var nodeChildren: [Node] {
+        children.compactMap { $0 as? Node }
+    }
+    
+    /// index in parent's ``children`` array.
+    var indexInParent: Int {
+        parent.children
+            .firstIndex { $0 as? Node == self }! /// force unwrap!
+    }
+}

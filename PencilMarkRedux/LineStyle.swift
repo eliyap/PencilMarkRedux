@@ -16,6 +16,7 @@ extension StyledMarkdown {
         
         /// Apply changes to AST
         partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
+        complete.forEach { $0.apply(style: lineStyle, in: self) }
         #warning("Todo: Port Complete Skewer Code")
         
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
@@ -43,9 +44,7 @@ extension Node {
         /// include `self` if we are flagged for change
         ((_change == nil) ? [] : [self])
             /// and all changes from children
-            + children
-                .compactMap { $0 as? Node }
-                .flatMap { $0.gatherChanges() }
+            + nodeChildren.flatMap { $0.gatherChanges() }
     }
 }
 
@@ -64,10 +63,77 @@ extension Node {
     }
     
     /**
-    Applies `style` to `range` in the context of `document`
-    by splitting its contents into 3 ``Text`` nodes, with the middle one wrapped in a new `style` node.
-    Also flags the `style` node as being added.
-    - Note: Assumes this ``Node`` has no children, i.e. it is a leaf ``Node``.
+     Applies `style` to whole node in the context of `document`.
+     Flags the `style` node as being added.
+     - ported from TypeScript "complete apply"
+     */
+    func apply<T: Node>(style: T.Type, in document: StyledMarkdown) -> Void {
+        guard has(style: style) == false else {
+            /// Style is already applied, no need to continue.
+            return
+        }
+        
+        unwrap(style: style)
+        
+        /// construct styled node
+        let styled: Node = style.init(
+            dict: [
+                "position": [
+                    "start": [
+                        "line": position.start.line,
+                        "column": position.start.column,
+                        "offset": position.nsRange.lowerBound,
+                    ],
+                    "end": [
+                        "line": position.end.line,
+                        "column": position.end.column,
+                        "offset": position.nsRange.upperBound,
+                    ],
+                ],
+                "type": style.type,
+                "children": [],
+            ],
+            parent: parent /// attach node to own parent
+        )!
+        styled._change = .toAdd
+        
+        /// replace self in parent's children
+        parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: [styled])
+        
+        /// attach self as `styled`'s only child
+        styled.children = [self]
+        parent = styled
+    }
+    
+    /**
+     "Unwraps" all descendant tags with the specified `style`
+     by extracting their contents into the parent node and deleting them.
+     */
+    func unwrap<T: Node>(style: T.Type) -> Void {
+        /// Deliberately freeze a variable of known children, as this function will mutate the list.
+        let frozenNodes: [Node] = nodeChildren
+        
+        /// head recursion
+        frozenNodes.forEach { $0.unwrap(style: style) }
+        
+        if (_type == style.type) {
+            /// update children's guardian status
+            nodeChildren.forEach { $0.parent = parent }
+            
+            /// pass children to parent in place of self
+            parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: children)
+            
+            /// remove reference to parent, should be deallocated after this
+            parent = nil
+        }
+    }
+    
+    /**
+     Applies `style` to `range` in the context of `document`
+     by splitting its contents into 3 ``Text`` nodes, with the middle one wrapped in a new `style` node.
+     Flags the `style` node as being added.
+     - Note: Assumes this ``Node`` has no children, i.e. it is a leaf ``Node``.
+     - ported from TypeScript "partial apply"
      */
     func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
         assert(children.isEmpty, "Partial apply to node with children!")
