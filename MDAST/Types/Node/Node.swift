@@ -8,19 +8,20 @@
 import Foundation
 
 class Node: Content {
+    
     /// This ``Node``'s parent ``Node``.
     /// `weak` to avoid a strong reference cycle.
     /// Optional because ``Root`` has no parent.
-    weak var parent: Node!
+//    weak var parent: Node!
     
     /// The position of the substring in the source Markdown that this Node represents.
-    let position: Position
+//    let position: Position
     
     /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
     
     /// An internal string for figuring out node type independent of class hierarchy
-    var _type: String = "Node"
+//    var _type: String = "Node"
     
     /// An internal, transient marker signalling that this tag is part of a modification we want to make
     var _change: StyledMarkdown.Change? = nil
@@ -34,10 +35,12 @@ class Node: Content {
             let children = dict?["children"] as? [[AnyHashable: Any]],
             let _type = dict?["type"] as? String
         {
-            self.parent = parent
-            self.position = position
-            self._type = _type
+            
             self.children = [] /// initialize before self is captured in closure below
+            super.init(parent: parent, position: position, _type: _type)
+//            self.parent = parent
+//            self.position = position
+//            self._type = _type
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
@@ -77,9 +80,5 @@ extension Node {
         children.compactMap { $0 as? Node }
     }
     
-    /// index in parent's ``children`` array.
-    var indexInParent: Int {
-        parent.children
-            .firstIndex { $0 as? Node == self }! /// force unwrap!
-    }
+    
 }

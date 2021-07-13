@@ -43,8 +43,8 @@
 		22DA13F9269D237F00D90EA7 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F8269D237F00D90EA7 /* Emphasis.swift */; };
 		22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
-		22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Node_Equatable.swift */; };
-		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
+		22E85319269CD60A00E82CE4 /* Content_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Content_Equatable.swift */; };
+		22E8531B269CD61F00E82CE4 /* Content_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Content_Hashable.swift */; };
 		22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531C269CD64100E82CE4 /* Content_Construct.swift */; };
 		22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
@@ -89,8 +89,8 @@
 		22DA13F8269D237F00D90EA7 /* Emphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
 		22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Style.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
-		22E85318269CD60A00E82CE4 /* Node_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Equatable.swift; sourceTree = "<group>"; };
-		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
+		22E85318269CD60A00E82CE4 /* Content_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Equatable.swift; sourceTree = "<group>"; };
+		22E8531A269CD61F00E82CE4 /* Content_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Hashable.swift; sourceTree = "<group>"; };
 		22E8531C269CD64100E82CE4 /* Content_Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_Construct.swift; sourceTree = "<group>"; };
 		22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown_FileDocument.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
@@ -218,6 +218,8 @@
 			children = (
 				2214E123269C80860046EF32 /* Content.swift */,
 				22E8531C269CD64100E82CE4 /* Content_Construct.swift */,
+				22E85318269CD60A00E82CE4 /* Content_Equatable.swift */,
+				22E8531A269CD61F00E82CE4 /* Content_Hashable.swift */,
 				22E85317269CD5F800E82CE4 /* Node */,
 				2214E125269C80950046EF32 /* Literal.swift */,
 				2214E121269BDBCE0046EF32 /* Delete.swift */,
@@ -240,8 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				22CDCB15269BC74700988085 /* Node.swift */,
-				22E85318269CD60A00E82CE4 /* Node_Equatable.swift */,
-				22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
-				22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */,
+				22E8531B269CD61F00E82CE4 /* Content_Hashable.swift in Sources */,
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
 				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
 				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
@@ -356,7 +356,7 @@
 				22E8531D269CD64100E82CE4 /* Content_Construct.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
-				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
+				22E85319269CD60A00E82CE4 /* Content_Equatable.swift in Sources */,
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 				22CDCB16269BC74700988085 /* Node.swift in Sources */,

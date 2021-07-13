@@ -50,11 +50,11 @@ extension Node {
     }
 }
 
-extension Node {
+extension Content {
     
     /// Walks up the tree, looking for a node with the given type
     func has<T: Node>(style: T.Type) -> Bool {
-        var node: Node = self
+        var node: Content = self
         while(node._type != Root.type) {
             if node._type == style.type {
                 return true
@@ -75,7 +75,9 @@ extension Node {
             return
         }
         
-        unwrap(style: style)
+        if let node = self as? Node {
+            node.unwrap(style: style)
+        }
         
         /// construct styled node
         let styled: Node = style.init(
@@ -106,29 +108,9 @@ extension Node {
         styled.children = [self]
         parent = styled
     }
+}
+extension Text {
     
-    /**
-     "Unwraps" all descendant tags with the specified `style`
-     by extracting their contents into the parent node and deleting them.
-     */
-    func unwrap<T: Node>(style: T.Type) -> Void {
-        /// Deliberately freeze a variable of known children, as this function will mutate the list.
-        let frozenNodes: [Node] = nodeChildren
-        
-        /// head recursion
-        frozenNodes.forEach { $0.unwrap(style: style) }
-        
-        if (_type == style.type) {
-            /// update children's guardian status
-            nodeChildren.forEach { $0.parent = parent }
-            
-            /// pass children to parent in place of self
-            parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: children)
-            
-            /// remove reference to parent, should be deallocated after this
-            parent = nil
-        }
-    }
     
     /**
      Applies `style` to `range` in the context of `document`
@@ -138,7 +120,6 @@ extension Node {
      - ported from TypeScript "partial apply"
      */
     func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
-        assert(children.isEmpty, "Partial apply to node with children!")
         print("self covers \(document.text[position.nsRange.lowerBound..<position.nsRange.upperBound])")
         print("range covers \(document.text[range.lowerBound..<range.upperBound])")
         
@@ -165,59 +146,49 @@ extension Node {
                 "type": style.type,
                 "children": [],
             ],
-            parent: self
+            parent: parent
         )!
         styled._change = .toAdd
         
-        /// construct broken up nodes
-        let (prefix, middle, suffix) = split(on: range, with: styled)
+        /// get range's intersection with own range
+        let lowerBound = max(range.lowerBound, position.nsRange.lowerBound)
+        let upperBound = min(range.upperBound, position.nsRange.upperBound)
+        let intersection = _NSRange(location: lowerBound, length: upperBound - lowerBound)
         
-        children = [prefix, styled, suffix]
-        print("\(#file), \(#function), Line \(#line) \(children)")
+        /// construct broken up nodes
+        let (prefix, middle, suffix) = split(on: intersection, with: styled)
+        
+        parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: [prefix, styled, suffix])
         
         print("Partial Format Applied to: \(middle.value)")
     }
 }
 
-extension Node {
-    func intersectingText(in range: NSRange) -> [Text] {
-        intersectingLeaves(in: range)
-            /// Filter out non text nodes and warn me about them.
-            .compactMap { (node: Node) -> Text? in
-                if let text = node as? Text {
-                    return text
-                } else {
-                    print("Intersected non text node: \(node) with \(node.children.count) children")
-                    return nil
-                }
-            }
-    }
-    
+extension Content {
     /// Get all leaf nodes in the AST which intersect the provided range.
-    func intersectingLeaves(in range: NSRange) -> [Node] {
+    func intersectingLeaves(in range: NSRange) -> [Content] {
         /// If this does not intersect, none of its children will either
         guard position.nsRange.intersects(with: range) else {
             return []
         }
         
-        if children.isEmpty {
+        if let node = self as? Node, node.children.isEmpty == false {
+            /// Combine results from node children.
+            return node.children
+                .flatMap { $0.intersectingLeaves(in: range) }
+        } else {
             /// This is a leaf node (with no children).
             return [self]
-        } else {
-            /// Combine results from node children.
-            return children
-                .compactMap { $0 as? Node }
-                .flatMap { $0.intersectingLeaves(in: range) }
         }
     }
     
     /// Find the top level skewered node
-    func highestSkeweredAncestor(in range: NSRange) -> Node {
-        var node: Node = self
-        while (node.parent.skewered(by: range)) {
-            node = node.parent
+    func highestSkeweredAncestor(in range: NSRange) -> Content {
+        var content: Content = self
+        while (content.parent.skewered(by: range)) {
+            content = content.parent
         }
-        return node
+        return content
     }
     
     /// whether the provided range totally encloses this node
@@ -226,16 +197,56 @@ extension Node {
     }
 }
 
+extension Node {
+    func intersectingText(in range: NSRange) -> [Text] {
+        intersectingLeaves(in: range)
+            /// Filter out non text nodes and warn me about them.
+            .compactMap { (content: Content) -> Text? in
+                if let text = content as? Text {
+                    return text
+                } else {
+                    print("Intersected non text: \(content)")
+                    return nil
+                }
+            }
+    }
+    
+    /**
+     "Unwraps" all descendant tags with the specified `style`
+     by extracting their contents into the parent node and deleting them.
+     */
+    func unwrap<T: Node>(style: T.Type) -> Void {
+        /// Deliberately freeze a variable of known children, as this function will mutate the list.
+        let frozenNodes: [Node] = nodeChildren
+        
+        /// head recursion
+        frozenNodes.forEach { $0.unwrap(style: style) }
+        
+        if (_type == style.type) {
+            /// update children's guardian status
+            nodeChildren.forEach { $0.parent = parent }
+            
+            /// pass children to parent in place of self
+            parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: children)
+            
+            /// remove reference to parent, should be deallocated after this
+            parent = nil
+        }
+    }
+    
+    
+}
+
 extension Root {
-    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Node>, complete: OrderedSet<Node>) {
-        let textNodes: [Node] = intersectingLeaves(in: range)
+    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Content>) {
+        let textContents: [Text] = intersectingText(in: range)
         
         /// Use `OrderedSet` to avoid possibility of duplicate nodes.
-        var partial: OrderedSet<Node> = []
-        var complete: OrderedSet<Node> = []
+        var partial: OrderedSet<Text> = []
+        var complete: OrderedSet<Content> = []
         
         /// Sort nodes based on the extent of their intersection with the `range`.
-        textNodes.forEach {
+        textContents.forEach {
             /// Can append without checking for duplicates.
             /// Discard result from `append`.
             _ = $0.skewered(by: range)
@@ -246,7 +257,7 @@ extension Root {
     }
 }
 
-extension Node {
+extension Content {
     func split(on range: NSRange, with styled: Node) -> (Text, Text, Text) {
         let prefix: Text = Text(
             dict: [
@@ -263,9 +274,9 @@ extension Node {
                     ],
                 ],
                 "type": Text.type,
-                "children": [],
+                "value": "", /// NOTHING!
             ],
-            parent: self
+            parent: parent
         )!
         let middle: Text = Text(
             dict: [
@@ -282,7 +293,7 @@ extension Node {
                     ],
                 ],
                 "type": Text.type,
-                "children": [],
+                "value": "", /// NOTHING!
             ],
             parent: styled
         )!
@@ -301,9 +312,9 @@ extension Node {
                     ],
                 ],
                 "type": Text.type,
-                "children": [],
+                "value": "", /// NOTHING!
             ],
-            parent: self
+            parent: parent
         )!
         
         return (
