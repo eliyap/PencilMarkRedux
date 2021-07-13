@@ -113,6 +113,11 @@ extension Text {
             return
         }
         
+        /// get range's intersection with own range
+        let lowerBound = max(range.lowerBound, position.nsRange.lowerBound)
+        let upperBound = min(range.upperBound, position.nsRange.upperBound)
+        let intersection = _NSRange(location: lowerBound, length: upperBound - lowerBound)
+        
         /// construct styled node
         let styled: Node = style.init(
             dict: [
@@ -120,12 +125,12 @@ extension Text {
                     "start": [
                         "line": position.start.line,
                         "column": position.start.column,
-                        "offset": range.lowerBound,
+                        "offset": lowerBound,
                     ],
                     "end": [
                         "line": position.end.line,
                         "column": position.end.column,
-                        "offset": range.upperBound,
+                        "offset": upperBound,
                     ],
                 ],
                 "type": style.type,
@@ -134,11 +139,6 @@ extension Text {
             parent: parent
         )!
         styled._change = .toAdd
-        
-        /// get range's intersection with own range
-        let lowerBound = max(range.lowerBound, position.nsRange.lowerBound)
-        let upperBound = min(range.upperBound, position.nsRange.upperBound)
-        let intersection = _NSRange(location: lowerBound, length: upperBound - lowerBound)
         
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: intersection, with: styled)
