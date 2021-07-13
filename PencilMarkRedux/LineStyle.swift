@@ -51,19 +51,6 @@ extension Node {
 }
 
 extension Content {
-    
-    /// Walks up the tree, looking for a node with the given type
-    func has<T: Node>(style: T.Type) -> Bool {
-        var node: Content = self
-        while(node._type != Root.type) {
-            if node._type == style.type {
-                return true
-            }
-            node = node.parent
-        }
-        return false
-    }
-    
     /**
      Applies `style` to whole node in the context of `document`.
      Flags the `style` node as being added.
@@ -110,8 +97,6 @@ extension Content {
     }
 }
 extension Text {
-    
-    
     /**
      Applies `style` to `range` in the context of `document`
      by splitting its contents into 3 ``Text`` nodes, with the middle one wrapped in a new `style` node.
@@ -158,53 +143,16 @@ extension Text {
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: intersection, with: styled)
         
+        /// replace `self` with broken up nodes
         parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: [prefix, styled, suffix])
+        
+        /// release reference, should now be de-allocated
+        parent = nil
         
         print("Partial Format Applied to: \(middle.value)")
     }
 }
 
-extension Content {
-    
-    /// Find the top level skewered node
-    func highestSkeweredAncestor(in range: NSRange) -> Content {
-        var content: Content = self
-        while (content.parent.skewered(by: range)) {
-            content = content.parent
-        }
-        return content
-    }
-    
-    /// whether the provided range totally encloses this node
-    func skewered(by range: NSRange) -> Bool {
-        range.lowerBound <= position.nsRange.lowerBound && position.nsRange.upperBound <= range.upperBound
-    }
-}
-
-extension Node {
-    /**
-     "Unwraps" all descendant tags with the specified `style`
-     by extracting their contents into the parent node and deleting them.
-     */
-    func unwrap<T: Node>(style: T.Type) -> Void {
-        /// Deliberately freeze a variable of known children, as this function will mutate the list.
-        let frozenNodes: [Node] = nodeChildren
-        
-        /// head recursion
-        frozenNodes.forEach { $0.unwrap(style: style) }
-        
-        if (_type == style.type) {
-            /// update children's guardian status
-            nodeChildren.forEach { $0.parent = parent }
-            
-            /// pass children to parent in place of self
-            parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: children)
-            
-            /// remove reference to parent, should be deallocated after this
-            parent = nil
-        }
-    }
-}
 
 extension Content {
     func split(on range: NSRange, with styled: Node) -> (Text, Text, Text) {
