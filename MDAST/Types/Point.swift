@@ -10,7 +10,7 @@ import Foundation
 struct Point {
     let column: Int
     let line: Int
-    let offset: Int
+    var offset: Int
     
     init?(dict: [AnyHashable: Any]?) {
         guard

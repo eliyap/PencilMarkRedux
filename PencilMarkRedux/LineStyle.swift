@@ -11,6 +11,9 @@ import OrderedCollections
 
 extension StyledMarkdown {
     mutating func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
+        /// reject empty ranges
+        guard range.length > 0 else { return }
+        
         /// Find which parts of the document were partially or completely intersected by this line.
         let (partial, complete) = ast.intersectingText(in: range)
         
