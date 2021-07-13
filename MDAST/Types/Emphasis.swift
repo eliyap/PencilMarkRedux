@@ -41,7 +41,16 @@ final class Emphasis: Node {
                 ),
             ]
         case .toRemove:
-            fatalError("Not Implemented...")
+            return [
+                StyledMarkdown.Replacement(
+                    range: _NSRange(location: position.nsRange.lowerBound, length: 1),
+                    replacement: ""
+                ),
+                StyledMarkdown.Replacement(
+                    range: _NSRange(location: position.nsRange.upperBound - 1, length: 1),
+                    replacement: ""
+                ),
+            ]
         }
     }
 }

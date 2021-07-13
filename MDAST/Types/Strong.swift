@@ -41,7 +41,16 @@ final class Strong: Node {
                 ),
             ]
         case .toRemove:
-            fatalError("Not Implemented...")
+            return [
+                StyledMarkdown.Replacement(
+                    range: _NSRange(location: position.nsRange.lowerBound, length: 2),
+                    replacement: ""
+                ),
+                StyledMarkdown.Replacement(
+                    range: _NSRange(location: position.nsRange.upperBound - 2, length: 2),
+                    replacement: ""
+                ),
+            ]
         }
     }
 }
