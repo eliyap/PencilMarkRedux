@@ -36,3 +36,11 @@ struct Point {
         self.offset = offset
     }
 }
+
+extension Point: Equatable {
+    
+}
+
+extension Point: Hashable {
+    
+}

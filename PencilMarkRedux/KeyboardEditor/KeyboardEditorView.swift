@@ -13,7 +13,7 @@ struct KeyboardEditorView: UIViewControllerRepresentable {
     typealias UIViewControllerType = KeyboardEditorViewController
     
     let strokeC: StrokeConduit
-    @Binding var text: String
+    @Binding var document: StyledMarkdown
     
     func makeUIViewController(context: Context) -> KeyboardEditorViewController {
         let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC)
@@ -28,19 +28,20 @@ struct KeyboardEditorView: UIViewControllerRepresentable {
 extension KeyboardEditorView {
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
+        Coordinator(document: $document)
     }
     
     final class Coordinator: NSObject, UITextViewDelegate {
         
-        @Binding var text: String
+        @Binding var document: StyledMarkdown
         
-        init(text: Binding<String>) {
-            self._text = text
+        init(document: Binding<StyledMarkdown>) {
+            self._document = document
         }
         
-        func textViewDidChange(_ textView: UITextView) {
-            text = textView.text
-        }
+        // TODO: use keyboard edits.
+//        func textViewDidChange(_ textView: UITextView) {
+//            text = textView.text
+//        }
     }
 }

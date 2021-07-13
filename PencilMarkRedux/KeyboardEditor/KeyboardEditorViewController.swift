@@ -23,7 +23,7 @@ final class KeyboardEditorViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.view = textView
         
-        textView.attributedText = styledMarkdown(from: coordinator.text)
+        textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
         
         strokeC.$stroke
@@ -45,11 +45,13 @@ final class KeyboardEditorViewController: UIViewController {
             return
         }
         
+        
         let nsRange = textView.nsRange(from: range)
-        var text = textView.text!
-        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
-        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
-        textView.attributedText = styledMarkdown(from: text)
+        coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
+//        var text = textView.text!
+//        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
+//        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
+        textView.attributedText = coordinator.document.styledText
     }
     
     required init?(coder: NSCoder) {
@@ -64,36 +66,3 @@ final class KeyboardEditorViewController: UIViewController {
     }
 }
 
-func styledMarkdown(from markdown: String) -> NSMutableAttributedString {
-    let mdast = Parser.shared.parse(markdown: markdown)
-    var result = NSMutableAttributedString(string: markdown)
-    mdast.style(&result)
-    return result
-}
-
-extension UITextInput {
-    func nsRange(from textRange: UITextRange) -> NSRange {
-        let start = offset(from: beginningOfDocument, to: textRange.start)
-        let end = offset(from: beginningOfDocument, to: textRange.end)
-        return _NSRange(location: start, length: end - start)
-    }
-}
-
-/// define accessor via int
-extension String {
-    subscript(idx: Int) -> Index {
-        get {
-            index(startIndex, offsetBy: idx)
-        }
-    }
-    
-    subscript(range: Range<Int>) -> Substring {
-        get {
-            self[self[range.lowerBound]..<self[range.upperBound]]
-        }
-    }
-    
-    mutating func replace<T: StringProtocol>(from start: Int, to end: Int, with replacement: T) -> Void {
-        replaceSubrange(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end), with: replacement)
-    }
-}
