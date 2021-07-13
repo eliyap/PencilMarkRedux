@@ -8,8 +8,8 @@
 import Foundation
 
 struct Position {
-    let start: Point
-    let end: Point
+    var start: Point
+    var end: Point
 
     var length: Int {
         end.offset - start.offset

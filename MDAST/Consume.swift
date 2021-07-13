@@ -61,6 +61,9 @@ extension Node {
             children.insert(contentsOf: prev.children, at: 0)
             prev.children = []
             
+            /// extend text range to include range of sibling
+            position.start = prev.position.start
+            
             /// Remove `prev` from tree. Should then be deallocated.
             consumed.append(prev)
             parent.children.remove(at: prev.indexInParent)
@@ -83,6 +86,9 @@ extension Node {
             next.children.forEach { $0.parent = self }
             children.append(contentsOf: next.children)
             next.children = []
+            
+            /// extend text range to include range of sibling
+            position.end = next.position.end
             
             /// Remove `prev` from tree. Should then be deallocated.
             consumed.append(next)
