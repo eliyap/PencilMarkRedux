@@ -165,22 +165,6 @@ extension Text {
 }
 
 extension Content {
-    /// Get all leaf nodes in the AST which intersect the provided range.
-    func intersectingLeaves(in range: NSRange) -> [Content] {
-        /// If this does not intersect, none of its children will either
-        guard position.nsRange.intersects(with: range) else {
-            return []
-        }
-        
-        if let node = self as? Node, node.children.isEmpty == false {
-            /// Combine results from node children.
-            return node.children
-                .flatMap { $0.intersectingLeaves(in: range) }
-        } else {
-            /// This is a leaf node (with no children).
-            return [self]
-        }
-    }
     
     /// Find the top level skewered node
     func highestSkeweredAncestor(in range: NSRange) -> Content {
@@ -198,19 +182,6 @@ extension Content {
 }
 
 extension Node {
-    func intersectingText(in range: NSRange) -> [Text] {
-        intersectingLeaves(in: range)
-            /// Filter out non text nodes and warn me about them.
-            .compactMap { (content: Content) -> Text? in
-                if let text = content as? Text {
-                    return text
-                } else {
-                    print("Intersected non text: \(content)")
-                    return nil
-                }
-            }
-    }
-    
     /**
      "Unwraps" all descendant tags with the specified `style`
      by extracting their contents into the parent node and deleting them.
@@ -232,28 +203,6 @@ extension Node {
             /// remove reference to parent, should be deallocated after this
             parent = nil
         }
-    }
-    
-    
-}
-
-extension Root {
-    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Content>) {
-        let textContents: [Text] = intersectingText(in: range)
-        
-        /// Use `OrderedSet` to avoid possibility of duplicate nodes.
-        var partial: OrderedSet<Text> = []
-        var complete: OrderedSet<Content> = []
-        
-        /// Sort nodes based on the extent of their intersection with the `range`.
-        textContents.forEach {
-            /// Can append without checking for duplicates.
-            /// Discard result from `append`.
-            _ = $0.skewered(by: range)
-                ? complete.append($0.highestSkeweredAncestor(in: range))
-                : partial.append($0)
-        }
-        return (partial, complete)
     }
 }
 
