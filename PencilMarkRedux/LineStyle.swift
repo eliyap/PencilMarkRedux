@@ -19,6 +19,7 @@ extension StyledMarkdown {
         /// Apply changes to AST
         partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
         complete.forEach { $0.apply(style: lineStyle, in: self) }
+        consume(style: lineStyle)
         #warning("Todo: Port Complete Skewer Code, Merge Code")
         
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
@@ -95,9 +96,6 @@ extension Text {
      - ported from TypeScript "partial apply"
      */
     func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
-        print("self covers \(document.text[position.nsRange.lowerBound..<position.nsRange.upperBound])")
-        print("range covers \(document.text[range.lowerBound..<range.upperBound])")
-        
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
@@ -132,40 +130,49 @@ extension Text {
         
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: intersection, with: styled)
+        let pieces = [prefix, styled, suffix]
+            /// remove any zero width text nodes
+            .compactMap { $0 }
         
         /// replace `self` with broken up nodes
-        parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: [prefix, styled, suffix])
+        parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: pieces)
         
         /// release reference, should now be de-allocated
         parent = nil
         
-        print("Partial Format Applied to: \(middle.value)")
+        print("Partial Format Applied to: '\(middle?.value)'")
     }
 }
 
 
 extension Content {
-    func split(on range: NSRange, with styled: Node) -> (Text, Text, Text) {
-        let prefix: Text = Text(
-            dict: [
-                "position": [
-                    "start": [
-                        "line": position.start.line,
-                        "column": position.start.column,
-                        "offset": position.start.offset,
+    func split(on range: NSRange, with styled: Node) -> (Text?, Text?, Text?) {
+        var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
+        
+        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
+        if position.start.offset < range.lowerBound {
+            prefix = Text(
+                dict: [
+                    "position": [
+                        "start": [
+                            "line": position.start.line,
+                            "column": position.start.column,
+                            "offset": position.start.offset,
+                        ],
+                        "end": [
+                            "line": position.end.line,
+                            "column": position.end.column,
+                            "offset": range.lowerBound,
+                        ],
                     ],
-                    "end": [
-                        "line": position.end.line,
-                        "column": position.end.column,
-                        "offset": range.lowerBound,
-                    ],
+                    "type": Text.type,
+                    "value": "", /// NOTHING!
                 ],
-                "type": Text.type,
-                "value": "", /// NOTHING!
-            ],
-            parent: parent
-        )!
-        let middle: Text = Text(
+                parent: parent
+            )
+        }
+        
+        middle = Text(
             dict: [
                 "position": [
                     "start": [
@@ -183,26 +190,30 @@ extension Content {
                 "value": "", /// NOTHING!
             ],
             parent: styled
-        )!
-        let suffix: Text = Text(
-            dict: [
-                "position": [
-                    "start": [
-                        "line": position.start.line,
-                        "column": position.start.column,
-                        "offset": range.upperBound,
+        )
+        
+        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
+        if range.upperBound < position.nsRange.upperBound {
+            suffix = Text(
+                dict: [
+                    "position": [
+                        "start": [
+                            "line": position.start.line,
+                            "column": position.start.column,
+                            "offset": range.upperBound,
+                        ],
+                        "end": [
+                            "line": position.end.line,
+                            "column": position.end.column,
+                            "offset": position.nsRange.upperBound,
+                        ],
                     ],
-                    "end": [
-                        "line": position.end.line,
-                        "column": position.end.column,
-                        "offset": position.nsRange.upperBound,
-                    ],
+                    "type": Text.type,
+                    "value": "", /// NOTHING!
                 ],
-                "type": Text.type,
-                "value": "", /// NOTHING!
-            ],
-            parent: parent
-        )!
+                parent: parent
+            )
+        }
         
         return (
             prefix,

@@ -9,7 +9,7 @@ import Foundation
 
 class Content {
     weak var parent: Node!
-    let position: Position
+    var position: Position
     var _type: String
     
     init(parent: Node?, position: Position, _type: String) {
