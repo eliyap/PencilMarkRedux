@@ -149,6 +149,7 @@ extension Content {
     func split(on range: NSRange, with styled: Node) -> (Text?, Text?, Text?) {
         var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
         
+        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
         if position.start.offset < range.lowerBound {
             prefix = Text(
                 dict: [
@@ -191,6 +192,7 @@ extension Content {
             parent: styled
         )
         
+        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
         if range.upperBound < position.nsRange.upperBound {
             suffix = Text(
                 dict: [
