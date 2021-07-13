@@ -100,6 +100,7 @@ extension Node {
         }
     }
     
+    /// Returns itself after consuming the previous element or ejecting whitespace
     func consumeNext(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Self? {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
@@ -155,7 +156,8 @@ extension Node {
         case trailing
     }
     
-    /// Removes leading or trailing whitespace from formatted range. If nothing is left, this destroys the node.
+    /// Removes leading or trailing whitespace from formatted range.
+    /// If nothing is left, this destroys the node, returning `nil`
     func contractWhitespace(for edge: Edge, in document: StyledMarkdown) -> Self? {
         switch edge {
         case .leading:
