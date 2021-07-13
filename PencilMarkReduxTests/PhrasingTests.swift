@@ -66,6 +66,8 @@ class PhrasingTests: XCTestCase {
         document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 6))
         XCTExpectFailure("Eject Whitespace not ported yet!")
         XCTAssertEqual(document.text, "_aa~~BB~~_ ~~BB~~aa")
+        
+        #warning("TODO: add other phasing content")
     }
     
     /// Strikes through a block enclosing a `delete` already.
@@ -76,5 +78,7 @@ class PhrasingTests: XCTestCase {
         document = StyledMarkdown(text: "aS _~~SSS~~_ Sa")
         document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 13))
         XCTAssertEqual(document.text, "a~~S _SSS_ S~~a")
+        
+        #warning("TODO: add other phasing content")
     }
 }
