@@ -16,6 +16,8 @@ struct ContentView: View {
 Lab Meeting
 - [x] Amazon ~~Package~~ o/
 MR4 **Reading** DO IT
+An *emphasis* on hope
+A _**Strong Emphasis**_ on love
 """)
     var body: some View {
         ZStack {
