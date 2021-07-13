@@ -20,14 +20,8 @@ extension Node {
         frozenNodes.forEach { $0.unwrap(style: style) }
         
         if (_type == style.type) {
-            /// update children's guardian status
-            nodeChildren.forEach { $0.parent = parent }
-            
-            /// pass children to parent in place of self
-            parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: children)
-            
-            /// remove reference to parent, should be deallocated after this
-            parent = nil
+            /// mark self for removal
+            _change = .toRemove
         }
     }
 }
