@@ -9,11 +9,15 @@ import Foundation
 import OrderedCollections
 
 extension StyledMarkdown {
+    /// Joins adjacent nodes of the same type into a single node.
+    /// - does this by having one node "consume" its sibling.
+    /// - Parameter style: the type of node which was formatted
     func consume<T: Node>(style: T.Type) -> Void {
+        /// only examine nodes that were recently added
         let flagged = ast.gatherChanges()
+            .filter { $0._change == .toAdd }
         
-        print("Flagged: \(flagged.count)")
-        
+        /// track nodes that were removed
         var consumed: OrderedSet<Node> = []
         flagged.forEach {
             /// skip over already consumed elements
