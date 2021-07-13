@@ -22,7 +22,7 @@ extension StyledMarkdown {
             #warning("may wish to revise this assertion when running consume after a delete, as john pointed out.")
             assert($0._type == style.type, "Mismatched type")
             
-            $0.consumePrev(consumed: &consumed, DEBUG: self)
+            $0.consumePrev(consumed: &consumed)
             $0.consumeNext(consumed: &consumed)
         }
     }
@@ -42,19 +42,14 @@ extension Node {
             : nil
     }
     
-    func consumePrev(consumed: inout OrderedSet<Node>, DEBUG: StyledMarkdown) -> Void {
-        if let prev = prevSibling {
-            print("prev has type \(prev._type)")
-            print("prev has range \(prev.position.nsRange)")
-            print("prev has contents '\(DEBUG.text[prev.position.nsRange.lowerBound..<prev.position.nsRange.upperBound])'")
-        }
+    func consumePrev(consumed: inout OrderedSet<Node>) -> Void {
         /// Check if previous sibling is a ``Node`` of same `_type`.
         if
             let prev = prevSibling as? Node,
             prev._type == _type
         {
             /// Head recursion: let it eat it's `prevSibling` first.
-            prev.consumePrev(consumed: &consumed, DEBUG: DEBUG)
+            prev.consumePrev(consumed: &consumed)
             
             /// Adopt previous sibling's children.
             prev.children.forEach { $0.parent = self }
