@@ -73,9 +73,28 @@ class PhrasingTests: XCTestCase {
         
         document = StyledMarkdown(text: "_aaBB_ BBaa")
         document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 6))
-        XCTExpectFailure("Eject Whitespace not ported yet!")
-        XCTAssertEqual(document.text, "_aa~~BB~~_ ~~BB~~aa")
+        XCTAssertEqual(document.text, "_aa~~BB~~_ ~~BB~~aa") /// note ejection of leading whitespace
         
+        #warning("TODO: add other phasing content")
+    }
+    
+    /// test whether leading whitespace is ejected correctly
+    func testEjectLeadingWhitespace() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "AAA BBB")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 4)) /// target ' BBB'
+        XCTAssertEqual(document.text, "AAA ~~BBB~~") /// note ejection of leading whitespace
+        #warning("TODO: add other phasing content")
+    }
+    
+    /// test whether trailing whitespace is ejected correctly
+    func testEjectTrailingWhitespace() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "AAA BBB")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 0, length: 4)) /// target 'AAA '
+        XCTAssertEqual(document.text, "~~AAA~~ BBB") /// note ejection of leading whitespace
         #warning("TODO: add other phasing content")
     }
     
