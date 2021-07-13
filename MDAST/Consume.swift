@@ -55,18 +55,41 @@ extension Node {
             /// Head recursion: let it eat it's `prevSibling` first.
             prev.consumePrev(consumed: &consumed)
             
-            /// Adopt previous sibling's children.
-            prev.children.forEach { $0.parent = self }
-            children.insert(contentsOf: prev.children, at: 0)
-            prev.children = []
+            switch prev._change {
             
-            /// extend text range to include range of sibling
-            position.start = prev.position.start
+            /// Node is newly added, let us (also being added) take over.
+            case .toAdd:
+                /// Adopt previous sibling's children.
+                prev.children.forEach { $0.parent = self }
+                children.insert(contentsOf: prev.children, at: 0)
+                prev.children = []
+                
+                /// extend text range to include range of sibling
+                position.start = prev.position.start
+                
+                /// Remove `prev` from tree. Should then be deallocated.
+                consumed.append(prev)
+                parent.children.remove(at: prev.indexInParent)
+                prev.parent = nil
             
-            /// Remove `prev` from tree. Should then be deallocated.
-            consumed.append(prev)
-            parent.children.remove(at: prev.indexInParent)
-            prev.parent = nil
+            /// Node is in the process of being removed, not sure when this might happen, warn us.
+            case .toRemove:
+                print("Encountered Removal")
+                break
+            
+            /// Pre-existing node.
+            case .none:
+                /// Adopt previous sibling.
+                parent.children.remove(at: prev.indexInParent)
+                prev.parent = self
+                children.insert(prev, at: 0)
+                
+                /// Flag syntax marks for removal.
+                prev._change = .toRemove
+                
+                /// extend text range to include range of sibling
+                position.start = prev.position.start
+            }
         } else {
             #warning("TODO: port eject whitespace")
         }
@@ -81,18 +104,41 @@ extension Node {
             /// Head recursion: let it eat it's `prevSibling` first.
             next.consumeNext(consumed: &consumed)
             
-            /// Adopt previous sibling's children.
-            next.children.forEach { $0.parent = self }
-            children.append(contentsOf: next.children)
-            next.children = []
+            switch next._change {
             
-            /// extend text range to include range of sibling
-            position.end = next.position.end
+            /// Node is newly added, let us (also being added) take over.
+            case .toAdd:
+                /// Adopt previous sibling's children.
+                next.children.forEach { $0.parent = self }
+                children.append(contentsOf: next.children)
+                next.children = []
+                
+                /// extend text range to include range of sibling
+                position.end = next.position.end
+                
+                /// Remove `prev` from tree. Should then be deallocated.
+                consumed.append(next)
+                parent.children.remove(at: next.indexInParent)
+                next.parent = nil
             
-            /// Remove `prev` from tree. Should then be deallocated.
-            consumed.append(next)
-            parent.children.remove(at: next.indexInParent)
-            next.parent = nil
+            /// Node is in the process of being removed, not sure when this might happen, warn us.
+            case .toRemove:
+                print("Encountered Removal")
+                break
+            
+            /// Pre-existing node.
+            case .none:
+                /// Adopt previous sibling.
+                parent.children.remove(at: next.indexInParent)
+                next.parent = self
+                children.append(next)
+                
+                /// Flag syntax marks for removal.
+                next._change = .toRemove
+                
+                /// extend text range to include range of sibling
+                position.end = next.position.end
+            }
         } else {
             #warning("TODO: port eject whitespace")
         }
