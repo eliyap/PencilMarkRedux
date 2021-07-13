@@ -40,6 +40,8 @@ class Node: Content {
             self.children = [] /// initialize before self is captured in closure below
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
+            print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
+            print("Dict: \(dict)")
             return nil
         }
     }

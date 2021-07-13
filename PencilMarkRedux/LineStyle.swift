@@ -14,10 +14,12 @@ extension StyledMarkdown {
         /// Find which parts of the document were partially or completely intersected by this line.
         let (partial, complete) = ast.intersectingText(in: range)
         
+        print("DEBUG: \(partial.count) partial, \(complete.count) complete")
+        
         /// Apply changes to AST
         partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
         complete.forEach { $0.apply(style: lineStyle, in: self) }
-        #warning("Todo: Port Complete Skewer Code")
+        #warning("Todo: Port Complete Skewer Code, Merge Code")
         
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
@@ -31,7 +33,7 @@ extension StyledMarkdown {
         /// Perform replacements in source Markdown.
         replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
         
-        print(text)
+        print("New Text:\n\(text)")
         
         /// Finally, reformat document based on updated source Markdown.
         updateAttributes()
@@ -137,6 +139,8 @@ extension Node {
      */
     func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
         assert(children.isEmpty, "Partial apply to node with children!")
+        print("self covers \(document.text[position.nsRange.lowerBound..<position.nsRange.upperBound])")
+        print("range covers \(document.text[range.lowerBound..<range.upperBound])")
         
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
@@ -169,9 +173,9 @@ extension Node {
         let (prefix, middle, suffix) = split(on: range, with: styled)
         
         children = [prefix, styled, suffix]
-        print(children)
+        print("\(#file), \(#function), Line \(#line) \(children)")
         
-        print(document.text(for: middle))
+        print("Partial Format Applied to: \(middle.value)")
     }
 }
 
