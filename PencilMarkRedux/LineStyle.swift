@@ -63,6 +63,12 @@ extension Node {
         return false
     }
     
+    /**
+    Applies `style` to `range` in the context of `document`
+    by splitting its contents into 3 ``Text`` nodes, with the middle one wrapped in a new `style` node.
+    Also flags the `style` node as being added.
+    - Note: Assumes this ``Node`` has no children, i.e. it is a leaf ``Node``.
+     */
     func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
         assert(children.isEmpty, "Partial apply to node with children!")
         
