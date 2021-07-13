@@ -15,7 +15,7 @@ struct ContentView: View {
 ### OMM
 Lab Meeting
 - [x] Amazon ~~Package~~ o/
-MR4 Reading
+MR4 **Reading** DO IT
 """)
     var body: some View {
         ZStack {

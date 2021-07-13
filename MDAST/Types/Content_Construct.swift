@@ -28,6 +28,8 @@ func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
         return Paragraph(dict: dict, parent: parent)
     case Delete.type:
         return Delete(dict: dict, parent: parent)
+    case Strong.type:
+        return Strong(dict: dict, parent: parent)
     case Text.type:
         return Text(dict: dict, parent: parent)
     default:
