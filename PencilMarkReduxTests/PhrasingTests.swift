@@ -84,8 +84,11 @@ class PhrasingTests: XCTestCase {
         
         document = StyledMarkdown(text: "AAA BBB")
         document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 4)) /// target ' BBB'
-        XCTAssertEqual(document.text, "AAA ~~BBB~~") /// note ejection of leading whitespace
-        #warning("TODO: add other phasing content")
+        XCTAssertEqual(document.text, "AAA ~~BBB~~")
+        
+        document = StyledMarkdown(text: "AAA *BBB*")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 5)) /// target ' *BBB'
+        XCTAssertEqual(document.text, "AAA *~~BBB~~*")
     }
     
     /// test whether trailing whitespace is ejected correctly
@@ -94,8 +97,11 @@ class PhrasingTests: XCTestCase {
         
         document = StyledMarkdown(text: "AAA BBB")
         document.apply(lineStyle: Delete.self, to: _NSRange(location: 0, length: 4)) /// target 'AAA '
-        XCTAssertEqual(document.text, "~~AAA~~ BBB") /// note ejection of leading whitespace
-        #warning("TODO: add other phasing content")
+        XCTAssertEqual(document.text, "~~AAA~~ BBB")
+        
+        document = StyledMarkdown(text: "*AAA* BBB")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 5)) /// target 'AAA* '
+        XCTAssertEqual(document.text, "*~~AAA~~* BBB")
     }
     
     /// Strikes through a block enclosing a `delete` already.

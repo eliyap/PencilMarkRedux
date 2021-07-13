@@ -26,8 +26,10 @@ extension StyledMarkdown {
             #warning("may wish to revise this assertion when running consume after a delete, as john pointed out.")
             assert($0._type == style.type, "Mismatched type")
             
-            $0.consumePrev(consumed: &consumed, in: self)
-            $0.consumeNext(consumed: &consumed, in: self)
+            /// Consume siblings before and after
+            _ = $0
+                .consumePrev(consumed: &consumed, in: self)? /// optional chaining in case node is deleted after ejecting whitespace
+                .consumeNext(consumed: &consumed, in: self)
         }
     }
 }
@@ -46,14 +48,16 @@ extension Node {
             : nil
     }
     
-    func consumePrev(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Void {
+    /// Returns itself after consuming the next element or ejecting whitespace
+    func consumePrev(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Self? {
         /// Check if previous sibling is a ``Node`` of same `_type`.
         if
             let prev = prevSibling as? Node,
             prev._type == _type
         {
             /// Head recursion: let it eat it's `prevSibling` first.
-            prev.consumePrev(consumed: &consumed, in: document)
+            /// If previous sibling is nothing, just exit
+            guard let prev = prev.consumePrev(consumed: &consumed, in: document) else { return self }
             
             switch prev._change {
             
@@ -90,19 +94,21 @@ extension Node {
                 /// extend text range to include range of sibling
                 position.start = prev.position.start
             }
+            return self
         } else {
-            contractWhitespace(for: .leading, in: document)
+            return contractWhitespace(for: .leading, in: document)
         }
     }
     
-    func consumeNext(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Void {
+    /// Returns itself after consuming the previous element or ejecting whitespace
+    func consumeNext(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Self? {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
             let next = nextSibling as? Node,
             next._type == _type
         {
             /// Head recursion: let it eat it's `prevSibling` first.
-            next.consumeNext(consumed: &consumed, in: document)
+            guard let next = next.consumeNext(consumed: &consumed, in: document) else { return self }
             
             switch next._change {
             
@@ -139,9 +145,9 @@ extension Node {
                 /// extend text range to include range of sibling
                 position.end = next.position.end
             }
+            return self
         } else {
-            contractWhitespace(for: .trailing, in: document)
-            #warning("TODO: port eject whitespace")
+            return contractWhitespace(for: .trailing, in: document)
         }
     }
     
@@ -150,7 +156,9 @@ extension Node {
         case trailing
     }
     
-    func contractWhitespace(for edge: Edge, in document: StyledMarkdown) -> Void {
+    /// Removes leading or trailing whitespace from formatted range.
+    /// If nothing is left, this destroys the node, returning `nil`
+    func contractWhitespace(for edge: Edge, in document: StyledMarkdown) -> Self? {
         switch edge {
         case .leading:
             while
@@ -172,6 +180,20 @@ extension Node {
                 /// if we find a whitespace character, trim it from our range
                 position.end.offset -= 1
             }
+        }
+        
+        /// if nothing is left after ejecting whitespace, remove self from tree
+        if position.nsRange.length == 0 {
+            assert(_change == .toAdd, "Pre-existing zero width with Change: \(String(describing: _change)), type: \(_type)")
+            
+            /// remove from tree
+            parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: children)
+            children.forEach { $0.parent = parent }
+            parent = nil
+            
+            return nil
+        } else {
+            return self
         }
     }
 }
