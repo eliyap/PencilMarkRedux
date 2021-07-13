@@ -17,6 +17,15 @@ class PhrasingTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    /// make sure zero length ranges are rejected
+    func testZeroRange() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "aaa")
+        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 0))
+        XCTAssertEqual(document.text, "aaa")
+    }
 
     /// Formats through the middle of a line
     func testMid() throws {
