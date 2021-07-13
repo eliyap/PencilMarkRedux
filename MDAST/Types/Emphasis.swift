@@ -13,7 +13,16 @@ final class Emphasis: Node {
     
     override func style(_ string: inout NSMutableAttributedString) {
         super.style(&string)
-        string.addAttribute(.font, value: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize), range: position.nsRange)
+        /// Runs the specified block for each differently formatted section of the provided range
+        /// Docs: https://developer.apple.com/documentation/foundation/nsattributedstring/enumerationoptions
+        string.enumerateAttribute(.font, in: position.nsRange, options: []) { font, range, _ in
+            if let font = font as? UIFont {
+                string.addAttribute(.font, value: font.adding(.traitItalic), range: range)
+            } else {
+                /// `nil` indicates an unformatted string, so just apply plain italics
+                string.addAttribute(.font, value: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize), range: range)
+            }
+        }
     }
     
     override func getReplacement() -> [StyledMarkdown.Replacement] {
