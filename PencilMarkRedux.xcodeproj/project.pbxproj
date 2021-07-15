@@ -36,6 +36,7 @@
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
+		22CA375C26A0BCDC00E95009 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375B26A0BCDC00E95009 /* Image.swift */; };
 		22CDCB12269BC71200988085 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB11269BC71200988085 /* Point.swift */; };
 		22CDCB14269BC73200988085 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB13269BC73200988085 /* Position.swift */; };
 		22CDCB16269BC74700988085 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB15269BC74700988085 /* Parent.swift */; };
@@ -102,6 +103,7 @@
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		22CA375B26A0BCDC00E95009 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CDCB11269BC71200988085 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		22CDCB13269BC73200988085 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				2214E125269C80950046EF32 /* Literal.swift */,
 				2214E127269C80AD0046EF32 /* Text.swift */,
 				2214E12B269C80F40046EF32 /* ThematicBreak.swift */,
+				22CA375B26A0BCDC00E95009 /* Image.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				2214E134269C85750046EF32 /* StyledMarkdown.swift in Sources */,
 				22E85323269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift in Sources */,
 				2214E128269C80AD0046EF32 /* Text.swift in Sources */,
+				22CA375C26A0BCDC00E95009 /* Image.swift in Sources */,
 				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
 				2214E132269C84D70046EF32 /* LineStyle.swift in Sources */,
 				22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */,

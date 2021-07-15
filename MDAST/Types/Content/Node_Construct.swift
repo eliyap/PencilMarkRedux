@@ -22,6 +22,8 @@ func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Node? {
         return ThematicBreak(dict: dict, parent: parent)
     case Blockquote.type:
         return Blockquote(dict: dict, parent: parent)
+    case Image.type:
+        return Image(dict: dict, parent: parent)
     case Link.type:
         return Link(dict: dict, parent: parent)
     case List.type:
