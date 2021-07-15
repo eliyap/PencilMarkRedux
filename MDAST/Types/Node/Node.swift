@@ -27,9 +27,6 @@ class Node: Content {
             
             self.children = [] /// initialize before self is captured in closure below
             super.init(parent: parent, position: position, _type: _type)
-//            self.parent = parent
-//            self.position = position
-//            self._type = _type
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")

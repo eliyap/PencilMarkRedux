@@ -21,9 +21,6 @@ class Literal: Content {
         {
             self.value = value
             super.init(parent: parent, position: position, _type: _type)
-//            self.parent = parent
-//            self.position = position
-//            self._type = _type
         } else {
             print("Failed to initalize literal of type \(dict?["type"] as? String ?? "No Type")!")
             print("Dict: \(dict)")
