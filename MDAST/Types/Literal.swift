@@ -9,21 +9,9 @@ import Foundation
 
 class Literal: Content {
     
-    /// This ``Literal``'s parent ``Node``.
-    /// `weak` to avoid a strong reference cycle.
-    /// Optional because `weak`.
-//    weak var parent: Node!
-    
-    /// The position of the substring in the source Markdown that this Node represents.
-//    let position: Position
-    
     class var type: String { "literal" }
     
     let value: String
-    
-    /// An internal string for figuring out node type independent of class hierarchy
-//    var _type: String = "Node"
-    
     
     required init?(dict: [AnyHashable: Any]?, parent: Node?) {
         if

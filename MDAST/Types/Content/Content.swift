@@ -8,8 +8,15 @@
 import Foundation
 
 class Content {
+    /// The ``Parent``, of which this is a member of ``children``.
+    /// `weak` to avoid a strong reference cycle.
+    /// Optional because `weak`.
     weak var parent: Node!
+    
+    /// The position of the substring in the source Markdown that this Node represents.
     var position: Position
+    
+    /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
     
     init(parent: Node?, position: Position, _type: String) {

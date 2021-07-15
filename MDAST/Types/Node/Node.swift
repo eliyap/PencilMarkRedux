@@ -8,21 +8,10 @@
 import Foundation
 
 class Node: Content {
-    
-    /// This ``Node``'s parent ``Node``.
-    /// `weak` to avoid a strong reference cycle.
-    /// Optional because ``Root`` has no parent.
-//    weak var parent: Node!
-    
-    /// The position of the substring in the source Markdown that this Node represents.
-//    let position: Position
-    
+        
     /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
-    
-    /// An internal string for figuring out node type independent of class hierarchy
-//    var _type: String = "Node"
-    
+        
     /// An internal, transient marker signalling that this tag is part of a modification we want to make
     var _change: StyledMarkdown.Change? = nil
     
