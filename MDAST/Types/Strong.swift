@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Strong: Node {
+final class Strong: Parent {
     override class var type: String { "strong" }
     
     override func style(_ string: inout NSMutableAttributedString) {

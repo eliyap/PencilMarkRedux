@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-final class Heading: Node {
+final class Heading: Parent {
     
     override class var type: String { "heading" }
     
     let depth: Int
     
-    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         guard
             let depth = dict?["depth"] as? Int
         else {

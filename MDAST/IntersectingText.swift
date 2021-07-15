@@ -34,7 +34,7 @@ extension Root {
     }
 }
 
-extension Node {
+extension Parent {
     /// Get all ``Text`` nodes in the AST which intersect the provided range.
     func intersectingText(in range: NSRange) -> [Text] {
         intersectingLeaves(in: range)
@@ -58,7 +58,7 @@ extension Content {
             return []
         }
         
-        if let node = self as? Node, node.children.isEmpty == false {
+        if let node = self as? Parent, node.children.isEmpty == false {
             /// Combine results from node children.
             return node.children
                 .flatMap { $0.intersectingLeaves(in: range) }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Node: Content {
+class Parent: Content {
         
     /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
@@ -18,7 +18,7 @@ class Node: Content {
     /// Child Nodes
     var children: [Content]
     
-    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let children = dict?["children"] as? [[AnyHashable: Any]],
@@ -38,7 +38,7 @@ class Node: Content {
     func walk() -> Void {
         print(Self.type)
         children.forEach {
-            if let node = $0 as? Node {
+            if let node = $0 as? Parent {
                 node.walk()
             } else {
                 print("Non Node")
@@ -49,7 +49,7 @@ class Node: Content {
     /// Applies an initial styling.
     func style(_ string: inout NSMutableAttributedString) -> Void {
         children
-            .compactMap { $0 as? Node }
+            .compactMap { $0 as? Parent }
             .forEach { $0.style(&string) }
     }
     
@@ -60,10 +60,10 @@ class Node: Content {
 }
 
 // MARK:- Convenience Methods
-extension Node {
+extension Parent {
     /// Children that are of the ``Node`` type.
-    var nodeChildren: [Node] {
-        children.compactMap { $0 as? Node }
+    var nodeChildren: [Parent] {
+        children.compactMap { $0 as? Parent }
     }
     
     

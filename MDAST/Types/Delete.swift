@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Delete: Node {
+final class Delete: Parent {
     override class var type: String { "delete" }
     
     override func style(_ string: inout NSMutableAttributedString) {

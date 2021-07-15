@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class List: Node {
+final class List: Parent {
     
     override class var type: String { "list" }
     
@@ -15,7 +15,7 @@ final class List: Node {
     let start: Int?
     let spread: Bool?
     
-    required init?( dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?( dict: [AnyHashable: Any]?, parent: Parent?) {
         let ordered = dict?["ordered"] as? Bool
         let start = dict?["start"] as? Int
         let spread = dict?["spread"] as? Bool

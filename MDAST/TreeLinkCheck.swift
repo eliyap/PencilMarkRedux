@@ -11,7 +11,7 @@ enum TreeError: Error {
     case link
 }
 
-extension Node {
+extension Parent {
     /// Check if all parents are correctly linked to their children
     func linkCheck() throws -> Void {
         try children.forEach {

@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension Node {
+extension Parent {
     /// Recursive function that gathers all nodes which are marked as having changed.
-    func gatherChanges() -> [Node] {
+    func gatherChanges() -> [Parent] {
         /// include `self` if we are flagged for change
         ((_change == nil) ? [] : [self])
             /// and all changes from children

@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class Root: Node {
+final class Root: Parent {
     override class var type: String { "root" }
     
-    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         if
             let dict = dict
         {

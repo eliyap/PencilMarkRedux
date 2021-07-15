@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Emphasis: Node {
+final class Emphasis: Parent {
     override class var type: String { "emphasis" }
     
     override func style(_ string: inout NSMutableAttributedString) {

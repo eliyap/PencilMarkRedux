@@ -10,7 +10,7 @@ import UIKit
 import OrderedCollections
 
 extension StyledMarkdown {
-    mutating func apply<T: Node>(lineStyle: T.Type, to range: NSRange) -> Void {
+    mutating func apply<T: Parent>(lineStyle: T.Type, to range: NSRange) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
         
@@ -52,18 +52,18 @@ extension Content {
      Flags the `style` node as being added.
      - ported from TypeScript "complete apply"
      */
-    func apply<T: Node>(style: T.Type, in document: StyledMarkdown) -> Void {
+    func apply<T: Parent>(style: T.Type, in document: StyledMarkdown) -> Void {
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
         }
         
-        if let node = self as? Node {
+        if let node = self as? Parent {
             node.unwrap(style: style)
         }
         
         /// construct styled node
-        let styled: Node = style.init(
+        let styled: Parent = style.init(
             dict: [
                 "position": [
                     "start": [
@@ -100,7 +100,7 @@ extension Text {
      - Note: Assumes this ``Node`` has no children, i.e. it is a leaf ``Node``.
      - ported from TypeScript "partial apply"
      */
-    func apply<T: Node>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
+    func apply<T: Parent>(style: T.Type, to range: NSRange, in document: StyledMarkdown) -> Void {
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
@@ -112,7 +112,7 @@ extension Text {
         let intersection = _NSRange(location: lowerBound, length: upperBound - lowerBound)
         
         /// construct styled node
-        let styled: Node = style.init(
+        let styled: Parent = style.init(
             dict: [
                 "position": [
                     "start": [
@@ -149,7 +149,7 @@ extension Text {
 
 
 extension Content {
-    func split(on range: NSRange, with styled: Node) -> (Text?, Text?, Text?) {
+    func split(on range: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
         var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
