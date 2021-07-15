@@ -47,7 +47,12 @@ extension StyledMarkdown {
     /// Uses the AST to style an attributed string
     /// - Note: make sure the passed AST matches the passed text!
     static func attributedText(from markdown: String, with ast: Root) -> NSMutableAttributedString {
-        var result = NSMutableAttributedString(string: markdown)
+        var result = NSMutableAttributedString(
+            string: markdown, attributes: [
+                /// set font to monospace by default
+                .font: UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .regular)
+            ]
+        )
         ast.style(&result)
         return result
     }

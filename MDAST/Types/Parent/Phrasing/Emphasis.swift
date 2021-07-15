@@ -19,8 +19,11 @@ final class Emphasis: Parent {
             if let font = font as? UIFont {
                 string.addAttribute(.font, value: font.adding(.traitItalic), range: range)
             } else {
-                /// `nil` indicates an unformatted string, so just apply plain italics
-                string.addAttribute(.font, value: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize), range: range)
+                /// `nil` indicates an unformatted string, so just apply plain italics to monospaced font
+                let font = UIFont.preferredFont(forTextStyle: .body)
+                    .adding(.traitMonoSpace)
+                    .adding(.traitItalic)
+                string.addAttribute(.font, value: font, range: range)
             }
         }
     }
