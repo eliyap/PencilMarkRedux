@@ -24,6 +24,8 @@ func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Node? {
         return Blockquote(dict: dict, parent: parent)
     case Code.type:
         return Code(dict: dict, parent: parent)
+    case InlineCode.type:
+        return InlineCode(dict: dict, parent: parent)
     case Image.type:
         return Image(dict: dict, parent: parent)
     case Link.type:
