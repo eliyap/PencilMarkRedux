@@ -42,6 +42,11 @@ a break
 
 ---
 
+`some code`
+
+```swift
+func moreCode() -> Void { /* some comments */ }
+```
 [^1]: a footnote reference
 """)
     var body: some View {
