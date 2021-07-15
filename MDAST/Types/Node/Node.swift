@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Parent: Content {
+class Parent: Node {
         
     /// The string marking the node's class in JavaScript.
     class var type: String { "Node" }
@@ -16,7 +16,7 @@ class Parent: Content {
     var _change: StyledMarkdown.Change? = nil
     
     /// Child Nodes
-    var children: [Content]
+    var children: [Node]
     
     required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         if

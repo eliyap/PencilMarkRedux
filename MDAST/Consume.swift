@@ -36,13 +36,13 @@ extension StyledMarkdown {
 
 // MARK:- Consume Guts
 extension Parent {
-    var prevSibling: Content? {
+    var prevSibling: Node? {
         self.indexInParent - 1 >= 0
             ? parent.children[self.indexInParent - 1]
             : nil
     }
     
-    var nextSibling: Content? {
+    var nextSibling: Node? {
         self.indexInParent + 1 < parent.children.count
             ? parent.children[self.indexInParent + 1]
             : nil

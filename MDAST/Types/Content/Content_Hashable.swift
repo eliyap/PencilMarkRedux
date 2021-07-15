@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Content: Hashable {
+extension Node: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(position)
         hasher.combine(_type)

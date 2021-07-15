@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension Content: Equatable {
-    static func == (lhs: Content, rhs: Content) -> Bool {
+extension Node: Equatable {
+    static func == (lhs: Node, rhs: Node) -> Bool {
         lhs.position == rhs.position && lhs._type == rhs._type
     }
 }

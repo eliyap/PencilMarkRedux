@@ -11,7 +11,7 @@ import Foundation
 /// - Parameters:
 ///   - dict: JavaScript Object Dictionary
 ///   - parent: the node to assign as the parent
-func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Content? {
+func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Node? {
     let type = dict?["type"] as? String
     switch type {
     case Heading.type:

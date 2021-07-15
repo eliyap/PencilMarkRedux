@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Literal: Content {
+class Literal: Node {
     
     class var type: String { "literal" }
     

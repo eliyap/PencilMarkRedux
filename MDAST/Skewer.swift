@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension Content {
+extension Node {
     /// Find the top level skewered node
-    func highestSkeweredAncestor(in range: NSRange) -> Content {
-        var content: Content = self
+    func highestSkeweredAncestor(in range: NSRange) -> Node {
+        var content: Node = self
         while (content.parent.skewered(by: range)) {
             content = content.parent
         }

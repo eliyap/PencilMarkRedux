@@ -46,7 +46,7 @@ extension StyledMarkdown {
     }
 }
 
-extension Content {
+extension Node {
     /**
      Applies `style` to whole node in the context of `document`.
      Flags the `style` node as being added.
@@ -148,7 +148,7 @@ extension Text {
 }
 
 
-extension Content {
+extension Node {
     func split(on range: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
         var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
         
