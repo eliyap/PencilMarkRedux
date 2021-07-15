@@ -298,14 +298,22 @@
 			path = Phrasing;
 			sourceTree = "<group>";
 		};
+		22CA375D26A0BD3F00E95009 /* Literal */ = {
+			isa = PBXGroup;
+			children = (
+				2214E125269C80950046EF32 /* Literal.swift */,
+				2214E127269C80AD0046EF32 /* Text.swift */,
+			);
+			path = Literal;
+			sourceTree = "<group>";
+		};
 		22CDCB10269BC70600988085 /* Types */ = {
 			isa = PBXGroup;
 			children = (
 				22CA375526A0B53400E95009 /* Content */,
 				22E85317269CD5F800E82CE4 /* Parent */,
 				22CA375226A0B0A500E95009 /* Root */,
-				2214E125269C80950046EF32 /* Literal.swift */,
-				2214E127269C80AD0046EF32 /* Text.swift */,
+				22CA375D26A0BD3F00E95009 /* Literal */,
 				2214E12B269C80F40046EF32 /* ThematicBreak.swift */,
 				22CA375B26A0BCDC00E95009 /* Image.swift */,
 			);
