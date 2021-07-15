@@ -23,7 +23,7 @@ class Literal: Node {
             super.init(parent: parent, position: position, _type: _type)
         } else {
             print("Failed to initalize literal of type \(dict?["type"] as? String ?? "No Type")!")
-            print("Dict: \(dict)")
+            print("Dict: \(String(describing: dict))")
             return nil
         }
     }

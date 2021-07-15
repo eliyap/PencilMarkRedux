@@ -32,7 +32,7 @@ class Node {
             self.parent = parent
         } else {
             print("Failed to initalize literal of type \(dict?["type"] as? String ?? "No Type")!")
-            print("Dict: \(dict)")
+            print("Dict: \(String(describing: dict))")
             return nil
         }
     }

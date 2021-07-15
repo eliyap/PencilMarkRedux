@@ -29,7 +29,7 @@ class Parent: Node {
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
-            print("Dict: \(dict)")
+            print("Dict: \(String(describing: dict))")
             return nil
         }
     }
