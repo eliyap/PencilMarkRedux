@@ -11,14 +11,38 @@ struct ContentView: View {
     
     @StateObject var strokeC = StrokeConduit()
     @State var document = StyledMarkdown(text: """
-# 21.06.21
-### OMM
-Lab Meeting
-- [x] Amazon ~~Package~~ o/
-MR4 **Reading** DO IT
-An *emphasis* on hope
-A _**Strong Emphasis**_ on love
-MMM _MMM **MMM ~~MMM~~ MMM** MMM_ MMM
+ATX 1
+=====
+
+ATX 2
+-----
+
+# Heading 1
+### Heading 3
+Plain Text
+**Strong** *emphasis* ~~delete~~
+nesting *emphasis **strong ~~delete~~***
+
+- list item
+    - sub list item
+1. numbered
+    1. sub numbered
+- [x] task done
+- [ ] task todo
+
+> block quote
+> > nested quote
+
+[a link](www.example.com)
+![an image](www.example.com)
+
+a claim[^1]
+
+a break
+
+---
+
+[^1]: a footnote reference
 """)
     var body: some View {
         ZStack {
