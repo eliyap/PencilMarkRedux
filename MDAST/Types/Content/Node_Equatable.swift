@@ -1,5 +1,5 @@
 //
-//  Content_Equatable.swift
+//  Node_Equatable.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 12/7/21.
