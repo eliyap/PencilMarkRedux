@@ -31,6 +31,9 @@ extension StyledMarkdown {
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted { $0.range.lowerBound > $1.range.lowerBound }
         
+        /// assert tree is ok
+        try! ast.linkCheck()
+        
         print("Replacements: \(replacements)")
         
         /// Perform replacements in source Markdown.

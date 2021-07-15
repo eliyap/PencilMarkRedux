@@ -28,7 +28,12 @@ final class Parser {
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
         
-        return Root(dict: dict, parent: nil)!
+        let ast = Root(dict: dict, parent: nil)!
+        
+        /// assert tree is ok
+        try! ast.linkCheck()
+        
+        return ast
         
     }
 }
