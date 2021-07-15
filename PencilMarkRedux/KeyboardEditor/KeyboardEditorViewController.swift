@@ -34,11 +34,23 @@ final class KeyboardEditorViewController: UIViewController {
     }
     
     func test(stroke: PKStroke) -> Void {
+        switch stroke.interpret() {
+        case .horizontalLine:
+            strikethrough(with: stroke)
+        case .wavyLine:
+            print("Not Implemented!")
+            break
+        case .none:
+            #warning("Todo: port code for red rejection")
+            return
+        }
+    }
+    
+    func strikethrough(with stroke: PKStroke) -> Void {
+        let (leading, trailing) = stroke.straightened()
         guard
-            let cgStart = stroke.path.first?.location,
-            let uiStart = textView.closestPosition(to: cgStart),
-            let cgEnd = stroke.path.last?.location,
-            let uiEnd = textView.closestPosition(to: cgEnd),
+            let uiStart = textView.closestPosition(to: leading),
+            let uiEnd = textView.closestPosition(to: trailing),
             let range = textView.textRange(from: uiStart, to: uiEnd)
         else {
             print("Could not get path bounds!")
@@ -48,9 +60,6 @@ final class KeyboardEditorViewController: UIViewController {
         
         let nsRange = textView.nsRange(from: range)
         coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
-//        var text = textView.text!
-//        text.replace(from: nsRange.upperBound, to: nsRange.upperBound, with: "~~")
-//        text.replace(from: nsRange.lowerBound, to: nsRange.lowerBound, with: "~~")
         textView.attributedText = coordinator.document.styledText
     }
     
