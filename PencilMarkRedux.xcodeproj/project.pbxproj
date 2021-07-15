@@ -34,6 +34,7 @@
 		22AF74E4269BB882007D9891 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74E3269BB882007D9891 /* main.js */; };
 		22AF74E6269BB91D007D9891 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74E5269BB91D007D9891 /* Parser.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
+		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CDCB12269BC71200988085 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB11269BC71200988085 /* Point.swift */; };
 		22CDCB14269BC73200988085 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB13269BC73200988085 /* Position.swift */; };
 		22CDCB16269BC74700988085 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB15269BC74700988085 /* Node.swift */; };
@@ -98,6 +99,7 @@
 		22AF74E3269BB882007D9891 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		22AF74E5269BB91D007D9891 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
+		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CDCB11269BC71200988085 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		22CDCB13269BC73200988085 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				2214E12D269C80FE0046EF32 /* ListItem.swift */,
 				22CDCB17269BC75C00988085 /* Heading.swift */,
 				22CDCB1B269BCB4E00988085 /* List.swift */,
+				22CA375626A0BA6E00E95009 /* Blockquote.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			files = (
 				22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */,
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
+				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22DA13FF269D3A7C00D90EA7 /* IntersectingText.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
