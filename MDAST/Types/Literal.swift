@@ -9,7 +9,7 @@ import Foundation
 
 class Literal: Node {
     
-    class var type: String { "literal" }
+    override class var type: String { "literal" }
     
     let value: String
     

@@ -19,6 +19,8 @@ class Node {
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
     
+    /// The string marking the node's class in JavaScript.
+    class var type: String { "thematicBreak" }
     init(parent: Parent?, position: Position, _type: String) {
         self.parent = parent
         self.position = position
