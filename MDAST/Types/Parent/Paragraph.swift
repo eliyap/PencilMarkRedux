@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Paragraph: Node {
+class Paragraph: Parent {
     override class var type: String { "paragraph" }
 }

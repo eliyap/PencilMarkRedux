@@ -7,13 +7,13 @@
 
 import Foundation
 
-final class ListItem: Node {
+final class ListItem: Parent {
     override class var type: String { "listItem" }
     
     let checked: Bool?
     let spread: Bool?
     
-    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         let checked = dict?["checked"] as? Bool
         let spread = dict?["spread"] as? Bool
     

@@ -7,14 +7,14 @@
 
 import Foundation
 
-extension Node {
+extension Parent {
     /**
      "Unwraps" all descendant tags with the specified `style`
      by extracting their contents into the parent node and deleting them.
      */
-    func unwrap<T: Node>(style: T.Type) -> Void {
+    func unwrap<T: Parent>(style: T.Type) -> Void {
         /// Deliberately freeze a variable of known children, as this function will mutate the list.
-        let frozenNodes: [Node] = nodeChildren
+        let frozenNodes: [Parent] = nodeChildren
         
         /// head recursion
         frozenNodes.forEach { $0.unwrap(style: style) }

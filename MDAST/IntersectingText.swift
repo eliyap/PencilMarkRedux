@@ -15,12 +15,12 @@ extension Root {
      - `partial`: ``Text``s partially intersected by the range
      - `complete`: ``Content`` elements completely skewered by the range, the highest ones in the tree we could find.
      */
-    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Content>) {
+    func intersectingText(in range: NSRange) -> (partial: OrderedSet<Text>, complete: OrderedSet<Node>) {
         let textContents: [Text] = intersectingText(in: range)
         
         /// Use `OrderedSet` to avoid possibility of duplicate nodes.
         var partial: OrderedSet<Text> = []
-        var complete: OrderedSet<Content> = []
+        var complete: OrderedSet<Node> = []
         
         /// Sort nodes based on the extent of their intersection with the `range`.
         textContents.forEach {
@@ -34,12 +34,12 @@ extension Root {
     }
 }
 
-extension Node {
+extension Parent {
     /// Get all ``Text`` nodes in the AST which intersect the provided range.
     func intersectingText(in range: NSRange) -> [Text] {
         intersectingLeaves(in: range)
             /// Filter out non text nodes and warn me about them.
-            .compactMap { (content: Content) -> Text? in
+            .compactMap { (content: Node) -> Text? in
                 if let text = content as? Text {
                     return text
                 } else {
@@ -50,15 +50,15 @@ extension Node {
     }
 }
 
-extension Content {
+extension Node {
     /// Get all leaf nodes in the AST which intersect the provided range.
-    func intersectingLeaves(in range: NSRange) -> [Content] {
+    func intersectingLeaves(in range: NSRange) -> [Node] {
         /// If this does not intersect, none of its children will either
         guard position.nsRange.intersects(with: range) else {
             return []
         }
         
-        if let node = self as? Node, node.children.isEmpty == false {
+        if let node = self as? Parent, node.children.isEmpty == false {
             /// Combine results from node children.
             return node.children
                 .flatMap { $0.intersectingLeaves(in: range) }

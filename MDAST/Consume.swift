@@ -12,13 +12,13 @@ extension StyledMarkdown {
     /// Joins adjacent nodes of the same type into a single node.
     /// - does this by having one node "consume" its sibling.
     /// - Parameter style: the type of node which was formatted
-    func consume<T: Node>(style: T.Type) -> Void {
+    func consume<T: Parent>(style: T.Type) -> Void {
         /// only examine nodes that were recently added
         let flagged = ast.gatherChanges()
             .filter { $0._change == .toAdd }
         
         /// track nodes that were removed
-        var consumed: OrderedSet<Node> = []
+        var consumed: OrderedSet<Parent> = []
         flagged.forEach {
             /// skip over already consumed elements
             guard consumed.contains($0) == false else { return }
@@ -35,24 +35,24 @@ extension StyledMarkdown {
 }
 
 // MARK:- Consume Guts
-extension Node {
-    var prevSibling: Content? {
+extension Parent {
+    var prevSibling: Node? {
         self.indexInParent - 1 >= 0
             ? parent.children[self.indexInParent - 1]
             : nil
     }
     
-    var nextSibling: Content? {
+    var nextSibling: Node? {
         self.indexInParent + 1 < parent.children.count
             ? parent.children[self.indexInParent + 1]
             : nil
     }
     
     /// Returns itself after consuming the next element or ejecting whitespace
-    func consumePrev(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Self? {
-        /// Check if previous sibling is a ``Node`` of same `_type`.
+    func consumePrev(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
+        /// Check if previous sibling is a ``Parent`` of same `_type`.
         if
-            let prev = prevSibling as? Node,
+            let prev = prevSibling as? Parent,
             prev._type == _type
         {
             /// Head recursion: let it eat it's `prevSibling` first.
@@ -101,10 +101,10 @@ extension Node {
     }
     
     /// Returns itself after consuming the previous element or ejecting whitespace
-    func consumeNext(consumed: inout OrderedSet<Node>, in document: StyledMarkdown) -> Self? {
+    func consumeNext(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
-            let next = nextSibling as? Node,
+            let next = nextSibling as? Parent,
             next._type == _type
         {
             /// Head recursion: let it eat it's `prevSibling` first.

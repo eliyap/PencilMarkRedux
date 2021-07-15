@@ -1,5 +1,5 @@
 //
-//  Content_Construct.swift
+//  Node_Construct.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 12/7/21.
@@ -11,7 +11,7 @@ import Foundation
 /// - Parameters:
 ///   - dict: JavaScript Object Dictionary
 ///   - parent: the node to assign as the parent
-func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
+func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Node? {
     let type = dict?["type"] as? String
     switch type {
     case Heading.type:
@@ -20,6 +20,16 @@ func construct(from dict: [AnyHashable: Any]?, parent: Node?) -> Content? {
         return Root(dict: dict, parent: parent)
     case ThematicBreak.type:
         return ThematicBreak(dict: dict, parent: parent)
+    case Blockquote.type:
+        return Blockquote(dict: dict, parent: parent)
+    case Code.type:
+        return Code(dict: dict, parent: parent)
+    case InlineCode.type:
+        return InlineCode(dict: dict, parent: parent)
+    case Image.type:
+        return Image(dict: dict, parent: parent)
+    case Link.type:
+        return Link(dict: dict, parent: parent)
     case List.type:
         return List(dict: dict, parent: parent)
     case ListItem.type:

@@ -29,7 +29,7 @@ struct StyledMarkdown {
 }
 
 extension StyledMarkdown {
-    func text(for node: Node) -> Substring {
+    func text(for node: Parent) -> Substring {
         text[node.position.nsRange.lowerBound..<node.position.nsRange.upperBound]
     }
 }

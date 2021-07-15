@@ -1,5 +1,5 @@
 //
-//  Node.swift
+//  Parent.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 11/7/21.
@@ -7,29 +7,17 @@
 
 import Foundation
 
-class Node: Content {
-    
-    /// This ``Node``'s parent ``Node``.
-    /// `weak` to avoid a strong reference cycle.
-    /// Optional because ``Root`` has no parent.
-//    weak var parent: Node!
-    
-    /// The position of the substring in the source Markdown that this Node represents.
-//    let position: Position
-    
-    /// The string marking the node's class in JavaScript.
-    class var type: String { "Node" }
-    
-    /// An internal string for figuring out node type independent of class hierarchy
-//    var _type: String = "Node"
-    
+class Parent: Node {
+        
+    override class var type: String { "Node" }
+        
     /// An internal, transient marker signalling that this tag is part of a modification we want to make
     var _change: StyledMarkdown.Change? = nil
     
     /// Child Nodes
-    var children: [Content]
+    var children: [Node]
     
-    required init?(dict: [AnyHashable: Any]?, parent: Node?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let children = dict?["children"] as? [[AnyHashable: Any]],
@@ -38,9 +26,6 @@ class Node: Content {
             
             self.children = [] /// initialize before self is captured in closure below
             super.init(parent: parent, position: position, _type: _type)
-//            self.parent = parent
-//            self.position = position
-//            self._type = _type
             self.children = children.compactMap{ construct(from: $0, parent: self) }
         } else {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
@@ -52,7 +37,7 @@ class Node: Content {
     func walk() -> Void {
         print(Self.type)
         children.forEach {
-            if let node = $0 as? Node {
+            if let node = $0 as? Parent {
                 node.walk()
             } else {
                 print("Non Node")
@@ -63,7 +48,7 @@ class Node: Content {
     /// Applies an initial styling.
     func style(_ string: inout NSMutableAttributedString) -> Void {
         children
-            .compactMap { $0 as? Node }
+            .compactMap { $0 as? Parent }
             .forEach { $0.style(&string) }
     }
     
@@ -74,10 +59,10 @@ class Node: Content {
 }
 
 // MARK:- Convenience Methods
-extension Node {
+extension Parent {
     /// Children that are of the ``Node`` type.
-    var nodeChildren: [Node] {
-        children.compactMap { $0 as? Node }
+    var nodeChildren: [Parent] {
+        children.compactMap { $0 as? Parent }
     }
     
     
