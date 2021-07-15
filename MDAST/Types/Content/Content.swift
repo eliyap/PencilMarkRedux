@@ -21,6 +21,22 @@ class Node {
     
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
+    
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+        if
+            let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
+            let _type = dict?["type"] as? String
+        {
+            self.position = position
+            self._type = _type
+            self.parent = parent
+        } else {
+            print("Failed to initalize literal of type \(dict?["type"] as? String ?? "No Type")!")
+            print("Dict: \(dict)")
+            return nil
+        }
+    }
+    
     init(parent: Parent?, position: Position, _type: String) {
         self.parent = parent
         self.position = position
