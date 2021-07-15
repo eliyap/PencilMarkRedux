@@ -43,6 +43,8 @@
 		22CA376626A0C52000E95009 /* Interpret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376526A0C52000E95009 /* Interpret.swift */; };
 		22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376726A0C58D00E95009 /* ThreePointAngle.swift */; };
 		22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376926A0C86400E95009 /* StraightLine.swift */; };
+		22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */; };
+		22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */; };
 		22CDCB12269BC71200988085 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB11269BC71200988085 /* Point.swift */; };
 		22CDCB14269BC73200988085 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB13269BC73200988085 /* Position.swift */; };
 		22CDCB16269BC74700988085 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB15269BC74700988085 /* Parent.swift */; };
@@ -116,6 +118,8 @@
 		22CA376526A0C52000E95009 /* Interpret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpret.swift; sourceTree = "<group>"; };
 		22CA376726A0C58D00E95009 /* ThreePointAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreePointAngle.swift; sourceTree = "<group>"; };
 		22CA376926A0C86400E95009 /* StraightLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StraightLine.swift; sourceTree = "<group>"; };
+		22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePath_Path.swift; sourceTree = "<group>"; };
+		22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path_BezierCurve.swift; sourceTree = "<group>"; };
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CDCB11269BC71200988085 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		22CDCB13269BC73200988085 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */,
 				22AF74D5269BABF9007D9891 /* PencilKit */,
 				22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */,
+				22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */,
 				22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */,
 			);
 			path = Extensions;
@@ -239,6 +244,7 @@
 			children = (
 				22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */,
 				22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */,
+				22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */,
 			);
 			path = PencilKit;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				22DA1409269D3F9B00D90EA7 /* Consume.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
+				22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */,
 				22DA1403269D3C1A00D90EA7 /* HasStyle.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
@@ -525,6 +532,7 @@
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
+				22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */,
 				22DA1407269D3E6300D90EA7 /* GatherChanges.swift in Sources */,
 				22AF74BA269BA5F1007D9891 /* PencilMarkReduxApp.swift in Sources */,
 				22CDCB16269BC74700988085 /* Parent.swift in Sources */,
