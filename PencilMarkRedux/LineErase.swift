@@ -17,6 +17,7 @@ extension StyledMarkdown {
         /// Mark changes in AST
         intersected.forEach { $0.erase(in: range, in: self) }
         
+        ast.infect()
         #warning("Todo: port infected tree code!")
         #warning("Todo: run some form of `consume`!")
         
