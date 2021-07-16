@@ -19,6 +19,9 @@ class Node {
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
     
+    /// An internal, transient marker signalling that this node is part of a modification we want to make
+    var _change: StyledMarkdown.Change? = nil
+    
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
     

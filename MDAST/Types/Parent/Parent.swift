@@ -11,9 +11,6 @@ class Parent: Node {
         
     override class var type: String { "Node" }
         
-    /// An internal, transient marker signalling that this tag is part of a modification we want to make
-    var _change: StyledMarkdown.Change? = nil
-    
     /// Child Nodes
     var children: [Node]
     
