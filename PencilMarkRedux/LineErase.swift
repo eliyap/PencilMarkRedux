@@ -28,8 +28,8 @@ extension Text {
     /// Mark changes in the AST needed to erase the passed range.
     func erase(in range: NSRange, in document: StyledMarkdown) -> Void {
         /**
-         Compare the targeted substring, and the text node contents, ignoring surrounding whitespace.
-         If equal, then the whole node can be removed.
+         Compare the targeted substring and our contents, ignoring surrounding whitespace.
+         If they are equal, then this whole node can be removed.
          */
         let intersection = position.nsRange.intersection(with: range)
         let trimmedTarget = document.text[intersection].trimmingCharacters(in: .whitespaces)
