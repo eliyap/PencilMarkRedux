@@ -33,7 +33,6 @@ final class CanvasViewController: UIViewController {
             .compactMap { $0 }
             .sink { [weak self] in
                 self?.canvasView.contentSize = $0
-                print("Updated to \($0)")
             }
             .store(in: &observers)
     }
