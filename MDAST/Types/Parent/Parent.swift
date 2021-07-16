@@ -75,7 +75,7 @@ extension Parent {
         }
     }
     
-    /// range up to the range of the first child
+    /// range from the end of the last child
     var trailingRange: NSRange? {
         if let lastChild = children.last {
             let lowerBound = lastChild.position.end.offset
