@@ -103,15 +103,11 @@ class LineEraseTests: XCTestCase {
         
         document = StyledMarkdown(text: "- BBB")
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
-        XCTExpectFailure("Haven't implemented list removal") {
-            XCTAssertEqual(document.text, "")
-        }
+        XCTAssertEqual(document.text, "")
         
         document = StyledMarkdown(text: "- - BBB")
         document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
-        XCTExpectFailure("Haven't implemented list removal") {
-            XCTAssertEqual(document.text, "")
-        }
+        XCTAssertEqual(document.text, "")
         
         document = StyledMarkdown(text: """
             - BBB
