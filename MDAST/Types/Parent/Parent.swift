@@ -42,11 +42,12 @@ class Parent: Node {
         }
     }
     
-    /// Applies an initial styling.
-    func style(_ string: inout NSMutableAttributedString) -> Void {
-        children
-            .compactMap { $0 as? Parent }
-            .forEach { $0.style(&string) }
+    /// Allows this node to style the passed Attributed String.
+    /// Makes the markdown more visually appealing.
+    override func style(_ string: inout NSMutableAttributedString) -> Void {
+        super.style(&string)
+        /// Recursively let each child apply their own styles.
+        children.forEach { $0.style(&string) }
     }
     
     override func gatherChanges() -> [Node] {

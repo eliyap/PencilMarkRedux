@@ -59,6 +59,12 @@ class Node {
         print("Warning: Generic getReplacement called because inheriting class did not implement it!")
         return [] /// override to replace this
     }
+    
+    /// Allows this node to style the passed Attributed String.
+    /// Makes the markdown more visually appealing.
+    func style(_ string: inout NSMutableAttributedString) -> Void {
+        /// Override to apply styles here.
+    }
 }
 
 extension Node {
