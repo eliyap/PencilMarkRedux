@@ -72,11 +72,63 @@ class LineEraseTests: XCTestCase {
         document.erase(in: _NSRange(location: 5, length: 21)) /// target 'BBB_~~ ~~_BBB_~~ _BBB'
         XCTAssertEqual(document.text, "")
         
-        /// check Headings
+        /// check simple Headings
         document = StyledMarkdown(text: "# BBB")
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
-        XCTExpectFailure("Haven't implemented heading removal") {
-            XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.text, "")
+        
+        /// check styled headings
+        document = StyledMarkdown(text: "# ~~*BBB*~~")
+        document.erase(in: _NSRange(location: 5, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// Check headings with extra whitespace
+        document = StyledMarkdown(text: "###   BBB")
+        document.erase(in: _NSRange(location: 6, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// Check Setext style headings
+        document = StyledMarkdown(text: """
+            BBB
+            ===
+            """)
+        document.erase(in: _NSRange(location: 0, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+    }
+    
+    /// test nesting of list items
+    func testNestedLists() throws {
+        var document = StyledMarkdown()
+        
+        /// simple list item check
+        document = StyledMarkdown(text: "- BBB")
+        document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// nested list check
+        document = StyledMarkdown(text: "- - BBB")
+        document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// multi-item list check
+        document = StyledMarkdown(text: """
+            - BBB
+            - aaa
+            """)
+        document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented list removal") {
+            XCTAssertEqual(document.text, "- aaa") /// includes extra newline
         }
+        
+        /// list with leading spaces
+        document = StyledMarkdown(text: "-   BBB")
+        document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// list with phrasing formatting
+        document = StyledMarkdown(text: "- ~~**BBB**~~")
+        document.erase(in: _NSRange(location: 6, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
     }
 }

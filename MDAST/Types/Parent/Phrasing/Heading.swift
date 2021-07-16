@@ -27,15 +27,43 @@ final class Heading: Parent {
     
     override func style(_ string: inout NSMutableAttributedString) {
         super.style(&string)
+        /// Match system's preferred heading font size.
         string.addAttribute(
             .font,
-            /// Match system's preferred heading font size
             value: UIFont.monospacedSystemFont(
                 ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize,
                 weight: .semibold
             ),
             range: position.nsRange
         )
+        
+        /// De-emphasize syntax marks with a secondary color.
+        /// Apply to leading (for ATX headings) and trailing (for Setext headings)
+        if let leading = leadingRange, let trailing = trailingRange {
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
+        }
+    }
+    
+    override func getReplacement() -> [StyledMarkdown.Replacement] {
+        switch _change {
+        case .none:
+            fatalError("Replacement requested for nil change!")
+        case .toAdd:
+            fatalError("Not Implemented!")
+        case .toRemove:
+            if let leading = leadingRange, let trailing = trailingRange {
+                return [
+                    StyledMarkdown.Replacement(range: leading, replacement: ""),
+                    StyledMarkdown.Replacement(range: trailing, replacement: ""),
+                ]
+            } else {
+                print("Requested replacement on Heading with no children!")
+                
+                /// return whole range to erase everything
+                return [StyledMarkdown.Replacement(range: position.nsRange, replacement: "")]
+            }
+        }
     }
 }
 

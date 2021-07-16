@@ -14,6 +14,12 @@ final class Delete: Parent {
     override func style(_ string: inout NSMutableAttributedString) {
         super.style(&string)
         string.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: position.nsRange)
+        
+        /// Style surrounding syntax marks
+        if let leading = leadingRange, let trailing = trailingRange {
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
+        }
     }
     
     override func getReplacement() -> [StyledMarkdown.Replacement] {

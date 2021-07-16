@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class Code: Literal {
     
@@ -25,5 +26,12 @@ final class Code: Literal {
         self.lang = lang
         self.meta = meta
         super.init(dict: dict, parent: parent)
+    }
+    
+    override func style(_ string: inout NSMutableAttributedString) {
+        super.style(&string)
+        
+        /// Color whole code block.
+        string.addAttribute(.foregroundColor, value: UIColor.blue, range: position.nsRange)
     }
 }
