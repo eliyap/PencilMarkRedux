@@ -43,8 +43,6 @@ extension StyledMarkdown {
         /// Perform replacements in source Markdown.
         replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
         
-        print("New Text:\n\(text)")
-        
         /// Finally, reformat document based on updated source Markdown.
         updateAttributes()
     }
