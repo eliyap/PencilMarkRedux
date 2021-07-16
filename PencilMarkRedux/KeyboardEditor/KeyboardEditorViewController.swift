@@ -48,7 +48,9 @@ final class KeyboardEditorViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        coordinator.frameC.frame = view.frame
+        let frameWidth = view.frame.size.width
+        let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
+        coordinator.frameC.contentSize = contentSize
     }
     
     required init?(coder: NSCoder) {

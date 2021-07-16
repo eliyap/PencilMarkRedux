@@ -29,11 +29,11 @@ final class CanvasViewController: UIViewController {
         canvasView.isOpaque = false
         
         /// Update canvas size to match `UITextView`.
-        frameC.$frame
+        frameC.$contentSize
             .compactMap { $0 }
             .sink { [weak self] in
-                self?.canvasView.contentSize = $0.size
-                print("Updated to \($0.size)")
+                self?.canvasView.contentSize = $0
+                print("Updated to \($0)")
             }
             .store(in: &observers)
     }

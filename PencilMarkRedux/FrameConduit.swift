@@ -10,5 +10,5 @@ import CoreGraphics
 
 /// Combine conduit for passing view frame `CGRect`s between `UIKit` views.
 final class FrameConduit: ObservableObject {
-    @Published var frame: CGRect? = nil
+    @Published var contentSize: CGSize? = nil
 }
