@@ -72,14 +72,29 @@ class LineEraseTests: XCTestCase {
         document.erase(in: _NSRange(location: 5, length: 21)) /// target 'BBB_~~ ~~_BBB_~~ _BBB'
         XCTAssertEqual(document.text, "")
         
-        /// check Headings
+        /// check simple Headings
         document = StyledMarkdown(text: "# BBB")
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
+        /// check styled headings
         document = StyledMarkdown(text: "# ~~*BBB*~~")
         document.erase(in: _NSRange(location: 5, length: 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
+        
+        /// Check headings with extra whitespace
+        document = StyledMarkdown(text: "###   BBB")
+        document.erase(in: _NSRange(location: 6, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// Check Setext style headings
+        document = StyledMarkdown(text: """
+            BBB
+            ===
+            """)
+        document.erase(in: _NSRange(location: 0, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
     }
     
     /// test nesting of list items
