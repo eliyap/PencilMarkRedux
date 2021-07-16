@@ -47,6 +47,10 @@ final class KeyboardEditorViewController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        coordinator.frameC.frame = view.frame
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

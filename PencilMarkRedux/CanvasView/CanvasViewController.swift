@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 import PencilKit
+import Combine
 
 final class CanvasViewController: UIViewController {
-    let canvasView = PMCanvasView()
     
-    init(coordinator: CanvasView.Coordinator) {
+    let canvasView = PMCanvasView()
+    let frameC: FrameConduit
+    var observers = Set<AnyCancellable>()
+    
+    init(coordinator: CanvasView.Coordinator, frameC: FrameConduit) {
+        self.frameC = frameC
         super.init(nibName: nil, bundle: nil)
         self.view = canvasView
         
@@ -22,10 +27,25 @@ final class CanvasViewController: UIViewController {
         /// Allows text to show through
         canvasView.backgroundColor = .clear
         canvasView.isOpaque = false
+        
+        /// Update canvas size to match `UITextView`.
+        frameC.$frame
+            .compactMap { $0 }
+            .sink { [weak self] in
+                self?.canvasView.contentSize = $0.size
+                print("Updated to \($0.size)")
+            }
+            .store(in: &observers)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
+    }
+    
+    deinit {
+        /// clean up Combine stuff.
+        observers.forEach { $0.cancel() }
+        print("CanvasViewController was deinitialized")
     }
 }
 
