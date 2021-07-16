@@ -9,13 +9,14 @@ import Foundation
 import OrderedCollections
 
 extension StyledMarkdown {
-    /// Joins adjacent nodes of the same type into a single node.
-    /// - does this by having one node "consume" its sibling.
-    /// - Parameter style: the type of node which was formatted
+    /// Joins adjacent ``Parent``s of the same type into a single ``Parent``.
+    /// - does this by having one ``Parent`` "consume" its sibling.
+    /// - Parameter style: the type of ``Parent`` formatting being applied.
     func consume<T: Parent>(style: T.Type) -> Void {
         /// only examine nodes that were recently added
-        let flagged = ast.gatherChanges()
+        let flagged: [Parent] = ast.gatherChanges()
             .filter { $0._change == .toAdd }
+            .compactMap { $0 as? Parent }
         
         /// track nodes that were removed
         var consumed: OrderedSet<Parent> = []

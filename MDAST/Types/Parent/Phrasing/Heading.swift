@@ -27,7 +27,15 @@ final class Heading: Parent {
     
     override func style(_ string: inout NSMutableAttributedString) {
         super.style(&string)
-        string.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .headline), range: position.nsRange)
+        string.addAttribute(
+            .font,
+            /// Match system's preferred heading font size
+            value: UIFont.monospacedSystemFont(
+                ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize,
+                weight: .semibold
+            ),
+            range: position.nsRange
+        )
     }
 }
 

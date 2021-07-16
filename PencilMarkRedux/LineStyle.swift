@@ -24,6 +24,10 @@ extension StyledMarkdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
+        makeReplacements()
+    }
+    
+    mutating func makeReplacements() -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
             .gatherChanges()
@@ -109,7 +113,6 @@ extension Text {
         /// get range's intersection with own range
         let lowerBound = max(range.lowerBound, position.nsRange.lowerBound)
         let upperBound = min(range.upperBound, position.nsRange.upperBound)
-        let intersection = _NSRange(location: lowerBound, length: upperBound - lowerBound)
         
         /// construct styled node
         let styled: Parent = style.init(
@@ -134,7 +137,13 @@ extension Text {
         styled._change = .toAdd
         
         /// construct broken up nodes
-        let (prefix, _, suffix) = split(on: intersection, with: styled)
+        let (prefix, middle, suffix) = split(on: range)
+        
+        /// set parent
+        prefix?.parent = parent
+        middle.parent = styled
+        suffix?.parent = parent
+        
         let pieces = [prefix, styled, suffix]
             /// remove any zero width text nodes
             .compactMap { $0 }
@@ -147,81 +156,3 @@ extension Text {
     }
 }
 
-
-extension Node {
-    func split(on range: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
-        var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
-        
-        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if position.start.offset < range.lowerBound {
-            prefix = Text(
-                dict: [
-                    "position": [
-                        "start": [
-                            "line": position.start.line,
-                            "column": position.start.column,
-                            "offset": position.start.offset,
-                        ],
-                        "end": [
-                            "line": position.end.line,
-                            "column": position.end.column,
-                            "offset": range.lowerBound,
-                        ],
-                    ],
-                    "type": Text.type,
-                    "value": "", /// NOTHING!
-                ],
-                parent: parent
-            )
-        }
-        
-        middle = Text(
-            dict: [
-                "position": [
-                    "start": [
-                        "line": position.start.line,
-                        "column": position.start.column,
-                        "offset": range.lowerBound,
-                    ],
-                    "end": [
-                        "line": position.end.line,
-                        "column": position.end.column,
-                        "offset": range.upperBound,
-                    ],
-                ],
-                "type": Text.type,
-                "value": "", /// NOTHING!
-            ],
-            parent: styled
-        )
-        
-        /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if range.upperBound < position.nsRange.upperBound {
-            suffix = Text(
-                dict: [
-                    "position": [
-                        "start": [
-                            "line": position.start.line,
-                            "column": position.start.column,
-                            "offset": range.upperBound,
-                        ],
-                        "end": [
-                            "line": position.end.line,
-                            "column": position.end.column,
-                            "offset": position.nsRange.upperBound,
-                        ],
-                    ],
-                    "type": Text.type,
-                    "value": "", /// NOTHING!
-                ],
-                parent: parent
-            )
-        }
-        
-        return (
-            prefix,
-            middle,
-            suffix
-        )
-    }
-}

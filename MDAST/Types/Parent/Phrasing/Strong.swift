@@ -19,8 +19,8 @@ final class Strong: Parent {
             if let font = font as? UIFont {
                 string.addAttribute(.font, value: font.adding(.traitBold), range: range)
             } else {
-                /// `nil` indicates an unformatted string, so just apply italics
-                string.addAttribute(.font, value: UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .bold), range: range)
+                /// `nil` indicates an unformatted string, so just apply italics to monospaced font
+                string.addAttribute(.font, value: UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .bold), range: range)
             }
         }
     }
