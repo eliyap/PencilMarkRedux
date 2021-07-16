@@ -148,12 +148,12 @@ extension Text {
 }
 
 
-extension Text {
-    func split(on intersection: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
+extension Node {
+    func split(on range: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
         var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if position.start.offset < intersection.lowerBound {
+        if position.start.offset < range.lowerBound {
             prefix = Text(
                 dict: [
                     "position": [
@@ -165,7 +165,7 @@ extension Text {
                         "end": [
                             "line": position.end.line,
                             "column": position.end.column,
-                            "offset": intersection.lowerBound,
+                            "offset": range.lowerBound,
                         ],
                     ],
                     "type": Text.type,
@@ -181,12 +181,12 @@ extension Text {
                     "start": [
                         "line": position.start.line,
                         "column": position.start.column,
-                        "offset": intersection.lowerBound,
+                        "offset": range.lowerBound,
                     ],
                     "end": [
                         "line": position.end.line,
                         "column": position.end.column,
-                        "offset": intersection.upperBound,
+                        "offset": range.upperBound,
                     ],
                 ],
                 "type": Text.type,
@@ -196,19 +196,19 @@ extension Text {
         )
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if intersection.upperBound < position.nsRange.upperBound {
+        if range.upperBound < position.nsRange.upperBound {
             suffix = Text(
                 dict: [
                     "position": [
                         "start": [
                             "line": position.start.line,
                             "column": position.start.column,
-                            "offset": intersection.upperBound,
+                            "offset": range.upperBound,
                         ],
                         "end": [
                             "line": position.end.line,
                             "column": position.end.column,
-                            "offset": position.end.offset,
+                            "offset": position.nsRange.upperBound,
                         ],
                     ],
                     "type": Text.type,
