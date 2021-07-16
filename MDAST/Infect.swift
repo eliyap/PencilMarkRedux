@@ -91,7 +91,9 @@ extension Node {
             }
         }
         
-        fatalError("Terminated without return!")
+        /// Loop terminated without finding a divergence, meaning that `p1` is a subset of `p2`.
+        /// Therefore the LCA is `p1`'s last element.
+        return p1.last!
     }
     
     /// Get an array of all ancestors starting from ``Root`` down to ``parent``.
