@@ -101,21 +101,34 @@ class LineEraseTests: XCTestCase {
     func testNestedLists() throws {
         var document = StyledMarkdown()
         
+        /// simple list item check
         document = StyledMarkdown(text: "- BBB")
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
+        /// nested list check
         document = StyledMarkdown(text: "- - BBB")
         document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
+        /// multi-item list check
         document = StyledMarkdown(text: """
             - BBB
             - aaa
             """)
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
         XCTExpectFailure("Haven't implemented list removal") {
-            XCTAssertEqual(document.text, "- aaa")
+            XCTAssertEqual(document.text, "- aaa") /// includes extra newline
         }
+        
+        /// list with leading spaces
+        document = StyledMarkdown(text: "-   BBB")
+        document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
+        
+        /// list with phrasing formatting
+        document = StyledMarkdown(text: "- ~~**BBB**~~")
+        document.erase(in: _NSRange(location: 6, length: 3)) /// target 'BBB'
+        XCTAssertEqual(document.text, "")
     }
 }
