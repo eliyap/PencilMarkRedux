@@ -7,12 +7,17 @@
 
 import Foundation
 
-extension Parent {
+extension Node {
     /// Recursive function that gathers all nodes which are marked as having changed.
-    func gatherChanges() -> [Parent] {
-        /// include `self` if we are flagged for change
-        ((_change == nil) ? [] : [self])
-            /// and all changes from children
-            + nodeChildren.flatMap { $0.gatherChanges() }
+    func gatherChanges() -> [Node] {
+        /// include `self` if we are flagged for change,
+        var result: [Node] = (_change == nil)
+            ? []
+            : [self]
+        /// and all changes from children.
+        if let parent = self as? Parent {
+            result += parent.children.flatMap { $0.gatherChanges() }
+        }
+        return result
     }
 }
