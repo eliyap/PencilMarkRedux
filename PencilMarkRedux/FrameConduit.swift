@@ -11,4 +11,5 @@ import CoreGraphics
 /// Combine conduit for passing view frame `CGRect`s between `UIKit` views.
 final class FrameConduit: ObservableObject {
     @Published var contentSize: CGSize? = nil
+    @Published var scrollY: CGFloat = .zero
 }

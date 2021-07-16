@@ -17,7 +17,7 @@ struct KeyboardEditorView: UIViewControllerRepresentable {
     @Binding var document: StyledMarkdown
     
     func makeUIViewController(context: Context) -> KeyboardEditorViewController {
-        let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC)
+        let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC, frameC: frameC)
         return vc
     }
     

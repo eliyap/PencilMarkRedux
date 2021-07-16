@@ -20,7 +20,11 @@ final class KeyboardEditorViewController: UIViewController {
     
     var observers = Set<AnyCancellable>()
     
-    init(coordinator: KeyboardEditorView.Coordinator, strokeC: StrokeConduit) {
+    init(
+        coordinator: KeyboardEditorView.Coordinator,
+        strokeC: StrokeConduit,
+        frameC: FrameConduit
+    ) {
         self.strokeC = strokeC
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +37,13 @@ final class KeyboardEditorViewController: UIViewController {
             .compactMap { $0 }
             .sink { [weak self] stroke in
                 self?.test(stroke: stroke)
-            }.store(in: &observers)
+            }
+            .store(in: &observers)
+        frameC.$scrollY
+            .sink { [weak self] in
+                self?.textView.contentOffset.y = $0
+            }
+            .store(in: &observers)
     }
     
     func test(stroke: PKStroke) -> Void {

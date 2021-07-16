@@ -11,15 +11,17 @@ import PencilKit
 extension CanvasView {
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(strokeC: strokeC)
+        Coordinator(strokeC: strokeC, frameC: frameC)
     }
     
     final class Coordinator: NSObject, PKCanvasViewDelegate {
         
         let strokeC: StrokeConduit
+        let frameC: FrameConduit
         
-        init(strokeC: StrokeConduit) {
+        init(strokeC: StrokeConduit, frameC: FrameConduit) {
             self.strokeC = strokeC
+            self.frameC = frameC
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
@@ -34,5 +36,11 @@ extension CanvasView {
             /// erase canvas immediately
             canvasView.drawing = PKDrawing(strokes: [])
         }
+    }
+}
+
+extension CanvasView.Coordinator: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        frameC.scrollY = scrollView.contentOffset.y
     }
 }
