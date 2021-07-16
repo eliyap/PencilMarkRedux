@@ -78,5 +78,37 @@ class LineEraseTests: XCTestCase {
         XCTExpectFailure("Haven't implemented heading removal") {
             XCTAssertEqual(document.text, "")
         }
+        
+        document = StyledMarkdown(text: "# ~~*BBB*~~")
+        document.erase(in: _NSRange(location: 5, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented heading removal") {
+            XCTAssertEqual(document.text, "")
+        }
+    }
+    
+    /// test nesting of list items
+    func testNestedLists() throws {
+        var document = StyledMarkdown()
+        
+        document = StyledMarkdown(text: "- BBB")
+        document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented list removal") {
+            XCTAssertEqual(document.text, "")
+        }
+        
+        document = StyledMarkdown(text: "- - BBB")
+        document.erase(in: _NSRange(location: 4, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented list removal") {
+            XCTAssertEqual(document.text, "")
+        }
+        
+        document = StyledMarkdown(text: """
+            - BBB
+            - aaa
+            """)
+        document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented list removal") {
+            XCTAssertEqual(document.text, "- aaa")
+        }
     }
 }
