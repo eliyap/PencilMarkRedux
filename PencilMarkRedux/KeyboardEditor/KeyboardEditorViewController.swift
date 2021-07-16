@@ -41,8 +41,7 @@ final class KeyboardEditorViewController: UIViewController {
         case .horizontalLine:
             strikethrough(with: stroke)
         case .wavyLine:
-            print("Not Implemented!")
-            break
+            erase(along: stroke)
         case .none:
             reject(stroke: stroke)
         }
