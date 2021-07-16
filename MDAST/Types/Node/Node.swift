@@ -45,6 +45,14 @@ class Node {
         self.position = position
         self._type = _type
     }
+    
+    /// Recursive function that gathers all ``Node``s which are marked as having changed.
+    func gatherChanges() -> [Node] {
+        /// include `self` if flagged for change,
+        (_change == nil)
+            ? []
+            : [self]
+    }
 }
 
 extension Node {

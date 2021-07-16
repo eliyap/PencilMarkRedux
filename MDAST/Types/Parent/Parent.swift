@@ -53,6 +53,11 @@ class Parent: Node {
     func getReplacement() -> [StyledMarkdown.Replacement] {
         return [] /// override to replace this
     }
+    
+    override func gatherChanges() -> [Node] {
+        /// Include changes from children as well using recursive call.
+        return super.gatherChanges() + children.flatMap { $0.gatherChanges() }
+    }
 }
 
 // MARK:- Convenience Methods
