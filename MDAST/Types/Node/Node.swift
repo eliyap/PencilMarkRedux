@@ -53,6 +53,11 @@ class Node {
             ? []
             : [self]
     }
+    
+    /// The text replacements that need to happen when this part of the tree is changed.
+    func getReplacement() -> [StyledMarkdown.Replacement] {
+        return [] /// override to replace this
+    }
 }
 
 extension Node {
