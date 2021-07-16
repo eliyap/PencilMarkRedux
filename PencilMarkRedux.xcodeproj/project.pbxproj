@@ -46,6 +46,7 @@
 		22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */; };
 		22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */; };
 		22CA377026A127C800E95009 /* LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376F26A127C800E95009 /* LineErase.swift */; };
+		22CA377226A1341300E95009 /* Text.split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377126A1341300E95009 /* Text.split.swift */; };
 		22CDCB12269BC71200988085 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB11269BC71200988085 /* Point.swift */; };
 		22CDCB14269BC73200988085 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB13269BC73200988085 /* Position.swift */; };
 		22CDCB16269BC74700988085 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB15269BC74700988085 /* Parent.swift */; };
@@ -122,6 +123,7 @@
 		22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePath_Path.swift; sourceTree = "<group>"; };
 		22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path_BezierCurve.swift; sourceTree = "<group>"; };
 		22CA376F26A127C800E95009 /* LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineErase.swift; sourceTree = "<group>"; };
+		22CA377126A1341300E95009 /* Text.split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.split.swift; sourceTree = "<group>"; };
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CDCB11269BC71200988085 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		22CDCB13269BC73200988085 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			children = (
 				2214E125269C80950046EF32 /* Literal.swift */,
 				2214E127269C80AD0046EF32 /* Text.swift */,
+				22CA377126A1341300E95009 /* Text.split.swift */,
 				22CA375E26A0BD6000E95009 /* Code.swift */,
 				22CA376026A0BFC200E95009 /* InlineCode.swift */,
 			);
@@ -522,6 +525,7 @@
 				22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */,
 				22DA1401269D3BC800D90EA7 /* Skewer.swift in Sources */,
 				22CDCB18269BC75C00988085 /* Heading.swift in Sources */,
+				22CA377226A1341300E95009 /* Text.split.swift in Sources */,
 				2214E122269BDC1B0046EF32 /* Delete.swift in Sources */,
 				22DA13F7269D228000D90EA7 /* Strong.swift in Sources */,
 				2214E13A269C99FE0046EF32 /* StyledMarkdown.Change.swift in Sources */,
