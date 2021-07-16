@@ -295,7 +295,7 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		22CA375526A0B53400E95009 /* Content */ = {
+		22CA375526A0B53400E95009 /* Node */ = {
 			isa = PBXGroup;
 			children = (
 				2214E123269C80860046EF32 /* Node.swift */,
@@ -305,7 +305,7 @@
 				22CDCB13269BC73200988085 /* Position.swift */,
 				22CDCB11269BC71200988085 /* Point.swift */,
 			);
-			path = Content;
+			path = Node;
 			sourceTree = "<group>";
 		};
 		22CA375826A0BBC400E95009 /* Phrasing */ = {
@@ -345,7 +345,7 @@
 		22CDCB10269BC70600988085 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				22CA375526A0B53400E95009 /* Content */,
+				22CA375526A0B53400E95009 /* Node */,
 				22E85317269CD5F800E82CE4 /* Parent */,
 				22CA375226A0B0A500E95009 /* Root */,
 				22CA375D26A0BD3F00E95009 /* Literal */,
@@ -368,8 +368,8 @@
 		22E85317269CD5F800E82CE4 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
-				22CA375826A0BBC400E95009 /* Phrasing */,
 				22CDCB15269BC74700988085 /* Parent.swift */,
+				22CA375826A0BBC400E95009 /* Phrasing */,
 				22CA375626A0BA6E00E95009 /* Blockquote.swift */,
 				22CDCB1B269BCB4E00988085 /* List.swift */,
 				2214E12D269C80FE0046EF32 /* ListItem.swift */,
