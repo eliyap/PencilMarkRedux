@@ -24,6 +24,10 @@ extension StyledMarkdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
+        makeReplacements()
+    }
+    
+    mutating func makeReplacements() -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
             .gatherChanges()
