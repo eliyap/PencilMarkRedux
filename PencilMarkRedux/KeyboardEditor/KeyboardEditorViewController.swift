@@ -124,7 +124,7 @@ extension KeyboardEditorViewController {
 // MARK:- Stroke Reject Layer Guts
 extension KeyboardEditorViewController {
     /// Insert layer into hierarchy if it is missing.
-    /// This is here because I'm terrified of overriding the `PKCanvasView` `init`.
+    /// This is here because I'm terrified of overriding the `UITextView` `init`.
     fileprivate func getOrInitStrokeLayer() -> CAShapeLayer {
         if strokeLayer == nil {
             self.strokeLayer = CAShapeLayer()
