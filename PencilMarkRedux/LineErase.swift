@@ -14,10 +14,11 @@ extension StyledMarkdown {
         guard range.length > 0 else { return }
         let intersected: [Text] = ast.intersectingText(in: range)
         
-        /// Mark changes in AST
+        /// Mark nodes that were directly erased along this range in the AST.
         intersected.forEach { $0.erase(in: range, in: self) }
         
-        #warning("Todo: port infected tree code!")
+        /// Mark nodes that need to be removed as a result of previous removals.
+        ast.infect()
         #warning("Todo: run some form of `consume`!")
         
         makeReplacements()
