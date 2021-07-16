@@ -17,8 +17,8 @@ ATX 1
 ATX 2
 -----
 
-# Heading 1
-### Heading 3
+# Heading ~~Nested~~
+### Heading ***Nested***
 Plain Text
 **Strong** *emphasis* ~~delete~~
 nesting *emphasis **strong ~~delete~~***
