@@ -23,6 +23,12 @@ final class Strong: Parent {
                 string.addAttribute(.font, value: UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .bold), range: range)
             }
         }
+        
+        /// Style surrounding syntax marks
+        if let leading = leadingRange, let trailing = trailingRange {
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
+            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
+        }
     }
     
     override func getReplacement() -> [StyledMarkdown.Replacement] {
