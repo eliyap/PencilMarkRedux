@@ -56,6 +56,7 @@ class Node {
     
     /// The text replacements that need to happen when this part of the tree is changed.
     func getReplacement() -> [StyledMarkdown.Replacement] {
+        print("Warning: Generic getReplacement called because inheriting class did not implement it!")
         return [] /// override to replace this
     }
 }
