@@ -50,6 +50,7 @@
 		22CA377426A1C43D00E95009 /* Infect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377326A1C43D00E95009 /* Infect.swift */; };
 		22CA377626A1D7E100E95009 /* LineEraseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377526A1D7E100E95009 /* LineEraseTests.swift */; };
 		22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377726A215BF00E95009 /* FrameConduit.swift */; };
+		22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377926A22B9300E95009 /* PMCanvasView.swift */; };
 		22CDCB12269BC71200988085 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB11269BC71200988085 /* Point.swift */; };
 		22CDCB14269BC73200988085 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB13269BC73200988085 /* Position.swift */; };
 		22CDCB16269BC74700988085 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB15269BC74700988085 /* Parent.swift */; };
@@ -129,6 +130,7 @@
 		22CA377326A1C43D00E95009 /* Infect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infect.swift; sourceTree = "<group>"; };
 		22CA377526A1D7E100E95009 /* LineEraseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEraseTests.swift; sourceTree = "<group>"; };
 		22CA377726A215BF00E95009 /* FrameConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameConduit.swift; sourceTree = "<group>"; };
+		22CA377926A22B9300E95009 /* PMCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMCanvasView.swift; sourceTree = "<group>"; };
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CDCB11269BC71200988085 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		22CDCB13269BC73200988085 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				22AF74CC269BA795007D9891 /* CanvasView.swift */,
 				22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */,
 				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
+				22CA377926A22B9300E95009 /* PMCanvasView.swift */,
 			);
 			path = CanvasView;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
+				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22DA13FF269D3A7C00D90EA7 /* IntersectingText.swift in Sources */,
 				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
 				22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */,
