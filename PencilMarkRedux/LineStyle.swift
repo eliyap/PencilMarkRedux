@@ -153,15 +153,6 @@ extension Text {
     }
 }
 
-extension NSRange {
-    /// Assumes an intersection does exist, and finds it.
-    func intersection(with other: Self) -> Self {
-        let lowerBound = max(other.lowerBound, lowerBound)
-        let upperBound = min(other.upperBound, upperBound)
-        return _NSRange(location: lowerBound, length: upperBound - lowerBound)
-    }
-}
-
 extension Text {
     /**
      Constructs three text nodes with

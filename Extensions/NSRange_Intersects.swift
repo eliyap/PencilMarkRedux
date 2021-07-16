@@ -34,3 +34,12 @@ extension NSRange {
         return other.lowerBound < upperBound && other.upperBound > lowerBound
     }
 }
+
+extension NSRange {
+    /// Assumes an intersection does exist, and finds it.
+    func intersection(with other: Self) -> Self {
+        let lowerBound = max(other.lowerBound, lowerBound)
+        let upperBound = min(other.upperBound, upperBound)
+        return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+    }
+}
