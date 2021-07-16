@@ -10,7 +10,7 @@ import UIKit
 import PencilKit
 
 final class CanvasViewController: UIViewController {
-    let canvasView = PKCanvasView()
+    let canvasView = PMCanvasView()
     
     init(coordinator: CanvasView.Coordinator) {
         super.init(nibName: nil, bundle: nil)
@@ -26,5 +26,19 @@ final class CanvasViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
+    }
+}
+
+final class PMCanvasView: PKCanvasView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        guard let touch = touches.first else { return }
+        switch touch.type {
+        case .direct:
+            print("Finger touch")
+        default:
+            break
+        }
     }
 }
