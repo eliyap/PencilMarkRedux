@@ -50,12 +50,13 @@ class LineEraseTests: XCTestCase {
         
         document = StyledMarkdown(text: "a _BBB_ a")
         document.erase(in: _NSRange(location: 3, length: 3)) /// target 'BBB'
-        XCTExpectFailure() /// haven't implemented smart whitespace removal
-        XCTAssertEqual(document.text, "a a") /// is actually "a  a" (two spaces)
+        XCTExpectFailure("Haven't implemented smart whitespace removal") {
+            XCTAssertEqual(document.text, "a a") /// is actually "a  a" (two spaces)
+        }
     }
     
     /// test deep nesting of phrasing blocks
-    func testNested() throws {
+    func testNestedPhrasing() throws {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "_BBB_")
@@ -66,8 +67,16 @@ class LineEraseTests: XCTestCase {
         document.erase(in: _NSRange(location: 5, length: 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
+        /// try multiple nested phrasing blocks
         document = StyledMarkdown(text: "**~~_BBB_~~ ~~_BBB_~~ _BBB_**")
         document.erase(in: _NSRange(location: 5, length: 21)) /// target 'BBB_~~ ~~_BBB_~~ _BBB'
         XCTAssertEqual(document.text, "")
+        
+        /// check Headings
+        document = StyledMarkdown(text: "# BBB")
+        document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
+        XCTExpectFailure("Haven't implemented heading removal") {
+            XCTAssertEqual(document.text, "")
+        }
     }
 }
