@@ -37,5 +37,26 @@ final class Heading: Parent {
             range: position.nsRange
         )
     }
+    
+    override func getReplacement() -> [StyledMarkdown.Replacement] {
+        switch _change {
+        case .none:
+            fatalError("Replacement requested for nil change!")
+        case .toAdd:
+            fatalError("Not Implemented!")
+        case .toRemove:
+            if let leading = leadingRange, let trailing = trailingRange {
+                return [
+                    StyledMarkdown.Replacement(range: leading, replacement: ""),
+                    StyledMarkdown.Replacement(range: trailing, replacement: ""),
+                ]
+            } else {
+                print("Requested replacement on Heading with no children!")
+                
+                /// return whole range to erase everything
+                return [StyledMarkdown.Replacement(range: position.nsRange, replacement: "")]
+            }
+        }
+    }
 }
 

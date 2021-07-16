@@ -75,15 +75,11 @@ class LineEraseTests: XCTestCase {
         /// check Headings
         document = StyledMarkdown(text: "# BBB")
         document.erase(in: _NSRange(location: 2, length: 3)) /// target 'BBB'
-        XCTExpectFailure("Haven't implemented heading removal") {
-            XCTAssertEqual(document.text, "")
-        }
+        XCTAssertEqual(document.text, "")
         
         document = StyledMarkdown(text: "# ~~*BBB*~~")
         document.erase(in: _NSRange(location: 5, length: 3)) /// target 'BBB'
-        XCTExpectFailure("Haven't implemented heading removal") {
-            XCTAssertEqual(document.text, "")
-        }
+        XCTAssertEqual(document.text, "")
     }
     
     /// test nesting of list items
