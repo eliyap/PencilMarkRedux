@@ -8,6 +8,7 @@
 import Foundation
 import PencilKit
 
+/// Combine conduit for passing `PKStroke`s between `UIKit` views.
 final class StrokeConduit: ObservableObject {
     @Published var stroke: PKStroke? = nil
 }

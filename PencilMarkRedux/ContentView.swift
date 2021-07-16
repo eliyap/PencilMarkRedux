@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var strokeC = StrokeConduit()
+    @StateObject var frameC = FrameConduit()
     @State var document = StyledMarkdown(text: """
 ATX 1
 =====
@@ -50,12 +51,33 @@ a break
 func moreCode() -> Void { /* some comments */ }
 ```
 [^1]: a footnote reference
+
+padding and a long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
+padding
 """)
     var body: some View {
         ZStack {
-            KeyboardEditorView(strokeC: strokeC, document: $document)
+            KeyboardEditorView(strokeC: strokeC, frameC: frameC, document: $document)
                 .border(Color.red)
-            CanvasView(strokeC: strokeC)
+            CanvasView(strokeC: strokeC, frameC: frameC)
                 .border(Color.red)
         }
     }

@@ -20,7 +20,11 @@ final class KeyboardEditorViewController: UIViewController {
     
     var observers = Set<AnyCancellable>()
     
-    init(coordinator: KeyboardEditorView.Coordinator, strokeC: StrokeConduit) {
+    init(
+        coordinator: KeyboardEditorView.Coordinator,
+        strokeC: StrokeConduit,
+        frameC: FrameConduit
+    ) {
         self.strokeC = strokeC
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +37,13 @@ final class KeyboardEditorViewController: UIViewController {
             .compactMap { $0 }
             .sink { [weak self] stroke in
                 self?.test(stroke: stroke)
-            }.store(in: &observers)
+            }
+            .store(in: &observers)
+        frameC.$scrollY
+            .sink { [weak self] in
+                self?.textView.contentOffset.y = $0
+            }
+            .store(in: &observers)
     }
     
     func test(stroke: PKStroke) -> Void {
@@ -45,6 +55,12 @@ final class KeyboardEditorViewController: UIViewController {
         case .none:
             reject(stroke: stroke)
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let frameWidth = view.frame.size.width
+        let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
+        coordinator.frameC.contentSize = contentSize
     }
     
     required init?(coder: NSCoder) {
@@ -124,7 +140,7 @@ extension KeyboardEditorViewController {
 // MARK:- Stroke Reject Layer Guts
 extension KeyboardEditorViewController {
     /// Insert layer into hierarchy if it is missing.
-    /// This is here because I'm terrified of overriding the `PKCanvasView` `init`.
+    /// This is here because I'm terrified of overriding the `UITextView` `init`.
     fileprivate func getOrInitStrokeLayer() -> CAShapeLayer {
         if strokeLayer == nil {
             self.strokeLayer = CAShapeLayer()
