@@ -67,7 +67,9 @@ extension KeyboardEditorViewController {
      which is assumed to have been recognized as a horizontal line.
      */
     func strikethrough(with stroke: PKStroke) -> Void {
+        /// Get a straightened version of the stroke.
         let (leading, trailing) = stroke.straightened()
+        
         guard
             let uiStart = textView.closestPosition(to: leading),
             let uiEnd = textView.closestPosition(to: trailing),
@@ -79,6 +81,25 @@ extension KeyboardEditorViewController {
         
         let nsRange = textView.nsRange(from: range)
         coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
+        textView.attributedText = coordinator.document.styledText
+    }
+    
+    /// Erase along the provided line
+    func erase(along stroke: PKStroke) -> Void {
+        /// Use the same straightened version of a stroke as ``strikethrough``.
+        let (leading, trailing) = stroke.straightened()
+        
+        guard
+            let uiStart = textView.closestPosition(to: leading),
+            let uiEnd = textView.closestPosition(to: trailing),
+            let range = textView.textRange(from: uiStart, to: uiEnd)
+        else {
+            print("Could not get path bounds!")
+            return
+        }
+        
+        let nsRange = textView.nsRange(from: range)
+        coordinator.document.erase(in: nsRange)
         textView.attributedText = coordinator.document.styledText
     }
     
