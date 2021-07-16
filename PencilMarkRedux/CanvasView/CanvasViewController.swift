@@ -47,4 +47,3 @@ final class CanvasViewController: UIViewController {
         print("CanvasViewController was deinitialized")
     }
 }
-
