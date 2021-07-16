@@ -82,6 +82,7 @@ extension KeyboardEditorViewController {
         textView.attributedText = coordinator.document.styledText
     }
     
+    /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
     func reject(stroke: PKStroke) -> Void {
         let strokeLayer = getOrInitStrokeLayer()
         
