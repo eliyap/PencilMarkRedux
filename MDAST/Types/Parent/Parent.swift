@@ -62,3 +62,27 @@ extension Parent {
         children.compactMap { $0 as? Parent }
     }
 }
+
+extension Parent {
+    /// range up to the range of the first child
+    var leadingRange: NSRange? {
+        if let firstChild = children.first {
+            let lowerBound = position.start.offset
+            let upperBound = firstChild.position.start.offset
+            return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+        } else {
+            return nil
+        }
+    }
+    
+    /// range up to the range of the first child
+    var trailingRange: NSRange? {
+        if let lastChild = children.last {
+            let lowerBound = lastChild.position.end.offset
+            let upperBound = position.end.offset
+            return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+        } else {
+            return nil
+        }
+    }
+}
