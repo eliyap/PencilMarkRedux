@@ -134,7 +134,13 @@ extension Text {
         styled._change = .toAdd
         
         /// construct broken up nodes
-        let (prefix, _, suffix) = split(on: intersection, with: styled)
+        let (prefix, middle, suffix) = split(on: range)
+        
+        /// set parent
+        prefix?.parent = parent
+        middle.parent = styled
+        suffix?.parent = parent
+        
         let pieces = [prefix, styled, suffix]
             /// remove any zero width text nodes
             .compactMap { $0 }
@@ -147,13 +153,33 @@ extension Text {
     }
 }
 
+extension NSRange {
+    /// Assumes an intersection does exist, and finds it.
+    func intersection(with other: Self) -> Self {
+        let lowerBound = max(other.lowerBound, lowerBound)
+        let upperBound = min(other.upperBound, upperBound)
+        return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+    }
+}
 
-extension Node {
-    func split(on range: NSRange, with styled: Parent) -> (Text?, Text?, Text?) {
-        var (prefix, middle, suffix): (Text?, Text?, Text?) = (nil, nil, nil)
+extension Text {
+    /**
+     Constructs three text nodes with
+     - text before the intersection between `range` and own contents (may be nil)
+     - text within the intersection between `range` and own contents (never nil)
+     - text after the intersection between `range` and own contents (may be nil)
+     - ``parent`` is set to `nil`, calling function should decide where to attach these nodes!
+     */
+    func split(on range: NSRange) -> (Text?, Text, Text?) {
+        
+        /// get range's intersection with own range
+        let intersection = range.intersection(with: position.nsRange)
+        
+        var (prefix, suffix): (Text?, Text?) = (nil, nil)
+        var middle: Text
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if position.start.offset < range.lowerBound {
+        if position.start.offset < intersection.lowerBound {
             prefix = Text(
                 dict: [
                     "position": [
@@ -165,13 +191,13 @@ extension Node {
                         "end": [
                             "line": position.end.line,
                             "column": position.end.column,
-                            "offset": range.lowerBound,
+                            "offset": intersection.lowerBound,
                         ],
                     ],
                     "type": Text.type,
                     "value": "", /// NOTHING!
                 ],
-                parent: parent
+                parent: nil
             )
         }
         
@@ -181,29 +207,29 @@ extension Node {
                     "start": [
                         "line": position.start.line,
                         "column": position.start.column,
-                        "offset": range.lowerBound,
+                        "offset": intersection.lowerBound,
                     ],
                     "end": [
                         "line": position.end.line,
                         "column": position.end.column,
-                        "offset": range.upperBound,
+                        "offset": intersection.upperBound,
                     ],
                 ],
                 "type": Text.type,
                 "value": "", /// NOTHING!
             ],
-            parent: styled
-        )
+            parent: nil
+        )! /// force unwrap!
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
-        if range.upperBound < position.nsRange.upperBound {
+        if intersection.upperBound < position.nsRange.upperBound {
             suffix = Text(
                 dict: [
                     "position": [
                         "start": [
                             "line": position.start.line,
                             "column": position.start.column,
-                            "offset": range.upperBound,
+                            "offset": intersection.upperBound,
                         ],
                         "end": [
                             "line": position.end.line,
@@ -214,7 +240,7 @@ extension Node {
                     "type": Text.type,
                     "value": "", /// NOTHING!
                 ],
-                parent: parent
+                parent: nil
             )
         }
         
