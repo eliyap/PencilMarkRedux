@@ -35,6 +35,9 @@ final class CanvasViewController: UIViewController {
                 self?.canvasView.contentSize = $0
             }
             .store(in: &observers)
+        
+        /// Attach gesture recognizer so we can respond to taps.
+        canvasView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
     }
     
     required init?(coder: NSCoder) {
@@ -46,4 +49,15 @@ final class CanvasViewController: UIViewController {
         observers.forEach { $0.cancel() }
         print("CanvasViewController was deinitialized")
     }
+}
+
+// MARK:- Tap Handling
+extension CanvasViewController {
+    
+    /// Action to perform on tap gesture.
+    @objc /// expose to `#selector`
+    func didTapView(_ sender: UITapGestureRecognizer) -> Void {
+        print("Tapped")
+    }
+    
 }
