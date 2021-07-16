@@ -66,6 +66,4 @@ extension Parent {
     var nodeChildren: [Parent] {
         children.compactMap { $0 as? Parent }
     }
-    
-    
 }
