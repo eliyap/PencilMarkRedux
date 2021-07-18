@@ -57,7 +57,6 @@ extension CanvasViewController {
     /// Action to perform on tap gesture.
     @objc /// expose to `#selector`
     func didTapView(_ sender: UITapGestureRecognizer) -> Void {
-        print("Tapped")
+        frameC.tapLocation = sender.location(in: canvasView)
     }
-    
 }
