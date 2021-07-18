@@ -76,9 +76,7 @@ padding
     var body: some View {
         ZStack {
             KeyboardEditorView(strokeC: strokeC, frameC: frameC, document: $document)
-                .border(Color.red)
             CanvasView(strokeC: strokeC, frameC: frameC)
-                .border(Color.red)
         }
     }
 }

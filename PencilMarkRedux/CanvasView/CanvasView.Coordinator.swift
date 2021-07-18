@@ -39,8 +39,10 @@ extension CanvasView {
     }
 }
 
+// MARK:- Scroll Event Handler
 extension CanvasView.Coordinator: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        /// Pass scroll offset into Combine conduit
         frameC.scrollY = scrollView.contentOffset.y
     }
 }

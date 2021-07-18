@@ -35,6 +35,9 @@ final class CanvasViewController: UIViewController {
                 self?.canvasView.contentSize = $0
             }
             .store(in: &observers)
+        
+        /// Attach gesture recognizer so we can respond to taps.
+        canvasView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
     }
     
     required init?(coder: NSCoder) {
@@ -48,16 +51,12 @@ final class CanvasViewController: UIViewController {
     }
 }
 
-final class PMCanvasView: PKCanvasView {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        guard let touch = touches.first else { return }
-        switch touch.type {
-        case .direct:
-            print("Finger touch")
-        default:
-            break
-        }
+// MARK:- Tap Handling
+extension CanvasViewController {
+    
+    /// Action to perform on tap gesture.
+    @objc /// expose to `#selector`
+    func didTapView(_ sender: UITapGestureRecognizer) -> Void {
+        frameC.tapLocation = sender.location(in: canvasView)
     }
 }

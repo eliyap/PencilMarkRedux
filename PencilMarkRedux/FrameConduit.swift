@@ -10,9 +10,12 @@ import CoreGraphics
 
 /// Combine conduit for passing view frame `CGRect`s between `UIKit` views.
 final class FrameConduit: ObservableObject {
-    /// passes `UITextView` preferred size to `PKCanvasView`
+    /// Passes `UITextView` preferred size to `PKCanvasView`.
     @Published var contentSize: CGSize? = nil
     
-    /// passes `PKCanvasView` scroll offset to `UITextView`
+    /// Passes `PKCanvasView` scroll offset to `UITextView`.
     @Published var scrollY: CGFloat = .zero
+    
+    /// Passes tap event locations from `CanvasView` to `UITextView`.
+    @Published var tapLocation: CGPoint? = nil
 }
