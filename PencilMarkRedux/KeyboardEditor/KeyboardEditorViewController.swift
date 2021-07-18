@@ -47,7 +47,6 @@ final class KeyboardEditorViewController: UIViewController {
         frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
-                print("Tap received")
                 guard
                     let textView = self?.textView,
                     let textPosition = textView.closestPosition(to: $0)
