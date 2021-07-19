@@ -11,7 +11,7 @@ import Combine
 import PencilKit
 
 final class KeyboardEditorViewController: UIViewController {
-    let textView = UITextView()
+    let textView = PMTextView()
     let strokeC: StrokeConduit
     let coordinator: KeyboardEditorView.Coordinator
     
@@ -29,6 +29,7 @@ final class KeyboardEditorViewController: UIViewController {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = textView
+        textView.controller = self /// pass self to child
         
         textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
@@ -78,7 +79,7 @@ final class KeyboardEditorViewController: UIViewController {
 //            UIKeyCommand(input: "f", modifierFlags: [.command], action: #selector(undo))
 //        ]
 //    }
-//    
+//
 //    @objc
 //    func undo() -> Void {
 //        print("Undoing")
@@ -101,4 +102,10 @@ final class KeyboardEditorViewController: UIViewController {
         
         print("KeyboardEditorViewController de-initialized")
     }
+}
+
+final class PMTextView: UITextView {
+    /// reference to parent `KeyboardEditorViewController`.
+    /// **Must** be set on controller's `init`.
+    unowned var controller: KeyboardEditorViewController! = nil
 }

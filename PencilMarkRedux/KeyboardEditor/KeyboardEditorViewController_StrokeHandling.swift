@@ -54,7 +54,7 @@ extension KeyboardEditorViewController {
         }
         
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
+        coordinator.document.apply(lineStyle: Delete.self, to: nsRange, in: textView)
         textView.attributedText = coordinator.document.styledText
     }
     
@@ -73,7 +73,7 @@ extension KeyboardEditorViewController {
         }
         
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.erase(in: nsRange)
+        coordinator.document.erase(to: nsRange, in: textView)
         textView.attributedText = coordinator.document.styledText
     }
     
