@@ -40,6 +40,6 @@ extension NSRange {
     func intersection(with other: Self) -> Self {
         let lowerBound = max(other.lowerBound, lowerBound)
         let upperBound = min(other.upperBound, upperBound)
-        return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+        return NSMakeRange(lowerBound, upperBound - lowerBound)
     }
 }

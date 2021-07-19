@@ -29,22 +29,22 @@ final class Delete: Parent {
         case .toAdd:
             return [
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.lowerBound, length: 0),
+                    range: NSMakeRange(position.nsRange.lowerBound, 0),
                     replacement: "~~"
                 ),
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.upperBound, length: 0),
+                    range: NSMakeRange(position.nsRange.upperBound, 0),
                     replacement: "~~"
                 ),
             ]
         case .toRemove:
             return [
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.lowerBound, length: 2),
+                    range: NSMakeRange(position.nsRange.lowerBound, 2),
                     replacement: ""
                 ),
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.upperBound - 2, length: 2),
+                    range: NSMakeRange(position.nsRange.upperBound - 2, 2),
                     replacement: ""
                 ),
             ]

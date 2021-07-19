@@ -70,7 +70,7 @@ extension Parent {
         if let firstChild = children.first {
             let lowerBound = position.start.offset
             let upperBound = firstChild.position.start.offset
-            return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+            return NSMakeRange(lowerBound, upperBound - lowerBound)
         } else {
             return nil
         }
@@ -81,7 +81,7 @@ extension Parent {
         if let lastChild = children.last {
             let lowerBound = lastChild.position.end.offset
             let upperBound = position.end.offset
-            return _NSRange(location: lowerBound, length: upperBound - lowerBound)
+            return NSMakeRange(lowerBound, upperBound - lowerBound)
         } else {
             return nil
         }

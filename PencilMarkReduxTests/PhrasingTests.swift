@@ -23,7 +23,7 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "aaa")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 0))
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 0))
         XCTAssertEqual(document.text, "aaa")
     }
 
@@ -33,17 +33,17 @@ class PhrasingTests: XCTestCase {
         
         /// ~~DELETE~~
         document = StyledMarkdown(text: "aSTRIKEa")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 6))
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 6))
         XCTAssertEqual(document.text, "a~~STRIKE~~a")
         
         /// **STRONG**
         document = StyledMarkdown(text: "aSTRIKEa")
-        document.apply(lineStyle: Strong.self, to: _NSRange(location: 1, length: 6))
+        document.apply(lineStyle: Strong.self, to: NSMakeRange(1, 6))
         XCTAssertTrue(document.text == "a**STRIKE**a" || document.text == "a__STRIKE__a")
         
         /// *EMPHASIS*
         document = StyledMarkdown(text: "aSTRIKEa")
-        document.apply(lineStyle: Emphasis.self, to: _NSRange(location: 1, length: 6))
+        document.apply(lineStyle: Emphasis.self, to: NSMakeRange(1, 6))
         XCTAssertTrue(document.text == "a*STRIKE*a" || document.text == "a_STRIKE_a")
     }
     
@@ -53,17 +53,17 @@ class PhrasingTests: XCTestCase {
         
         /// ~~DELETE~~
         document = StyledMarkdown(text: "aS _SSS_ Sa")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 9))
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 9))
         XCTAssertEqual(document.text, "a~~S _SSS_ S~~a")
         
         /// **STRONG**
         document = StyledMarkdown(text: "aS _SSS_ Sa")
-        document.apply(lineStyle: Strong.self, to: _NSRange(location: 1, length: 9))
+        document.apply(lineStyle: Strong.self, to: NSMakeRange(1, 9))
         XCTAssertTrue(document.text == "a**S _SSS_ S**a" || document.text == "a__S _SSS_ S__a")
         
         /// *EMPHASIS*
         document = StyledMarkdown(text: "aS **SSS** Sa")
-        document.apply(lineStyle: Emphasis.self, to: _NSRange(location: 1, length: 11))
+        document.apply(lineStyle: Emphasis.self, to: NSMakeRange(1, 11))
         XCTAssertTrue(document.text == "a*S **SSS** S*a" || document.text == "a_S **SSS** S_a")
     }
     
@@ -72,7 +72,7 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "_aaBB_ BBaa")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 6))
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 6))
         XCTAssertEqual(document.text, "_aa~~BB~~_ ~~BB~~aa") /// note ejection of leading whitespace
         
         #warning("TODO: add other phasing content")
@@ -83,11 +83,11 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "AAA BBB")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 4)) /// target ' BBB'
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 4)) /// target ' BBB'
         XCTAssertEqual(document.text, "AAA ~~BBB~~")
         
         document = StyledMarkdown(text: "AAA *BBB*")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 3, length: 5)) /// target ' *BBB'
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 5)) /// target ' *BBB'
         XCTAssertEqual(document.text, "AAA *~~BBB~~*")
     }
     
@@ -96,11 +96,11 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "AAA BBB")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 0, length: 4)) /// target 'AAA '
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 4)) /// target 'AAA '
         XCTAssertEqual(document.text, "~~AAA~~ BBB")
         
         document = StyledMarkdown(text: "*AAA* BBB")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 5)) /// target 'AAA* '
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 5)) /// target 'AAA* '
         XCTAssertEqual(document.text, "*~~AAA~~* BBB")
     }
     
@@ -110,7 +110,7 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "aS _~~SSS~~_ Sa")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 1, length: 13))
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 13))
         XCTAssertEqual(document.text, "a~~S _SSS_ S~~a")
         
         #warning("TODO: add other phasing content")
@@ -120,7 +120,7 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "~~AAA BBB~~ CCC")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 6, length: 9)) /// strike `BBB~~ CCC`
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(6, 9)) /// strike `BBB~~ CCC`
         XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
     }
     
@@ -128,7 +128,7 @@ class PhrasingTests: XCTestCase {
         var document = StyledMarkdown()
         
         document = StyledMarkdown(text: "AAA ~~BBB CCC~~")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 0, length: 9)) /// strike `AAA ~~BBB`
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 9)) /// strike `AAA ~~BBB`
         XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
     }
 }
