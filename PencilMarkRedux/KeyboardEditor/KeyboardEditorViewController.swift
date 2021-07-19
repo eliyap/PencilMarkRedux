@@ -73,6 +73,8 @@ final class KeyboardEditorViewController: UIViewController {
          Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
          However, because the user can type quickly and the MDAST is built through JavaScript, it's easy to max out the CPU this way.
          Therefore we rate limit the pace of re-rendering.
+         - Note: since `textViewDidChange` is **not** called due to programatic changes,
+                 updating the text here does not cause an infinite loop.
          */
         coordinator.document.ticker
             /// Rate limiter. `latest` doesn't matter since the subject is `Void`.

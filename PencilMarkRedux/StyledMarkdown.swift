@@ -22,7 +22,7 @@ struct StyledMarkdown {
     var styledText: NSMutableAttributedString
     var ast: Root
     
-    /// Combine pipeline for managing styling changes.
+    /// `Combine` event pipeline that fires when the *user* changes the `UITextView`.
     var ticker = PassthroughSubject<Void, Never>()
     
     /// a simple initializer that creates new, empty documents
