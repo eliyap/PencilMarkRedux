@@ -62,9 +62,12 @@ final class KeyboardEditorViewController: UIViewController {
                 /**
                  Setting the `attributedText` tends to move the cursor to the end of the document,
                  so store the cursor position before modifying the document, then put it right back.
+                 Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
                  */
                 let selection = ref.textView.selectedRange
+                ref.textView.isScrollEnabled = false
                 ref.textView.attributedText = coordinator.document.styledText
+                ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
             .store(in: &observers)
