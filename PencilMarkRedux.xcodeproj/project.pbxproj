@@ -57,6 +57,7 @@
 		22CDCB18269BC75C00988085 /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB17269BC75C00988085 /* Heading.swift */; };
 		22CDCB1A269BCB3700988085 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB19269BCB3700988085 /* Root.swift */; };
 		22CDCB1C269BCB4E00988085 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB1B269BCB4E00988085 /* List.swift */; };
+		22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */; };
 		22DA13F7269D228000D90EA7 /* Strong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F6269D228000D90EA7 /* Strong.swift */; };
 		22DA13F9269D237F00D90EA7 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F8269D237F00D90EA7 /* Emphasis.swift */; };
 		22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */; };
@@ -138,6 +139,7 @@
 		22CDCB17269BC75C00988085 /* Heading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heading.swift; sourceTree = "<group>"; };
 		22CDCB19269BCB3700988085 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		22CDCB1B269BCB4E00988085 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController_StrokeHandling.swift; sourceTree = "<group>"; };
 		22DA13F6269D228000D90EA7 /* Strong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strong.swift; sourceTree = "<group>"; };
 		22DA13F8269D237F00D90EA7 /* Emphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
 		22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Style.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			children = (
 				22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */,
 				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
+				22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */,
 			);
 			path = KeyboardEditor;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				22E85323269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				2214E128269C80AD0046EF32 /* Text.swift in Sources */,
+				22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */,
 				22CA375C26A0BCDC00E95009 /* Image.swift in Sources */,
 				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
 				2214E132269C84D70046EF32 /* LineStyle.swift in Sources */,
