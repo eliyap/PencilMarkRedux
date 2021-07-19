@@ -67,7 +67,9 @@ final class KeyboardEditorViewController: UIViewController {
                  */
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.attributedText = coordinator.document.styledText
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
@@ -75,6 +77,7 @@ final class KeyboardEditorViewController: UIViewController {
 
         cmdC.undo
             .sink { [weak self] in
+                print("Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
                 self?.textView.undoManager?.undo()
             }
             .store(in: &observers)
