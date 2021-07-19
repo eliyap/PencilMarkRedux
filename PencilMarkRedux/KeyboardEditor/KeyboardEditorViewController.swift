@@ -76,6 +76,7 @@ final class KeyboardEditorViewController: UIViewController {
          */
         coordinator.document.ticker
             /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
+            /// Throttle rate is arbitrary, may want to change it in future.
             .throttle(for: .seconds(0.5), scheduler: RunLoop.main, latest: true)
             .sink { [weak self] in
                 /// Assert `self` is actually available.
