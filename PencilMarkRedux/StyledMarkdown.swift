@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
+import Combine
 
 /**
  Based on [HWS Tutorial](https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-document-based-app-using-filedocument-and-documentgroup)
@@ -16,9 +17,13 @@ struct StyledMarkdown {
     /// tell the system we support only plain text
     static var readableContentTypes = [UTType.plainText]
     
+    /// Document description attributes.
     var text: String
     var styledText: NSMutableAttributedString
     var ast: Root
+    
+    /// `Combine` event pipeline that fires when the *user* changes the `UITextView`.
+    var ticker = PassthroughSubject<Void, Never>()
     
     /// a simple initializer that creates new, empty documents
     init(text: String = "") {
