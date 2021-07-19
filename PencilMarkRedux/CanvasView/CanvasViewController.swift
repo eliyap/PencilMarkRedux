@@ -13,11 +13,13 @@ import Combine
 final class CanvasViewController: UIViewController {
     
     let canvasView = PMCanvasView()
+    let coordinator: CanvasView.Coordinator
     let frameC: FrameConduit
     var observers = Set<AnyCancellable>()
     
     init(coordinator: CanvasView.Coordinator, frameC: FrameConduit) {
         self.frameC = frameC
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = canvasView
         
@@ -42,6 +44,17 @@ final class CanvasViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        (super.keyCommands ?? []) + [
+            UIKeyCommand(input: "z", modifierFlags: [.command], action: #selector(undo))
+        ]
+    }
+
+    @objc
+    func undo() -> Void {
+        coordinator.cmdC.undo.send()
     }
     
     deinit {

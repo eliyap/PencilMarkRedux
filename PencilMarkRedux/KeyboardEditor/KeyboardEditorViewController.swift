@@ -23,7 +23,8 @@ final class KeyboardEditorViewController: UIViewController {
     init(
         coordinator: KeyboardEditorView.Coordinator,
         strokeC: StrokeConduit,
-        frameC: FrameConduit
+        frameC: FrameConduit,
+        cmdC: CommandConduit
     ) {
         self.strokeC = strokeC
         self.coordinator = coordinator
@@ -72,6 +73,12 @@ final class KeyboardEditorViewController: UIViewController {
             }
             .store(in: &observers)
 
+        cmdC.undo
+            .sink { [weak self] in
+                self?.textView.undoManager?.undo()
+            }
+            .store(in: &observers)
+        
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))

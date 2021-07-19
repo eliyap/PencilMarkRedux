@@ -60,6 +60,7 @@
 		22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */; };
 		22CF007526A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */; };
 		22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007626A5099500A12F88 /* ScribbleBlockers.swift */; };
+		22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007A26A516F400A12F88 /* CommandConduit.swift */; };
 		22DA13F7269D228000D90EA7 /* Strong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F6269D228000D90EA7 /* Strong.swift */; };
 		22DA13F9269D237F00D90EA7 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F8269D237F00D90EA7 /* Emphasis.swift */; };
 		22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */; };
@@ -144,6 +145,7 @@
 		22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController_StrokeHandling.swift; sourceTree = "<group>"; };
 		22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController_TouchHandling.swift; sourceTree = "<group>"; };
 		22CF007626A5099500A12F88 /* ScribbleBlockers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleBlockers.swift; sourceTree = "<group>"; };
+		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
 		22DA13F6269D228000D90EA7 /* Strong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strong.swift; sourceTree = "<group>"; };
 		22DA13F8269D237F00D90EA7 /* Emphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
 		22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_Style.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				22AF74DF269BB3F1007D9891 /* CanvasView */,
 				22AF74D2269BABA1007D9891 /* StrokeConduit.swift */,
 				22CA377726A215BF00E95009 /* FrameConduit.swift */,
+				22CF007A26A516F400A12F88 /* CommandConduit.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -509,6 +512,7 @@
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
+				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22DA13FF269D3A7C00D90EA7 /* IntersectingText.swift in Sources */,
