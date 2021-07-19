@@ -46,8 +46,18 @@ extension StyledMarkdown {
         
         let currentStyledText = view.attributedText
         view.undoManager?.registerUndo(withTarget: view) { view in
-            /// Roll back document and model state
+            /// Freeze current selection to be restored after text is rolled back.
+            let selection: UITextRange? = view.selectedTextRange
+            
+            /// Roll back document state.
             view.attributedText = currentStyledText
+            
+            /// Restore text selection, if text was selected.
+            if view.isFirstResponder, let selection = selection {
+                view.selectedTextRange = selection
+            }
+            
+            /// Roll back model state
             view.controller.coordinator.document.text = view.text
             view.controller.coordinator.document.updateAttributes()
         }
