@@ -50,8 +50,11 @@ extension StyledMarkdown {
             let selection: UITextRange? = view.selectedTextRange
             
             /// Roll back document state.
+            /// Temporarily disable scrolling to stop iOS snapping the view downwards.
+            view.isScrollEnabled = false
             view.attributedText = currentStyledText
-            
+            view.isScrollEnabled = true
+        
             /// Restore text selection, if text was selected.
             if view.isFirstResponder, let selection = selection {
                 view.selectedTextRange = selection
