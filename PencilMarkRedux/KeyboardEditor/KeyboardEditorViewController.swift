@@ -73,6 +73,18 @@ final class KeyboardEditorViewController: UIViewController {
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
     }
     
+//    override var keyCommands: [UIKeyCommand]? {
+//        (super.keyCommands ?? []) + [
+//            UIKeyCommand(input: "f", modifierFlags: [.command], action: #selector(undo))
+//        ]
+//    }
+//    
+//    @objc
+//    func undo() -> Void {
+//        print("Undoing")
+//        textView.undoManager?.undo()
+//    }
+    
     override func viewWillLayoutSubviews() {
         let frameWidth = view.frame.size.width
         let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
