@@ -33,6 +33,7 @@ final class KeyboardEditorViewController: UIViewController {
         textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
         
+        /// Attach various `Combine` observers.
         observeStrokes()
         observeTouchEvents(from: frameC)
         
