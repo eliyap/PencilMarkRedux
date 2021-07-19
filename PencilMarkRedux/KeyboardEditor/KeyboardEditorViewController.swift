@@ -67,6 +67,10 @@ final class KeyboardEditorViewController: UIViewController {
                 ref.textView.selectedRange = selection
             }
             .store(in: &observers)
+
+        /// Disable Scribble interactions.
+        textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
+        textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
     }
     
     override func viewWillLayoutSubviews() {
