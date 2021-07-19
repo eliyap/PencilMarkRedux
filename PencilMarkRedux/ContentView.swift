@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @StateObject var strokeC = StrokeConduit()
     @StateObject var frameC = FrameConduit()
+    let cmdC = CommandConduit()
     @State var document = StyledMarkdown(text: """
 ATX 1
 =====
@@ -75,8 +76,8 @@ padding
 """)
     var body: some View {
         ZStack {
-            KeyboardEditorView(strokeC: strokeC, frameC: frameC, document: $document)
-            CanvasView(strokeC: strokeC, frameC: frameC)
+            KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
+            CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         }
     }
 }

@@ -41,22 +41,22 @@ final class Emphasis: Parent {
         case .toAdd:
             return [
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.lowerBound, length: 0),
+                    range: NSMakeRange(position.nsRange.lowerBound, 0),
                     replacement: "*"
                 ),
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.upperBound, length: 0),
+                    range: NSMakeRange(position.nsRange.upperBound, 0),
                     replacement: "*"
                 ),
             ]
         case .toRemove:
             return [
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.lowerBound, length: 1),
+                    range: NSMakeRange(position.nsRange.lowerBound, 1),
                     replacement: ""
                 ),
                 StyledMarkdown.Replacement(
-                    range: _NSRange(location: position.nsRange.upperBound - 1, length: 1),
+                    range: NSMakeRange(position.nsRange.upperBound - 1, 1),
                     replacement: ""
                 ),
             ]

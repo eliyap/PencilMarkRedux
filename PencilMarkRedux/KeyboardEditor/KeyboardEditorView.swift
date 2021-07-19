@@ -14,10 +14,11 @@ struct KeyboardEditorView: UIViewControllerRepresentable {
     
     let strokeC: StrokeConduit
     let frameC: FrameConduit
+    let cmdC: CommandConduit
     @Binding var document: StyledMarkdown
     
     func makeUIViewController(context: Context) -> KeyboardEditorViewController {
-        let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC, frameC: frameC)
+        let vc = UIViewControllerType(coordinator: context.coordinator, strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         return vc
     }
     

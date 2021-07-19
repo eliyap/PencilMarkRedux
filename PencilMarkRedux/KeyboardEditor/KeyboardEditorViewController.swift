@@ -23,7 +23,8 @@ final class KeyboardEditorViewController: UIViewController {
     init(
         coordinator: KeyboardEditorView.Coordinator,
         strokeC: StrokeConduit,
-        frameC: FrameConduit
+        frameC: FrameConduit,
+        cmdC: CommandConduit
     ) {
         self.strokeC = strokeC
         self.coordinator = coordinator
@@ -66,12 +67,21 @@ final class KeyboardEditorViewController: UIViewController {
                  */
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.attributedText = coordinator.document.styledText
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
             .store(in: &observers)
 
+        cmdC.undo
+            .sink { [weak self] in
+                print("Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
+                self?.textView.undoManager?.undo()
+            }
+            .store(in: &observers)
+        
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))

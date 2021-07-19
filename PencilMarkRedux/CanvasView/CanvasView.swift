@@ -13,6 +13,7 @@ struct CanvasView: UIViewControllerRepresentable {
     
     let strokeC: StrokeConduit
     let frameC: FrameConduit
+    let cmdC: CommandConduit
     
     func makeUIViewController(context: Context) -> CanvasViewController {
         let vc = UIViewControllerType(coordinator: context.coordinator, frameC: frameC)

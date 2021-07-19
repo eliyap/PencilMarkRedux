@@ -11,17 +11,19 @@ import PencilKit
 extension CanvasView {
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(strokeC: strokeC, frameC: frameC)
+        Coordinator(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
     }
     
     final class Coordinator: NSObject, PKCanvasViewDelegate {
         
         let strokeC: StrokeConduit
         let frameC: FrameConduit
+        let cmdC: CommandConduit
         
-        init(strokeC: StrokeConduit, frameC: FrameConduit) {
+        init(strokeC: StrokeConduit, frameC: FrameConduit, cmdC: CommandConduit) {
             self.strokeC = strokeC
             self.frameC = frameC
+            self.cmdC = cmdC
         }
         
         func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {

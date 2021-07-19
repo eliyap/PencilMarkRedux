@@ -16,7 +16,7 @@ struct Position {
     }
     
     var nsRange: NSRange {
-        _NSRange(location: start.offset, length: length)
+        NSMakeRange(start.offset, length)
     }
     
     init?(dict: [AnyHashable: Any]?) {

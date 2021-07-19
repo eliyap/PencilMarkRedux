@@ -23,20 +23,26 @@ class FormatTests: XCTestCase {
 
     func testStrikethroughAvailable() throws {
         var document = StyledMarkdown(text: "a FORMAT a")
-        document.apply(lineStyle: Delete.self, to: _NSRange(location: 2, length: 6))
+        let textView = PMTextView() /// dummy view to satisfy function signature
+        
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(2, 6), in: textView)
         XCTAssertEqual(document.text, "a ~~FORMAT~~ a")
     }
     
     func testEmphasisAvailable() throws {
         var document = StyledMarkdown(text: "a FORMAT a")
-        document.apply(lineStyle: Emphasis.self, to: _NSRange(location: 2, length: 6))
+        let textView = PMTextView() /// dummy view to satisfy function signature
+        
+        document.apply(lineStyle: Emphasis.self, to: NSMakeRange(2, 6), in: textView)
         /// accept either kind of emphasis marker
         XCTAssertTrue(document.text == "a _FORMAT_ a" || document.text == "a *FORMAT* a")
     }
     
     func testStrongAvailable() throws {
         var document = StyledMarkdown(text: "a FORMAT a")
-        document.apply(lineStyle: Strong.self, to: _NSRange(location: 2, length: 6))
+        let textView = PMTextView() /// dummy view to satisfy function signature
+        
+        document.apply(lineStyle: Strong.self, to: NSMakeRange(2, 6), in: textView)
         /// accept either kind of emphasis marker
         XCTAssertTrue(document.text == "a __FORMAT__ a" || document.text == "a **FORMAT** a")
     }
