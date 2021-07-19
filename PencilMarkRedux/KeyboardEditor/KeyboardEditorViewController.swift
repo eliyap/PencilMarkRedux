@@ -37,6 +37,9 @@ final class KeyboardEditorViewController: UIViewController {
         strokeC.$stroke
             .compactMap { $0 }
             .sink { [weak self] stroke in
+                /// Stop keyboard editing **first**, so that the cursor is not sent to the bottom of the screen.
+                self?.textView.resignFirstResponder()
+                
                 self?.test(stroke: stroke)
             }
             .store(in: &observers)
