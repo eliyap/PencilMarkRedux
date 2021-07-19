@@ -42,9 +42,10 @@ extension KeyboardEditorView {
             self.frameC = frameC
         }
         
-        // TODO: use keyboard edits.
-//        func textViewDidChange(_ textView: UITextView) {
-//            text = textView.text
-//        }
+        /// TODO: use keyboard edits.
+        func textViewDidChange(_ textView: UITextView) {
+            document.text = textView.text
+            document.ticker.send()
+        }
     }
 }

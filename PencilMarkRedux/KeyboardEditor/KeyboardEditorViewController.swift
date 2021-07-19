@@ -33,17 +33,22 @@ final class KeyboardEditorViewController: UIViewController {
         textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
         
+        /// Receive and respond to strokes from `PKCanvasView`.
         strokeC.$stroke
             .compactMap { $0 }
             .sink { [weak self] stroke in
                 self?.test(stroke: stroke)
             }
             .store(in: &observers)
+        
+        /// Coordinate scroll position with `PKCanvasView`.
         frameC.$scrollY
             .sink { [weak self] in
                 self?.textView.contentOffset.y = $0
             }
             .store(in: &observers)
+        
+        /// Set cursor when user taps on `PKCanvasView`.
         frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
@@ -61,6 +66,34 @@ final class KeyboardEditorViewController: UIViewController {
                 
                 /// Set cursor position using zero length `UITextRange`.
                 textView.selectedTextRange = textView.textRange(from: textPosition, to: textPosition)
+            }
+            .store(in: &observers)
+        
+        /**
+         Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
+         However, because the user can type quickly and the MDAST is built through JavaScript, it's easy to max out the CPU this way.
+         Therefore we rate limit the pace of re-rendering.
+         */
+        coordinator.document.ticker
+            /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
+            .throttle(for: .seconds(0.5), scheduler: RunLoop.main, latest: true)
+            .sink { [weak self] in
+                /// Assert `self` is actually available.
+                guard let ref = self else {
+                    assert(false, "Weak Self Reference returned nil!")
+                    return
+                }
+                
+                /// Rebuild AST, recalculate text styling.
+                coordinator.document.updateAttributes()
+                
+                /**
+                 Setting the `attributedText` tends to move the cursor to the end of the document,
+                 so store the cursor position before modifying the document, then put it right back.
+                 */
+                let selection = ref.textView.selectedRange
+                ref.textView.attributedText = coordinator.document.styledText
+                ref.textView.selectedRange = selection
             }
             .store(in: &observers)
     }
