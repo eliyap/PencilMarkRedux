@@ -24,6 +24,11 @@ extension CanvasView {
             self.frameC = frameC
         }
         
+        func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+            /// Prevent focus getting "trapped" in `UITextView` (an observed problem) by grabbing focus when pencil touches down.
+            canvasView.becomeFirstResponder()
+        }
+        
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             /// Check that there is some stroke on the canvas.
             /// This breaks an infinite loop caused by clearing the canvas below.

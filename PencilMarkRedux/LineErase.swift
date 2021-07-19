@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 extension StyledMarkdown {
     /// A straight line erase operation.
-    mutating func erase(in range: NSRange) -> Void {
+    mutating func erase(to range: NSRange, in view: PMTextView) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
         let intersected: [Text] = ast.intersectingText(in: range)
@@ -21,7 +22,7 @@ extension StyledMarkdown {
         ast.infect()
         #warning("Todo: run some form of `consume`!")
         
-        makeReplacements()
+        makeReplacements(in: view)
     }
 }
 

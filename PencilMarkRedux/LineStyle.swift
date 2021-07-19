@@ -10,7 +10,11 @@ import UIKit
 import OrderedCollections
 
 extension StyledMarkdown {
-    mutating func apply<T: Parent>(lineStyle: T.Type, to range: NSRange) -> Void {
+    mutating func apply<T: Parent>(
+        lineStyle: T.Type,
+        to range: NSRange,
+        in view: PMTextView
+    ) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
         
@@ -24,10 +28,10 @@ extension StyledMarkdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
-        makeReplacements()
+        makeReplacements(in: view)
     }
     
-    mutating func makeReplacements() -> Void {
+    mutating func makeReplacements(in view: PMTextView) -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
             .gatherChanges()
@@ -39,6 +43,27 @@ extension StyledMarkdown {
         try! ast.linkCheck()
         
         print("Replacements: \(replacements)")
+        
+        let currentStyledText = view.attributedText
+        view.undoManager?.registerUndo(withTarget: view) { view in
+            /// Freeze current selection to be restored after text is rolled back.
+            let selection: UITextRange? = view.selectedTextRange
+            
+            /// Roll back document state.
+            /// Temporarily disable scrolling to stop iOS snapping the view downwards.
+            view.isScrollEnabled = false
+            view.attributedText = currentStyledText
+            view.isScrollEnabled = true
+        
+            /// Restore text selection, if text was selected.
+            if view.isFirstResponder, let selection = selection {
+                view.selectedTextRange = selection
+            }
+            
+            /// Roll back model state
+            view.controller.coordinator.document.text = view.text
+            view.controller.coordinator.document.updateAttributes()
+        }
         
         /// Perform replacements in source Markdown.
         replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }

@@ -11,12 +11,12 @@ import Combine
 import PencilKit
 
 final class KeyboardEditorViewController: UIViewController {
-    let textView = UITextView()
+    let textView = PMTextView()
     let strokeC: StrokeConduit
     let coordinator: KeyboardEditorView.Coordinator
     
     /// CoreAnimation layer used to render rejected strokes.
-    private var strokeLayer: CAShapeLayer? = nil
+    var strokeLayer: CAShapeLayer? = nil
     
     var observers = Set<AnyCancellable>()
     
@@ -29,45 +29,14 @@ final class KeyboardEditorViewController: UIViewController {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = textView
+        textView.controller = self /// pass self to child
         
         textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator
         
-        /// Receive and respond to strokes from `PKCanvasView`.
-        strokeC.$stroke
-            .compactMap { $0 }
-            .sink { [weak self] stroke in
-                self?.test(stroke: stroke)
-            }
-            .store(in: &observers)
-        
-        /// Coordinate scroll position with `PKCanvasView`.
-        frameC.$scrollY
-            .sink { [weak self] in
-                self?.textView.contentOffset.y = $0
-            }
-            .store(in: &observers)
-        
-        /// Set cursor when user taps on `PKCanvasView`.
-        frameC.$tapLocation
-            .compactMap { $0 }
-            .sink { [weak self] in
-                guard
-                    let textView = self?.textView,
-                    let textPosition = textView.closestPosition(to: $0)
-                else {
-                    print("Could not resolve text position for location \($0)")
-                    self?.textView.selectedRange = NSMakeRange(0, 0)
-                    return
-                }
-                
-                /// Switch Focus to `UITextView` so that it can enable the cursor.
-                textView.becomeFirstResponder()
-                
-                /// Set cursor position using zero length `UITextRange`.
-                textView.selectedTextRange = textView.textRange(from: textPosition, to: textPosition)
-            }
-            .store(in: &observers)
+        /// Attach various `Combine` observers.
+        observeStrokes()
+        observeTouchEvents(from: frameC)
         
         /**
          Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
@@ -93,24 +62,32 @@ final class KeyboardEditorViewController: UIViewController {
                 /**
                  Setting the `attributedText` tends to move the cursor to the end of the document,
                  so store the cursor position before modifying the document, then put it right back.
+                 Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
                  */
                 let selection = ref.textView.selectedRange
+                ref.textView.isScrollEnabled = false
                 ref.textView.attributedText = coordinator.document.styledText
+                ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
             .store(in: &observers)
+
+        /// Disable Scribble interactions.
+        textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
+        textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
     }
     
-    func test(stroke: PKStroke) -> Void {
-        switch stroke.interpret() {
-        case .horizontalLine:
-            strikethrough(with: stroke)
-        case .wavyLine:
-            erase(along: stroke)
-        case .none:
-            reject(stroke: stroke)
-        }
-    }
+//    override var keyCommands: [UIKeyCommand]? {
+//        (super.keyCommands ?? []) + [
+//            UIKeyCommand(input: "f", modifierFlags: [.command], action: #selector(undo))
+//        ]
+//    }
+//
+//    @objc
+//    func undo() -> Void {
+//        print("Undoing")
+//        textView.undoManager?.undo()
+//    }
     
     override func viewWillLayoutSubviews() {
         let frameWidth = view.frame.size.width
@@ -130,83 +107,8 @@ final class KeyboardEditorViewController: UIViewController {
     }
 }
 
-// MARK:- Stroke Handling
-extension KeyboardEditorViewController {
-    /**
-     Executes a strikethrough using the provided stroke,
-     which is assumed to have been recognized as a horizontal line.
-     */
-    func strikethrough(with stroke: PKStroke) -> Void {
-        /// Get a straightened version of the stroke.
-        let (leading, trailing) = stroke.straightened()
-        
-        guard
-            let uiStart = textView.closestPosition(to: leading),
-            let uiEnd = textView.closestPosition(to: trailing),
-            let range = textView.textRange(from: uiStart, to: uiEnd)
-        else {
-            print("Could not get path bounds!")
-            return
-        }
-        
-        let nsRange = textView.nsRange(from: range)
-        coordinator.document.apply(lineStyle: Delete.self, to: nsRange)
-        textView.attributedText = coordinator.document.styledText
-    }
-    
-    /// Erase along the provided line
-    func erase(along stroke: PKStroke) -> Void {
-        /// Use the same straightened version of a stroke as ``strikethrough``.
-        let (leading, trailing) = stroke.straightened()
-        
-        guard
-            let uiStart = textView.closestPosition(to: leading),
-            let uiEnd = textView.closestPosition(to: trailing),
-            let range = textView.textRange(from: uiStart, to: uiEnd)
-        else {
-            print("Could not get path bounds!")
-            return
-        }
-        
-        let nsRange = textView.nsRange(from: range)
-        coordinator.document.erase(in: nsRange)
-        textView.attributedText = coordinator.document.styledText
-    }
-    
-    /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
-    func reject(stroke: PKStroke) -> Void {
-        let strokeLayer = getOrInitStrokeLayer()
-        
-        strokeLayer.path = stroke.path.asPath.cgPath
-        
-        /// Set up fade animation to complete translucency.
-        let fade = CABasicAnimation(keyPath: "opacity")
-        (fade.fromValue, fade.toValue, fade.duration) = (1, 0, 1)
-        strokeLayer.add(fade, forKey: "opacity")
-        
-        /**
-         Set the final value so that it sticks after the animation ends.
-         Docs: https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/CreatingBasicAnimations/CreatingBasicAnimations.html
-         */
-        strokeLayer.opacity = 0
-    }
-}
-
-// MARK:- Stroke Reject Layer Guts
-extension KeyboardEditorViewController {
-    /// Insert layer into hierarchy if it is missing.
-    /// This is here because I'm terrified of overriding the `UITextView` `init`.
-    fileprivate func getOrInitStrokeLayer() -> CAShapeLayer {
-        if strokeLayer == nil {
-            self.strokeLayer = CAShapeLayer()
-            
-            /// set a translucent red stroke
-            self.strokeLayer!.lineWidth = 2.0
-            self.strokeLayer!.strokeColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
-            self.strokeLayer!.fillColor = CGColor.init(gray: .zero, alpha: .zero)
-            
-            self.view.layer.insertSublayer(self.strokeLayer!, at: 0)
-        }
-        return self.strokeLayer!
-    }
+final class PMTextView: UITextView {
+    /// reference to parent `KeyboardEditorViewController`.
+    /// **Must** be set on controller's `init`.
+    unowned var controller: KeyboardEditorViewController! = nil
 }
