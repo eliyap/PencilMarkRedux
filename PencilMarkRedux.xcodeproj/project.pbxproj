@@ -728,7 +728,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 21.07.18;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMarkRedux";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -751,7 +751,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 21.07.18;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMarkRedux";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
