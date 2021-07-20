@@ -15,9 +15,15 @@ struct ContentView: View {
     @Binding var document: StyledMarkdown
     
     var body: some View {
-        ZStack {
-            KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
-            CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
+        HStack {
+            Spacer()
+                .frame(minWidth: 20, maxWidth: 50)
+            ZStack {
+                KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
+                CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
+            }
+            Spacer()
+                .frame(minWidth: 20, maxWidth: 50)
         }
     }
 }
