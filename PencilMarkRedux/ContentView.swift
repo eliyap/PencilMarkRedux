@@ -15,15 +15,17 @@ struct ContentView: View {
     @Binding var document: StyledMarkdown
     
     var body: some View {
-        HStack {
-            Spacer()
-                .frame(minWidth: 20, maxWidth: 50)
-            ZStack {
-                KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
-                CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
+        GeometryReader { geo in
+            HStack {
+                Spacer()
+                    .frame(maxWidth: geo.size.width * 0.1)
+                ZStack {
+                    KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
+                    CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
+                }
+                Spacer()
+                    .frame(maxWidth: geo.size.width * 0.1)
             }
-            Spacer()
-                .frame(minWidth: 20, maxWidth: 50)
         }
     }
 }
