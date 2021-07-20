@@ -12,68 +12,8 @@ struct ContentView: View {
     @StateObject var strokeC = StrokeConduit()
     @StateObject var frameC = FrameConduit()
     let cmdC = CommandConduit()
-    @State var document = StyledMarkdown(text: """
-ATX 1
-=====
-
-ATX 2
------
-
-# Heading ~~Nested~~
-### Heading ***Nested***
-Plain Text
-**Strong** *emphasis* ~~delete~~
-nesting *emphasis **strong ~~delete~~***
-
-- list item
-    - sub list item
-1. numbered
-    1. sub numbered
-- [x] task done
-- [ ] task todo
-
-> block quote
->
-> with blank space
-> > nested quote
-
-[a link](www.example.com)
-![an image](www.example.com)
-
-a claim[^1]
-
-a break
-
----
-
-`some code`
-
-```swift
-func moreCode() -> Void { /* some comments */ }
-```
-[^1]: a footnote reference
-
-padding and a long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-padding
-""")
+    @Binding var document: StyledMarkdown
+    
     var body: some View {
         ZStack {
             KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
