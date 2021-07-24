@@ -29,10 +29,21 @@ final class _DrawableMarkdownViewController: UIViewController {
         self.url = url
         self.keyboard = _DocumentViewController()
         super.init(nibName: nil, bundle: nil)
+        
+        /// Add subviews into hierarchy.
+        addChild(keyboard)
+        keyboard.view.frame = view.frame
+        view.addSubview(keyboard.view)
+        keyboard.didMove(toParent: self)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        keyboard.view.frame = view.frame
     }
 }
 

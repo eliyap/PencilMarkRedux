@@ -34,6 +34,12 @@ final class _DocumentViewController: UIViewController {
         /// Observe `textView` events.
         textView.delegate = self
         
+        
+    }
+    
+    /// Perform with with `parent` after initialization is complete
+    override func viewDidLoad() {
+        super.viewDidLoad()
         /// Save very frequently when the user makes changes.
         /**
          Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
