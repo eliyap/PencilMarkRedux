@@ -35,7 +35,7 @@ final class DrawableMarkdownViewController: UIViewController {
         self.url = url
         self.keyboard = _KeyboardEditorViewController(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         super.init(nibName: nil, bundle: nil)
-        keyboard.coordinator = self
+        keyboard.coordinator = self /// *must* set implicitly unwrapped `self` immediately
     }
     
     required init?(coder: NSCoder) {
