@@ -29,6 +29,16 @@ final class DrawingViewController: PMViewController {
         
         /// Attach gesture recognizer so we can respond to taps.
         canvasView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
+        
+        #warning("DEBUG")
+        canvasView.layer.borderWidth = 5
+        canvasView.layer.borderColor = UIColor.green.cgColor
+    }
+    
+    /// Perform with with ``coordinator`` after initialization is complete.
+    func coordinate(with _: DrawableMarkdownViewController) {
+        /// Coordinate via `Combine` with ``coordinator``.
+        observeSize()
     }
     
     /// Perform with with ``coordinator`` after initialization is complete

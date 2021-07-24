@@ -22,6 +22,7 @@ extension TypingViewController {
         let tap: AnyCancellable = coordinator.frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
+                print("received")
                 guard
                     let textView = self?.textView,
                     let textPosition = textView.closestPosition(to: $0)

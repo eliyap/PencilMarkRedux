@@ -41,7 +41,9 @@ final class DrawableMarkdownViewController: PMViewController {
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
+        keyboard.coordinate(with: self)
         adopt(drawing)
+        drawing.coordinate(with: self)
     }
     
     required init?(coder: NSCoder) {
