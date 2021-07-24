@@ -12,7 +12,7 @@ import Combine
 final class TypingViewController: UIViewController {
     
     /// View presenting document for editing.
-    private let textView = UITextView()
+    let textView = UITextView()
     
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { coordinator.document.undoManager }
@@ -21,7 +21,7 @@ final class TypingViewController: UIViewController {
     private var changeObserver = PassthroughSubject<Void, Never>()
     
     /// Combine Observers & Conduits
-    private var observers = Set<AnyCancellable>()
+    var observers = Set<AnyCancellable>()
     
     /// Force unwrap container VC
     var coordinator: _DrawableMarkdownViewController { parent as! _DrawableMarkdownViewController }
