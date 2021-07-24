@@ -38,7 +38,7 @@ protocol _DocumentSelectionDelegate: AnyObject {
 //    }
 //}
 
-extension _DrawableMarkdownViewController: _DocumentSelectionDelegate {
+extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
     func select(_ document: StyledMarkdownDocument) {
         /// Update Naviagation Bar Title
         navigationItem.title = document.localizedName

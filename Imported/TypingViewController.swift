@@ -18,7 +18,7 @@ final class TypingViewController: PMViewController {
     override var undoManager: UndoManager? { coordinator.document.undoManager }
     
     /// Force unwrap container VC
-    var coordinator: _DrawableMarkdownViewController { parent as! _DrawableMarkdownViewController }
+    var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
     
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil

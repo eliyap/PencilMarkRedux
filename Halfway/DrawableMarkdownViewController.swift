@@ -1,5 +1,5 @@
 //
-//  _DrawableMarkdownViewController.swift
+//  DrawableMarkdownViewController.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DrawableMarkdownViewController: PMViewController {
+final class DrawableMarkdownViewController: PMViewController {
     
     /// Folder URL for placing new documents.
     private let url: URL
@@ -71,7 +71,7 @@ final class _DrawableMarkdownViewController: PMViewController {
 }
 
 // MARK:- Document Access
-extension _DrawableMarkdownViewController {
+extension DrawableMarkdownViewController {
     
     /// Returns the underlying document, if any,
     /// or creates a new one if there isn't.

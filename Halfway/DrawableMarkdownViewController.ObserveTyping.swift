@@ -1,5 +1,5 @@
 //
-//  _DrawableMarkdownViewController.ObserveTyping.swift
+//  DrawableMarkdownViewController.ObserveTyping.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-extension _DrawableMarkdownViewController {
+extension DrawableMarkdownViewController {
     /// How long to wait between saving operations.
     static let period = 0.5
     
