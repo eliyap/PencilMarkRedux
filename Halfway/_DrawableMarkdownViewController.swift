@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class _DrawableMarkdownViewController: UIViewController {
     
@@ -24,6 +25,9 @@ final class _DrawableMarkdownViewController: UIViewController {
     
     /// Child View Controllers
     let keyboard: TypingViewController
+    
+    /// Combine Conduits & Observers
+    var observers = Set<AnyCancellable>()
     
     init(url: URL) {
         self.url = url
@@ -44,6 +48,11 @@ final class _DrawableMarkdownViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
+    }
+    
+    deinit {
+        /// Cancel subscriptions so that they do not leak.
+        observers.forEach { $0.cancel() }
     }
 }
 
