@@ -35,6 +35,7 @@
 		22AF74E6269BB91D007D9891 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74E5269BB91D007D9891 /* Parser.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
+		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
@@ -121,6 +122,7 @@
 		22AF74E5269BB91D007D9891 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */,
 				22C9F5D126AB9215003FD426 /* AppDelegate.swift */,
 				22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */,
+				22C9F5D726AB934B003FD426 /* Main.storyboard */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				22AF74E4269BB882007D9891 /* main.js in Resources */,
 				22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */,
 				22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */,
+				22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
