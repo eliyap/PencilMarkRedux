@@ -26,9 +26,6 @@ final class _DrawableMarkdownViewController: PMViewController {
     /// Child View Controllers
     let keyboard: TypingViewController
     
-    /// Combine Conduits & Observers
-    var observers = Set<AnyCancellable>()
-    
     let strokeC = StrokeConduit()
     
     init(url: URL) {
@@ -50,11 +47,6 @@ final class _DrawableMarkdownViewController: PMViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
-    }
-    
-    deinit {
-        /// Cancel subscriptions so that they do not leak.
-        observers.forEach { $0.cancel() }
     }
 }
 
