@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Very small protocol that lets `FileBrowserViewController` set the document of the `DocumentViewController`.
 protocol DocumentSelectionDelegate: AnyObject {
@@ -17,6 +18,41 @@ extension DocumentViewController: DocumentSelectionDelegate {
         /// Update Naviagation Bar Title
         navigationItem.title = document.localizedName
         
+        self.document = document
+    }
+}
+
+/// Very small protocol that lets `FileBrowserViewController` set the document of the `DocumentViewController`.
+protocol _DocumentSelectionDelegate: AnyObject {
+    associatedtype Document: UIDocument
+    func select(_ document: Document) -> Void
+}
+
+extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
+    typealias Document = StyledMarkdownDocument
+    func select(_ document: Document) {
+        /// Update Naviagation Bar Title
+        navigationItem.title = document.localizedName
+        
+        self.document = document
+    }
+}
+
+//extension _DocumentViewController: _DocumentSelectionDelegate {
+//    typealias Document = StyledMarkdownDocument
+//    func select(_ document: StyledMarkdownDocument) {
+//        /// Update Naviagation Bar Title
+//        navigationItem.title = document.localizedName
+//
+//        self.document = document
+//    }
+//}
+
+extension _DrawableMarkdownViewController: _DocumentSelectionDelegate {
+    func select(_ document: StyledMarkdownDocument) {
+        /// Update Naviagation Bar Title
+        navigationItem.title = document.localizedName
+
         self.document = document
     }
 }
