@@ -222,9 +222,7 @@
 		22AF74B8269BA5F1007D9891 /* PencilMarkRedux */ = {
 			isa = PBXGroup;
 			children = (
-				22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */,
-				22C9F5D126AB9215003FD426 /* AppDelegate.swift */,
-				22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */,
+				22C9F5D626AB9326003FD426 /* AppRoot */,
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74E5269BB91D007D9891 /* Parser.swift */,
 				2214E133269C85750046EF32 /* StyledMarkdown.swift */,
@@ -313,6 +311,16 @@
 				22AF74E3269BB882007D9891 /* main.js */,
 			);
 			path = dist;
+			sourceTree = "<group>";
+		};
+		22C9F5D626AB9326003FD426 /* AppRoot */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74B9269BA5F1007D9891 /* PencilMarkReduxApp.swift */,
+				22C9F5D126AB9215003FD426 /* AppDelegate.swift */,
+				22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */,
+			);
+			path = AppRoot;
 			sourceTree = "<group>";
 		};
 		22CA375226A0B0A500E95009 /* Root */ = {
