@@ -14,9 +14,10 @@ final class DrawableMarkdownViewController: UIViewController {
     /// Folder URL for temporary documents.
     private let url: URL
     
+    /// Conduit Objects.
     let strokeC = StrokeConduit()
     let frameC = FrameConduit()
-//    let cmdC = CommandConduit()
+    let cmdC = CommandConduit()
 //    let document: StyledMarkdown
     
     /// Nullable underlying model object
