@@ -45,6 +45,11 @@ final class DrawableMarkdownViewController: UIViewController {
         keyboard.view.frame = view.frame
         view.addSubview(keyboard.view)
         keyboard.didMove(toParent: self)
+        
+        addChild(canvas)
+        canvas.view.frame = view.frame
+        view.addSubview(canvas.view)
+        canvas.didMove(toParent: self)
     }
     
     required init?(coder: NSCoder) {
