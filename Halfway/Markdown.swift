@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Markdown: UIDocument {
+final class StyledMarkdownDocument: UIDocument {
     
     /// Document description attributes.
     /// Nullable so that we can override init
@@ -41,10 +41,37 @@ final class Markdown: UIDocument {
             throw TextDocumentError.unableToParseText
         }
         
+        /// Set a style loaded value.
         text = newText
+        ast = Parser.shared.parse(markdown: text)
+        styledText = Self.attributedText(from: text, with: ast)
     }
     
     override var localizedName: String {
         fileURL.lastPathComponent
+    }
+}
+
+extension StyledMarkdownDocument {
+    /// Call this function to update after the text is updated.
+    func updateAttributes() -> Void {
+        /// re-formulate AST
+        ast = Parser.shared.parse(markdown: text)
+        
+        /// re-format string based on AST
+        styledText = Self.attributedText(from: text, with: ast)
+    }
+    
+    /// Uses the AST to style an attributed string
+    /// - Note: make sure the passed AST matches the passed text!
+    static func attributedText(from markdown: String, with ast: Root) -> NSMutableAttributedString {
+        var result = NSMutableAttributedString(
+            string: markdown, attributes: [
+                /// set font to monospace by default
+                .font: UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .regular)
+            ]
+        )
+        ast.style(&result)
+        return result
     }
 }
