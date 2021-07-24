@@ -1,5 +1,5 @@
 //
-//  _DrawableMarkdownViewController.swift
+//  DrawableMarkdownViewController.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DrawableMarkdownViewController: PMViewController {
+final class DrawableMarkdownViewController: PMViewController {
     
     /// Folder URL for placing new documents.
     private let url: URL
@@ -25,34 +25,25 @@ final class _DrawableMarkdownViewController: PMViewController {
     
     /// Child View Controllers
     let keyboard: TypingViewController
+    let drawing: DrawingViewController
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
+    let frameC = FrameConduit()
+    let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
     
     init(url: URL) {
         self.url = url
         self.keyboard = TypingViewController()
+        self.drawing = DrawingViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
-        addChild(keyboard)
-        keyboard.view.frame = view.frame
-        view.addSubview(keyboard.view)
-        keyboard.didMove(toParent: self)
-        
-        let typing: AnyCancellable = typingC
-//            .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
-            .sink { [weak self] in
-//                if let document = self?.document {
-//                    document.save(to: document.fileURL, for: .forOverwriting) { (success) in
-//                        if success == false {
-//                            print("Failed to save!")
-//                        }
-//                    }
-//                }
-            }
-        store(typing)
+        adopt(keyboard)
+        keyboard.coordinate(with: self)
+        adopt(drawing)
+        drawing.coordinate(with: self)
     }
     
     required init?(coder: NSCoder) {
@@ -61,17 +52,18 @@ final class _DrawableMarkdownViewController: PMViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        observeTyping()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
+        drawing.view.frame = view.frame
     }
 }
 
 // MARK:- Document Access
-extension _DrawableMarkdownViewController {
+extension DrawableMarkdownViewController {
     
     /// Returns the underlying document, if any,
     /// or creates a new one if there isn't.

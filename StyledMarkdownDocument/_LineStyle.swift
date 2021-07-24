@@ -12,7 +12,7 @@ extension StyledMarkdownDocument {
     func apply<T: Parent>(
         lineStyle: T.Type,
         to range: NSRange,
-        in view: _PMTextView
+        in view: PMTextView
     ) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
@@ -30,7 +30,7 @@ extension StyledMarkdownDocument {
         makeReplacements(in: view)
     }
     
-    func makeReplacements(in view: _PMTextView) -> Void {
+    func makeReplacements(in view: PMTextView) -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         let replacements = ast
             .gatherChanges()

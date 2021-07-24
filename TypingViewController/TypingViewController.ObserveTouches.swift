@@ -1,29 +1,28 @@
 //
-//  KeyboardEditorViewController_TouchHandling.swift
+//  TypingViewController.ObserveTouches.swift
 //  PencilMarkRedux
 //
-//  Created by Secret Asian Man Dev on 18/7/21.
+//  Created by Secret Asian Man Dev on 24/7/21.
 //
 
 import Foundation
-import UIKit
+import Combine
 
-// MARK:- Touch / Scroll Event Handling
-extension _KeyboardEditorViewController {
-    
+extension TypingViewController {
     /// Attach `Combine` sinks to events from `frameC`.
-    func observeTouchEvents(from frameC: FrameConduit) -> Void {
+    func observeTouchEvents() -> Void {
         /// Coordinate scroll position with `PKCanvasView`.
-        frameC.$scrollY
+        let scroll: AnyCancellable = coordinator.frameC.$scrollY
             .sink { [weak self] in
                 self?.textView.contentOffset.y = $0
             }
-            .store(in: &observers)
+        store(scroll)
         
         /// Set cursor when user taps on `PKCanvasView`.
-        frameC.$tapLocation
+        let tap: AnyCancellable = coordinator.frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
+                print("received")
                 guard
                     let textView = self?.textView,
                     let textPosition = textView.closestPosition(to: $0)
@@ -39,6 +38,6 @@ extension _KeyboardEditorViewController {
                 /// Set cursor position using zero length `UITextRange`.
                 textView.selectedTextRange = textView.textRange(from: textPosition, to: textPosition)
             }
-            .store(in: &observers)
+        store(tap)
     }
 }
