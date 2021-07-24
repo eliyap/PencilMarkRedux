@@ -23,11 +23,11 @@ final class _DrawableMarkdownViewController: UIViewController {
     }
     
     /// Child View Controllers
-    let keyboard: _DocumentViewController
+    let keyboard: TypingViewController
     
     init(url: URL) {
         self.url = url
-        self.keyboard = _DocumentViewController()
+        self.keyboard = TypingViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.

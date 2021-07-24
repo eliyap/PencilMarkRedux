@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220B851026AC819A00081536 /* _DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B850F26AC819A00081536 /* _DocumentViewController.swift */; };
+		220B851026AC819A00081536 /* TypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B850F26AC819A00081536 /* TypingViewController.swift */; };
 		220B851226AC844D00081536 /* _DrawableMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851126AC844D00081536 /* _DrawableMarkdownViewController.swift */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
@@ -123,7 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		220B850F26AC819A00081536 /* _DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DocumentViewController.swift; sourceTree = "<group>"; };
+		220B850F26AC819A00081536 /* TypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.swift; sourceTree = "<group>"; };
 		220B851126AC844D00081536 /* _DrawableMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DrawableMarkdownViewController.swift; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
-				220B850F26AC819A00081536 /* _DocumentViewController.swift */,
+				220B850F26AC819A00081536 /* TypingViewController.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
@@ -713,7 +713,7 @@
 				22C9F60D26ABA895003FD426 /* _KeyboardEditorViewController_StrokeHandling.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
 				22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */,
-				220B851026AC819A00081536 /* _DocumentViewController.swift in Sources */,
+				220B851026AC819A00081536 /* TypingViewController.swift in Sources */,
 				22DA1403269D3C1A00D90EA7 /* HasStyle.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,

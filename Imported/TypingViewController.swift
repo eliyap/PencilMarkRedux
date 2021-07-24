@@ -1,5 +1,5 @@
 //
-//  DocumentViewController.swift
+//  TypingViewController.swift
 //  SplitControl
 //
 //  Created by Secret Asian Man Dev on 20/7/21.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DocumentViewController: UIViewController {
+final class TypingViewController: UIViewController {
     
     /// View presenting document for editing.
     private let textView = UITextView()
@@ -33,7 +33,6 @@ final class _DocumentViewController: UIViewController {
         
         /// Observe `textView` events.
         textView.delegate = self
-        
         
     }
     
@@ -88,7 +87,7 @@ final class _DocumentViewController: UIViewController {
     }
 }
 
-extension _DocumentViewController: UITextViewDelegate {
+extension TypingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         coordinator.document.text = textView.text
         coordinator.document.updateChangeCount(.done)
@@ -102,7 +101,7 @@ extension _DocumentViewController: UITextViewDelegate {
     }
 }
 
-extension _DocumentViewController {
+extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
     func updateAttributedText() {
         textView.attributedText = coordinator.document.styledText
