@@ -44,20 +44,6 @@ final class TypingViewController: PMViewController {
     }
 }
 
-extension TypingViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        coordinator.document.text = textView.text
-        coordinator.document.updateChangeCount(.done)
-        coordinator.typingC.send()
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        coordinator.document.text = textView.text
-        coordinator.document.updateChangeCount(.done)
-        coordinator.typingC.send()
-    }
-}
-
 extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
