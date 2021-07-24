@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DrawableMarkdownViewController: UIViewController {
+final class _DrawableMarkdownViewController: PMViewController {
     
     /// Folder URL for placing new documents.
     private let url: URL
@@ -26,9 +26,7 @@ final class _DrawableMarkdownViewController: UIViewController {
     /// Child View Controllers
     let keyboard: TypingViewController
     
-    /// Combine Conduits & Observers
-    var observers = Set<AnyCancellable>()
-    
+    /// Combine Conduits
     let strokeC = StrokeConduit()
     
     init(url: URL) {
@@ -50,11 +48,6 @@ final class _DrawableMarkdownViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
-    }
-    
-    deinit {
-        /// Cancel subscriptions so that they do not leak.
-        observers.forEach { $0.cancel() }
     }
 }
 
