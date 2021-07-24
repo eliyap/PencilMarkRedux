@@ -12,7 +12,7 @@ import Combine
 final class TypingViewController: PMViewController {
     
     /// View presenting document for editing.
-    let textView = _PMTextView()
+    let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { coordinator.document.undoManager }

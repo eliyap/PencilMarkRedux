@@ -28,16 +28,6 @@ protocol _DocumentSelectionDelegate: AnyObject {
     func select(_ document: Document) -> Void
 }
 
-extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
-    typealias Document = StyledMarkdownDocument
-    func select(_ document: Document) {
-        /// Update Naviagation Bar Title
-        navigationItem.title = document.localizedName
-        
-        self.document = document
-    }
-}
-
 //extension _DocumentViewController: _DocumentSelectionDelegate {
 //    typealias Document = StyledMarkdownDocument
 //    func select(_ document: StyledMarkdownDocument) {
