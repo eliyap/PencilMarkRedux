@@ -29,10 +29,7 @@
 		2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E129269C80E10046EF32 /* Paragraph.swift */; };
 		2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E12B269C80F40046EF32 /* ThematicBreak.swift */; };
 		2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E12D269C80FE0046EF32 /* ListItem.swift */; };
-		2214E132269C84D70046EF32 /* LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E131269C84D70046EF32 /* LineStyle.swift */; };
-		2214E134269C85750046EF32 /* StyledMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E133269C85750046EF32 /* StyledMarkdown.swift */; };
 		2214E137269C8FD70046EF32 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2214E136269C8FD70046EF32 /* OrderedCollections */; };
-		2214E13A269C99FE0046EF32 /* StyledMarkdown.Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */; };
 		2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E13B269CAC3B0046EF32 /* String_Subscript.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
@@ -76,7 +73,6 @@
 		22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376926A0C86400E95009 /* StraightLine.swift */; };
 		22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */; };
 		22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */; };
-		22CA377026A127C800E95009 /* LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376F26A127C800E95009 /* LineErase.swift */; };
 		22CA377226A1341300E95009 /* Text.split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377126A1341300E95009 /* Text.split.swift */; };
 		22CA377426A1C43D00E95009 /* Infect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377326A1C43D00E95009 /* Infect.swift */; };
 		22CA377626A1D7E100E95009 /* LineEraseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377526A1D7E100E95009 /* LineEraseTests.swift */; };
@@ -104,9 +100,7 @@
 		22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85318269CD60A00E82CE4 /* Node_Equatable.swift */; };
 		22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */; };
 		22E8531D269CD64100E82CE4 /* Node_Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531C269CD64100E82CE4 /* Node_Construct.swift */; };
-		22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
-		22E85323269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85322269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,9 +136,6 @@
 		2214E129269C80E10046EF32 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
 		2214E12B269C80F40046EF32 /* ThematicBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThematicBreak.swift; sourceTree = "<group>"; };
 		2214E12D269C80FE0046EF32 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
-		2214E131269C84D70046EF32 /* LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStyle.swift; sourceTree = "<group>"; };
-		2214E133269C85750046EF32 /* StyledMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown.swift; sourceTree = "<group>"; };
-		2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown.Change.swift; sourceTree = "<group>"; };
 		2214E13B269CAC3B0046EF32 /* String_Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Subscript.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -190,7 +181,6 @@
 		22CA376926A0C86400E95009 /* StraightLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StraightLine.swift; sourceTree = "<group>"; };
 		22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePath_Path.swift; sourceTree = "<group>"; };
 		22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path_BezierCurve.swift; sourceTree = "<group>"; };
-		22CA376F26A127C800E95009 /* LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineErase.swift; sourceTree = "<group>"; };
 		22CA377126A1341300E95009 /* Text.split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.split.swift; sourceTree = "<group>"; };
 		22CA377326A1C43D00E95009 /* Infect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infect.swift; sourceTree = "<group>"; };
 		22CA377526A1D7E100E95009 /* LineEraseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEraseTests.swift; sourceTree = "<group>"; };
@@ -221,9 +211,7 @@
 		22E85318269CD60A00E82CE4 /* Node_Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Equatable.swift; sourceTree = "<group>"; };
 		22E8531A269CD61F00E82CE4 /* Node_Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Hashable.swift; sourceTree = "<group>"; };
 		22E8531C269CD64100E82CE4 /* Node_Construct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_Construct.swift; sourceTree = "<group>"; };
-		22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown_FileDocument.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
-		22E85322269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown.Replacement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +294,6 @@
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22C9F5DB26AB999D003FD426 /* Imported */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
-				22C9F5F926AB9DE6003FD426 /* StyledMarkdown */,
 				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
@@ -426,19 +413,6 @@
 				22CF007A26A516F400A12F88 /* CommandConduit.swift */,
 			);
 			path = Conduits;
-			sourceTree = "<group>";
-		};
-		22C9F5F926AB9DE6003FD426 /* StyledMarkdown */ = {
-			isa = PBXGroup;
-			children = (
-				2214E133269C85750046EF32 /* StyledMarkdown.swift */,
-				22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */,
-				2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */,
-				22E85322269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift */,
-				2214E131269C84D70046EF32 /* LineStyle.swift */,
-				22CA376F26A127C800E95009 /* LineErase.swift */,
-			);
-			path = StyledMarkdown;
 			sourceTree = "<group>";
 		};
 		22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */ = {
@@ -686,7 +660,6 @@
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */,
-				22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */,
 				22DA1409269D3F9B00D90EA7 /* Consume.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
@@ -704,14 +677,11 @@
 				220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
-				22CA377026A127C800E95009 /* LineErase.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA377426A1C43D00E95009 /* Infect.swift in Sources */,
 				22CDCB14269BC73200988085 /* Position.swift in Sources */,
 				22AF74E6269BB91D007D9891 /* Parser.swift in Sources */,
-				2214E134269C85750046EF32 /* StyledMarkdown.swift in Sources */,
-				22E85323269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				220B852826AC990200081536 /* PMTextView.swift in Sources */,
 				220B852A26AC998C00081536 /* TypingViewController.ObserveCommands.swift in Sources */,
@@ -721,7 +691,6 @@
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
-				2214E132269C84D70046EF32 /* LineStyle.swift in Sources */,
 				22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */,
 				22CDCB1A269BCB3700988085 /* Root.swift in Sources */,
 				22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */,
@@ -733,7 +702,6 @@
 				22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */,
 				22DA13F7269D228000D90EA7 /* Strong.swift in Sources */,
 				22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */,
-				2214E13A269C99FE0046EF32 /* StyledMarkdown.Change.swift in Sources */,
 				2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */,
 				22C9F5E026AB99BE003FD426 /* TextDocument.swift in Sources */,
 				22CDCB12269BC71200988085 /* Point.swift in Sources */,
