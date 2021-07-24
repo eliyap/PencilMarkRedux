@@ -64,8 +64,6 @@ class FilesViewController: UITableViewController {
             let vc = FolderViewController(url: cellURL, selectionDelegate: selectionDelegate)
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            print("Folder Split \(splitViewController != nil)")
-      
             /**
              In compact width mode, it seems as though the `.secondary` view controller in `UISplitViewController` is lazily loaded,
              so it's possible that ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
