@@ -44,6 +44,15 @@ final class TypingViewController: PMViewController {
         observeTouchEvents(from: coordinator.frameC)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        /// Update `PKCanvasView` as to the size it should adopt to fit all this text.
+        let frameWidth = view.frame.size.width
+        let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
+        coordinator.frameC.contentSize = contentSize
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
