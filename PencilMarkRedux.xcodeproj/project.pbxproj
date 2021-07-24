@@ -58,9 +58,9 @@
 		22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */; };
 		22C9F60226ABA4EB003FD426 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F60126ABA4EB003FD426 /* Change.swift */; };
 		22C9F60426ABA4F0003FD426 /* Replacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F60326ABA4F0003FD426 /* Replacement.swift */; };
-		22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61026ABB9F2003FD426 /* _LineStyle.swift */; };
+		22C9F61126ABB9F2003FD426 /* LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61026ABB9F2003FD426 /* LineStyle.swift */; };
 		22C9F61326ABBA65003FD426 /* Consume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61226ABBA65003FD426 /* Consume.swift */; };
-		22C9F61526ABBB2C003FD426 /* _LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61426ABBB2C003FD426 /* _LineErase.swift */; };
+		22C9F61526ABBB2C003FD426 /* LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61426ABBB2C003FD426 /* LineErase.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
@@ -165,9 +165,9 @@
 		22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdownDocument.swift; sourceTree = "<group>"; };
 		22C9F60126ABA4EB003FD426 /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		22C9F60326ABA4F0003FD426 /* Replacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replacement.swift; sourceTree = "<group>"; };
-		22C9F61026ABB9F2003FD426 /* _LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineStyle.swift; sourceTree = "<group>"; };
+		22C9F61026ABB9F2003FD426 /* LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStyle.swift; sourceTree = "<group>"; };
 		22C9F61226ABBA65003FD426 /* Consume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consume.swift; sourceTree = "<group>"; };
-		22C9F61426ABBB2C003FD426 /* _LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineErase.swift; sourceTree = "<group>"; };
+		22C9F61426ABBB2C003FD426 /* LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineErase.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -427,8 +427,8 @@
 				22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */,
 				22C9F60126ABA4EB003FD426 /* Change.swift */,
 				22C9F60326ABA4F0003FD426 /* Replacement.swift */,
-				22C9F61026ABB9F2003FD426 /* _LineStyle.swift */,
-				22C9F61426ABBB2C003FD426 /* _LineErase.swift */,
+				22C9F61026ABB9F2003FD426 /* LineStyle.swift */,
+				22C9F61426ABBB2C003FD426 /* LineErase.swift */,
 			);
 			path = StyledMarkdownDocument;
 			sourceTree = "<group>";
@@ -634,7 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */,
-				22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */,
+				22C9F61126ABB9F2003FD426 /* LineStyle.swift in Sources */,
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
@@ -642,7 +642,7 @@
 				22C9F60426ABA4F0003FD426 /* Replacement.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
-				22C9F61526ABBB2C003FD426 /* _LineErase.swift in Sources */,
+				22C9F61526ABBB2C003FD426 /* LineErase.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
