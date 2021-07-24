@@ -37,8 +37,6 @@
 		22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74BB269BA5F1007D9891 /* ContentView.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
-		22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */; };
-		22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */; };
 		22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CC269BA795007D9891 /* CanvasView.swift */; };
 		22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CE269BA79E007D9891 /* CanvasViewController.swift */; };
 		22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */; };
@@ -94,8 +92,6 @@
 		22CDCB18269BC75C00988085 /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB17269BC75C00988085 /* Heading.swift */; };
 		22CDCB1A269BCB3700988085 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB19269BCB3700988085 /* Root.swift */; };
 		22CDCB1C269BCB4E00988085 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CDCB1B269BCB4E00988085 /* List.swift */; };
-		22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */; };
-		22CF007526A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */; };
 		22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007626A5099500A12F88 /* ScribbleBlockers.swift */; };
 		22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007A26A516F400A12F88 /* CommandConduit.swift */; };
 		22DA13F7269D228000D90EA7 /* Strong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13F6269D228000D90EA7 /* Strong.swift */; };
@@ -158,8 +154,6 @@
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController.swift; sourceTree = "<group>"; };
-		22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorView.swift; sourceTree = "<group>"; };
 		22AF74CC269BA795007D9891 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		22AF74CE269BA79E007D9891 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.Coordinator.swift; sourceTree = "<group>"; };
@@ -217,8 +211,6 @@
 		22CDCB17269BC75C00988085 /* Heading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heading.swift; sourceTree = "<group>"; };
 		22CDCB19269BCB3700988085 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		22CDCB1B269BCB4E00988085 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController_StrokeHandling.swift; sourceTree = "<group>"; };
-		22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEditorViewController_TouchHandling.swift; sourceTree = "<group>"; };
 		22CF007626A5099500A12F88 /* ScribbleBlockers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleBlockers.swift; sourceTree = "<group>"; };
 		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
 		22DA13F6269D228000D90EA7 /* Strong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strong.swift; sourceTree = "<group>"; };
@@ -325,7 +317,6 @@
 				22C9F5F926AB9DE6003FD426 /* StyledMarkdown */,
 				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
-				22AF74DE269BB3E3007D9891 /* KeyboardEditor */,
 				22AF74DF269BB3F1007D9891 /* CanvasView */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22CA376226A0C46600E95009 /* GestureRecognition */,
@@ -382,18 +373,6 @@
 				22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */,
 			);
 			path = PencilKit;
-			sourceTree = "<group>";
-		};
-		22AF74DE269BB3E3007D9891 /* KeyboardEditor */ = {
-			isa = PBXGroup;
-			children = (
-				22AF74CA269BA64A007D9891 /* KeyboardEditorView.swift */,
-				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
-				22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */,
-				22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */,
-			);
-			name = KeyboardEditor;
-			path = PencilMarkRedux/KeyboardEditor;
 			sourceTree = "<group>";
 		};
 		22AF74DF269BB3F1007D9891 /* CanvasView */ = {
@@ -720,7 +699,6 @@
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22DA13FF269D3A7C00D90EA7 /* IntersectingText.swift in Sources */,
 				22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */,
-				22AF74C9269BA612007D9891 /* KeyboardEditorViewController.swift in Sources */,
 				22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */,
 				220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */,
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
@@ -744,7 +722,6 @@
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22C9F5E226AB99BE003FD426 /* DocumentViewController.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
-				22AF74CB269BA64A007D9891 /* KeyboardEditorView.swift in Sources */,
 				220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */,
 				22C9F61326ABBA65003FD426 /* _Consume.swift in Sources */,
 				22CA375A26A0BC9200E95009 /* Link.swift in Sources */,
@@ -764,11 +741,9 @@
 				220B852A26AC998C00081536 /* TypingViewController.ObserveCommands.swift in Sources */,
 				2214E128269C80AD0046EF32 /* Text.swift in Sources */,
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
-				22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */,
 				22CA375C26A0BCDC00E95009 /* Image.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
-				22CF007526A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift in Sources */,
 				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
 				2214E132269C84D70046EF32 /* LineStyle.swift in Sources */,
 				22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */,
