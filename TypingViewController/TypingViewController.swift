@@ -5,7 +5,6 @@
 //  Created by Secret Asian Man Dev on 20/7/21.
 //
 
-import Foundation
 import UIKit
 import Combine
 
@@ -53,10 +52,20 @@ final class TypingViewController: PMViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        /// Update `PKCanvasView` as to the size it should adopt to fit all this text.
+        /// Update `PKCanvasView` as to the size it should adopt.
         let frameWidth = view.frame.size.width
         let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
-        coordinator.frameC.contentSize = contentSize
+        
+        /**
+         Make `PKCanvasView` as wide as the frame,
+         and as tall as the taller of the text and the page,
+         so that the user can mark anywhere on screen.
+         */
+        var canvasSize = CGSize(width: CGFloat.zero, height: CGFloat.zero)
+        canvasSize.width = max(view.frame.width, contentSize.width)
+        canvasSize.height = max(view.frame.height, contentSize.height)
+        
+        coordinator.frameC.contentSize = canvasSize
     }
     
     required init?(coder: NSCoder) {
