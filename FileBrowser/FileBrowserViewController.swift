@@ -10,7 +10,7 @@ import UIKit
 
 final class FileBrowserViewController: UITableViewController {
     
-    typealias DocumentDelegate = DocumentSelectionDelegate
+    typealias DocumentDelegate = _DocumentViewController
     
     /// Keep a strong reference to the data source, as the `UITableView` does not.
     let source: FileBrowserDataSource
