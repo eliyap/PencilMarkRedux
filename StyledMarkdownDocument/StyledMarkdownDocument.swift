@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class StyledMarkdownDocument: UIDocument {
     
@@ -16,6 +17,9 @@ final class StyledMarkdownDocument: UIDocument {
     public var styledText = NSMutableAttributedString(string: "", attributes: nil)
     public var ast: Root! = nil
 
+    /// `Combine` event pipeline that fires when the *user* changes the `UITextView`.
+    var ticker = PassthroughSubject<Void, Never>()
+    
     override init(fileURL url: URL) {
         super.init(fileURL: url)
     }

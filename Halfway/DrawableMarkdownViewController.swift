@@ -20,6 +20,9 @@ final class DrawableMarkdownViewController: UIViewController {
     let cmdC = CommandConduit()
 //    let document: StyledMarkdown
     
+    /// Child View Controllers
+    let keyboard: _KeyboardEditorViewController
+    
     /// Nullable underlying model object
     private var _document: StyledMarkdownDocument?
     
@@ -31,7 +34,9 @@ final class DrawableMarkdownViewController: UIViewController {
     
     init(url: URL) {
         self.url = url
+        self.keyboard = _KeyboardEditorViewController(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         super.init(nibName: nil, bundle: nil)
+        keyboard.coordinator = self
     }
     
     required init?(coder: NSCoder) {

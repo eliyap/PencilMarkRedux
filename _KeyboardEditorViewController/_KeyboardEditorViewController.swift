@@ -13,7 +13,7 @@ import PencilKit
 final class _KeyboardEditorViewController: UIViewController {
     let textView = _PMTextView()
     let strokeC: StrokeConduit
-    let coordinator: KeyboardEditorView.Coordinator
+    weak var coordinator: DrawableMarkdownViewController!
     
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
@@ -21,19 +21,19 @@ final class _KeyboardEditorViewController: UIViewController {
     var observers = Set<AnyCancellable>()
     
     init(
-        coordinator: KeyboardEditorView.Coordinator,
         strokeC: StrokeConduit,
         frameC: FrameConduit,
         cmdC: CommandConduit
     ) {
         self.strokeC = strokeC
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = textView
         textView.controller = self /// pass self to child
         
         textView.attributedText = coordinator.document.styledText
-        textView.delegate = coordinator
+        
+        /// Monitor typing in `UITextView`
+        textView.delegate = self
         
         /// Attach various `Combine` observers.
         observeStrokes()
@@ -58,7 +58,7 @@ final class _KeyboardEditorViewController: UIViewController {
                 }
                 
                 /// Rebuild AST, recalculate text styling.
-                coordinator.document.updateAttributes()
+                self?.coordinator.document.updateAttributes()
                 
                 /**
                  Setting the `attributedText` tends to move the cursor to the end of the document,
@@ -68,7 +68,7 @@ final class _KeyboardEditorViewController: UIViewController {
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
                 print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
-                ref.textView.attributedText = coordinator.document.styledText
+                ref.textView.attributedText = self?.coordinator.document.styledText
                 print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
