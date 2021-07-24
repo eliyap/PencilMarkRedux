@@ -18,7 +18,7 @@ final class _DocumentViewController: UIViewController {
     private let textView = UITextView()
     
     /// Nullable underlying model object
-    private var _document: TextDocument?
+    private var _document: StyledMarkdownDocument?
     
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { document.undoManager }
@@ -27,7 +27,7 @@ final class _DocumentViewController: UIViewController {
     private var observers = Set<AnyCancellable>()
     
     /// Non-nullable public model object
-    public var document: TextDocument {
+    public var document: StyledMarkdownDocument {
         get { getDocument() }
         set { setDocument(to: newValue) }
     }
@@ -63,7 +63,7 @@ final class _DocumentViewController: UIViewController {
     
     /// Returns the underlying document, if any,
     /// or creates a new one if there isn't.
-    private func getDocument() -> TextDocument {
+    private func getDocument() -> StyledMarkdownDocument {
         if let _document = _document {
             return _document
         } else {
@@ -74,16 +74,16 @@ final class _DocumentViewController: UIViewController {
             
             print("New Document Created")
             
-            _document = TextDocument(fileURL: newURL)
+            _document = StyledMarkdownDocument(fileURL: newURL)
             return _document!
         }
     }
     
     /// Updates the document being displayed,
     /// first closing the old document, if any.
-    private func setDocument(to document: TextDocument) -> Void {
+    private func setDocument(to document: StyledMarkdownDocument) -> Void {
         
-        func open(new document: TextDocument) {
+        func open(new document: StyledMarkdownDocument) {
             self._document = document
             document.open { (success) in
                 self.textView.text = self.document.text

@@ -34,3 +34,12 @@ extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
         self.document = document
     }
 }
+
+extension _DocumentViewController: _DocumentSelectionDelegate {
+    func select(_ document: StyledMarkdownDocument) {
+        /// Update Naviagation Bar Title
+        navigationItem.title = document.localizedName
+        
+        self.document = document
+    }
+}
