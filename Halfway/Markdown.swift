@@ -52,6 +52,7 @@ final class StyledMarkdownDocument: UIDocument {
     }
 }
 
+// MARK:- Styling Methods
 extension StyledMarkdownDocument {
     /// Call this function to update after the text is updated.
     func updateAttributes() -> Void {
