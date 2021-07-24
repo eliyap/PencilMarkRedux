@@ -1,5 +1,5 @@
 //
-//  Markdown.swift
+//  StyledMarkdownDocument.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 23/7/21.
