@@ -18,7 +18,6 @@ final class DrawableMarkdownViewController: UIViewController {
     let strokeC = StrokeConduit()
     let frameC = FrameConduit()
     let cmdC = CommandConduit()
-//    let document: StyledMarkdown
     
     /// Child View Controllers
     let keyboard: _KeyboardEditorViewController
