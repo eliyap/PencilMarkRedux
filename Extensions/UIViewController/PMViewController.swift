@@ -15,7 +15,7 @@ class PMViewController: UIViewController {
     private var observers = Set<AnyCancellable>()
     
     /// Expose private ``observers``
-    private func store(_ cancellable: AnyCancellable) {
+    public func store(_ cancellable: AnyCancellable) {
         cancellable.store(in: &observers)
     }
     
