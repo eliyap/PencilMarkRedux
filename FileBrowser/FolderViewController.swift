@@ -142,6 +142,7 @@ extension FolderViewController {
 
     @objc
     private func newDocument() {
+        #warning("New Document Not Implemented")
         print("Not Implemented")
     }
 }
