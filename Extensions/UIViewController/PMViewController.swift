@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
+/// A `UIViewController` assumed to have `Combine` capabilities.
 class PMViewController: UIViewController {
     
     private var observers = Set<AnyCancellable>()

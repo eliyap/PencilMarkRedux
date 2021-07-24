@@ -12,6 +12,7 @@
 		220B851426AC898C00081536 /* TypingViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */; };
 		220B851626AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851526AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift */; };
 		220B851926AC8BBD00081536 /* PMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851826AC8BBD00081536 /* PMViewController.swift */; };
+		220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
 		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
@@ -131,6 +132,7 @@
 		220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveTyping.swift; sourceTree = "<group>"; };
 		220B851526AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DrawableMarkdownViewController.ObserveTyping.swift; sourceTree = "<group>"; };
 		220B851826AC8BBD00081536 /* PMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMViewController.swift; sourceTree = "<group>"; };
+		220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.adopt.swift; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				220B851826AC8BBD00081536 /* PMViewController.swift */,
+				220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				22C9F60F26ABA8B5003FD426 /* _KeyboardEditorViewController_TouchHandling.swift in Sources */,
 				22C9F60926ABA837003FD426 /* _KeyboardEditorViewController.swift in Sources */,
+				220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */,
 				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
 				22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */,
