@@ -57,7 +57,7 @@ extension TypingViewController: UITextViewDelegate {
 
 extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
-    func updateAttributedText() {
+    public func updateAttributedText() {
         textView.attributedText = coordinator.document.styledText
     }
 }
