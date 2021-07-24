@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct PencilMarkReduxApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: StyledMarkdown()) { file in
