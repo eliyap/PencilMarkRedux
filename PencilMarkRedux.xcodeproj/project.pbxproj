@@ -13,7 +13,6 @@
 		220B851626AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851526AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift */; };
 		220B851926AC8BBD00081536 /* PMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851826AC8BBD00081536 /* PMViewController.swift */; };
 		220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */; };
-		220B851D26AC8DAB00081536 /* TypingViewController_UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851C26AC8DAB00081536 /* TypingViewController_UITextViewDelegate.swift */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
 		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
@@ -134,7 +133,6 @@
 		220B851526AC8AA200081536 /* _DrawableMarkdownViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DrawableMarkdownViewController.ObserveTyping.swift; sourceTree = "<group>"; };
 		220B851826AC8BBD00081536 /* PMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMViewController.swift; sourceTree = "<group>"; };
 		220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.adopt.swift; sourceTree = "<group>"; };
-		220B851C26AC8DAB00081536 /* TypingViewController_UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController_UITextViewDelegate.swift; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -416,7 +414,6 @@
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
 				220B850F26AC819A00081536 /* TypingViewController.swift */,
-				220B851C26AC8DAB00081536 /* TypingViewController_UITextViewDelegate.swift */,
 				220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
@@ -782,7 +779,6 @@
 				2214E12C269C80F40046EF32 /* ThematicBreak.swift in Sources */,
 				22C9F5E026AB99BE003FD426 /* TextDocument.swift in Sources */,
 				22CDCB12269BC71200988085 /* Point.swift in Sources */,
-				220B851D26AC8DAB00081536 /* TypingViewController_UITextViewDelegate.swift in Sources */,
 				2214E124269C80860046EF32 /* Node.swift in Sources */,
 				22DA13F9269D237F00D90EA7 /* Emphasis.swift in Sources */,
 				22CA376426A0C4B200E95009 /* PMShape.swift in Sources */,
