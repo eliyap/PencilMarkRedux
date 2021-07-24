@@ -59,7 +59,7 @@
 		22C9F60226ABA4EB003FD426 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F60126ABA4EB003FD426 /* Change.swift */; };
 		22C9F60426ABA4F0003FD426 /* Replacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F60326ABA4F0003FD426 /* Replacement.swift */; };
 		22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61026ABB9F2003FD426 /* _LineStyle.swift */; };
-		22C9F61326ABBA65003FD426 /* _Consume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61226ABBA65003FD426 /* _Consume.swift */; };
+		22C9F61326ABBA65003FD426 /* Consume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61226ABBA65003FD426 /* Consume.swift */; };
 		22C9F61526ABBB2C003FD426 /* _LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61426ABBB2C003FD426 /* _LineErase.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
@@ -93,7 +93,6 @@
 		22DA1401269D3BC800D90EA7 /* Skewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA1400269D3BC800D90EA7 /* Skewer.swift */; };
 		22DA1403269D3C1A00D90EA7 /* HasStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA1402269D3C1A00D90EA7 /* HasStyle.swift */; };
 		22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA1404269D3C6200D90EA7 /* Unwrap.swift */; };
-		22DA1409269D3F9B00D90EA7 /* Consume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA1408269D3F9B00D90EA7 /* Consume.swift */; };
 		22DD5658269DE19900E0743A /* PhrasingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD5657269DE19900E0743A /* PhrasingTests.swift */; };
 		22DD565A269DE50B00E0743A /* FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD5659269DE50B00E0743A /* FormatTests.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
@@ -167,7 +166,7 @@
 		22C9F60126ABA4EB003FD426 /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		22C9F60326ABA4F0003FD426 /* Replacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replacement.swift; sourceTree = "<group>"; };
 		22C9F61026ABB9F2003FD426 /* _LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineStyle.swift; sourceTree = "<group>"; };
-		22C9F61226ABBA65003FD426 /* _Consume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Consume.swift; sourceTree = "<group>"; };
+		22C9F61226ABBA65003FD426 /* Consume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consume.swift; sourceTree = "<group>"; };
 		22C9F61426ABBB2C003FD426 /* _LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineErase.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 		22DA1400269D3BC800D90EA7 /* Skewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skewer.swift; sourceTree = "<group>"; };
 		22DA1402269D3C1A00D90EA7 /* HasStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasStyle.swift; sourceTree = "<group>"; };
 		22DA1404269D3C6200D90EA7 /* Unwrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unwrap.swift; sourceTree = "<group>"; };
-		22DA1408269D3F9B00D90EA7 /* Consume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consume.swift; sourceTree = "<group>"; };
 		22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilMarkReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22DD5657269DE19900E0743A /* PhrasingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasingTests.swift; sourceTree = "<group>"; };
@@ -276,8 +274,7 @@
 				22DA1400269D3BC800D90EA7 /* Skewer.swift */,
 				22DA1402269D3C1A00D90EA7 /* HasStyle.swift */,
 				22DA1404269D3C6200D90EA7 /* Unwrap.swift */,
-				22DA1408269D3F9B00D90EA7 /* Consume.swift */,
-				22C9F61226ABBA65003FD426 /* _Consume.swift */,
+				22C9F61226ABBA65003FD426 /* Consume.swift */,
 				22CA377326A1C43D00E95009 /* Infect.swift */,
 				22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */,
 				22CDCB10269BC70600988085 /* Types */,
@@ -660,7 +657,6 @@
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */,
-				22DA1409269D3F9B00D90EA7 /* Consume.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
 				22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */,
@@ -672,7 +668,7 @@
 				22C9F5E226AB99BE003FD426 /* DocumentViewController.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */,
-				22C9F61326ABBA65003FD426 /* _Consume.swift in Sources */,
+				22C9F61326ABBA65003FD426 /* Consume.swift in Sources */,
 				22CA375A26A0BC9200E95009 /* Link.swift in Sources */,
 				220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
