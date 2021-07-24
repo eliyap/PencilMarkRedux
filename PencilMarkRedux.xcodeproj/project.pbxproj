@@ -238,6 +238,8 @@
 			children = (
 				22C9F5DB26AB999D003FD426 /* Imported */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
+				22C9F5F926AB9DE6003FD426 /* StyledMarkdown */,
+				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
 				22AF74DE269BB3E3007D9891 /* KeyboardEditor */,
 				22AF74DF269BB3F1007D9891 /* CanvasView */,
@@ -257,15 +259,6 @@
 				22C9F5D626AB9326003FD426 /* AppRoot */,
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74E5269BB91D007D9891 /* Parser.swift */,
-				2214E133269C85750046EF32 /* StyledMarkdown.swift */,
-				22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */,
-				2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */,
-				22E85322269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift */,
-				2214E131269C84D70046EF32 /* LineStyle.swift */,
-				22CA376F26A127C800E95009 /* LineErase.swift */,
-				22AF74D2269BABA1007D9891 /* StrokeConduit.swift */,
-				22CA377726A215BF00E95009 /* FrameConduit.swift */,
-				22CF007A26A516F400A12F88 /* CommandConduit.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -381,6 +374,29 @@
 				22C9F5EC26AB9A56003FD426 /* iCloudBrokenView.swift */,
 			);
 			path = FileBrowser;
+			sourceTree = "<group>";
+		};
+		22C9F5F826AB9DCA003FD426 /* Conduits */ = {
+			isa = PBXGroup;
+			children = (
+				22AF74D2269BABA1007D9891 /* StrokeConduit.swift */,
+				22CA377726A215BF00E95009 /* FrameConduit.swift */,
+				22CF007A26A516F400A12F88 /* CommandConduit.swift */,
+			);
+			path = Conduits;
+			sourceTree = "<group>";
+		};
+		22C9F5F926AB9DE6003FD426 /* StyledMarkdown */ = {
+			isa = PBXGroup;
+			children = (
+				2214E133269C85750046EF32 /* StyledMarkdown.swift */,
+				22E8531E269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift */,
+				2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */,
+				22E85322269CE0B300E82CE4 /* StyledMarkdown.Replacement.swift */,
+				2214E131269C84D70046EF32 /* LineStyle.swift */,
+				22CA376F26A127C800E95009 /* LineErase.swift */,
+			);
+			path = StyledMarkdown;
 			sourceTree = "<group>";
 		};
 		22CA375226A0B0A500E95009 /* Root */ = {
