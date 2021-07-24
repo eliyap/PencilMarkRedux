@@ -25,6 +25,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     /// Child View Controllers
     let keyboard: TypingViewController
+    let drawing: DrawingViewController
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -35,13 +36,12 @@ final class DrawableMarkdownViewController: PMViewController {
     init(url: URL) {
         self.url = url
         self.keyboard = TypingViewController()
+        self.drawing = DrawingViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
-        addChild(keyboard)
-        keyboard.view.frame = view.frame
-        view.addSubview(keyboard.view)
-        keyboard.didMove(toParent: self)
+        adopt(keyboard)
+        adopt(drawing)
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +56,7 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
+        drawing.view.frame = view.frame
     }
 }
 
