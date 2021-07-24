@@ -41,6 +41,11 @@ final class _DrawableMarkdownViewController: PMViewController {
         keyboard.didMove(toParent: self)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        observeTyping()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
