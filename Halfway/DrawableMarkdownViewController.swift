@@ -41,15 +41,8 @@ final class DrawableMarkdownViewController: UIViewController {
         self.keyboard = _KeyboardEditorViewController(coordinator: self, strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         
         /// Add subviews into hierarchy.
-        addChild(keyboard)
-        keyboard.view.frame = view.frame
-        view.addSubview(keyboard.view)
-        keyboard.didMove(toParent: self)
-        
-        addChild(canvas)
-        canvas.view.frame = view.frame
-        view.addSubview(canvas.view)
-        canvas.didMove(toParent: self)
+        adopt(keyboard)
+        adopt(canvas)
     }
     
     override func viewDidAppear(_ animated: Bool) {
