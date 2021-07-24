@@ -116,9 +116,3 @@ final class KeyboardEditorViewController: UIViewController {
         print("KeyboardEditorViewController de-initialized")
     }
 }
-
-final class PMTextView: UITextView {
-    /// reference to parent `KeyboardEditorViewController`.
-    /// **Must** be set on controller's `init`.
-    unowned var controller: KeyboardEditorViewController! = nil
-}
