@@ -23,7 +23,7 @@ struct ContentView: View {
                     Spacer()
                         .frame(maxWidth: geo.size.width * 0.1)
                     ZStack {
-                        KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
+//                        KeyboardEditorView(strokeC: strokeC, frameC: frameC, cmdC: cmdC, document: $document)
                         CanvasView(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
                     }
                     Spacer()
