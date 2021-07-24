@@ -11,7 +11,7 @@ import Combine
 
 final class DrawableMarkdownViewController: UIViewController {
 
-    /// File URL of the open document.
+    /// Folder URL for temporary documents.
     private let url: URL
     
     let strokeC = StrokeConduit()
