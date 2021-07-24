@@ -5,9 +5,7 @@
 //  Created by Secret Asian Man Dev on 20/7/21.
 //
 
-import Foundation
 import UIKit
-import Combine
 
 final class TypingViewController: PMViewController {
     
@@ -38,20 +36,6 @@ final class TypingViewController: PMViewController {
     
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
-    }
-}
-
-extension TypingViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        coordinator.document.text = textView.text
-        coordinator.document.updateChangeCount(.done)
-        coordinator.document.ticker.send()
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        coordinator.document.text = textView.text
-        coordinator.document.updateChangeCount(.done)
-        coordinator.document.ticker.send()
     }
 }
 
