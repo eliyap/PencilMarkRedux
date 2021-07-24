@@ -30,6 +30,7 @@ final class TypingViewController: PMViewController {
         
         /// Observe `textView` events.
         textView.delegate = self
+        textView.controller = self
         
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
@@ -76,6 +77,7 @@ final class TypingViewController: PMViewController {
 extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
+        #warning("does not restyle text!")
         textView.attributedText = coordinator.document.styledText
     }
 }

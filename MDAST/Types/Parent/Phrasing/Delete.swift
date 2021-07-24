@@ -22,28 +22,28 @@ final class Delete: Parent {
         }
     }
     
-    override func getReplacement() -> [StyledMarkdown.Replacement] {
+    override func getReplacement() -> [StyledMarkdownDocument.Replacement] {
         switch _change {
         case .none:
             fatalError("Asked for replacement when self did not change!")
         case .toAdd:
             return [
-                StyledMarkdown.Replacement(
+                StyledMarkdownDocument.Replacement(
                     range: NSMakeRange(position.nsRange.lowerBound, 0),
                     replacement: "~~"
                 ),
-                StyledMarkdown.Replacement(
+                StyledMarkdownDocument.Replacement(
                     range: NSMakeRange(position.nsRange.upperBound, 0),
                     replacement: "~~"
                 ),
             ]
         case .toRemove:
             return [
-                StyledMarkdown.Replacement(
+                StyledMarkdownDocument.Replacement(
                     range: NSMakeRange(position.nsRange.lowerBound, 2),
                     replacement: ""
                 ),
-                StyledMarkdown.Replacement(
+                StyledMarkdownDocument.Replacement(
                     range: NSMakeRange(position.nsRange.upperBound - 2, 2),
                     replacement: ""
                 ),

@@ -8,7 +8,7 @@
 import Foundation
 import OrderedCollections
 
-extension StyledMarkdown {
+extension StyledMarkdownDocument {
     /// Joins adjacent ``Parent``s of the same type into a single ``Parent``.
     /// - does this by having one ``Parent`` "consume" its sibling.
     /// - Parameter style: the type of ``Parent`` formatting being applied.
@@ -42,7 +42,7 @@ extension Parent {
             ? parent.children[self.indexInParent - 1]
             : nil
     }
-    
+
     var nextSibling: Node? {
         self.indexInParent + 1 < parent.children.count
             ? parent.children[self.indexInParent + 1]
@@ -50,7 +50,7 @@ extension Parent {
     }
     
     /// Returns itself after consuming the next element or ejecting whitespace
-    func consumePrev(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
+    func consumePrev(consumed: inout OrderedSet<Parent>, in document: StyledMarkdownDocument) -> Self? {
         /// Check if previous sibling is a ``Parent`` of same `_type`.
         if
             let prev = prevSibling as? Parent,
@@ -102,7 +102,7 @@ extension Parent {
     }
     
     /// Returns itself after consuming the previous element or ejecting whitespace
-    func consumeNext(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
+    func consumeNext(consumed: inout OrderedSet<Parent>, in document: StyledMarkdownDocument) -> Self? {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
             let next = nextSibling as? Parent,
@@ -159,7 +159,7 @@ extension Parent {
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
-    func contractWhitespace(for edge: Edge, in document: StyledMarkdown) -> Self? {
+    func contractWhitespace(for edge: Edge, in document: StyledMarkdownDocument) -> Self? {
         switch edge {
         case .leading:
             while
