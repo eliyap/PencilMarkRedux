@@ -36,6 +36,12 @@ final class DrawableMarkdownViewController: UIViewController {
         self.keyboard = _KeyboardEditorViewController(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
         super.init(nibName: nil, bundle: nil)
         keyboard.coordinator = self /// *must* set implicitly unwrapped `self` immediately
+        
+        /// Add subviews into hierarchy.
+        addChild(keyboard)
+        keyboard.view.frame = view.frame
+        view.addSubview(keyboard.view)
+        keyboard.didMove(toParent: self)
     }
     
     required init?(coder: NSCoder) {
