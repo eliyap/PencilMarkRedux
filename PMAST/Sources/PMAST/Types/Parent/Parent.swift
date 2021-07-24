@@ -31,17 +31,6 @@ class Parent: Node {
         }
     }
     
-    func walk() -> Void {
-        print(Self.type)
-        children.forEach {
-            if let node = $0 as? Parent {
-                node.walk()
-            } else {
-                print("Non Node")
-            }
-        }
-    }
-    
     /// Allows this node to style the passed Attributed String.
     /// Makes the markdown more visually appealing.
     override func style(_ string: inout NSMutableAttributedString) -> Void {
