@@ -45,6 +45,11 @@ final class _DrawableMarkdownViewController: UIViewController {
         fatalError("Do Not use")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        observeTyping()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
