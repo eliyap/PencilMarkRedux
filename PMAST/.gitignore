@@ -5,3 +5,7 @@
 xcuserdata/
 DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
+### Node Stuff
+# nodeenv virtual env folder
+Sources/Javascript/env/*
