@@ -22,7 +22,7 @@ class FormatTests: XCTestCase {
     }
 
     func testStrikethroughAvailable() throws {
-        var document = StyledMarkdown(text: "a FORMAT a")
+        var document = StyledMarkdownDocument(text: "a FORMAT a")
         let textView = PMTextView() /// dummy view to satisfy function signature
         
         document.apply(lineStyle: Delete.self, to: NSMakeRange(2, 6), in: textView)
@@ -30,7 +30,7 @@ class FormatTests: XCTestCase {
     }
     
     func testEmphasisAvailable() throws {
-        var document = StyledMarkdown(text: "a FORMAT a")
+        var document = StyledMarkdownDocument(text: "a FORMAT a")
         let textView = PMTextView() /// dummy view to satisfy function signature
         
         document.apply(lineStyle: Emphasis.self, to: NSMakeRange(2, 6), in: textView)
@@ -39,7 +39,7 @@ class FormatTests: XCTestCase {
     }
     
     func testStrongAvailable() throws {
-        var document = StyledMarkdown(text: "a FORMAT a")
+        var document = StyledMarkdownDocument(text: "a FORMAT a")
         let textView = PMTextView() /// dummy view to satisfy function signature
         
         document.apply(lineStyle: Strong.self, to: NSMakeRange(2, 6), in: textView)
