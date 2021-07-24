@@ -20,3 +20,17 @@ extension DocumentViewController: DocumentSelectionDelegate {
         self.document = document
     }
 }
+
+/// Very small protocol that lets `FileBrowserViewController` set the document of the `DocumentViewController`.
+protocol _DocumentSelectionDelegate: AnyObject {
+    func select(_ document: StyledMarkdownDocument) -> Void
+}
+
+extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
+    func select(_ document: StyledMarkdownDocument) {
+        /// Update Naviagation Bar Title
+        navigationItem.title = document.localizedName
+        
+        self.document = document
+    }
+}
