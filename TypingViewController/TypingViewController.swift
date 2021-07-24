@@ -42,6 +42,7 @@ final class TypingViewController: PMViewController {
         observeTyping()
         observeStrokes()
         observeTouchEvents(from: coordinator.frameC)
+        observeCommands()
     }
     
     override func viewWillLayoutSubviews() {
