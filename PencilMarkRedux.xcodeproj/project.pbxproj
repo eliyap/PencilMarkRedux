@@ -50,6 +50,7 @@
 		22C9F5F526AB9A57003FD426 /* FilesViewController.Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */; };
 		22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */; };
 		22C9F5FC26ABA004003FD426 /* DrawableMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */; };
+		22C9F5FF26ABA27F003FD426 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5FE26ABA27F003FD426 /* Markdown.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
@@ -152,6 +153,7 @@
 		22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
 		22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PencilMarkRedux.entitlements; sourceTree = "<group>"; };
 		22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.swift; sourceTree = "<group>"; };
+		22C9F5FE26ABA27F003FD426 /* Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				22C9F5FD26ABA26F003FD426 /* Halfway */,
 				22C9F5DB26AB999D003FD426 /* Imported */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 				22C9F5F926AB9DE6003FD426 /* StyledMarkdown */,
@@ -360,7 +363,6 @@
 				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
-				22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
@@ -402,6 +404,15 @@
 				22CA376F26A127C800E95009 /* LineErase.swift */,
 			);
 			path = StyledMarkdown;
+			sourceTree = "<group>";
+		};
+		22C9F5FD26ABA26F003FD426 /* Halfway */ = {
+			isa = PBXGroup;
+			children = (
+				22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */,
+				22C9F5FE26ABA27F003FD426 /* Markdown.swift */,
+			);
+			path = Halfway;
 			sourceTree = "<group>";
 		};
 		22CA375226A0B0A500E95009 /* Root */ = {
@@ -650,6 +661,7 @@
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
 				22CF007326A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift in Sources */,
 				22CA375C26A0BCDC00E95009 /* Image.swift in Sources */,
+				22C9F5FF26ABA27F003FD426 /* Markdown.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22CF007526A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift in Sources */,
 				2214E12E269C80FE0046EF32 /* ListItem.swift in Sources */,
