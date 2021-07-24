@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DrawableMarkdownViewController: UIViewController {
+final class _DrawableMarkdownViewController: PMViewController {
     
     /// Folder URL for placing new documents.
     private let url: URL
