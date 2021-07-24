@@ -21,10 +21,12 @@ final class _KeyboardEditorViewController: UIViewController {
     var observers = Set<AnyCancellable>()
     
     init(
+        coordinator: DrawableMarkdownViewController,
         strokeC: StrokeConduit,
         frameC: FrameConduit,
         cmdC: CommandConduit
     ) {
+        self.coordinator = coordinator
         self.strokeC = strokeC
         super.init(nibName: nil, bundle: nil)
         self.view = textView

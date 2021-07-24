@@ -19,7 +19,8 @@ final class _CanvasViewController: UIViewController {
     
     var observers = Set<AnyCancellable>()
     
-    init(frameC: FrameConduit, strokeC: StrokeConduit) {
+    init(coordinator: DrawableMarkdownViewController, frameC: FrameConduit, strokeC: StrokeConduit) {
+        self.coordinator = coordinator
         self.frameC = frameC
         self.strokeC = strokeC
         super.init(nibName: nil, bundle: nil)

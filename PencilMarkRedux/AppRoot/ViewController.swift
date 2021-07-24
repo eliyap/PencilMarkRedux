@@ -19,7 +19,7 @@ final class ViewController: UISplitViewController {
         super.init(style: .doubleColumn)
         
         /// Pretty bad system, needs to be redone
-        let documentVC = DocumentViewController(url: iCloudURL ?? documentsURL)
+        let documentVC = DrawableMarkdownViewController(url: iCloudURL ?? documentsURL)
         setViewController(documentVC, for: .secondary)
         
         /// File Browser

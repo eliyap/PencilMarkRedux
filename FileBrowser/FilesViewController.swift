@@ -16,7 +16,7 @@ class FilesViewController: UITableViewController {
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
-    weak var selectionDelegate: DocumentSelectionDelegate!
+    weak var selectionDelegate: _DocumentSelectionDelegate!
     
     /// Allows us to bring error views to the front.
     weak var folder: FolderViewController!
@@ -24,7 +24,7 @@ class FilesViewController: UITableViewController {
     /// A cache of files previously seen in this folder.
     var _cachedContents: [URL] = []
     
-    init(url: URL?, selectionDelegate: DocumentSelectionDelegate) {
+    init(url: URL?, selectionDelegate: _DocumentSelectionDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
         super.init(style: .plain)
@@ -72,7 +72,7 @@ class FilesViewController: UITableViewController {
             assert(splitViewController != nil, "Could not find ancestor split view!")
             splitViewController?.show(.secondary)
             
-            selectionDelegate.select(TextDocument(fileURL: cellURL))
+            selectionDelegate.select(StyledMarkdownDocument(fileURL: cellURL))
         }
     }
 }
