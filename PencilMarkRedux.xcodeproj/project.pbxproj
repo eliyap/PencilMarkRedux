@@ -258,6 +258,19 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
+		220B852626AC989700081536 /* TypingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				220B850F26AC819A00081536 /* TypingViewController.swift */,
+				220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */,
+				220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */,
+				220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */,
+				220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */,
+				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
+			);
+			path = TypingViewController;
+			sourceTree = "<group>";
+		};
 		2214E138269C997C0046EF32 /* MDAST */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +290,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				220B852626AC989700081536 /* TypingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22C9F5DB26AB999D003FD426 /* Imported */,
@@ -350,7 +364,6 @@
 				22AF74C8269BA612007D9891 /* KeyboardEditorViewController.swift */,
 				22CF007226A5005B00A12F88 /* KeyboardEditorViewController_StrokeHandling.swift */,
 				22CF007426A5011200A12F88 /* KeyboardEditorViewController_TouchHandling.swift */,
-				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
 			);
 			name = KeyboardEditor;
 			path = PencilMarkRedux/KeyboardEditor;
@@ -401,11 +414,6 @@
 				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
-				220B850F26AC819A00081536 /* TypingViewController.swift */,
-				220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */,
-				220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */,
-				220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */,
-				220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
