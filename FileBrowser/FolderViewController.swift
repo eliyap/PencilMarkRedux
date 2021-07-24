@@ -124,13 +124,12 @@ extension FolderViewController {
 
 // MARK:- Toolbar Items
 extension FolderViewController {
-    
-    
-    
+
     override var toolbarItems: [UIBarButtonItem]? {
         get {
             let newDocBtn = UIBarButtonItem(image: UIImage(systemName: "doc.badge.plus"), style: .plain, target: self, action: #selector(newDocument))
             newDocBtn.tintColor = tint
+            
             return (super.toolbarItems ?? []) + [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
                 newDocBtn,
