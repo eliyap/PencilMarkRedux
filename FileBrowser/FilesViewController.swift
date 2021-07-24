@@ -72,7 +72,7 @@ class FilesViewController: UITableViewController {
             assert(splitViewController != nil, "Could not find ancestor split view!")
             splitViewController?.show(.secondary)
             
-            selectionDelegate.select(TextDocument(fileURL: cellURL))
+            selectionDelegate.select(FileBrowserViewController.DocumentDelegate.Document(fileURL: cellURL))
         }
     }
 }
