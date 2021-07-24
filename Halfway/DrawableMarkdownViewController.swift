@@ -10,12 +10,17 @@ import UIKit
 import Combine
 
 final class DrawableMarkdownViewController: UIViewController {
-//    let strokeC = StrokeConduit()
-//    let frameC = FrameConduit()
+
+    /// File URL of the open document.
+    private let url: URL
+    
+    let strokeC = StrokeConduit()
+    let frameC = FrameConduit()
 //    let cmdC = CommandConduit()
 //    let document: StyledMarkdown
     
-    init() {
+    init(url: URL) {
+        self.url = url
         super.init(nibName: nil, bundle: nil)
     }
     
