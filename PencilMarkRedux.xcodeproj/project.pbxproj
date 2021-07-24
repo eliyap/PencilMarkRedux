@@ -386,12 +386,12 @@
 			isa = PBXGroup;
 			children = (
 				22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */,
-				22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */,
-				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
+				22C9F5E826AB9A56003FD426 /* FolderViewController.swift */,
+				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
 				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
 				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
-				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
-				22C9F5E826AB9A56003FD426 /* FolderViewController.swift */,
+				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
+				22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */,
 				22C9F5EC26AB9A56003FD426 /* iCloudBrokenView.swift */,
 			);
 			path = FileBrowser;
