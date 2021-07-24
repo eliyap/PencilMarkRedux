@@ -19,7 +19,7 @@ final class _KeyboardEditorViewController: UIViewController {
     var strokeLayer: CAShapeLayer? = nil
     
     var observers = Set<AnyCancellable>()
-    
+    let typingC = PassthroughSubject<Void, Never>()
     init(
         coordinator: DrawableMarkdownViewController,
         strokeC: StrokeConduit,
@@ -48,7 +48,7 @@ final class _KeyboardEditorViewController: UIViewController {
          - Note: since `textViewDidChange` is **not** called due to programatic changes,
                  updating the text here does not cause an infinite loop.
          */
-        coordinator.document.ticker
+        coordinator.typingC
             /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
             /// Throttle rate is arbitrary, may want to change it in future.
             .throttle(for: .seconds(0.5), scheduler: RunLoop.main, latest: true)

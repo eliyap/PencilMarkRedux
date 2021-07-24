@@ -26,7 +26,9 @@ final class _DrawableMarkdownViewController: PMViewController {
     /// Child View Controllers
     let keyboard: TypingViewController
     
+    /// Combine Conduits
     let strokeC = StrokeConduit()
+    let typingC = PassthroughSubject<Void, Never>()
     
     init(url: URL) {
         self.url = url
@@ -38,10 +40,28 @@ final class _DrawableMarkdownViewController: PMViewController {
         keyboard.view.frame = view.frame
         view.addSubview(keyboard.view)
         keyboard.didMove(toParent: self)
+        
+        let typing: AnyCancellable = typingC
+//            .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
+            .sink { [weak self] in
+//                if let document = self?.document {
+//                    document.save(to: document.fileURL, for: .forOverwriting) { (success) in
+//                        if success == false {
+//                            print("Failed to save!")
+//                        }
+//                    }
+//                }
+            }
+        store(typing)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
     
     override func viewDidLayoutSubviews() {
