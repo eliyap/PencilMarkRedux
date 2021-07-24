@@ -15,7 +15,7 @@ extension _DrawableMarkdownViewController {
     
     /// Save very frequently when the user makes changes.
     func observeTyping() {
-        let typing: AnyCancellable = document.ticker
+        document.ticker
             .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
             .sink { [weak self] in
                 if let document = self?.document {
@@ -26,6 +26,6 @@ extension _DrawableMarkdownViewController {
                     }
                 }
             }
-        store(typing)
+            .store(in: &observers)
     }
 }
