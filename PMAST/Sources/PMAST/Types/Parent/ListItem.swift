@@ -31,7 +31,7 @@ final class ListItem: Parent {
         }
     }
     
-    override func getReplacement() -> [StyledMarkdownDocument.Replacement] {
+    override func getReplacement() -> [Replacement] {
         switch _change {
         case .none:
             fatalError("Replacement requested for nil change!")
@@ -40,14 +40,14 @@ final class ListItem: Parent {
         case .toRemove:
             if let leading = leadingRange, let trailing = trailingRange {
                 return [
-                    StyledMarkdownDocument.Replacement(range: leading, replacement: ""),
-                    StyledMarkdownDocument.Replacement(range: trailing, replacement: ""),
+                    Replacement(range: leading, replacement: ""),
+                    Replacement(range: trailing, replacement: ""),
                 ]
             } else {
                 print("Requested replacement on Heading with no children!")
                 
                 /// return whole range to erase everything
-                return [StyledMarkdownDocument.Replacement(range: position.nsRange, replacement: "")]
+                return [Replacement(range: position.nsRange, replacement: "")]
             }
         }
     }

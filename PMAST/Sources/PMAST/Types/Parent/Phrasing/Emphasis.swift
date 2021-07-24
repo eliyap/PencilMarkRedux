@@ -34,28 +34,28 @@ final class Emphasis: Parent {
         }
     }
     
-    override func getReplacement() -> [StyledMarkdownDocument.Replacement] {
+    override func getReplacement() -> [Replacement] {
         switch _change {
         case .none:
             fatalError("Asked for replacement when self did not change!")
         case .toAdd:
             return [
-                StyledMarkdownDocument.Replacement(
+                Replacement(
                     range: NSMakeRange(position.nsRange.lowerBound, 0),
                     replacement: "*"
                 ),
-                StyledMarkdownDocument.Replacement(
+                Replacement(
                     range: NSMakeRange(position.nsRange.upperBound, 0),
                     replacement: "*"
                 ),
             ]
         case .toRemove:
             return [
-                StyledMarkdownDocument.Replacement(
+                Replacement(
                     range: NSMakeRange(position.nsRange.lowerBound, 1),
                     replacement: ""
                 ),
-                StyledMarkdownDocument.Replacement(
+                Replacement(
                     range: NSMakeRange(position.nsRange.upperBound - 1, 1),
                     replacement: ""
                 ),

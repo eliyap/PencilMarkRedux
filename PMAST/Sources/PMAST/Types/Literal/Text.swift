@@ -10,14 +10,14 @@ import Foundation
 final class Text: Literal {
     override class var type: String { "text" }
     
-    override func getReplacement() -> [StyledMarkdownDocument.Replacement] {
+    override func getReplacement() -> [Replacement] {
         switch _change {
         case .none:
             fatalError("Replacement called when change was nil!")
         case .toAdd:
             fatalError("Not implemented!")
         case .toRemove:
-            return [StyledMarkdownDocument.Replacement(range: position.nsRange, replacement: "")]
+            return [Replacement(range: position.nsRange, replacement: "")]
         }
     }
 }
