@@ -36,7 +36,10 @@ final class DrawableMarkdownViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
-    
+}
+
+// MARK:- Document Access
+extension DrawableMarkdownViewController {
     /// Returns the underlying document, if any,
     /// or creates a new one if there isn't.
     private func getDocument() -> StyledMarkdownDocument {
