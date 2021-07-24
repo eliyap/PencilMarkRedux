@@ -59,6 +59,13 @@ final class DrawingViewController: PMViewController {
 
 // MARK:- Commands
 extension DrawingViewController {
+    
+    override var keyCommands: [UIKeyCommand]? {
+        (super.keyCommands ?? []) + [
+            UIKeyCommand(input: "z", modifierFlags: [.command], action: #selector(undo))
+        ]
+    }
+    
     @objc
     func undo() -> Void {
         coordinator.cmdC.undo.send()
