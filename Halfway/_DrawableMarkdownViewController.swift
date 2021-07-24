@@ -29,6 +29,8 @@ final class _DrawableMarkdownViewController: UIViewController {
     /// Combine Conduits & Observers
     var observers = Set<AnyCancellable>()
     
+    let strokeC = StrokeConduit()
+    
     init(url: URL) {
         self.url = url
         self.keyboard = TypingViewController()

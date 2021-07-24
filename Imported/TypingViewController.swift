@@ -12,13 +12,16 @@ import Combine
 final class TypingViewController: PMViewController {
     
     /// View presenting document for editing.
-    let textView = UITextView()
+    let textView = _PMTextView()
     
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { coordinator.document.undoManager }
     
     /// Force unwrap container VC
     var coordinator: _DrawableMarkdownViewController { parent as! _DrawableMarkdownViewController }
+    
+    /// CoreAnimation layer used to render rejected strokes.
+    var strokeLayer: CAShapeLayer? = nil
     
     init() {
         super.init(nibName: nil, bundle: nil)
