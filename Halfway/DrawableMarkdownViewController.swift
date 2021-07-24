@@ -52,6 +52,12 @@ final class DrawableMarkdownViewController: UIViewController {
         canvas.didMove(toParent: self)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("canvas: \(canvas != nil)")
+        print("keyboard: \(keyboard != nil)")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
@@ -84,8 +90,12 @@ extension DrawableMarkdownViewController {
         func open(new document: StyledMarkdownDocument) {
             self._document = document
             document.open { (success) in
-                #warning("Set Document Here")
-//                self.textView.text = self.document.text
+                guard success else {
+                    assert(false, "Failed to open document!")
+                    return
+                }
+                self.keyboard.textView.attributedText = self.document.styledText
+                print("Opened text \(document.text)")
             }
         }
         
@@ -93,11 +103,11 @@ extension DrawableMarkdownViewController {
         if let _document = _document {
             print("Text was: " + _document.text)
             _document.close { (success) in
-                if success == false {
-                    print("Failed to close document!")
-                } else {
-                    open(new: document)
+                print("called")
+                guard success else {
+                    assert(false, "Failed to close document!")
                 }
+                open(new: document)
             }
         } else {
             open(new: document)
