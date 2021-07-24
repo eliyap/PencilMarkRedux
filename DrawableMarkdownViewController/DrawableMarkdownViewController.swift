@@ -41,9 +41,14 @@ final class DrawableMarkdownViewController: PMViewController {
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
-        keyboard.coordinate(with: self)
+        keyboard.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(drawing)
-        drawing.coordinate(with: self)
+        drawing.coordinate(with: self) /// call after `init` and `adopt` are complete
+        
+        drawing.view.translatesAutoresizingMaskIntoConstraints = false
+        keyboard.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.bringSubviewToFront(drawing.view)
     }
     
     required init?(coder: NSCoder) {

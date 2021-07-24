@@ -37,7 +37,7 @@ final class TypingViewController: PMViewController {
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
         
         #warning("DEBUG")
-        textView.layer.borderWidth = 10
+        textView.layer.borderWidth = 4
         textView.layer.borderColor = UIColor.red.cgColor
     }
     
@@ -48,12 +48,6 @@ final class TypingViewController: PMViewController {
         observeStrokes()
         observeTouchEvents()
         observeCommands()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
     }
     
     override func viewWillLayoutSubviews() {
