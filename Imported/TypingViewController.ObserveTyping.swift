@@ -20,7 +20,7 @@ extension TypingViewController {
              updating the text here does not cause an infinite loop.
      */
     func observeTyping() {
-        let typing = coordinator.document.ticker
+        coordinator.document.ticker
             /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
             /// Throttle rate is arbitrary, may want to change it in future.
             .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
@@ -47,6 +47,6 @@ extension TypingViewController {
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
-        self.store(typing)
+            .store(in: &observers)
     }
 }
