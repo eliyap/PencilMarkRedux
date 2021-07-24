@@ -149,6 +149,7 @@
 		22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.Refresh.swift; sourceTree = "<group>"; };
 		22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
+		22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PencilMarkRedux.entitlements; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 		22AF74B8269BA5F1007D9891 /* PencilMarkRedux */ = {
 			isa = PBXGroup;
 			children = (
+				22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */,
 				22C9F5D626AB9326003FD426 /* AppRoot */,
 				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74E5269BB91D007D9891 /* Parser.swift */,
@@ -823,6 +825,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PencilMarkRedux/PencilMarkRedux.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PencilMarkRedux/Preview Content\"";
 				DEVELOPMENT_TEAM = 949D776DFQ;
@@ -846,6 +849,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PencilMarkRedux/PencilMarkRedux.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PencilMarkRedux/Preview Content\"";
 				DEVELOPMENT_TEAM = 949D776DFQ;
