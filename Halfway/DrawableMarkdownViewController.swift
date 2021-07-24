@@ -21,6 +21,7 @@ final class DrawableMarkdownViewController: UIViewController {
     
     /// Child View Controllers
     let keyboard: _KeyboardEditorViewController
+    let canvas: _CanvasViewController
     
     /// Nullable underlying model object
     private var _document: StyledMarkdownDocument?
@@ -34,8 +35,10 @@ final class DrawableMarkdownViewController: UIViewController {
     init(url: URL) {
         self.url = url
         self.keyboard = _KeyboardEditorViewController(strokeC: strokeC, frameC: frameC, cmdC: cmdC)
+        self.canvas = _CanvasViewController(frameC: frameC, strokeC: strokeC)
         super.init(nibName: nil, bundle: nil)
         keyboard.coordinator = self /// *must* set implicitly unwrapped `self` immediately
+        canvas.coordinator = self /// *must* set implicitly unwrapped `self` immediately
         
         /// Add subviews into hierarchy.
         addChild(keyboard)

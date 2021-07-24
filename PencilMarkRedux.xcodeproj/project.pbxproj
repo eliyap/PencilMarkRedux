@@ -60,6 +60,9 @@
 		22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61026ABB9F2003FD426 /* _LineStyle.swift */; };
 		22C9F61326ABBA65003FD426 /* _Consume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61226ABBA65003FD426 /* _Consume.swift */; };
 		22C9F61526ABBB2C003FD426 /* _LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61426ABBB2C003FD426 /* _LineErase.swift */; };
+		22C9F61826ABBC24003FD426 /* _CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61726ABBC24003FD426 /* _CanvasViewController.swift */; };
+		22C9F61A26ABBC93003FD426 /* _CanvasViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61926ABBC93003FD426 /* _CanvasViewController_UIScrollViewDelegate.swift */; };
+		22C9F61C26ABBCFC003FD426 /* _CanvasViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61B26ABBCFC003FD426 /* _CanvasViewController_PKCanvasViewDelegate.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
@@ -172,6 +175,9 @@
 		22C9F61026ABB9F2003FD426 /* _LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineStyle.swift; sourceTree = "<group>"; };
 		22C9F61226ABBA65003FD426 /* _Consume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Consume.swift; sourceTree = "<group>"; };
 		22C9F61426ABBB2C003FD426 /* _LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LineErase.swift; sourceTree = "<group>"; };
+		22C9F61726ABBC24003FD426 /* _CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CanvasViewController.swift; sourceTree = "<group>"; };
+		22C9F61926ABBC93003FD426 /* _CanvasViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CanvasViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
+		22C9F61B26ABBCFC003FD426 /* _CanvasViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CanvasViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				22C9F61626ABBC01003FD426 /* _CanvasView */,
 				22C9F60726ABA831003FD426 /* _KeyboardEditorViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* Halfway */,
@@ -456,6 +463,16 @@
 				22C9F61426ABBB2C003FD426 /* _LineErase.swift */,
 			);
 			path = _KeyboardEditorViewController;
+			sourceTree = "<group>";
+		};
+		22C9F61626ABBC01003FD426 /* _CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				22C9F61726ABBC24003FD426 /* _CanvasViewController.swift */,
+				22C9F61B26ABBCFC003FD426 /* _CanvasViewController_PKCanvasViewDelegate.swift */,
+				22C9F61926ABBC93003FD426 /* _CanvasViewController_UIScrollViewDelegate.swift */,
+			);
+			path = _CanvasView;
 			sourceTree = "<group>";
 		};
 		22CA375226A0B0A500E95009 /* Root */ = {
@@ -661,6 +678,7 @@
 				22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */,
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22C9F60B26ABA878003FD426 /* _KeyboardEditorViewController_UITextViewDelegate.swift in Sources */,
+				22C9F61A26ABBC93003FD426 /* _CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */,
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22C9F5FC26ABA004003FD426 /* DrawableMarkdownViewController.swift in Sources */,
@@ -699,6 +717,7 @@
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
 				22CA377026A127C800E95009 /* LineErase.swift in Sources */,
+				22C9F61826ABBC24003FD426 /* _CanvasViewController.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA377426A1C43D00E95009 /* Infect.swift in Sources */,
@@ -745,6 +764,7 @@
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
 				22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */,
 				22CDCB16269BC74700988085 /* Parent.swift in Sources */,
+				22C9F61C26ABBCFC003FD426 /* _CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				22C9F5F526AB9A57003FD426 /* FilesViewController.Refresh.swift in Sources */,
 				22CA376126A0BFC200E95009 /* InlineCode.swift in Sources */,
 				22C9F5E626AB9A27003FD426 /* Constants.swift in Sources */,
