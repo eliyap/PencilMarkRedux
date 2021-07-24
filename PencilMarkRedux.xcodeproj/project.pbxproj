@@ -34,12 +34,8 @@
 		2214E137269C8FD70046EF32 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2214E136269C8FD70046EF32 /* OrderedCollections */; };
 		2214E13A269C99FE0046EF32 /* StyledMarkdown.Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */; };
 		2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E13B269CAC3B0046EF32 /* String_Subscript.swift */; };
-		22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74BB269BA5F1007D9891 /* ContentView.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
-		22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CC269BA795007D9891 /* CanvasView.swift */; };
-		22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74CE269BA79E007D9891 /* CanvasViewController.swift */; };
-		22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
@@ -150,13 +146,9 @@
 		2214E133269C85750046EF32 /* StyledMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown.swift; sourceTree = "<group>"; };
 		2214E139269C99FD0046EF32 /* StyledMarkdown.Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdown.Change.swift; sourceTree = "<group>"; };
 		2214E13B269CAC3B0046EF32 /* String_Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Subscript.swift; sourceTree = "<group>"; };
-		22AF74BB269BA5F1007D9891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22AF74CC269BA795007D9891 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
-		22AF74CE269BA79E007D9891 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
-		22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.Coordinator.swift; sourceTree = "<group>"; };
 		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
@@ -317,7 +309,6 @@
 				22C9F5F926AB9DE6003FD426 /* StyledMarkdown */,
 				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
-				22AF74DF269BB3F1007D9891 /* CanvasView */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22CA376226A0C46600E95009 /* GestureRecognition */,
 				22AF74E0269BB43A007D9891 /* Javascript */,
@@ -333,7 +324,6 @@
 			children = (
 				22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */,
 				22C9F5D626AB9326003FD426 /* AppRoot */,
-				22AF74BB269BA5F1007D9891 /* ContentView.swift */,
 				22AF74E5269BB91D007D9891 /* Parser.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
@@ -373,17 +363,6 @@
 				22CA376B26A0D97C00E95009 /* PKStrokePath_Path.swift */,
 			);
 			path = PencilKit;
-			sourceTree = "<group>";
-		};
-		22AF74DF269BB3F1007D9891 /* CanvasView */ = {
-			isa = PBXGroup;
-			children = (
-				22AF74CC269BA795007D9891 /* CanvasView.swift */,
-				22AF74D0269BA9ED007D9891 /* CanvasView.Coordinator.swift */,
-				22AF74CE269BA79E007D9891 /* CanvasViewController.swift */,
-			);
-			name = CanvasView;
-			path = PencilMarkRedux/CanvasView;
 			sourceTree = "<group>";
 		};
 		22AF74E0269BB43A007D9891 /* Javascript */ = {
@@ -684,7 +663,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */,
-				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22C9F61126ABB9F2003FD426 /* _LineStyle.swift in Sources */,
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
@@ -702,8 +680,6 @@
 				22E8531B269CD61F00E82CE4 /* Node_Hashable.swift in Sources */,
 				220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */,
 				2214E12A269C80E10046EF32 /* Paragraph.swift in Sources */,
-				22AF74CD269BA795007D9891 /* CanvasView.swift in Sources */,
-				22AF74D1269BA9ED007D9891 /* CanvasView.Coordinator.swift in Sources */,
 				22C9F60226ABA4EB003FD426 /* Change.swift in Sources */,
 				220B852D26AC9AC000081536 /* DrawingViewController.swift in Sources */,
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
@@ -769,7 +745,6 @@
 				220B851926AC8BBD00081536 /* PMViewController.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22C9F5E426AB99F1003FD426 /* URL.isDirectory.swift in Sources */,
-				22AF74CF269BA79E007D9891 /* CanvasViewController.swift in Sources */,
 				220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */,
 				22E85319269CD60A00E82CE4 /* Node_Equatable.swift in Sources */,
 				2214E126269C80950046EF32 /* Literal.swift in Sources */,
