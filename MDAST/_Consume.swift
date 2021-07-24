@@ -37,17 +37,17 @@ extension StyledMarkdownDocument {
 
 // MARK:- Consume Guts
 extension Parent {
-//    var prevSibling: Node? {
-//        self.indexInParent - 1 >= 0
-//            ? parent.children[self.indexInParent - 1]
-//            : nil
-//    }
-//
-//    var nextSibling: Node? {
-//        self.indexInParent + 1 < parent.children.count
-//            ? parent.children[self.indexInParent + 1]
-//            : nil
-//    }
+    var prevSibling: Node? {
+        self.indexInParent - 1 >= 0
+            ? parent.children[self.indexInParent - 1]
+            : nil
+    }
+
+    var nextSibling: Node? {
+        self.indexInParent + 1 < parent.children.count
+            ? parent.children[self.indexInParent + 1]
+            : nil
+    }
     
     /// Returns itself after consuming the next element or ejecting whitespace
     func consumePrev(consumed: inout OrderedSet<Parent>, in document: StyledMarkdownDocument) -> Self? {
@@ -152,10 +152,10 @@ extension Parent {
         }
     }
     
-//    enum Edge {
-//        case leading
-//        case trailing
-//    }
+    enum Edge {
+        case leading
+        case trailing
+    }
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
