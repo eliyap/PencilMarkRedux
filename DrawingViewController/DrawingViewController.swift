@@ -24,15 +24,20 @@ final class DrawingViewController: PMViewController {
         canvasView.delegate = self
         
         /// Allows text to show through
-        canvasView.backgroundColor = .clear
+        #warning("debug color")
+        canvasView.backgroundColor = UIColor(cgColor: CGColor(red: 1, green: 0, blue: 0, alpha: 0.5))
         canvasView.isOpaque = false
         
         /// Attach gesture recognizer so we can respond to taps.
         canvasView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
         
         #warning("DEBUG")
-        canvasView.layer.borderWidth = 5
+        canvasView.layer.borderWidth = 2
         canvasView.layer.borderColor = UIColor.green.cgColor
+        
+        /// Allow scrolling even when content is too small
+        canvasView.alwaysBounceVertical = true
+        
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
@@ -41,13 +46,11 @@ final class DrawingViewController: PMViewController {
         observeSize()
     }
     
-    /// Perform with with ``coordinator`` after initialization is complete
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        /// Coordinate via `Combine` with ``coordinator``.
-        observeSize()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Content Size: \(canvasView.contentSize)")
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
