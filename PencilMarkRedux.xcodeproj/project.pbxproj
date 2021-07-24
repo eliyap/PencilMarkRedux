@@ -49,6 +49,7 @@
 		22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */; };
 		22C9F5F526AB9A57003FD426 /* FilesViewController.Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */; };
 		22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */; };
+		22C9F5FC26ABA004003FD426 /* DrawableMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */; };
 		22CA375426A0B0D600E95009 /* TreeLinkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */; };
 		22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375626A0BA6E00E95009 /* Blockquote.swift */; };
 		22CA375A26A0BC9200E95009 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA375926A0BC9200E95009 /* Link.swift */; };
@@ -150,6 +151,7 @@
 		22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.Refresh.swift; sourceTree = "<group>"; };
 		22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
 		22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PencilMarkRedux.entitlements; sourceTree = "<group>"; };
+		22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.swift; sourceTree = "<group>"; };
 		22CA375326A0B0D200E95009 /* TreeLinkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeLinkCheck.swift; sourceTree = "<group>"; };
 		22CA375626A0BA6E00E95009 /* Blockquote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
 		22CA375926A0BC9200E95009 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
+				22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
@@ -604,6 +607,7 @@
 				22DA1405269D3C6200D90EA7 /* Unwrap.swift in Sources */,
 				22AF74BC269BA5F1007D9891 /* ContentView.swift in Sources */,
 				22CA375726A0BA6E00E95009 /* Blockquote.swift in Sources */,
+				22C9F5FC26ABA004003FD426 /* DrawableMarkdownViewController.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
