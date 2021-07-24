@@ -18,6 +18,7 @@ final class DrawableMarkdownViewController: UIViewController {
     let strokeC = StrokeConduit()
     let frameC = FrameConduit()
     let cmdC = CommandConduit()
+    let typingC = PassthroughSubject<Void, Never>()
     
     /// Child View Controllers
     var keyboard: _KeyboardEditorViewController! = nil

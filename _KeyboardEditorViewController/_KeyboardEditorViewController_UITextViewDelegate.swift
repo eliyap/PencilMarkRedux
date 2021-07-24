@@ -15,6 +15,6 @@ extension _KeyboardEditorViewController: UITextViewDelegate {
         coordinator.document.text = textView.text
         
         /// Report via `Combine` that text did change.
-        coordinator.document.ticker.send()
+        typingC.send()
     }
 }

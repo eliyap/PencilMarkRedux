@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class _DrawableMarkdownViewController: UIViewController {
+final class _DrawableMarkdownViewController: PMViewController {
     
     /// Folder URL for placing new documents.
     private let url: URL
@@ -26,8 +26,9 @@ final class _DrawableMarkdownViewController: UIViewController {
     /// Child View Controllers
     let keyboard: TypingViewController
     
-    /// Combine Conduits & Observers
-    var observers = Set<AnyCancellable>()
+    /// Combine Conduits
+    let strokeC = StrokeConduit()
+    let typingC = PassthroughSubject<Void, Never>()
     
     init(url: URL) {
         self.url = url
@@ -39,20 +40,33 @@ final class _DrawableMarkdownViewController: UIViewController {
         keyboard.view.frame = view.frame
         view.addSubview(keyboard.view)
         keyboard.didMove(toParent: self)
+        
+        let typing: AnyCancellable = typingC
+//            .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
+            .sink { [weak self] in
+//                if let document = self?.document {
+//                    document.save(to: document.fileURL, for: .forOverwriting) { (success) in
+//                        if success == false {
+//                            print("Failed to save!")
+//                        }
+//                    }
+//                }
+            }
+        store(typing)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
-    }
-    
-    deinit {
-        /// Cancel subscriptions so that they do not leak.
-        observers.forEach { $0.cancel() }
     }
 }
 
