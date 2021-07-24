@@ -10,10 +10,12 @@ import UIKit
 
 final class FileBrowserViewController: UITableViewController {
     
+    typealias DocumentDelegate = DocumentSelectionDelegate
+    
     /// Keep a strong reference to the data source, as the `UITableView` does not.
     let source: FileBrowserDataSource
     
-    weak var selectionDelegate: _DocumentSelectionDelegate!
+    weak var selectionDelegate: DocumentDelegate!
     
     /// Lets us know if the user picked a document outside the sandbox.
     /// Maintain a strong reference because the ``UIDocumentPickerViewController`` cannot.
@@ -24,7 +26,7 @@ final class FileBrowserViewController: UITableViewController {
             .appendingPathComponent("Documents")
     }
     
-    init(selectionDelegate: _DocumentSelectionDelegate) {
+    init(selectionDelegate: DocumentDelegate) {
         self.source = FileBrowserDataSource()
         self.selectionDelegate = selectionDelegate
         self.pickerDelegate = PickerDelegate() /// need to set implicitly unwrapped weak parent
@@ -126,7 +128,7 @@ final class PickerDelegate: NSObject, UIDocumentPickerDelegate {
         assert(fileBrowser.splitViewController != nil, "Could not find ancestor split view!")
         fileBrowser.splitViewController?.show(.secondary)
         
-        fileBrowser.selectionDelegate.select(StyledMarkdownDocument(fileURL: urls[0]))
+        fileBrowser.selectionDelegate.select(TextDocument(fileURL: urls[0]))
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
