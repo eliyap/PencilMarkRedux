@@ -11,29 +11,22 @@ import Combine
 
 final class _DocumentViewController: UIViewController {
     
-    /// File URL of the open document.
-    private let url: URL
-    
     /// View presenting document for editing.
     private let textView = UITextView()
     
-    /// Nullable underlying model object
-    private var _document: StyledMarkdownDocument?
-    
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { document.undoManager }
+    override var undoManager: UndoManager? { coordinator.document.undoManager }
     
+    #warning("replaced with document ticker")
     private var changeObserver = PassthroughSubject<Void, Never>()
+    
+    /// Combine Observers & Conduits
     private var observers = Set<AnyCancellable>()
     
-    /// Non-nullable public model object
-    public var document: StyledMarkdownDocument {
-        get { getDocument() }
-        set { setDocument(to: newValue) }
-    }
+    /// Force unwrap container VC
+    var coordinator: _DrawableMarkdownViewController { parent as! _DrawableMarkdownViewController }
     
-    init(url: URL) {
-        self.url = url
+    init() {
         super.init(nibName: nil, bundle: nil)
         
         view = textView
@@ -41,68 +34,42 @@ final class _DocumentViewController: UIViewController {
         /// Observe `textView` events.
         textView.delegate = self
         
-        document.open { (success) in
-            self.textView.text = self.document.text
-        }
-        
         /// Save very frequently when the user makes changes.
-        let period = 0.5
-        changeObserver
-            .throttle(for: .seconds(period), scheduler: RunLoop.main, latest: true)
+        /**
+         Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
+         However, because the user can type quickly and the MDAST is built through JavaScript, it's easy to max out the CPU this way.
+         Therefore we rate limit the pace of re-rendering.
+         - Note: since `textViewDidChange` is **not** called due to programatic changes,
+                 updating the text here does not cause an infinite loop.
+         */
+        coordinator.document.ticker
+            /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
+            /// Throttle rate is arbitrary, may want to change it in future.
+            .throttle(for: .seconds(0.5), scheduler: RunLoop.main, latest: true)
             .sink { [weak self] in
-                if let document = self?.document {
-                    document.save(to: document.fileURL, for: .forOverwriting) { (success) in
-                        if success == false {
-                            print("Failed to save!")
-                        }
-                    }
+                /// Assert `self` is actually available.
+                guard let ref = self else {
+                    assert(false, "Weak Self Reference returned nil!")
+                    return
                 }
+                
+                /// Rebuild AST, recalculate text styling.
+                self?.coordinator.document.updateAttributes()
+                
+                /**
+                 Setting the `attributedText` tends to move the cursor to the end of the document,
+                 so store the cursor position before modifying the document, then put it right back.
+                 Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
+                 */
+                let selection = ref.textView.selectedRange
+                ref.textView.isScrollEnabled = false
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
+                ref.textView.attributedText = self?.coordinator.document.styledText
+                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
+                ref.textView.isScrollEnabled = true
+                ref.textView.selectedRange = selection
             }
             .store(in: &observers)
-    }
-    
-    /// Returns the underlying document, if any,
-    /// or creates a new one if there isn't.
-    private func getDocument() -> StyledMarkdownDocument {
-        if let _document = _document {
-            return _document
-        } else {
-            /// Create new document here.
-            let data = "".data(using: .utf8)! /// Initialize with no text
-            let newURL = url.appendingPathComponent("Untitled.txt") /// Default title
-            try! data.write(to: newURL)
-            
-            print("New Document Created")
-            
-            _document = StyledMarkdownDocument(fileURL: newURL)
-            return _document!
-        }
-    }
-    
-    /// Updates the document being displayed,
-    /// first closing the old document, if any.
-    private func setDocument(to document: StyledMarkdownDocument) -> Void {
-        
-        func open(new document: StyledMarkdownDocument) {
-            self._document = document
-            document.open { (success) in
-                self.textView.text = self.document.text
-            }
-        }
-        
-        /// Close existing document, if any, then open the new one.
-        if let _document = _document {
-            print("Text was: " + _document.text)
-            _document.close { (success) in
-                if success == false {
-                    print("Failed to close document!")
-                } else {
-                    open(new: document)
-                }
-            }
-        } else {
-            open(new: document)
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -117,14 +84,21 @@ final class _DocumentViewController: UIViewController {
 
 extension _DocumentViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        document.text = textView.text
-        document.updateChangeCount(.done)
+        coordinator.document.text = textView.text
+        coordinator.document.updateChangeCount(.done)
         changeObserver.send()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        document.text = textView.text
-        document.updateChangeCount(.done)
+        coordinator.document.text = textView.text
+        coordinator.document.updateChangeCount(.done)
         changeObserver.send()
+    }
+}
+
+extension _DocumentViewController {
+    /// Access `coordinator` model to refresh `textView`.
+    func updateAttributedText() {
+        textView.attributedText = coordinator.document.styledText
     }
 }

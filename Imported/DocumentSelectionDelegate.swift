@@ -38,12 +38,21 @@ extension DrawableMarkdownViewController: _DocumentSelectionDelegate {
     }
 }
 
-extension _DocumentViewController: _DocumentSelectionDelegate {
-    typealias Document = StyledMarkdownDocument
+//extension _DocumentViewController: _DocumentSelectionDelegate {
+//    typealias Document = StyledMarkdownDocument
+//    func select(_ document: StyledMarkdownDocument) {
+//        /// Update Naviagation Bar Title
+//        navigationItem.title = document.localizedName
+//
+//        self.document = document
+//    }
+//}
+
+extension _DrawableMarkdownViewController: _DocumentSelectionDelegate {
     func select(_ document: StyledMarkdownDocument) {
         /// Update Naviagation Bar Title
         navigationItem.title = document.localizedName
-        
+
         self.document = document
     }
 }

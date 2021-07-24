@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		220B851026AC819A00081536 /* _DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B850F26AC819A00081536 /* _DocumentViewController.swift */; };
+		220B851226AC844D00081536 /* _DrawableMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851126AC844D00081536 /* _DrawableMarkdownViewController.swift */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
 		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
@@ -123,6 +124,7 @@
 
 /* Begin PBXFileReference section */
 		220B850F26AC819A00081536 /* _DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DocumentViewController.swift; sourceTree = "<group>"; };
+		220B851126AC844D00081536 /* _DrawableMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DrawableMarkdownViewController.swift; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				22C9F5FB26ABA004003FD426 /* DrawableMarkdownViewController.swift */,
+				220B851126AC844D00081536 /* _DrawableMarkdownViewController.swift */,
 			);
 			path = Halfway;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				22C9F60426ABA4F0003FD426 /* Replacement.swift in Sources */,
+				220B851226AC844D00081536 /* _DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
 				22C9F61526ABBB2C003FD426 /* _LineErase.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,

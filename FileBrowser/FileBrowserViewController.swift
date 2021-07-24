@@ -10,7 +10,7 @@ import UIKit
 
 final class FileBrowserViewController: UITableViewController {
     
-    typealias DocumentDelegate = _DocumentViewController
+    typealias DocumentDelegate = _DrawableMarkdownViewController
     
     /// Keep a strong reference to the data source, as the `UITableView` does not.
     let source: FileBrowserDataSource
