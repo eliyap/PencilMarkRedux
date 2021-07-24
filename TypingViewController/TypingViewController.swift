@@ -36,9 +36,11 @@ final class TypingViewController: PMViewController {
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
     }
     
-    /// Perform with with `parent` after initialization is complete
+    /// Perform with with ``coordinator`` after initialization is complete
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /// Coordinate via `Combine` with ``coordinator``.
         observeTyping()
         observeStrokes()
         observeTouchEvents(from: coordinator.frameC)
