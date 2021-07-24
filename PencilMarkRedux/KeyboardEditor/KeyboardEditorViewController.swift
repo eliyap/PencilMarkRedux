@@ -30,7 +30,7 @@ final class KeyboardEditorViewController: UIViewController {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         self.view = textView
-        textView.controller = self /// pass self to child
+//        textView.controller = self /// pass self to child
         
         textView.attributedText = coordinator.document.styledText
         textView.delegate = coordinator

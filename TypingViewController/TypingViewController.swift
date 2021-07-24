@@ -30,6 +30,7 @@ final class TypingViewController: PMViewController {
         
         /// Observe `textView` events.
         textView.delegate = self
+        textView.controller = self
         
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
