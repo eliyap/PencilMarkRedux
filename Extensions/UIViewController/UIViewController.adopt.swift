@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     /// Convenience method for adding a subview to the view hierarchy.
-    func adopt(_ child: ViewController) {
+    func adopt(_ child: UIViewController) {
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
