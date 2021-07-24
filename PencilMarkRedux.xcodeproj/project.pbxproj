@@ -22,7 +22,6 @@
 		220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */; };
 		220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */; };
 		220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */; };
-		220B853726ACD2C400081536 /* MDAST in Frameworks */ = {isa = PBXBuildFile; productRef = 220B853626ACD2C400081536 /* MDAST */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
 		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
@@ -129,7 +128,6 @@
 		220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.ObserveSize.swift; sourceTree = "<group>"; };
 		220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
 		220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
-		220B853426ACD2A100081536 /* MDAST */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MDAST; path = ../MDAST; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220B853726ACD2C400081536 /* MDAST in Frameworks */,
 				2214E137269C8FD70046EF32 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +292,6 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
-				220B853426ACD2A100081536 /* MDAST */,
 				220B852B26AC9AB700081536 /* DrawingViewController */,
 				220B852626AC989700081536 /* TypingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
@@ -556,7 +552,6 @@
 			name = PencilMarkRedux;
 			packageProductDependencies = (
 				2214E136269C8FD70046EF32 /* OrderedCollections */,
-				220B853626ACD2C400081536 /* MDAST */,
 			);
 			productName = PencilMarkRedux;
 			productReference = 22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */;
@@ -1003,10 +998,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		220B853626ACD2C400081536 /* MDAST */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MDAST;
-		};
 		2214E136269C8FD70046EF32 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2214E135269C8FD70046EF32 /* XCRemoteSwiftPackageReference "swift-collections" */;
