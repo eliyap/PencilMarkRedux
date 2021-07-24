@@ -43,7 +43,7 @@ final class TypingViewController: PMViewController {
         /// Coordinate via `Combine` with ``coordinator``.
         observeTyping()
         observeStrokes()
-        observeTouchEvents(from: coordinator.frameC)
+        observeTouchEvents()
         observeCommands()
     }
     

@@ -10,16 +10,16 @@ import Combine
 
 extension TypingViewController {
     /// Attach `Combine` sinks to events from `frameC`.
-    func observeTouchEvents(from frameC: FrameConduit) -> Void {
+    func observeTouchEvents() -> Void {
         /// Coordinate scroll position with `PKCanvasView`.
-        let scroll: AnyCancellable = frameC.$scrollY
+        let scroll: AnyCancellable = coordinator.frameC.$scrollY
             .sink { [weak self] in
                 self?.textView.contentOffset.y = $0
             }
         store(scroll)
         
         /// Set cursor when user taps on `PKCanvasView`.
-        let tap: AnyCancellable = frameC.$tapLocation
+        let tap: AnyCancellable = coordinator.frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
                 guard
