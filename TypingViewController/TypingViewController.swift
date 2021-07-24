@@ -18,6 +18,7 @@ final class TypingViewController: PMViewController {
     override var undoManager: UndoManager? { coordinator.document.undoManager }
     
     /// Force unwrap container VC
+    /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
     var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
     
     /// CoreAnimation layer used to render rejected strokes.
