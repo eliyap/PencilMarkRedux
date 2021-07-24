@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct PencilMarkReduxApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        DocumentGroup(newDocument: StyledMarkdown()) { file in
+            ContentView(document: file.$document)
         }
     }
 }

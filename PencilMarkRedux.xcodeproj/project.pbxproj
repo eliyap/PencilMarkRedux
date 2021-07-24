@@ -204,10 +204,10 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22CA376226A0C46600E95009 /* GestureRecognition */,
 				22AF74E0269BB43A007D9891 /* Javascript */,
-				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 				2214E138269C997C0046EF32 /* MDAST */,
 				22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */,
 				22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */,
