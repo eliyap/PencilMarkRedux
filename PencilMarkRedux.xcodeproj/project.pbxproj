@@ -15,6 +15,7 @@
 		220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */; };
 		220B852126AC90FC00081536 /* TypingViewController.ObserveStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */; };
 		220B852326AC973700081536 /* TypingViewController_UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */; };
+		220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */; };
 		2214E122269BDC1B0046EF32 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E121269BDBCE0046EF32 /* Delete.swift */; };
 		2214E124269C80860046EF32 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E123269C80860046EF32 /* Node.swift */; };
 		2214E126269C80950046EF32 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E125269C80950046EF32 /* Literal.swift */; };
@@ -129,6 +130,7 @@
 		220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.adopt.swift; sourceTree = "<group>"; };
 		220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveStrokes.swift; sourceTree = "<group>"; };
 		220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController_UITextViewDelegate.swift; sourceTree = "<group>"; };
+		220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveTouches.swift; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */,
 				220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */,
 				220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */,
+				220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
@@ -692,6 +695,7 @@
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
+				220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */,
 				22E8531F269CD74700E82CE4 /* StyledMarkdown_FileDocument.swift in Sources */,
 				22DA1409269D3F9B00D90EA7 /* Consume.swift in Sources */,
 				22CDCB1C269BCB4E00988085 /* List.swift in Sources */,

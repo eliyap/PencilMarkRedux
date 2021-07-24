@@ -37,6 +37,8 @@ final class TypingViewController: PMViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         observeTyping()
+        observeStrokes()
+        observeTouchEvents(from: coordinator.frameC)
     }
     
     required init?(coder: NSCoder) {

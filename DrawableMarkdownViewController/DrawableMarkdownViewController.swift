@@ -28,6 +28,8 @@ final class DrawableMarkdownViewController: PMViewController {
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
+    let frameC = FrameConduit()
+    let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
     
     init(url: URL) {
