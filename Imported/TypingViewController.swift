@@ -17,9 +17,6 @@ final class TypingViewController: PMViewController {
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { coordinator.document.undoManager }
     
-    #warning("replaced with document ticker")
-    private var changeObserver = PassthroughSubject<Void, Never>()
-    
     /// Force unwrap container VC
     var coordinator: _DrawableMarkdownViewController { parent as! _DrawableMarkdownViewController }
     
@@ -48,13 +45,13 @@ extension TypingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         coordinator.document.text = textView.text
         coordinator.document.updateChangeCount(.done)
-        changeObserver.send()
+        coordinator.document.ticker.send()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         coordinator.document.text = textView.text
         coordinator.document.updateChangeCount(.done)
-        changeObserver.send()
+        coordinator.document.ticker.send()
     }
 }
 
