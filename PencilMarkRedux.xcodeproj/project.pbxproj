@@ -273,7 +273,6 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
-				22C9F60726ABA831003FD426 /* _KeyboardEditorViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* Halfway */,
 				22C9F5DB26AB999D003FD426 /* Imported */,
@@ -459,17 +458,10 @@
 				22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */,
 				22C9F60126ABA4EB003FD426 /* Change.swift */,
 				22C9F60326ABA4F0003FD426 /* Replacement.swift */,
-			);
-			path = StyledMarkdownDocument;
-			sourceTree = "<group>";
-		};
-		22C9F60726ABA831003FD426 /* _KeyboardEditorViewController */ = {
-			isa = PBXGroup;
-			children = (
 				22C9F61026ABB9F2003FD426 /* _LineStyle.swift */,
 				22C9F61426ABBB2C003FD426 /* _LineErase.swift */,
 			);
-			path = _KeyboardEditorViewController;
+			path = StyledMarkdownDocument;
 			sourceTree = "<group>";
 		};
 		22CA375226A0B0A500E95009 /* Root */ = {
