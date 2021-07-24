@@ -9,3 +9,6 @@ DerivedData/
 ### Node Stuff
 # nodeenv virtual env folder
 Sources/Javascript/env/*
+
+# node contents
+Sources/Javascript/node_modules/*
