@@ -65,6 +65,8 @@
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
 		22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */; };
 		22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3526AE263600CC8935 /* Notification.edgeInsets.swift */; };
+		22F70B3826AE28E900CC8935 /* FolderViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3726AE28E900CC8935 /* FolderViewController.AdjustForKeyboard.swift */; };
+		22F70B3A26AE2BD900CC8935 /* UIViewController.toolbarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3926AE2BD900CC8935 /* UIViewController.toolbarHeight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +143,8 @@
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
 		22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B3526AE263600CC8935 /* Notification.edgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.edgeInsets.swift; sourceTree = "<group>"; };
+		22F70B3726AE28E900CC8935 /* FolderViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
+		22F70B3926AE2BD900CC8935 /* UIViewController.toolbarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.toolbarHeight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 			children = (
 				220B851826AC8BBD00081536 /* PMViewController.swift */,
 				220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */,
+				22F70B3926AE2BD900CC8935 /* UIViewController.toolbarHeight.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			children = (
 				22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */,
 				22C9F5E826AB9A56003FD426 /* FolderViewController.swift */,
+				22F70B3726AE28E900CC8935 /* FolderViewController.AdjustForKeyboard.swift */,
 				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
 				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
 				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
@@ -478,6 +484,7 @@
 				220B851026AC819A00081536 /* KeyboardViewController.swift in Sources */,
 				220B852326AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
+				22F70B3A26AE2BD900CC8935 /* UIViewController.toolbarHeight.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
@@ -501,6 +508,7 @@
 				22C9F5F226AB9A57003FD426 /* FilesViewController_UITableViewDataSource.swift in Sources */,
 				22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */,
 				22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */,
+				22F70B3826AE28E900CC8935 /* FolderViewController.AdjustForKeyboard.swift in Sources */,
 				22CA376426A0C4B200E95009 /* PMShape.swift in Sources */,
 				220B851926AC8BBD00081536 /* PMViewController.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,

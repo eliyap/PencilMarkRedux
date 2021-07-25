@@ -47,6 +47,13 @@ class FilesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tableView.contentInset.bottom = 0
+            + (navBarHeight ?? 0)
+            + (toolbarHeight ?? 0)
+        tableView.verticalScrollIndicatorInsets.bottom = 0
+            + (navBarHeight ?? 0)
+            + (toolbarHeight ?? 0)
+        
         guard let source = tableView.dataSource as? Self else {
             fatalError("Wrong type of data source!")
         }

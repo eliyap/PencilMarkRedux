@@ -47,6 +47,9 @@ final class FolderViewController: UIViewController {
         adopt(empty)
         adopt(broken)
         
+        /// Adjust for keyboard
+        setupNotifications()
+        
         /// Refresh on pull.
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(filesView, action: #selector(FilesViewController.refresh), for: .valueChanged)
