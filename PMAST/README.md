@@ -7,6 +7,6 @@ The rest of the package is PencilMark specific methods for manipulating the AST,
 then manipulating the source Markdown to effect those changes.
 
 ### Public Methods / Classes
-- StyledMarkdown – the core
+- Markdown – the core
     - `apply` and `erase` to request specific changes to the markdown
 - Styling Classes

@@ -22,14 +22,14 @@ class FormatTests: XCTestCase {
     }
 
     func testStrikethroughAvailable() throws {
-        var document = StyledMarkdown( "a FORMAT a")
+        var document = Markdown( "a FORMAT a")
         
         document.apply(lineStyle: Delete.self, to: NSMakeRange(2, 6))
         XCTAssertEqual(document.text, "a ~~FORMAT~~ a")
     }
     
     func testEmphasisAvailable() throws {
-        var document = StyledMarkdown( "a FORMAT a")
+        var document = Markdown( "a FORMAT a")
         
         document.apply(lineStyle: Emphasis.self, to: NSMakeRange(2, 6))
         /// accept either kind of emphasis marker
@@ -37,7 +37,7 @@ class FormatTests: XCTestCase {
     }
     
     func testStrongAvailable() throws {
-        var document = StyledMarkdown( "a FORMAT a")
+        var document = Markdown( "a FORMAT a")
         
         document.apply(lineStyle: Strong.self, to: NSMakeRange(2, 6))
         /// accept either kind of emphasis marker

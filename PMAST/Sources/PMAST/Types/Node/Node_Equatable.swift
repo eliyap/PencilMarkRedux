@@ -8,7 +8,7 @@
 import Foundation
 
 extension Node: Equatable {
-    static func == (lhs: Node, rhs: Node) -> Bool {
+    public static func == (lhs: Node, rhs: Node) -> Bool {
         lhs.position == rhs.position && lhs._type == rhs._type
     }
 }

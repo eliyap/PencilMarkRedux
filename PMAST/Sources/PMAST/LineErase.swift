@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension StyledMarkdown {
+extension Markdown {
     /// A straight line erase operation.
     public mutating func erase(to range: NSRange) -> Void {
         /// reject empty ranges
@@ -28,7 +28,7 @@ extension StyledMarkdown {
 
 extension Text {
     /// Mark changes in the AST needed to erase the passed range.
-    func erase(in range: NSRange, in document: StyledMarkdown) -> Void {
+    func erase(in range: NSRange, in document: Markdown) -> Void {
         /**
          Compare the targeted substring and our contents, ignoring surrounding whitespace.
          If they are equal, then this whole node can be removed.

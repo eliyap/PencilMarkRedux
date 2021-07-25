@@ -20,35 +20,35 @@ class LineEraseTests: XCTestCase {
     
     /// make sure zero length ranges are rejected
     func testZeroRange() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
-        document = StyledMarkdown("aaa")
+        document = Markdown("aaa")
         document.erase(to: NSMakeRange(1, 0))
         XCTAssertEqual(document.text, "aaa")
     }
 
     /// Basic erase of part of a string
     func testMid() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
-        document = StyledMarkdown("aDELETEa")
+        document = Markdown("aDELETEa")
         document.erase(to: NSMakeRange(1, 6))
         XCTAssertEqual(document.text, "aa")
     }
     
     /// Erasing part of a phrasing block, make sure the phrasing block isn't broken
     func testPartial() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
-        document = StyledMarkdown("_aaBB_ BBaa")
+        document = Markdown("_aaBB_ BBaa")
         document.erase(to: NSMakeRange(3, 6)) /// target 'BB_ BB'
         XCTAssertEqual(document.text, "_aa_aa")
     }
     
     func testComplete() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
-        document = StyledMarkdown("a _BBB_ a")
+        document = Markdown("a _BBB_ a")
         document.erase(to: NSMakeRange(3, 3)) /// target 'BBB'
         XCTExpectFailure("Haven't implemented smart whitespace removal") {
             XCTAssertEqual(document.text, "a a") /// is actually "a  a" (two spaces)
@@ -57,38 +57,38 @@ class LineEraseTests: XCTestCase {
     
     /// test deep nesting of phrasing blocks
     func testNestedPhrasing() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
-        document = StyledMarkdown("_BBB_")
+        document = Markdown("_BBB_")
         document.erase(to: NSMakeRange(1, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
-        document = StyledMarkdown("**~~_BBB_~~**")
+        document = Markdown("**~~_BBB_~~**")
         document.erase(to: NSMakeRange(5, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// try multiple nested phrasing blocks
-        document = StyledMarkdown("**~~_BBB_~~ ~~_BBB_~~ _BBB_**")
+        document = Markdown("**~~_BBB_~~ ~~_BBB_~~ _BBB_**")
         document.erase(to: NSMakeRange(5, 21)) /// target 'BBB_~~ ~~_BBB_~~ _BBB'
         XCTAssertEqual(document.text, "")
         
         /// check simple Headings
-        document = StyledMarkdown("# BBB")
+        document = Markdown("# BBB")
         document.erase(to: NSMakeRange(2, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// check styled headings
-        document = StyledMarkdown("# ~~*BBB*~~")
+        document = Markdown("# ~~*BBB*~~")
         document.erase(to: NSMakeRange(5, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// Check headings with extra whitespace
-        document = StyledMarkdown("###   BBB")
+        document = Markdown("###   BBB")
         document.erase(to: NSMakeRange(6, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// Check Setext style headings
-        document = StyledMarkdown("""
+        document = Markdown("""
             BBB
             ===
             """)
@@ -99,20 +99,20 @@ class LineEraseTests: XCTestCase {
     
     /// test nesting of list items
     func testNestedLists() throws {
-        var document = StyledMarkdown("")
+        var document = Markdown("")
         
         /// simple list item check
-        document = StyledMarkdown("- BBB")
+        document = Markdown("- BBB")
         document.erase(to: NSMakeRange(2, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// nested list check
-        document = StyledMarkdown("- - BBB")
+        document = Markdown("- - BBB")
         document.erase(to: NSMakeRange(4, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// multi-item list check
-        document = StyledMarkdown("""
+        document = Markdown("""
             - BBB
             - aaa
             """)
@@ -122,12 +122,12 @@ class LineEraseTests: XCTestCase {
         }
         
         /// list with leading spaces
-        document = StyledMarkdown("-   BBB")
+        document = Markdown("-   BBB")
         document.erase(to: NSMakeRange(4, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
         
         /// list with phrasing formatting
-        document = StyledMarkdown("- ~~**BBB**~~")
+        document = Markdown("- ~~**BBB**~~")
         document.erase(to: NSMakeRange(6, 3)) /// target 'BBB'
         XCTAssertEqual(document.text, "")
     }
