@@ -23,15 +23,4 @@ extension KeyboardViewController: UITextViewDelegate {
         coordinator.document?.updateChangeCount(.done)
         coordinator.typingC.send()
     }
-    
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        /// Ignore selection changes made by code, including those sent via touch events.
-        guard programmaticTextSelection == false else { return }
-        
-//        coordinator.canvas.canvasView.contentOffset.y = 0
-//        coordinator.scrollLead = .keyboard
-//        coordinator.frameC.scrollY = textView.contentOffset.y
-//        coordinator.scrollLead = .canvas
-        print("Selection Changed")
-    }
 }

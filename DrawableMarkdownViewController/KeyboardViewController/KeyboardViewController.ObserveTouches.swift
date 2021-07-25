@@ -39,10 +39,7 @@ extension KeyboardViewController {
                 textView.becomeFirstResponder()
                 
                 /// Set cursor position using zero length `UITextRange`.
-                /// Temporarily flip switch so that delegate is not called!
-                self?.programmaticTextSelection = true
                 textView.selectedTextRange = textView.textRange(from: textPosition, to: textPosition)
-                self?.programmaticTextSelection = false
             }
         store(tap)
     }
