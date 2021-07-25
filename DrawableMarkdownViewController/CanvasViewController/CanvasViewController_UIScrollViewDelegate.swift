@@ -23,7 +23,7 @@ extension CanvasViewController: UIScrollViewDelegate {
         
         /// If there is any non-trivial difference, defer to text position to prevent a visual jump
         if abs(diff) > 1 {
-            print("Discrepancy in scroll position!")
+            print("Discrepancy in scroll position, resolving now...")
             scrollView.contentOffset.y = keyboardY
         }
     }
