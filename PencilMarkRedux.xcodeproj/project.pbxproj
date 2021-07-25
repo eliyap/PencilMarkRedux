@@ -202,7 +202,6 @@
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
-				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 				22CA376226A0C46600E95009 /* GestureRecognition */,
@@ -318,6 +317,7 @@
 				220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */,
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
+				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				220B852626AC989700081536 /* KeyboardViewController */,
 				220B852B26AC9AB700081536 /* CanvasViewController */,
 			);
