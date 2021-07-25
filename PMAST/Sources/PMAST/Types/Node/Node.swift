@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Node {
+public class Node {
     /// The ``Parent``, of which this is a member of ``children``.
     /// `weak` to avoid a strong reference cycle.
     /// Optional because `weak`.

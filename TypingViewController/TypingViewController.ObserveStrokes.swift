@@ -6,6 +6,7 @@
 //
 
 import PencilKit
+import PMAST
 
 // MARK:- Stroke Handling
 extension TypingViewController {
@@ -52,9 +53,13 @@ extension TypingViewController {
             return
         }
         
+        registerUndo() /// register before model changes
+        
+        /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.apply(lineStyle: Delete.self, to: nsRange, in: textView)
-        textView.attributedText = coordinator.document.styledText
+        coordinator.document.markdown.apply(lineStyle: Delete.self, to: nsRange)
+        coordinator.document.updateChangeCount(.done)
+        textView.attributedText = coordinator.document.markdown.attributed
     }
     
     /// Erase along the provided line
@@ -71,9 +76,13 @@ extension TypingViewController {
             return
         }
         
+        registerUndo() /// register before model changes
+        
+        /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.erase(to: nsRange, in: textView)
-        textView.attributedText = coordinator.document.styledText
+        coordinator.document.markdown.erase(to: nsRange)
+        coordinator.document.updateChangeCount(.done)
+        textView.attributedText = coordinator.document.markdown.attributed
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class InlineCode: Literal {
+public final class InlineCode: Literal {
     override class var type: String { "inlineCode" }
     
     override func style(_ string: inout NSMutableAttributedString) {

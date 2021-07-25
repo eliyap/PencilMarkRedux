@@ -78,6 +78,33 @@ extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
         #warning("does not restyle text!")
-        textView.attributedText = coordinator.document.styledText
+        textView.attributedText = coordinator.document.markdown.attributed
+    }
+}
+
+extension TypingViewController {
+    /// General way to store the current state before it is mutated.
+    func registerUndo() {
+        /// Register Undo Operation before affecting model object
+        let currentStyledText = textView.attributedText
+        textView.undoManager?.registerUndo(withTarget: textView) { view in
+            /// Freeze current selection to be restored after text is rolled back.
+            let selection: UITextRange? = view.selectedTextRange
+            
+            /// Roll back document state.
+            /// Temporarily disable scrolling to stop iOS snapping the view downwards.
+            view.isScrollEnabled = false
+            view.attributedText = currentStyledText
+            view.isScrollEnabled = true
+        
+            /// Restore text selection, if text was selected.
+            if view.isFirstResponder, let selection = selection {
+                view.selectedTextRange = selection
+            }
+            
+            /// Roll back model state
+            view.controller.coordinator.document.markdown.plain = view.text
+            view.controller.coordinator.document.markdown.updateAttributes()
+        }
     }
 }

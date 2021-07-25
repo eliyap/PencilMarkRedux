@@ -9,13 +9,13 @@ import UIKit
 
 extension TypingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        coordinator.document.text = textView.text
+        coordinator.document.markdown.plain = textView.text
         coordinator.document.updateChangeCount(.done)
         coordinator.typingC.send()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        coordinator.document.text = textView.text
+        coordinator.document.markdown.plain = textView.text
         coordinator.document.updateChangeCount(.done)
         coordinator.typingC.send()
     }

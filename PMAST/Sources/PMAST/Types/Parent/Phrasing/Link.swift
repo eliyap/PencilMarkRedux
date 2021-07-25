@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class Link: Parent {
+public final class Link: Parent {
     override class var type: String { "link" }
 }

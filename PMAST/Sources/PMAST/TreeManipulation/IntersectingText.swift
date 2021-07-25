@@ -11,7 +11,7 @@ import OrderedCollections
 extension Root {
     /**
      Produces a two lists of items intersecting the provided "line"
-     - the "line" is represented by a `NSRange` corresponding to a `UITextRange` which should span **one** line in the source ``StyledMarkdown`` document.
+     - the "line" is represented by a `NSRange` corresponding to a `UITextRange` which should span **one** line in the source ``Markdown`` document.
      - `partial`: ``Text``s partially intersected by the range
      - `complete`: ``Content`` elements completely skewered by the range, the highest ones in the tree we could find.
      */

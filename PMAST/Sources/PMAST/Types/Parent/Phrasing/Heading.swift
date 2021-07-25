@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Heading: Parent {
+public final class Heading: Parent {
     
     override class var type: String { "heading" }
     

@@ -7,28 +7,32 @@
 
 import UIKit
 
-public struct StyledMarkdown {
+/// A model object representing a simple markdown document.
+public struct Markdown {
     
-    public var text: String
-    public var styledText: NSMutableAttributedString
+    /// The plain text of the Markdown.
+    public var plain: String
+    
+    /// A pretty styled version of the Markdown.
+    public var attributed: NSMutableAttributedString
     internal var ast: Root! = nil
     
     public init(_ text: String) {
-        self.text = text
+        self.plain = text
         self.ast = Parser.shared.parse(markdown: text)
-        styledText = Self.attributedText(from: text, with: ast)
+        attributed = Self.attributedText(from: text, with: ast)
     }
 }
 
 // MARK:- Styling Methods
-extension StyledMarkdown {
+extension Markdown {
     /// Call this function to update after the text is updated.
     public mutating func updateAttributes() -> Void {
         /// re-formulate AST
-        ast = Parser.shared.parse(markdown: text)
+        ast = Parser.shared.parse(markdown: plain)
         
         /// re-format string based on AST
-        styledText = Self.attributedText(from: text, with: ast)
+        attributed = Self.attributedText(from: plain, with: ast)
     }
     
     /// Uses the AST to style an attributed string

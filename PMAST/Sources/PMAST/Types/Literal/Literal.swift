@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Literal: Node {
+public class Literal: Node {
     
     override class var type: String { "literal" }
     

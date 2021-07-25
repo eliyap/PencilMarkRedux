@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-extension StyledMarkdown {
+extension Markdown {
     /// A straight line erase operation.
-    mutating func erase(to range: NSRange) -> Void {
+    public mutating func erase(to range: NSRange) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
         let intersected: [Text] = ast.intersectingText(in: range)
@@ -28,14 +28,14 @@ extension StyledMarkdown {
 
 extension Text {
     /// Mark changes in the AST needed to erase the passed range.
-    func erase(in range: NSRange, in document: StyledMarkdown) -> Void {
+    func erase(in range: NSRange, in document: Markdown) -> Void {
         /**
          Compare the targeted substring and our contents, ignoring surrounding whitespace.
          If they are equal, then this whole node can be removed.
          */
         let intersection = position.nsRange.intersection(with: range)
-        let trimmedTarget = document.text[intersection].trimmingCharacters(in: .whitespaces)
-        let trimmedWhole = document.text[position.nsRange].trimmingCharacters(in: .whitespaces)
+        let trimmedTarget = document.plain[intersection].trimmingCharacters(in: .whitespaces)
+        let trimmedWhole = document.plain[position.nsRange].trimmingCharacters(in: .whitespaces)
         if trimmedWhole == trimmedTarget {
             _change = .toRemove
         } else {

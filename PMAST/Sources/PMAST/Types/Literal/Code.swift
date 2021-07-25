@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class Code: Literal {
+public final class Code: Literal {
     
     override class var type: String { "code" }
     

@@ -8,7 +8,7 @@
 import Foundation
 import OrderedCollections
 
-extension StyledMarkdown {
+extension Markdown {
     /// Joins adjacent ``Parent``s of the same type into a single ``Parent``.
     /// - does this by having one ``Parent`` "consume" its sibling.
     /// - Parameter style: the type of ``Parent`` formatting being applied.
@@ -50,7 +50,7 @@ extension Parent {
     }
     
     /// Returns itself after consuming the next element or ejecting whitespace
-    func consumePrev(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
+    func consumePrev(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Self? {
         /// Check if previous sibling is a ``Parent`` of same `_type`.
         if
             let prev = prevSibling as? Parent,
@@ -102,7 +102,7 @@ extension Parent {
     }
     
     /// Returns itself after consuming the previous element or ejecting whitespace
-    func consumeNext(consumed: inout OrderedSet<Parent>, in document: StyledMarkdown) -> Self? {
+    func consumeNext(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Self? {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
             let next = nextSibling as? Parent,
@@ -159,13 +159,13 @@ extension Parent {
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
-    func contractWhitespace(for edge: Edge, in document: StyledMarkdown) -> Self? {
+    func contractWhitespace(for edge: Edge, in document: Markdown) -> Self? {
         switch edge {
         case .leading:
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let firstCharScalar: UnicodeScalar = document.text[position.nsRange].first?.unicodeScalars.first,
+                let firstCharScalar: UnicodeScalar = document.plain[position.nsRange].first?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(firstCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range
@@ -175,7 +175,7 @@ extension Parent {
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let lastCharScalar: UnicodeScalar = document.text[position.nsRange].last?.unicodeScalars.first,
+                let lastCharScalar: UnicodeScalar = document.plain[position.nsRange].last?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(lastCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range
