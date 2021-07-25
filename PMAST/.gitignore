@@ -9,6 +9,8 @@ DerivedData/
 ### Node Stuff
 # nodeenv virtual env folder
 Sources/Javascript/env/*
+Sources/PMAST/Javascript/env/*
 
 # node contents
 Sources/Javascript/node_modules/*
+Sources/PMAST/Javascript/node_modules/*
