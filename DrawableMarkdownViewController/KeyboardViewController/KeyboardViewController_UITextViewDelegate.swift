@@ -9,14 +9,18 @@ import UIKit
 
 extension KeyboardViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        coordinator.document.markdown.plain = textView.text
-        coordinator.document.updateChangeCount(.done)
+        coordinator.assertDocumentIsValid()
+        
+        coordinator.document?.markdown.plain = textView.text
+        coordinator.document?.updateChangeCount(.done)
         coordinator.typingC.send()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        coordinator.document.markdown.plain = textView.text
-        coordinator.document.updateChangeCount(.done)
+        coordinator.assertDocumentIsValid()
+        
+        coordinator.document?.markdown.plain = textView.text
+        coordinator.document?.updateChangeCount(.done)
         coordinator.typingC.send()
     }
 }

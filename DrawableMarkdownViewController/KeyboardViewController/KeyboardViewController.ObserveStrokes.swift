@@ -41,6 +41,8 @@ extension KeyboardViewController {
      which is assumed to have been recognized as a horizontal line.
      */
     func strikethrough(with stroke: PKStroke) -> Void {
+        coordinator.assertDocumentIsValid()
+        
         /// Get a straightened version of the stroke.
         let (leading, trailing) = stroke.straightened()
         
@@ -57,13 +59,15 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.markdown.apply(lineStyle: Delete.self, to: nsRange)
-        coordinator.document.updateChangeCount(.done)
-        textView.attributedText = coordinator.document.markdown.attributed
+        coordinator.document?.markdown.apply(lineStyle: Delete.self, to: nsRange)
+        coordinator.document?.updateChangeCount(.done)
+        textView.attributedText = coordinator.document?.markdown.attributed
     }
     
     /// Erase along the provided line
     func erase(along stroke: PKStroke) -> Void {
+        coordinator.assertDocumentIsValid()
+        
         /// Use the same straightened version of a stroke as ``strikethrough``.
         let (leading, trailing) = stroke.straightened()
         
@@ -80,9 +84,9 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document.markdown.erase(to: nsRange)
-        coordinator.document.updateChangeCount(.done)
-        textView.attributedText = coordinator.document.markdown.attributed
+        coordinator.document?.markdown.erase(to: nsRange)
+        coordinator.document?.updateChangeCount(.done)
+        textView.attributedText = coordinator.document?.markdown.attributed
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.

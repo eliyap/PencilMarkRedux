@@ -32,7 +32,7 @@ extension KeyboardViewController {
                 }
                 
                 /// Rebuild AST, recalculate text styling.
-                self?.coordinator.document.markdown.updateAttributes()
+                self?.coordinator.document?.markdown.updateAttributes()
                 
                 /**
                  Setting the `attributedText` tends to move the cursor to the end of the document,
@@ -42,7 +42,7 @@ extension KeyboardViewController {
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
                 print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
-                ref.textView.attributedText = self?.coordinator.document.markdown.attributed
+                ref.textView.attributedText = self?.coordinator.document?.markdown.attributed
                 print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection

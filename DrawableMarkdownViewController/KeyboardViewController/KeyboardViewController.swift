@@ -14,7 +14,7 @@ final class KeyboardViewController: PMViewController {
     let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { coordinator.document.undoManager }
+    override var undoManager: UndoManager? { coordinator.document?.undoManager }
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
@@ -78,13 +78,16 @@ extension KeyboardViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
         #warning("does not restyle text!")
-        textView.attributedText = coordinator.document.markdown.attributed
+        #warning("Implicit unwrap!")
+        textView.attributedText = coordinator.document?.markdown.attributed
     }
 }
 
 extension KeyboardViewController {
     /// General way to store the current state before it is mutated.
     func registerUndo() {
+        coordinator.assertDocumentIsValid()
+        
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText
         textView.undoManager?.registerUndo(withTarget: textView) { view in
@@ -103,8 +106,8 @@ extension KeyboardViewController {
             }
             
             /// Roll back model state
-            view.controller.coordinator.document.markdown.plain = view.text
-            view.controller.coordinator.document.markdown.updateAttributes()
+            view.controller.coordinator.document?.markdown.plain = view.text
+            view.controller.coordinator.document?.markdown.updateAttributes()
         }
     }
 }

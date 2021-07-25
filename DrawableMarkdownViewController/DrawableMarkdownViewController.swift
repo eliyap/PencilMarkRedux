@@ -11,19 +11,11 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
     
-    private let tempURL = documentsURL.appendingPathComponent("TEMP.txt")
-    
-    /// Folder URL for placing new documents.
-    private let fileURL: URL?
-    
     /// Nullable underlying model object
     private var _document: StyledMarkdownDocument?
     
     /// Non-nullable public model object
-    public var document: StyledMarkdownDocument {
-        get { getDocument() }
-        set { setDocument(to: newValue) }
-    }
+    public var document: StyledMarkdownDocument?
     
     /// Child View Controllers
     let keyboard: KeyboardViewController
@@ -37,7 +29,9 @@ final class DrawableMarkdownViewController: PMViewController {
     let typingC = PassthroughSubject<Void, Never>()
     
     init(fileURL: URL?) {
-        self.fileURL = fileURL
+        if let fileURL = fileURL {
+            _document = StyledMarkdownDocument(fileURL: fileURL)
+        }
         self.keyboard = KeyboardViewController()
         self.drawing = CanvasViewController()
         self.noDocument = NoDocumentHost()
@@ -79,18 +73,7 @@ extension DrawableMarkdownViewController {
     /// Returns the underlying document, if any,
     /// or creates a new one if there isn't.
     private func getDocument() -> StyledMarkdownDocument {
-        if let _document = _document {
-            return _document
-        } else {
-            /// Create new document here.
-            let data = "".data(using: .utf8)! /// Initialize with no text
-            try! data.write(to: tempURL)
-            
-            print("Temp Document Written")
-            
-            _document = StyledMarkdownDocument(fileURL: tempURL)
-            return _document!
-        }
+        _document ?? StyledMarkdownDocument.temp
     }
     
     /// Updates the document being displayed,
@@ -116,6 +99,49 @@ extension DrawableMarkdownViewController {
             }
         } else {
             open(new: document)
+        }
+    }
+}
+
+extension DrawableMarkdownViewController {
+    
+    /// Make sure we are not editing the temporary document.
+    func assertDocumentIsValid() {
+        precondition(document?.fileURL != nil, "Edits made to nil document!")
+        precondition(document?.fileURL != StyledMarkdownDocument.temp.fileURL, "Edits made to placeholder document!")
+    }
+    
+    /// Close whatever document is currently open, and open the provided URL instead
+    func present(fileURL: URL?) {
+        /// If URL is already open, do nothing
+        guard _document?.fileURL != fileURL else { return }
+        
+        /// close document, if any, then open new
+        if let _document = _document {
+            _document.close { (success) in
+                guard success else {
+                    assert(false, "Failed to close document!")
+                    return
+                }
+                self.open(fileURL: fileURL)
+            }
+        } else {
+            self.open(fileURL: fileURL)
+        }
+    }
+    
+    /// Open new document, if any
+    private func open(fileURL: URL?) {
+        if let fileURL = fileURL {
+            _document = StyledMarkdownDocument(fileURL: fileURL)
+            
+            /// Hide placeholder view.
+            view.sendSubviewToBack(noDocument.view)
+        } else {
+            _document = nil
+            
+            /// Show placeholder view.
+            view.bringSubviewToFront(noDocument.view)
         }
     }
 }
