@@ -128,6 +128,7 @@
 		220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.ObserveSize.swift; sourceTree = "<group>"; };
 		220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
 		220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
+		220B853826ACD3EC00081536 /* PMAST */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PMAST; sourceTree = "<group>"; };
 		2214E121269BDBCE0046EF32 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		2214E123269C80860046EF32 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2214E125269C80950046EF32 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
@@ -267,6 +268,13 @@
 			path = DrawingViewController;
 			sourceTree = "<group>";
 		};
+		220B853526ACD2C400081536 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2214E138269C997C0046EF32 /* MDAST */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +293,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				220B853826ACD3EC00081536 /* PMAST */,
 				220B852B26AC9AB700081536 /* DrawingViewController */,
 				220B852626AC989700081536 /* TypingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
@@ -300,6 +309,7 @@
 				22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */,
 				22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */,
 				22DA140F269DE06600D90EA7 /* PencilMarkReduxTests */,
+				220B853526ACD2C400081536 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
