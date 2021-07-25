@@ -101,7 +101,7 @@ extension DrawableMarkdownViewController {
         
         /// Close existing document, if any, then open the new one.
         if let _document = _document {
-            print("Text was: " + _document.text)
+            print("Text was: " + _document.markdown.plain)
             _document.close { (success) in
                 if success == false {
                     print("Failed to close document!")

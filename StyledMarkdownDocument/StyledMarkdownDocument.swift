@@ -5,17 +5,14 @@
 //  Created by Secret Asian Man Dev on 23/7/21.
 //
 
-import Foundation
 import UIKit
 import Combine
+import PMAST
 
 final class StyledMarkdownDocument: UIDocument {
     
-    /// Document description attributes.
-    /// Nullable so that we can override init
-    public var text: String = ""
-    public var styledText = NSMutableAttributedString(string: "", attributes: nil)
-    public var ast: Root! = nil
+    /// Custom Markdown Model Object
+    public var markdown = Markdown("")
 
     override init(fileURL url: URL) {
         super.init(fileURL: url)
@@ -24,7 +21,7 @@ final class StyledMarkdownDocument: UIDocument {
     // MARK:- UIDocument Methods
     override func contents(forType typeName: String) throws -> Any {
         
-        guard let data = text.data(using: .utf8) else {
+        guard let data = markdown.plain.data(using: .utf8) else {
             throw TextDocumentError.unableToEncodeText
         }
         
@@ -43,9 +40,7 @@ final class StyledMarkdownDocument: UIDocument {
         }
         
         /// Set a style loaded value.
-        text = newText
-        ast = Parser.shared.parse(markdown: text)
-        styledText = Self.attributedText(from: text, with: ast)
+        markdown = Markdown(newText)
     }
     
     override var localizedName: String {

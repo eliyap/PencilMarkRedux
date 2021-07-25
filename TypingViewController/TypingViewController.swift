@@ -78,6 +78,6 @@ extension TypingViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
         #warning("does not restyle text!")
-        textView.attributedText = coordinator.document.styledText
+        textView.attributedText = coordinator.document.markdown.attributed
     }
 }
