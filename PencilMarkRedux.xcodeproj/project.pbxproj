@@ -25,6 +25,7 @@
 		2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E13B269CAC3B0046EF32 /* String_Subscript.swift */; };
 		2215B88526AD13CB00D2A0AE /* PMAST in Frameworks */ = {isa = PBXBuildFile; productRef = 2215B88426AD13CB00D2A0AE /* PMAST */; };
 		2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */; };
+		2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88826ADB27600D2A0AE /* NoDocumentView.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -91,6 +92,7 @@
 		220B853826ACD3EC00081536 /* PMAST */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PMAST; sourceTree = "<group>"; };
 		2214E13B269CAC3B0046EF32 /* String_Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Subscript.swift; sourceTree = "<group>"; };
 		2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocumentError.swift; sourceTree = "<group>"; };
+		2215B88826ADB27600D2A0AE /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */,
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
+				2215B88826ADB27600D2A0AE /* NoDocumentView.swift */,
 				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				220B852626AC989700081536 /* KeyboardViewController */,
 				220B852B26AC9AB700081536 /* CanvasViewController */,
@@ -488,6 +491,7 @@
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
+				2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */,
 				220B852826AC990200081536 /* PMTextView.swift in Sources */,
 				220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */,
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,

@@ -26,6 +26,7 @@ final class DrawableMarkdownViewController: PMViewController {
     /// Child View Controllers
     let keyboard: KeyboardViewController
     let drawing: CanvasViewController
+    let noDocument: NoDocumentHost
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -37,6 +38,7 @@ final class DrawableMarkdownViewController: PMViewController {
         self.url = url
         self.keyboard = KeyboardViewController()
         self.drawing = CanvasViewController()
+        self.noDocument = NoDocumentHost()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -44,6 +46,7 @@ final class DrawableMarkdownViewController: PMViewController {
         keyboard.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(drawing)
         drawing.coordinate(with: self) /// call after `init` and `adopt` are complete
+        adopt(noDocument)
         
         drawing.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +67,7 @@ final class DrawableMarkdownViewController: PMViewController {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
         drawing.view.frame = view.frame
+        noDocument.view.frame = view.frame
     }
 }
 
@@ -112,29 +116,5 @@ extension DrawableMarkdownViewController {
         } else {
             open(new: document)
         }
-    }
-}
-
-import SwiftUI
-
-final class NoDocumentHost: UIHostingController<NoDocumentView> {
-    init() {
-        super.init(rootView: NoDocumentView())
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("Do Not Use")
-    }
-}
-
-/// Placeholder view showing that we could not access iCloud.
-struct NoDocumentView: View {
-    var body: some View {
-        VStack {
-            SwiftUI.Image(systemName: "doc.text.magnifyingglass")
-                .font(.largeTitle)
-            SwiftUI.Text("No Document Open")
-        }
-            .foregroundColor(.secondary)
     }
 }
