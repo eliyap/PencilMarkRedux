@@ -43,20 +43,9 @@ final class FolderViewController: UIViewController {
         scrollView.alwaysBounceVertical = true
         
         /// Add subviews into hierarchy.
-        addChild(filesView)
-        filesView.view.frame = view.frame
-        view.addSubview(filesView.view)
-        filesView.didMove(toParent: self)
-
-        addChild(empty)
-        empty.view.frame = view.frame
-        view.addSubview(empty.view)
-        empty.didMove(toParent: self)
-        
-        addChild(broken)
-        broken.view.frame = view.frame
-        view.addSubview(broken.view)
-        broken.didMove(toParent: self)
+        adopt(filesView)
+        adopt(empty)
+        adopt(broken)
         
         /// Refresh on pull.
         scrollView.refreshControl = UIRefreshControl()
@@ -142,6 +131,8 @@ extension FolderViewController {
 
     @objc
     private func newDocument() {
+        /// TODO: check that folder URL is non null!, folder state is not broken
+        
         #warning("New Document Not Implemented")
         print("Not Implemented")
     }
