@@ -105,7 +105,6 @@ extension DrawableMarkdownViewController {
                 self.view.sendSubviewToBack(self.noDocument.view)
                 
                 self.keyboard.textView.attributedText = self.document?.markdown.attributed
-                print(self.document?.markdown.plain)
             }
         } else {
             document = nil

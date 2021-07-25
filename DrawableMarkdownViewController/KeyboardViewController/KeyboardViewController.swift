@@ -76,15 +76,6 @@ final class KeyboardViewController: PMViewController {
 }
 
 extension KeyboardViewController {
-    /// Access `coordinator` model to refresh `textView`.
-    public func updateAttributedText() {
-        #warning("does not restyle text!")
-        #warning("Implicit unwrap!")
-        textView.attributedText = coordinator.document?.markdown.attributed
-    }
-}
-
-extension KeyboardViewController {
     /// General way to store the current state before it is mutated.
     func registerUndo() {
         coordinator.assertDocumentIsValid()
