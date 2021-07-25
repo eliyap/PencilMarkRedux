@@ -13,7 +13,7 @@ final internal class Parser {
     static let shared = Parser()
     
     let context: JSContext = JSContext()!
-    let url: URL = Bundle.main.url(forResource: "main", withExtension: "js")!
+    let url: URL = Bundle.module.url(forResource: "main", withExtension: "js")!
     
     init() {
         context.evaluateScript(try! String(contentsOf: url), withSourceURL: url)

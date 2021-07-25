@@ -23,9 +23,29 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "PMAST",
-            dependencies: []),
+            dependencies: [],
+            exclude: [
+                "Javascript/env",
+                "Javascript/venv",
+                "Javascript/src",
+                "Javascript/node_modules",
+            ],
+            resources: [
+                .copy("Javascript/dist/main.js"),
+            ]
+        ),
         .testTarget(
             name: "PMASTTests",
-            dependencies: ["PMAST"]),
+            dependencies: ["PMAST"],
+            exclude: [
+                "Javascript/env",
+                "Javascript/venv",
+                "Javascript/src",
+                "Javascript/node_modules",
+            ],
+            resources: [
+                .copy("Javascript/dist/main.js"),
+            ]
+        ),
     ]
 )
