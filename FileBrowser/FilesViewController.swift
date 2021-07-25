@@ -44,15 +44,18 @@ class FilesViewController: UITableViewController {
         fatalError("Do Not Use")
     }
     
+    /// Makes `tableView` and scroll insets fit.
+    var bottomInset: CGFloat { 0
+        + (navBarHeight ?? 0)
+        + (statusBarHeight ?? 0)
+        + (toolbarHeight ?? 0)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.contentInset.bottom = 0
-            + (navBarHeight ?? 0)
-            + (toolbarHeight ?? 0)
-        tableView.verticalScrollIndicatorInsets.bottom = 0
-            + (navBarHeight ?? 0)
-            + (toolbarHeight ?? 0)
+        /// Makes `tableView` and scroll insets fit.
+        additionalSafeAreaInsets.bottom = bottomInset
         
         guard let source = tableView.dataSource as? Self else {
             fatalError("Wrong type of data source!")

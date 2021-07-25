@@ -7,9 +7,11 @@
 
 import UIKit
 
+/// Shorthand to find various inset heights
 extension UIViewController {
-    /// Shorthand to find the toolbar's height
     var toolbarHeight: CGFloat? { navigationController?.toolbar.frame.height }
     
     var navBarHeight: CGFloat? { navigationController?.navigationBar.frame.height }
+    
+    var statusBarHeight: CGFloat? { UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.windowScene?.statusBarManager?.statusBarFrame.height }
 }
