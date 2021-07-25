@@ -65,26 +65,43 @@ extension KeyboardViewController {
             coordinator.scrollLead = .canvas
         }
         
+        /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        /// Get keyboard height in frame.
+        let keyboardScreenEndFrame = keyboardFrame.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        let clearance = keyboardViewEndFrame.height - view.safeAreaInsets.bottom /// from Apple sample code
+        
+        /// Animation delay.
+        var insetDelay: TimeInterval = 0
+        
         /**
          If the text would be hidden by the keyboard, scroll it into view quickly.
          */
         if notification.name == UIResponder.keyboardDidShowNotification {
-            /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
-            guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-            let keyboardScreenEndFrame = keyboardFrame.cgRectValue
-            let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-            let clearance = keyboardViewEndFrame.height - view.safeAreaInsets.bottom /// from Apple sample code
-            
             /// Calculate how far the selected text is above the keyboard's top edge.
             let yFromTop      = textView.selectedRect.maxY - textView.contentOffset.y
             let yFromBottom   = textView.frame.height - yFromTop
             let yFromKeyboard = yFromBottom - clearance
             
             if yFromKeyboard < 0 {
-                UIViewPropertyAnimator(duration: 0.15, curve: .easeInOut) {
+                /// Adjust interval for animation
+                insetDelay = 0.15
+                
+                UIViewPropertyAnimator(duration: insetDelay, curve: .easeInOut) {
                     self.textView.contentOffset.y -= yFromKeyboard
                 }.startAnimation()
+            }
+        }
+        
+        /// Adjust Content Inset after cursor is already in view.
+        /// This avoids the implicit scroll behaviour.
+        DispatchQueue.main.asyncAfter(deadline: .now() + insetDelay) {
+            if notification.name == UIResponder.keyboardDidShowNotification {
+                self.textView.contentInset.bottom = clearance
+            } else {
+                self.textView.contentInset.bottom = .zero
             }
         }
     }
