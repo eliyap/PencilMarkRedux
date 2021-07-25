@@ -48,8 +48,6 @@
 		22C9F5F526AB9A57003FD426 /* FilesViewController.Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */; };
 		22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */; };
 		22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */; };
-		22C9F61126ABB9F2003FD426 /* LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61026ABB9F2003FD426 /* LineStyle.swift */; };
-		22C9F61526ABBB2C003FD426 /* LineErase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F61426ABBB2C003FD426 /* LineErase.swift */; };
 		22CA376426A0C4B200E95009 /* PMShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376326A0C4B200E95009 /* PMShape.swift */; };
 		22CA376626A0C52000E95009 /* Interpret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376526A0C52000E95009 /* Interpret.swift */; };
 		22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA376726A0C58D00E95009 /* ThreePointAngle.swift */; };
@@ -119,8 +117,6 @@
 		22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
 		22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PencilMarkRedux.entitlements; sourceTree = "<group>"; };
 		22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledMarkdownDocument.swift; sourceTree = "<group>"; };
-		22C9F61026ABB9F2003FD426 /* LineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStyle.swift; sourceTree = "<group>"; };
-		22C9F61426ABBB2C003FD426 /* LineErase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineErase.swift; sourceTree = "<group>"; };
 		22CA376326A0C4B200E95009 /* PMShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMShape.swift; sourceTree = "<group>"; };
 		22CA376526A0C52000E95009 /* Interpret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpret.swift; sourceTree = "<group>"; };
 		22CA376726A0C58D00E95009 /* ThreePointAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreePointAngle.swift; sourceTree = "<group>"; };
@@ -344,8 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */,
-				22C9F61026ABB9F2003FD426 /* LineStyle.swift */,
-				22C9F61426ABBB2C003FD426 /* LineErase.swift */,
 			);
 			path = StyledMarkdownDocument;
 			sourceTree = "<group>";
@@ -475,13 +469,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C9F61126ABB9F2003FD426 /* LineStyle.swift in Sources */,
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				220B852126AC90FC00081536 /* TypingViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
-				22C9F61526ABBB2C003FD426 /* LineErase.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
