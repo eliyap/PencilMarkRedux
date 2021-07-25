@@ -24,7 +24,7 @@ final class DrawableMarkdownViewController: PMViewController {
     }
     
     /// Child View Controllers
-    let keyboard: TypingViewController
+    let keyboard: KeyboardViewController
     let drawing: DrawingViewController
     
     /// Combine Conduits
@@ -35,7 +35,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     init(url: URL) {
         self.url = url
-        self.keyboard = TypingViewController()
+        self.keyboard = KeyboardViewController()
         self.drawing = DrawingViewController()
         super.init(nibName: nil, bundle: nil)
         

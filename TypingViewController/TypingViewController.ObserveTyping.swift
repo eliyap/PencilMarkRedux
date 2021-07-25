@@ -1,5 +1,5 @@
 //
-//  TypingViewController.ObserveTyping.swift
+//  KeyboardViewController.ObserveTyping.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TypingViewController {
+extension KeyboardViewController {
     
     /// How long to wait between saving operations.
     static let period = 0.5

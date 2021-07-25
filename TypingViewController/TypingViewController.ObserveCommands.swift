@@ -1,5 +1,5 @@
 //
-//  TypingViewController.ObserveCommands.swift
+//  KeyboardViewController.ObserveCommands.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import Combine
 
-extension TypingViewController {
+extension KeyboardViewController {
     /// Listen for commands and execute them.
     func observeCommands() -> Void {
         let commands: AnyCancellable = coordinator.cmdC.undo

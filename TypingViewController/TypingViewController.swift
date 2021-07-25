@@ -1,5 +1,5 @@
 //
-//  TypingViewController.swift
+//  KeyboardViewController.swift
 //  SplitControl
 //
 //  Created by Secret Asian Man Dev on 20/7/21.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class TypingViewController: PMViewController {
+final class KeyboardViewController: PMViewController {
     
     /// View presenting document for editing.
     let textView = PMTextView()
@@ -74,7 +74,7 @@ final class TypingViewController: PMViewController {
     }
 }
 
-extension TypingViewController {
+extension KeyboardViewController {
     /// Access `coordinator` model to refresh `textView`.
     public func updateAttributedText() {
         #warning("does not restyle text!")
@@ -82,7 +82,7 @@ extension TypingViewController {
     }
 }
 
-extension TypingViewController {
+extension KeyboardViewController {
     /// General way to store the current state before it is mutated.
     func registerUndo() {
         /// Register Undo Operation before affecting model object

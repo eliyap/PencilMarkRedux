@@ -1,5 +1,5 @@
 //
-//  TypingViewController_UITextViewDelegate.swift
+//  KeyboardViewController_UITextViewDelegate.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TypingViewController: UITextViewDelegate {
+extension KeyboardViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         coordinator.document.markdown.plain = textView.text
         coordinator.document.updateChangeCount(.done)

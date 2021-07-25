@@ -1,5 +1,5 @@
 //
-//  TypingViewController.ObserveTouches.swift
+//  KeyboardViewController.ObserveTouches.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-extension TypingViewController {
+extension KeyboardViewController {
     /// Attach `Combine` sinks to events from `frameC`.
     func observeTouchEvents() -> Void {
         /// Coordinate scroll position with `PKCanvasView`.

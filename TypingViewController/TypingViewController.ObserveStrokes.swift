@@ -9,7 +9,7 @@ import PencilKit
 import PMAST
 
 // MARK:- Stroke Handling
-extension TypingViewController {
+extension KeyboardViewController {
     
     /// Run at `init` to start `Combine` sink.
     func observeStrokes() -> Void {
@@ -105,7 +105,7 @@ extension TypingViewController {
 }
 
 // MARK:- Stroke Reject Layer Guts
-extension TypingViewController {
+extension KeyboardViewController {
     /// Insert layer into hierarchy if it is missing.
     /// This is here because I'm terrified of overriding the `UITextView` `init`.
     func getOrInitStrokeLayer() -> CAShapeLayer {
