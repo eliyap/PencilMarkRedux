@@ -46,7 +46,7 @@ extension Markdown {
         try! ast.linkCheck()
         
         /// Perform replacements in source Markdown.
-        replacements.forEach { text.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
+        replacements.forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
         
         /// Finally, reformat document based on updated source Markdown.
         updateAttributes()

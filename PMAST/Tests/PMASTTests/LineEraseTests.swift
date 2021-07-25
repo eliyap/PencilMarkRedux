@@ -24,7 +24,7 @@ class LineEraseTests: XCTestCase {
         
         document = Markdown("aaa")
         document.erase(to: NSMakeRange(1, 0))
-        XCTAssertEqual(document.text, "aaa")
+        XCTAssertEqual(document.plain, "aaa")
     }
 
     /// Basic erase of part of a string
@@ -33,7 +33,7 @@ class LineEraseTests: XCTestCase {
         
         document = Markdown("aDELETEa")
         document.erase(to: NSMakeRange(1, 6))
-        XCTAssertEqual(document.text, "aa")
+        XCTAssertEqual(document.plain, "aa")
     }
     
     /// Erasing part of a phrasing block, make sure the phrasing block isn't broken
@@ -42,7 +42,7 @@ class LineEraseTests: XCTestCase {
         
         document = Markdown("_aaBB_ BBaa")
         document.erase(to: NSMakeRange(3, 6)) /// target 'BB_ BB'
-        XCTAssertEqual(document.text, "_aa_aa")
+        XCTAssertEqual(document.plain, "_aa_aa")
     }
     
     func testComplete() throws {
@@ -51,7 +51,7 @@ class LineEraseTests: XCTestCase {
         document = Markdown("a _BBB_ a")
         document.erase(to: NSMakeRange(3, 3)) /// target 'BBB'
         XCTExpectFailure("Haven't implemented smart whitespace removal") {
-            XCTAssertEqual(document.text, "a a") /// is actually "a  a" (two spaces)
+            XCTAssertEqual(document.plain, "a a") /// is actually "a  a" (two spaces)
         }
     }
     
@@ -61,31 +61,31 @@ class LineEraseTests: XCTestCase {
         
         document = Markdown("_BBB_")
         document.erase(to: NSMakeRange(1, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         document = Markdown("**~~_BBB_~~**")
         document.erase(to: NSMakeRange(5, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// try multiple nested phrasing blocks
         document = Markdown("**~~_BBB_~~ ~~_BBB_~~ _BBB_**")
         document.erase(to: NSMakeRange(5, 21)) /// target 'BBB_~~ ~~_BBB_~~ _BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// check simple Headings
         document = Markdown("# BBB")
         document.erase(to: NSMakeRange(2, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// check styled headings
         document = Markdown("# ~~*BBB*~~")
         document.erase(to: NSMakeRange(5, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// Check headings with extra whitespace
         document = Markdown("###   BBB")
         document.erase(to: NSMakeRange(6, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// Check Setext style headings
         document = Markdown("""
@@ -93,7 +93,7 @@ class LineEraseTests: XCTestCase {
             ===
             """)
         document.erase(to: NSMakeRange(0, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
     }
     
@@ -104,12 +104,12 @@ class LineEraseTests: XCTestCase {
         /// simple list item check
         document = Markdown("- BBB")
         document.erase(to: NSMakeRange(2, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// nested list check
         document = Markdown("- - BBB")
         document.erase(to: NSMakeRange(4, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// multi-item list check
         document = Markdown("""
@@ -118,17 +118,17 @@ class LineEraseTests: XCTestCase {
             """)
         document.erase(to: NSMakeRange(2, 3)) /// target 'BBB'
         XCTExpectFailure("Haven't implemented list removal") {
-            XCTAssertEqual(document.text, "- aaa") /// includes extra newline
+            XCTAssertEqual(document.plain, "- aaa") /// includes extra newline
         }
         
         /// list with leading spaces
         document = Markdown("-   BBB")
         document.erase(to: NSMakeRange(4, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
         
         /// list with phrasing formatting
         document = Markdown("- ~~**BBB**~~")
         document.erase(to: NSMakeRange(6, 3)) /// target 'BBB'
-        XCTAssertEqual(document.text, "")
+        XCTAssertEqual(document.plain, "")
     }
 }

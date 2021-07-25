@@ -34,8 +34,8 @@ extension Text {
          If they are equal, then this whole node can be removed.
          */
         let intersection = position.nsRange.intersection(with: range)
-        let trimmedTarget = document.text[intersection].trimmingCharacters(in: .whitespaces)
-        let trimmedWhole = document.text[position.nsRange].trimmingCharacters(in: .whitespaces)
+        let trimmedTarget = document.plain[intersection].trimmingCharacters(in: .whitespaces)
+        let trimmedWhole = document.plain[position.nsRange].trimmingCharacters(in: .whitespaces)
         if trimmedWhole == trimmedTarget {
             _change = .toRemove
         } else {

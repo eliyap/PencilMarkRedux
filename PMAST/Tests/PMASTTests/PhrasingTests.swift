@@ -24,7 +24,7 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("aaa")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 0))
-        XCTAssertEqual(document.text, "aaa")
+        XCTAssertEqual(document.plain, "aaa")
     }
 
     /// Formats through the middle of a line
@@ -34,17 +34,17 @@ class PhrasingTests: XCTestCase {
         /// ~~DELETE~~
         document = Markdown("aSTRIKEa")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 6))
-        XCTAssertEqual(document.text, "a~~STRIKE~~a")
+        XCTAssertEqual(document.plain, "a~~STRIKE~~a")
         
         /// **STRONG**
         document = Markdown("aSTRIKEa")
         document.apply(lineStyle: Strong.self, to: NSMakeRange(1, 6))
-        XCTAssertTrue(document.text == "a**STRIKE**a" || document.text == "a__STRIKE__a")
+        XCTAssertTrue(document.plain == "a**STRIKE**a" || document.plain == "a__STRIKE__a")
         
         /// *EMPHASIS*
         document = Markdown("aSTRIKEa")
         document.apply(lineStyle: Emphasis.self, to: NSMakeRange(1, 6))
-        XCTAssertTrue(document.text == "a*STRIKE*a" || document.text == "a_STRIKE_a")
+        XCTAssertTrue(document.plain == "a*STRIKE*a" || document.plain == "a_STRIKE_a")
     }
     
     /// Strikes an entire phrasing element and its surroundings
@@ -54,17 +54,17 @@ class PhrasingTests: XCTestCase {
         /// ~~DELETE~~
         document = Markdown("aS _SSS_ Sa")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 9))
-        XCTAssertEqual(document.text, "a~~S _SSS_ S~~a")
+        XCTAssertEqual(document.plain, "a~~S _SSS_ S~~a")
         
         /// **STRONG**
         document = Markdown("aS _SSS_ Sa")
         document.apply(lineStyle: Strong.self, to: NSMakeRange(1, 9))
-        XCTAssertTrue(document.text == "a**S _SSS_ S**a" || document.text == "a__S _SSS_ S__a")
+        XCTAssertTrue(document.plain == "a**S _SSS_ S**a" || document.plain == "a__S _SSS_ S__a")
         
         /// *EMPHASIS*
         document = Markdown("aS **SSS** Sa")
         document.apply(lineStyle: Emphasis.self, to: NSMakeRange(1, 11))
-        XCTAssertTrue(document.text == "a*S **SSS** S*a" || document.text == "a_S **SSS** S_a")
+        XCTAssertTrue(document.plain == "a*S **SSS** S*a" || document.plain == "a_S **SSS** S_a")
     }
     
     /// Strikes partly inside, partly outside a phrasing block
@@ -73,7 +73,7 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("_aaBB_ BBaa")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 6))
-        XCTAssertEqual(document.text, "_aa~~BB~~_ ~~BB~~aa") /// note ejection of leading whitespace
+        XCTAssertEqual(document.plain, "_aa~~BB~~_ ~~BB~~aa") /// note ejection of leading whitespace
         
         #warning("TODO: add other phasing content")
     }
@@ -84,11 +84,11 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("AAA BBB")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 4)) /// target ' BBB'
-        XCTAssertEqual(document.text, "AAA ~~BBB~~")
+        XCTAssertEqual(document.plain, "AAA ~~BBB~~")
         
         document = Markdown("AAA *BBB*")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(3, 5)) /// target ' *BBB'
-        XCTAssertEqual(document.text, "AAA *~~BBB~~*")
+        XCTAssertEqual(document.plain, "AAA *~~BBB~~*")
     }
     
     /// test whether trailing whitespace is ejected correctly
@@ -97,11 +97,11 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("AAA BBB")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 4)) /// target 'AAA '
-        XCTAssertEqual(document.text, "~~AAA~~ BBB")
+        XCTAssertEqual(document.plain, "~~AAA~~ BBB")
         
         document = Markdown("*AAA* BBB")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 5)) /// target 'AAA* '
-        XCTAssertEqual(document.text, "*~~AAA~~* BBB")
+        XCTAssertEqual(document.plain, "*~~AAA~~* BBB")
     }
     
     /// Strikes through a block enclosing a `delete` already.
@@ -111,7 +111,7 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("aS _~~SSS~~_ Sa")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 13))
-        XCTAssertEqual(document.text, "a~~S _SSS_ S~~a")
+        XCTAssertEqual(document.plain, "a~~S _SSS_ S~~a")
         
         #warning("TODO: add other phasing content")
     }
@@ -121,7 +121,7 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("~~AAA BBB~~ CCC")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(6, 9)) /// strike `BBB~~ CCC`
-        XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
+        XCTAssertEqual(document.plain, "~~AAA BBB CCC~~")
     }
     
     func testExtensionTrailing() throws {
@@ -129,6 +129,6 @@ class PhrasingTests: XCTestCase {
         
         document = Markdown("AAA ~~BBB CCC~~")
         document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 9)) /// strike `AAA ~~BBB`
-        XCTAssertEqual(document.text, "~~AAA BBB CCC~~")
+        XCTAssertEqual(document.plain, "~~AAA BBB CCC~~")
     }
 }
