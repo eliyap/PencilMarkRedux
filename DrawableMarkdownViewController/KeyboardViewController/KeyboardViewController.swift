@@ -35,11 +35,6 @@ final class KeyboardViewController: PMViewController {
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
-        
-        #warning("DEBUG")
-        textView.layer.borderWidth = 4
-        textView.layer.borderColor = UIColor.red.cgColor
-        textView.backgroundColor = .blue
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
