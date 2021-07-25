@@ -18,8 +18,7 @@ final class ViewController: UISplitViewController {
     required init?(coder: NSCoder) {
         super.init(style: .doubleColumn)
         
-        /// Pretty bad system, needs to be redone
-        let documentVC = FileBrowserViewController.DocumentDelegate(url: iCloudURL ?? documentsURL)
+        let documentVC = FileBrowserViewController.DocumentDelegate(fileURL: nil)
         setViewController(documentVC, for: .secondary)
         
         /// File Browser

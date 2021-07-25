@@ -1,5 +1,5 @@
 //
-//  DrawingViewController_PKCanvasViewDelegate.swift
+//  CanvasViewController_PKCanvasViewDelegate.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import PencilKit
 
-extension DrawingViewController: PKCanvasViewDelegate {
+extension CanvasViewController: PKCanvasViewDelegate {
     func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
         /// Prevent focus getting "trapped" in `UITextView` (an observed problem) by grabbing focus when pencil touches down.
         canvasView.becomeFirstResponder()

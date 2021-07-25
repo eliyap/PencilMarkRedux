@@ -1,5 +1,5 @@
 //
-//  DrawingViewController.swift
+//  CanvasViewController.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DrawingViewController: PMViewController {
+final class CanvasViewController: PMViewController {
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
@@ -24,26 +24,21 @@ final class DrawingViewController: PMViewController {
         canvasView.delegate = self
         
         /// Allows text to show through
-        #warning("debug color")
-        canvasView.backgroundColor = UIColor(cgColor: CGColor(red: 1, green: 0, blue: 0, alpha: 0.5))
+        canvasView.backgroundColor = .clear
         canvasView.isOpaque = false
         
         /// Attach gesture recognizer so we can respond to taps.
         canvasView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
         
-        #warning("DEBUG")
-        canvasView.layer.borderWidth = 2
-        canvasView.layer.borderColor = UIColor.green.cgColor
-        
         /// Allow scrolling even when content is too small
         canvasView.alwaysBounceVertical = true
-        
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
     func coordinate(with _: DrawableMarkdownViewController) {
         /// Coordinate via `Combine` with ``coordinator``.
         observeSize()
+        observeScroll()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +53,7 @@ final class DrawingViewController: PMViewController {
 }
 
 // MARK:- Commands
-extension DrawingViewController {
+extension CanvasViewController {
     
     override var keyCommands: [UIKeyCommand]? {
         (super.keyCommands ?? []) + [
@@ -73,11 +68,18 @@ extension DrawingViewController {
 }
 
 // MARK:- Tap Handling
-extension DrawingViewController {
+extension CanvasViewController {
     
     /// Action to perform on tap gesture.
     @objc /// expose to `#selector`
     func didTapView(_ sender: UITapGestureRecognizer) -> Void {
         coordinator.frameC.tapLocation = sender.location(in: canvasView)
+    }
+}
+
+extension CanvasViewController {
+    /// Call when a new document is opened and the view needs to present it
+    func present(topInset: CGFloat) {
+        canvasView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }
 }

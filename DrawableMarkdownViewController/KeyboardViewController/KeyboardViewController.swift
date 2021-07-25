@@ -1,5 +1,5 @@
 //
-//  TypingViewController.swift
+//  KeyboardViewController.swift
 //  SplitControl
 //
 //  Created by Secret Asian Man Dev on 20/7/21.
@@ -8,13 +8,13 @@
 import UIKit
 import Combine
 
-final class TypingViewController: PMViewController {
+final class KeyboardViewController: PMViewController {
     
     /// View presenting document for editing.
     let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { coordinator.document.undoManager }
+    override var undoManager: UndoManager? { coordinator.document?.undoManager }
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
@@ -36,9 +36,7 @@ final class TypingViewController: PMViewController {
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
         
-        #warning("DEBUG")
-        textView.layer.borderWidth = 4
-        textView.layer.borderColor = UIColor.red.cgColor
+        setupNotifications()
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
@@ -74,17 +72,11 @@ final class TypingViewController: PMViewController {
     }
 }
 
-extension TypingViewController {
-    /// Access `coordinator` model to refresh `textView`.
-    public func updateAttributedText() {
-        #warning("does not restyle text!")
-        textView.attributedText = coordinator.document.markdown.attributed
-    }
-}
-
-extension TypingViewController {
+extension KeyboardViewController {
     /// General way to store the current state before it is mutated.
     func registerUndo() {
+        coordinator.assertDocumentIsValid()
+        
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText
         textView.undoManager?.registerUndo(withTarget: textView) { view in
@@ -103,8 +95,17 @@ extension TypingViewController {
             }
             
             /// Roll back model state
-            view.controller.coordinator.document.markdown.plain = view.text
-            view.controller.coordinator.document.markdown.updateAttributes()
+            view.controller.coordinator.document?.markdown.plain = view.text
+            view.controller.coordinator.document?.markdown.updateAttributes()
         }
+    }
+}
+
+extension KeyboardViewController {
+    /// Call when a new document is opened and the view needs to present it
+    func present(topInset: CGFloat) {
+        textView.attributedText = coordinator.document?.markdown.attributed
+        
+        textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }
 }

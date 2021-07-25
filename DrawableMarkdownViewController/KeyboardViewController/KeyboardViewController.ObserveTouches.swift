@@ -1,5 +1,5 @@
 //
-//  TypingViewController.ObserveTouches.swift
+//  KeyboardViewController.ObserveTouches.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -8,12 +8,15 @@
 import Foundation
 import Combine
 
-extension TypingViewController {
+extension KeyboardViewController {
     /// Attach `Combine` sinks to events from `frameC`.
     func observeTouchEvents() -> Void {
         /// Coordinate scroll position with `PKCanvasView`.
         let scroll: AnyCancellable = coordinator.frameC.$scrollY
             .sink { [weak self] in
+                /// Reject events from own delegate
+                guard self?.coordinator.scrollLead != .keyboard else { return }
+                
                 self?.textView.contentOffset.y = $0
             }
         store(scroll)
