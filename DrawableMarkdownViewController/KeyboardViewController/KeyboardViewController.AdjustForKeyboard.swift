@@ -12,7 +12,7 @@ import UIKit
 extension KeyboardViewController {
     
     /// Register for notifications
-    private func setupNotifications() {
+    func setupNotifications() {
         let NCD = NotificationCenter.default
         NCD.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NCD.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -39,8 +39,11 @@ extension KeyboardViewController {
             )
         }
 
+        /// Adjust text and scrollbars to clear keyboard, if any
         textView.scrollIndicatorInsets = textView.contentInset
-
+        textView.textContainerInset.bottom = textView.contentInset.bottom
+        coordinator.canvas.canvasView.scrollIndicatorInsets = textView.contentInset
+        
         guard let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
             fatalError("*** Unable to get the animation duration ***")
         }

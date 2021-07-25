@@ -35,6 +35,8 @@ final class KeyboardViewController: PMViewController {
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
+        
+        setupNotifications()
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
