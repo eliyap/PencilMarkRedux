@@ -203,7 +203,6 @@
 				220B852626AC989700081536 /* TypingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
-				22C9F5DB26AB999D003FD426 /* Imported */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
 				22C9F5F826AB9DCA003FD426 /* Conduits */,
 				22C9F5E726AB9A3A003FD426 /* FileBrowser */,
@@ -222,6 +221,7 @@
 			children = (
 				22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */,
 				22C9F5D626AB9326003FD426 /* AppRoot */,
+				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -289,15 +289,6 @@
 			path = AppRoot;
 			sourceTree = "<group>";
 		};
-		22C9F5DB26AB999D003FD426 /* Imported */ = {
-			isa = PBXGroup;
-			children = (
-				22C9F5E526AB9A27003FD426 /* Constants.swift */,
-				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
-			);
-			path = Imported;
-			sourceTree = "<group>";
-		};
 		22C9F5E726AB9A3A003FD426 /* FileBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +319,7 @@
 			children = (
 				220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */,
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
+				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 			);
 			path = DrawableMarkdownViewController;
 			sourceTree = "<group>";
