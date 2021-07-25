@@ -34,9 +34,9 @@ extension KeyboardViewController {
 
         /// Implicitly causes `textView` `selectedRange` to scroll into view.
         if notification.name == UIResponder.keyboardWillHideNotification {
-            textView.contentInset = .zero
+            textView.textContainerInset = .zero
         } else {
-            textView.contentInset = UIEdgeInsets(
+            textView.textContainerInset = UIEdgeInsets(
                 top: 0,
                 left: 0,
                 bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom,
@@ -45,11 +45,16 @@ extension KeyboardViewController {
         }
 
         /// Adjust text and scrollbars to clear keyboard, if any
-        textView.scrollIndicatorInsets = textView.contentInset
-        textView.textContainerInset.bottom = textView.contentInset.bottom
-        
+        textView.scrollIndicatorInsets = textView.textContainerInset
+                
         #warning("move this to other class!")
-        coordinator.canvas.canvasView.scrollIndicatorInsets = textView.contentInset
+        coordinator.canvas.canvasView.scrollIndicatorInsets = textView.textContainerInset
+        
+        /**
+         Note to `self`: do not set `contentInset` here!
+         - in my testing, setting `contentInset` causes an automatic scroll, which cannot be disabled, and cannot be monitored.
+         - this is very bad because it throws the Keybaord and Canvas views out of alignment in a way that we cannot fix, causing a massive view "jump"!
+         */
     }
     
     @objc
