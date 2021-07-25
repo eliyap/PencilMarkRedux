@@ -14,13 +14,13 @@ public struct Markdown {
     public var plain: String
     
     /// A pretty styled version of the Markdown.
-    public var styledText: NSMutableAttributedString
+    public var attributed: NSMutableAttributedString
     internal var ast: Root! = nil
     
     public init(_ text: String) {
         self.plain = text
         self.ast = Parser.shared.parse(markdown: text)
-        styledText = Self.attributedText(from: text, with: ast)
+        attributed = Self.attributedText(from: text, with: ast)
     }
 }
 
@@ -32,7 +32,7 @@ extension Markdown {
         ast = Parser.shared.parse(markdown: plain)
         
         /// re-format string based on AST
-        styledText = Self.attributedText(from: plain, with: ast)
+        attributed = Self.attributedText(from: plain, with: ast)
     }
     
     /// Uses the AST to style an attributed string
