@@ -10,7 +10,7 @@ import UIKit
 
 extension StyledMarkdown {
     /// A straight line erase operation.
-    mutating func erase(to range: NSRange) -> Void {
+    public mutating func erase(to range: NSRange) -> Void {
         /// reject empty ranges
         guard range.length > 0 else { return }
         let intersected: [Text] = ast.intersectingText(in: range)

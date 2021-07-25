@@ -10,7 +10,7 @@ import UIKit
 
 extension StyledMarkdown {
     /// Note: view controllers should register undo before this method mutates the model.
-    mutating func apply<T: Parent>(
+    public mutating func apply<T: Parent>(
         lineStyle: T.Type,
         to range: NSRange
     ) -> Void {
