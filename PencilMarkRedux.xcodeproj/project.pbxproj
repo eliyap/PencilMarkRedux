@@ -60,6 +60,7 @@
 		22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
+		22F70B2A26ADD15200CC8935 /* KeyboardViewContoller.adjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewContoller.adjustForKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
+		22F70B2926ADD15200CC8935 /* KeyboardViewContoller.adjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewContoller.adjustForKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */,
 				220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */,
 				220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */,
+				22F70B2926ADD15200CC8935 /* KeyboardViewContoller.adjustForKeyboard.swift */,
 				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
 				220B852726AC990200081536 /* PMTextView.swift */,
 			);
@@ -472,6 +475,7 @@
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */,
+				22F70B2A26ADD15200CC8935 /* KeyboardViewContoller.adjustForKeyboard.swift in Sources */,
 				220B852826AC990200081536 /* PMTextView.swift in Sources */,
 				220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */,
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
