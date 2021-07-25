@@ -64,6 +64,7 @@
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
 		22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */; };
+		22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3526AE263600CC8935 /* Notification.edgeInsets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
 		22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
+		22F70B3526AE263600CC8935 /* Notification.edgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.edgeInsets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,9 +194,9 @@
 				220B852C26AC9AC000081536 /* CanvasViewController.swift */,
 				220B853026AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift */,
 				220B853226AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift */,
-				22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */,
 				220B852E26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift */,
 				22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */,
+				22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */,
 				22CA377926A22B9300E95009 /* PMCanvasView.swift */,
 			);
 			path = CanvasViewController;
@@ -256,6 +258,7 @@
 				22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */,
 				22CA376D26A0D99F00E95009 /* Path_BezierCurve.swift */,
 				22DA13FA269D2BEC00D90EA7 /* UIFont_Style.swift */,
+				22F70B3526AE263600CC8935 /* Notification.edgeInsets.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				220B852F26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift in Sources */,
 				220B852D26AC9AC000081536 /* CanvasViewController.swift in Sources */,
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
+				22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */,

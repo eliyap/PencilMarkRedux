@@ -18,22 +18,8 @@ extension CanvasViewController {
     
     @objc
     func keyboardWillAdjust(_ notification: Notification) {
-        
-        /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-        let keyboardScreenEndFrame = keyboardFrame.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            canvasView.scrollIndicatorInsets = .zero
-        } else {
-            canvasView.scrollIndicatorInsets = UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom,
-                right: 0
-            )
-        }
+        /// Adjust scroll indicator size to account for keyboard.
+        guard let inset = view.edgeInset(for: notification) else { return }
+        canvasView.scrollIndicatorInsets = inset
     }
 }

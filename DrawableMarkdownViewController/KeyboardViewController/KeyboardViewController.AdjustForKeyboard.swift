@@ -26,25 +26,11 @@ extension KeyboardViewController {
         /// Is reset after keyboard finishes showing.
         coordinator.scrollLead = .keyboard
         
-        /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-        let keyboardScreenEndFrame = keyboardFrame.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            textView.textContainerInset = .zero
-        } else {
-            textView.textContainerInset = UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom,
-                right: 0
-            )
-        }
-
-        /// Adjust text and scrollbars to clear keyboard, if any
-        textView.scrollIndicatorInsets = textView.textContainerInset
+        guard let inset = view.edgeInset(for: notification) else { return }
+        
+        /// Adjust text and scrollbars to avoid keyboard frame
+        textView.textContainerInset = inset
+        textView.scrollIndicatorInsets = inset
         
         /**
          Note to `self`: do not set `contentInset` here!
