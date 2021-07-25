@@ -105,7 +105,7 @@ extension DrawableMarkdownViewController {
             view.bringSubviewToFront(noDocument.view)
         }
         
-        /// Update Naviagation Bar Title
+        /// Update Navigation Bar Title
         navigationItem.title = document?.localizedName ?? ""
     }
 }
