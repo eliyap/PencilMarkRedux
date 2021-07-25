@@ -65,26 +65,27 @@ extension KeyboardViewController {
             coordinator.scrollLead = .canvas
         }
         
-//        textView.contentOffset.y = -70
-            
-        let rect = textView.selectedRect
-        let offset = textView.contentOffset.y
-        
-        textView.scrollRectToVisible(.zero, animated: true)
-        
-        /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        /**
+         If the text would be hidden by the keyboard, scroll it into view quickly.
+         */
+        if notification.name == UIResponder.keyboardDidShowNotification {
+            /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
+            guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
-        let keyboardScreenEndFrame = keyboardFrame.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        let clearance = keyboardViewEndFrame.height - view.safeAreaInsets.bottom /// from Apple sample code
-        
-        /// Calculate how far the selected text is above the keyboard's top edge.
-        let yFromTop      = textView.selectedRect.maxY - textView.contentOffset.y
-        let yFromBottom   = textView.frame.height - yFromTop
-        let yFromKeyboard = yFromBottom - clearance
-        if yFromKeyboard < 0 {
-            textView.contentOffset.y -= yFromKeyboard
+            let keyboardScreenEndFrame = keyboardFrame.cgRectValue
+            let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+            let clearance = keyboardViewEndFrame.height - view.safeAreaInsets.bottom /// from Apple sample code
+            
+            /// Calculate how far the selected text is above the keyboard's top edge.
+            let yFromTop      = textView.selectedRect.maxY - textView.contentOffset.y
+            let yFromBottom   = textView.frame.height - yFromTop
+            let yFromKeyboard = yFromBottom - clearance
+            
+            if yFromKeyboard < 0 {
+                UIViewPropertyAnimator(duration: 0.25, curve: .easeInOut) {
+                    self.textView.contentOffset.y -= yFromKeyboard
+                }.startAnimation()
+            }
         }
     }
 }
