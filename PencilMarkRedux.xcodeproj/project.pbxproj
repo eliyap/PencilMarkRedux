@@ -22,8 +22,8 @@
 		220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */; };
 		220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */; };
 		220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */; };
-		2214E137269C8FD70046EF32 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2214E136269C8FD70046EF32 /* OrderedCollections */; };
 		2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E13B269CAC3B0046EF32 /* String_Subscript.swift */; };
+		2215B88526AD13CB00D2A0AE /* PMAST in Frameworks */ = {isa = PBXBuildFile; productRef = 2215B88426AD13CB00D2A0AE /* PMAST */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -144,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2214E137269C8FD70046EF32 /* OrderedCollections in Frameworks */,
+				2215B88526AD13CB00D2A0AE /* PMAST in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +386,7 @@
 			);
 			name = PencilMarkRedux;
 			packageProductDependencies = (
-				2214E136269C8FD70046EF32 /* OrderedCollections */,
+				2215B88426AD13CB00D2A0AE /* PMAST */,
 			);
 			productName = PencilMarkRedux;
 			productReference = 22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */;
@@ -438,7 +438,6 @@
 			);
 			mainGroup = 22AF74AD269BA5F0007D9891;
 			packageReferences = (
-				2214E135269C8FD70046EF32 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 22AF74AD269BA5F0007D9891;
 			projectDirPath = "";
@@ -784,22 +783,10 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2214E135269C8FD70046EF32 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		2214E136269C8FD70046EF32 /* OrderedCollections */ = {
+		2215B88426AD13CB00D2A0AE /* PMAST */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2214E135269C8FD70046EF32 /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
+			productName = PMAST;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
