@@ -11,8 +11,10 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
     
+    private let tempURL = documentsURL.appendingPathComponent("TEMP.txt")
+    
     /// Folder URL for placing new documents.
-    private let url: URL
+    private let fileURL: URL?
     
     /// Nullable underlying model object
     private var _document: StyledMarkdownDocument?
@@ -34,8 +36,8 @@ final class DrawableMarkdownViewController: PMViewController {
     let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
     
-    init(url: URL) {
-        self.url = url
+    init(fileURL: URL?) {
+        self.fileURL = fileURL
         self.keyboard = KeyboardViewController()
         self.drawing = CanvasViewController()
         self.noDocument = NoDocumentHost()
@@ -82,12 +84,11 @@ extension DrawableMarkdownViewController {
         } else {
             /// Create new document here.
             let data = "".data(using: .utf8)! /// Initialize with no text
-            let newURL = url.appendingPathComponent("Untitled.txt") /// Default title
-            try! data.write(to: newURL)
+            try! data.write(to: tempURL)
             
-            print("New Document Created")
+            print("Temp Document Written")
             
-            _document = StyledMarkdownDocument(fileURL: newURL)
+            _document = StyledMarkdownDocument(fileURL: tempURL)
             return _document!
         }
     }
