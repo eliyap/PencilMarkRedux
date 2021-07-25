@@ -95,9 +95,18 @@ extension DrawableMarkdownViewController {
     private func open(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
-            
-            /// Hide placeholder view.
-            view.sendSubviewToBack(noDocument.view)
+            document?.open { (success) in
+                guard success else {
+                    assert(false, "Failed to open document!")
+                    return
+                }
+                
+                /// Hide placeholder view.
+                self.view.sendSubviewToBack(self.noDocument.view)
+                
+                self.keyboard.textView.attributedText = self.document?.markdown.attributed
+                print(self.document?.markdown.plain)
+            }
         } else {
             document = nil
             
