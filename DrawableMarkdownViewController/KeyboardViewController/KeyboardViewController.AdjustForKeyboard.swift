@@ -59,8 +59,42 @@ extension KeyboardViewController {
     
     @objc
     func keyboardDidAdjust(_ notification: Notification) {
-        /// Relinquish control of scroll position.
-        /// Is set when keyboard starts showing.
-        coordinator.scrollLead = .canvas
+        defer {
+            /// Relinquish control of scroll position.
+            /// Is set when keyboard starts showing.
+            coordinator.scrollLead = .canvas
+        }
+        
+//        textView.contentOffset.y = -70
+            
+        let rect = textView.selectedRect
+        let offset = textView.contentOffset.y
+        
+        textView.scrollRectToVisible(.zero, animated: true)
+        
+        /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardFrame.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        let clearance = keyboardViewEndFrame.height - view.safeAreaInsets.bottom /// from Apple sample code
+        
+        /// Calculate how far the selected text is above the keyboard's top edge.
+        let yFromTop      = textView.selectedRect.maxY - textView.contentOffset.y
+        let yFromBottom   = textView.frame.height - yFromTop
+        let yFromKeyboard = yFromBottom - clearance
+        if yFromKeyboard < 0 {
+            textView.contentOffset.y -= yFromKeyboard
+        }
+    }
+}
+
+extension UITextView {
+    /// Shorthard for finding the bounding rectangle around the selected text range.
+    var selectedRect: CGRect {
+        firstRect(for: textRange(
+            from: position(from: beginningOfDocument, offset: selectedRange.lowerBound)!,
+            to: position(from: beginningOfDocument, offset: selectedRange.lowerBound)!
+        )!)
     }
 }
