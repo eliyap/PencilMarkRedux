@@ -14,13 +14,17 @@ extension KeyboardViewController {
     /// Register for notifications
     func setupNotifications() {
         let NCD = NotificationCenter.default
-        NCD.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NCD.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NCD.addObserver(self, selector: #selector(keyboardWillAdjust), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NCD.addObserver(self, selector: #selector(keyboardWillAdjust), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NCD.addObserver(self, selector: #selector(keyboardDidAdjust), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NCD.addObserver(self, selector: #selector(keyboardDidAdjust), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     @objc
-    func adjustForKeyboard(_ notification: Notification) {
-        let userInfo = notification.userInfo
+    func keyboardWillAdjust(_ notification: Notification) {
+        /// Allow `textView` to control scroll position.
+        /// Is reset after keyboard finishes showing.
+        coordinator.scrollLead = .keyboard
         
         /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -43,30 +47,15 @@ extension KeyboardViewController {
         /// Adjust text and scrollbars to clear keyboard, if any
         textView.scrollIndicatorInsets = textView.contentInset
         textView.textContainerInset.bottom = textView.contentInset.bottom
+        
+        #warning("move this to other class!")
         coordinator.canvas.canvasView.scrollIndicatorInsets = textView.contentInset
-        
-        textView.setContentOffset(textView.contentOffset, animated: false)
-        
-        print("Text Offset \(textView.contentOffset.y)")
-//        guard let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
-//            fatalError("*** Unable to get the animation duration ***")
-//        }
-//
-//        guard let curveInt = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else {
-//            fatalError("*** Unable to get the animation curve ***")
-//        }
-//
-//        guard let animationCurve = UIView.AnimationCurve(rawValue: curveInt) else {
-//            fatalError("*** Unable to parse the animation curve ***")
-//        }
-//
-//        /// Animate scroll to selected range.
-//        UIViewPropertyAnimator(duration: animationDuration, curve: animationCurve) {
-//            self.view.layoutIfNeeded()
-//
-//            let selectedRange = self.textView.selectedRange
-//            self.textView.scrollRangeToVisible(selectedRange)
-//
-//        }.startAnimation()
+    }
+    
+    @objc
+    func keyboardDidAdjust(_ notification: Notification) {
+        /// Relinquish control of scroll position.
+        /// Is set when keyboard starts showing.
+        coordinator.scrollLead = .canvas
     }
 }
