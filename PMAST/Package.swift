@@ -27,10 +27,18 @@ let package = Package(
                 .product(name: "OrderedCollections", package: "swift-collections"),
             ],
             exclude: [
+                /// Virtual Environment Folders
                 "Javascript/env",
                 "Javascript/venv",
+                /// TypeScript Source
                 "Javascript/src",
+                /// Node Library
                 "Javascript/node_modules",
+                /// Build Settings
+                "Javascript/tsconfig.json",
+                "Javascript/package.json",
+                "Javascript/package-lock.json",
+                "Javascript/webpack.config.js",
             ],
             resources: [
                 .copy("Javascript/dist/main.js"),
@@ -43,10 +51,18 @@ let package = Package(
                 .product(name: "OrderedCollections", package: "swift-collections"),
             ],
             exclude: [
+                /// Virtual Environment Folders
                 "Javascript/env",
                 "Javascript/venv",
+                /// TypeScript Source
                 "Javascript/src",
+                /// Node Library
                 "Javascript/node_modules",
+                /// Build Settings
+                "Javascript/tsconfig.json",
+                "Javascript/package.json",
+                "Javascript/package-lock.json",
+                "Javascript/webpack.config.js",
             ],
             resources: [
                 .copy("Javascript/dist/main.js"),
