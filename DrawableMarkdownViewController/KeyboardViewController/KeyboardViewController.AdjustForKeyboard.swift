@@ -28,6 +28,7 @@ extension KeyboardViewController {
         let keyboardScreenEndFrame = keyboardFrame.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
+        /// Implicitly causes `textView` `selectedRange` to scroll into view.
         if notification.name == UIResponder.keyboardWillHideNotification {
             textView.contentInset = .zero
         } else {
@@ -44,25 +45,25 @@ extension KeyboardViewController {
         textView.textContainerInset.bottom = textView.contentInset.bottom
         coordinator.canvas.canvasView.scrollIndicatorInsets = textView.contentInset
         
-        guard let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
-            fatalError("*** Unable to get the animation duration ***")
-        }
-         
-        guard let curveInt = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else {
-            fatalError("*** Unable to get the animation curve ***")
-        }
-         
-        guard let animationCurve = UIView.AnimationCurve(rawValue: curveInt) else {
-            fatalError("*** Unable to parse the animation curve ***")
-        }
-
-        /// Animate scroll to selected range.
-        UIViewPropertyAnimator(duration: animationDuration, curve: animationCurve) {
-            self.view.layoutIfNeeded()
-            
-            let selectedRange = self.textView.selectedRange
-            self.textView.scrollRangeToVisible(selectedRange)
-            
-        }.startAnimation()
+//        guard let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
+//            fatalError("*** Unable to get the animation duration ***")
+//        }
+//
+//        guard let curveInt = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else {
+//            fatalError("*** Unable to get the animation curve ***")
+//        }
+//
+//        guard let animationCurve = UIView.AnimationCurve(rawValue: curveInt) else {
+//            fatalError("*** Unable to parse the animation curve ***")
+//        }
+//
+//        /// Animate scroll to selected range.
+//        UIViewPropertyAnimator(duration: animationDuration, curve: animationCurve) {
+//            self.view.layoutIfNeeded()
+//
+//            let selectedRange = self.textView.selectedRange
+//            self.textView.scrollRangeToVisible(selectedRange)
+//
+//        }.startAnimation()
     }
 }
