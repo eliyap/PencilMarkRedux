@@ -80,6 +80,11 @@ extension DrawableMarkdownViewController {
         /// If URL is already open, do nothing
         guard document?.fileURL != fileURL else { return }
         
+        /// Stop interaction with the document
+        keyboard.resignFirstResponder()
+        canvas.resignFirstResponder()
+        keyboard.textView.endEditing(true)
+        
         /// close document, if any, then open new
         if let document = document {
             document.close { (success) in
