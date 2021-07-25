@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Parent: Node {
+public class Parent: Node {
         
     override class var type: String { "Node" }
         

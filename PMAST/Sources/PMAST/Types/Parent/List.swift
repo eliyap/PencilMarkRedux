@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class List: Parent {
+public final class List: Parent {
     
     override class var type: String { "list" }
     

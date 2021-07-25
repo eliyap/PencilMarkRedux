@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class ListItem: Parent {
+public final class ListItem: Parent {
     override class var type: String { "listItem" }
     
     let checked: Bool?

@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class Image: Node {
+public final class Image: Node {
     override class var type: String { "image" }
 }

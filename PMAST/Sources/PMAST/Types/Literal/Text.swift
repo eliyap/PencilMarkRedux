@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Text: Literal {
+public final class Text: Literal {
     override class var type: String { "text" }
     
     override func getReplacement() -> [Replacement] {
