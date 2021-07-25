@@ -45,6 +45,9 @@ extension KeyboardViewController {
         textView.textContainerInset.bottom = textView.contentInset.bottom
         coordinator.canvas.canvasView.scrollIndicatorInsets = textView.contentInset
         
+        textView.setContentOffset(textView.contentOffset, animated: false)
+        
+        print("Text Offset \(textView.contentOffset.y)")
 //        guard let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
 //            fatalError("*** Unable to get the animation duration ***")
 //        }

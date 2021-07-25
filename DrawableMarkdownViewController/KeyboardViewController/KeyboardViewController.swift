@@ -109,3 +109,9 @@ extension KeyboardViewController {
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }
 }
+
+extension KeyboardViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("Keyboard Offset: \(scrollView.contentOffset.y), \(textView.contentOffset.y)")
+    }
+}
