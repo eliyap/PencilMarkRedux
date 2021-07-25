@@ -111,7 +111,9 @@ extension KeyboardViewController {
 }
 
 extension KeyboardViewController: UIScrollViewDelegate {
+    /// Set common scroll position if this is leading.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("Keyboard Offset: \(scrollView.contentOffset.y), \(textView.contentOffset.y)")
+        guard coordinator.scrollLead == .keyboard else { return }
+        coordinator.frameC.scrollY = scrollView.contentOffset.y
     }
 }

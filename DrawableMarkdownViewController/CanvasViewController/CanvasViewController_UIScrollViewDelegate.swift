@@ -8,8 +8,9 @@
 import UIKit
 
 extension CanvasViewController: UIScrollViewDelegate {
+    /// Set common scroll position if this is leading.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        /// Pass scroll offset into Combine conduit
+        guard coordinator.scrollLead == .canvas else { return }
         coordinator.frameC.scrollY = scrollView.contentOffset.y
     }
 }

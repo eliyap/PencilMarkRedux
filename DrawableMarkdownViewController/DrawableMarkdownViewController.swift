@@ -25,6 +25,9 @@ final class DrawableMarkdownViewController: PMViewController {
     let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
     
+    enum ScrollLead { case keyboard, canvas }
+    var scrollLead = ScrollLead.canvas
+    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
