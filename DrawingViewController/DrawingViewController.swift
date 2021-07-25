@@ -1,5 +1,5 @@
 //
-//  DrawingViewController.swift
+//  CanvasViewController.swift
 //  PencilMarkRedux
 //
 //  Created by Secret Asian Man Dev on 24/7/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DrawingViewController: PMViewController {
+final class CanvasViewController: PMViewController {
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
@@ -58,7 +58,7 @@ final class DrawingViewController: PMViewController {
 }
 
 // MARK:- Commands
-extension DrawingViewController {
+extension CanvasViewController {
     
     override var keyCommands: [UIKeyCommand]? {
         (super.keyCommands ?? []) + [
@@ -73,7 +73,7 @@ extension DrawingViewController {
 }
 
 // MARK:- Tap Handling
-extension DrawingViewController {
+extension CanvasViewController {
     
     /// Action to perform on tap gesture.
     @objc /// expose to `#selector`

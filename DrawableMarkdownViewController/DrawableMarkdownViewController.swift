@@ -25,7 +25,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     /// Child View Controllers
     let keyboard: KeyboardViewController
-    let drawing: DrawingViewController
+    let drawing: CanvasViewController
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -36,7 +36,7 @@ final class DrawableMarkdownViewController: PMViewController {
     init(url: URL) {
         self.url = url
         self.keyboard = KeyboardViewController()
-        self.drawing = DrawingViewController()
+        self.drawing = CanvasViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
