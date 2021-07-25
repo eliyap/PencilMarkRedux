@@ -32,7 +32,6 @@ extension KeyboardViewController {
         let keyboardScreenEndFrame = keyboardFrame.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
-        /// Implicitly causes `textView` `selectedRange` to scroll into view.
         if notification.name == UIResponder.keyboardWillHideNotification {
             textView.textContainerInset = .zero
         } else {
@@ -46,9 +45,6 @@ extension KeyboardViewController {
 
         /// Adjust text and scrollbars to clear keyboard, if any
         textView.scrollIndicatorInsets = textView.textContainerInset
-                
-        #warning("move this to other class!")
-        coordinator.canvas.canvasView.scrollIndicatorInsets = textView.textContainerInset
         
         /**
          Note to `self`: do not set `contentInset` here!
@@ -96,7 +92,8 @@ extension KeyboardViewController {
         }
         
         /// Adjust Content Inset after cursor is already in view.
-        /// This avoids the implicit scroll behaviour.
+        /// This sidesteps the implicit scroll behaviour.
+        /// Implicitly causes `textView` `selectedRange` to scroll into view.
         DispatchQueue.main.asyncAfter(deadline: .now() + insetDelay) {
             if notification.name == UIResponder.keyboardDidShowNotification {
                 self.textView.contentInset.bottom = clearance

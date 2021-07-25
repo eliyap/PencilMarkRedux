@@ -63,6 +63,7 @@
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
+		22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
+		22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				220B852C26AC9AC000081536 /* CanvasViewController.swift */,
 				220B853026AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift */,
 				220B853226AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift */,
+				22F70B3326AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift */,
 				220B852E26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift */,
 				22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */,
 				22CA377926A22B9300E95009 /* PMCanvasView.swift */,
@@ -489,6 +492,7 @@
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
+				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
 				22DA13FB269D2BEC00D90EA7 /* UIFont_Style.swift in Sources */,
 				22C9F5F226AB9A57003FD426 /* FilesViewController_UITableViewDataSource.swift in Sources */,
 				22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */,
