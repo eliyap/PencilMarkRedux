@@ -39,6 +39,7 @@ final class KeyboardViewController: PMViewController {
         #warning("DEBUG")
         textView.layer.borderWidth = 4
         textView.layer.borderColor = UIColor.red.cgColor
+        textView.backgroundColor = .blue
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.
