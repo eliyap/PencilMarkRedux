@@ -18,10 +18,10 @@
 		220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */; };
 		220B852826AC990200081536 /* PMTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852726AC990200081536 /* PMTextView.swift */; };
 		220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */; };
-		220B852D26AC9AC000081536 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852C26AC9AC000081536 /* DrawingViewController.swift */; };
-		220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */; };
-		220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */; };
-		220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */; };
+		220B852D26AC9AC000081536 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852C26AC9AC000081536 /* CanvasViewController.swift */; };
+		220B852F26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852E26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift */; };
+		220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853026AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift */; };
+		220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853226AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift */; };
 		2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214E13B269CAC3B0046EF32 /* String_Subscript.swift */; };
 		2215B88526AD13CB00D2A0AE /* PMAST in Frameworks */ = {isa = PBXBuildFile; productRef = 2215B88426AD13CB00D2A0AE /* PMAST */; };
 		2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */; };
@@ -84,10 +84,10 @@
 		220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveTouches.swift; sourceTree = "<group>"; };
 		220B852726AC990200081536 /* PMTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMTextView.swift; sourceTree = "<group>"; };
 		220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveCommands.swift; sourceTree = "<group>"; };
-		220B852C26AC9AC000081536 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
-		220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.ObserveSize.swift; sourceTree = "<group>"; };
-		220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
-		220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
+		220B852C26AC9AC000081536 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		220B852E26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveSize.swift; sourceTree = "<group>"; };
+		220B853026AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
+		220B853226AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		220B853826ACD3EC00081536 /* PMAST */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PMAST; sourceTree = "<group>"; };
 		2214E13B269CAC3B0046EF32 /* String_Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Subscript.swift; sourceTree = "<group>"; };
 		2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocumentError.swift; sourceTree = "<group>"; };
@@ -176,16 +176,16 @@
 			path = KeyboardViewController;
 			sourceTree = "<group>";
 		};
-		220B852B26AC9AB700081536 /* DrawingViewController */ = {
+		220B852B26AC9AB700081536 /* CanvasViewController */ = {
 			isa = PBXGroup;
 			children = (
-				220B852C26AC9AC000081536 /* DrawingViewController.swift */,
-				220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */,
-				220B853226AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift */,
-				220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */,
+				220B852C26AC9AC000081536 /* CanvasViewController.swift */,
+				220B853026AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift */,
+				220B853226AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift */,
+				220B852E26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift */,
 				22CA377926A22B9300E95009 /* PMCanvasView.swift */,
 			);
-			path = DrawingViewController;
+			path = CanvasViewController;
 			sourceTree = "<group>";
 		};
 		220B853526ACD2C400081536 /* Frameworks */ = {
@@ -199,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				220B853826ACD3EC00081536 /* PMAST */,
-				220B852B26AC9AB700081536 /* DrawingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
@@ -320,6 +319,7 @@
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				220B852626AC989700081536 /* KeyboardViewController */,
+				220B852B26AC9AB700081536 /* CanvasViewController */,
 			);
 			path = DrawableMarkdownViewController;
 			sourceTree = "<group>";
@@ -467,8 +467,8 @@
 				22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */,
-				220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */,
-				220B852D26AC9AC000081536 /* DrawingViewController.swift in Sources */,
+				220B852F26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift in Sources */,
+				220B852D26AC9AC000081536 /* CanvasViewController.swift in Sources */,
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
@@ -481,8 +481,8 @@
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
-				220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */,
-				220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */,
+				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
+				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
