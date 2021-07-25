@@ -53,9 +53,12 @@ extension TypingViewController {
             return
         }
         
+        registerUndo() /// register before model changes
+        
+        /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        #warning("Register Undo Here")
         coordinator.document.markdown.apply(lineStyle: Delete.self, to: nsRange)
+        coordinator.document.updateChangeCount(.done)
         textView.attributedText = coordinator.document.markdown.attributed
     }
     
@@ -73,9 +76,12 @@ extension TypingViewController {
             return
         }
         
+        registerUndo() /// register before model changes
+        
+        /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        #warning("Register Undo Here")
         coordinator.document.markdown.erase(to: nsRange)
+        coordinator.document.updateChangeCount(.done)
         textView.attributedText = coordinator.document.markdown.attributed
     }
     
