@@ -104,7 +104,12 @@ extension DrawableMarkdownViewController {
                 /// Hide placeholder view.
                 self.view.sendSubviewToBack(self.noDocument.view)
                 
-                self.keyboard.textView.attributedText = self.document?.markdown.attributed
+                /// Determine `UIScrollView` preferred inset, which is different from the nav bar height
+                /// Docs: https://developer.apple.com/documentation/uikit/uiscrollview/2902259-adjustedcontentinset
+                let topInset: CGFloat = self.keyboard.textView.adjustedContentInset.top
+                
+                self.keyboard.present(topInset: topInset)
+                self.canvas.present(topInset: topInset)
             }
         } else {
             document = nil

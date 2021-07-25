@@ -98,3 +98,12 @@ extension KeyboardViewController {
         }
     }
 }
+
+extension KeyboardViewController {
+    /// Call when a new document is opened and the view needs to present it
+    func present(topInset: CGFloat) {
+        textView.attributedText = coordinator.document?.markdown.attributed
+        
+        textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
+    }
+}

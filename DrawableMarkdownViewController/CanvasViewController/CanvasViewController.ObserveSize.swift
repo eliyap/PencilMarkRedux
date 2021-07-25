@@ -14,7 +14,6 @@ extension CanvasViewController {
             .compactMap { $0 }
             .sink { [weak self] in
                 self?.canvasView.contentSize = $0
-                print("Content Size Now: \(self?.canvasView.contentSize)")
             }
         store(size)
     }

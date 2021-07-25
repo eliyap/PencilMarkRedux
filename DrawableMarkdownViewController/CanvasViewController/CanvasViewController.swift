@@ -75,3 +75,10 @@ extension CanvasViewController {
         coordinator.frameC.tapLocation = sender.location(in: canvasView)
     }
 }
+
+extension CanvasViewController {
+    /// Call when a new document is opened and the view needs to present it
+    func present(topInset: CGFloat) {
+        canvasView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
+    }
+}
