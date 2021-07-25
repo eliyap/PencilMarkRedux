@@ -36,7 +36,6 @@
 		22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D926AB98AD003FD426 /* ViewController.swift */; };
 		22C9F5E026AB99BE003FD426 /* TextDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5DD26AB99BE003FD426 /* TextDocument.swift */; };
 		22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */; };
-		22C9F5E226AB99BE003FD426 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */; };
 		22C9F5E426AB99F1003FD426 /* URL.isDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5E326AB99F1003FD426 /* URL.isDirectory.swift */; };
 		22C9F5E626AB9A27003FD426 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5E526AB9A27003FD426 /* Constants.swift */; };
 		22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5E826AB9A56003FD426 /* FolderViewController.swift */; };
@@ -104,7 +103,6 @@
 		22C9F5D926AB98AD003FD426 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22C9F5DD26AB99BE003FD426 /* TextDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDocument.swift; sourceTree = "<group>"; };
 		22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentSelectionDelegate.swift; sourceTree = "<group>"; };
-		22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		22C9F5E326AB99F1003FD426 /* URL.isDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.isDirectory.swift; sourceTree = "<group>"; };
 		22C9F5E526AB9A27003FD426 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22C9F5E826AB9A56003FD426 /* FolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 			children = (
 				22C9F5E526AB9A27003FD426 /* Constants.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
-				22C9F5DF26AB99BE003FD426 /* DocumentViewController.swift */,
 				22C9F5DD26AB99BE003FD426 /* TextDocument.swift */,
 			);
 			path = Imported;
@@ -490,7 +487,6 @@
 				220B852326AC973700081536 /* TypingViewController_UITextViewDelegate.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
-				22C9F5E226AB99BE003FD426 /* DocumentViewController.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* DrawingViewController_UIScrollViewDelegate.swift in Sources */,
