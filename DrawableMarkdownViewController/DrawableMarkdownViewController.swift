@@ -16,7 +16,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     /// Child View Controllers
     let keyboard: KeyboardViewController
-    let drawing: CanvasViewController
+    let canvas: CanvasViewController
     let noDocument: NoDocumentHost
     
     /// Combine Conduits
@@ -30,21 +30,21 @@ final class DrawableMarkdownViewController: PMViewController {
             document = StyledMarkdownDocument(fileURL: fileURL)
         }
         self.keyboard = KeyboardViewController()
-        self.drawing = CanvasViewController()
+        self.canvas = CanvasViewController()
         self.noDocument = NoDocumentHost()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
         keyboard.coordinate(with: self) /// call after `init` and `adopt` are complete
-        adopt(drawing)
-        drawing.coordinate(with: self) /// call after `init` and `adopt` are complete
+        adopt(canvas)
+        canvas.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(noDocument)
         
-        drawing.view.translatesAutoresizingMaskIntoConstraints = false
+        canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
         
-        view.bringSubviewToFront(drawing.view)
+        view.bringSubviewToFront(canvas.view)
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +59,7 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame
-        drawing.view.frame = view.frame
+        canvas.view.frame = view.frame
         noDocument.view.frame = view.frame
     }
 }
