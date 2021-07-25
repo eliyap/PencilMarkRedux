@@ -82,7 +82,7 @@ extension KeyboardViewController {
             let yFromKeyboard = yFromBottom - clearance
             
             if yFromKeyboard < 0 {
-                UIViewPropertyAnimator(duration: 0.25, curve: .easeInOut) {
+                UIViewPropertyAnimator(duration: 0.15, curve: .easeInOut) {
                     self.textView.contentOffset.y -= yFromKeyboard
                 }.startAnimation()
             }
