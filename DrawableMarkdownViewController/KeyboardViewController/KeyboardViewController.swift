@@ -23,6 +23,9 @@ final class KeyboardViewController: PMViewController {
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
     
+    /// Whether the code is changing the text selection.
+    var programmaticTextSelection = false
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         
