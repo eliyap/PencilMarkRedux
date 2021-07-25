@@ -25,6 +25,7 @@ final class DrawableMarkdownViewController: PMViewController {
     let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
     
+    /// Controls which view gets to set the scroll position
     enum ScrollLead { case keyboard, canvas }
     var scrollLead = ScrollLead.canvas
     
@@ -79,6 +80,11 @@ extension DrawableMarkdownViewController {
     func present(fileURL: URL?) {
         /// If URL is already open, do nothing
         guard document?.fileURL != fileURL else { return }
+        
+        /// Stop interaction with the document
+        keyboard.resignFirstResponder()
+        canvas.resignFirstResponder()
+        keyboard.textView.endEditing(true)
         
         /// close document, if any, then open new
         if let document = document {
