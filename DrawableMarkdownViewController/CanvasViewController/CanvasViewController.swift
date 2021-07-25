@@ -38,6 +38,7 @@ final class CanvasViewController: PMViewController {
     func coordinate(with _: DrawableMarkdownViewController) {
         /// Coordinate via `Combine` with ``coordinator``.
         observeSize()
+        observeScroll()
     }
     
     override func viewDidAppear(_ animated: Bool) {
