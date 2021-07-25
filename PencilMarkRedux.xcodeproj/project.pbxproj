@@ -161,7 +161,7 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
-		220B852626AC989700081536 /* TypingViewController */ = {
+		220B852626AC989700081536 /* KeyboardViewController */ = {
 			isa = PBXGroup;
 			children = (
 				220B850F26AC819A00081536 /* KeyboardViewController.swift */,
@@ -173,7 +173,7 @@
 				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
 				220B852726AC990200081536 /* PMTextView.swift */,
 			);
-			path = TypingViewController;
+			path = KeyboardViewController;
 			sourceTree = "<group>";
 		};
 		220B852B26AC9AB700081536 /* DrawingViewController */ = {
@@ -200,7 +200,6 @@
 			children = (
 				220B853826ACD3EC00081536 /* PMAST */,
 				220B852B26AC9AB700081536 /* DrawingViewController */,
-				220B852626AC989700081536 /* TypingViewController */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
@@ -320,6 +319,7 @@
 				220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */,
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
+				220B852626AC989700081536 /* KeyboardViewController */,
 			);
 			path = DrawableMarkdownViewController;
 			sourceTree = "<group>";
