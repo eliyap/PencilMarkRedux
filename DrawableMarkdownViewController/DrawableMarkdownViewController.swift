@@ -11,10 +11,7 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
     
-    /// Nullable underlying model object
-    private var _document: StyledMarkdownDocument?
-    
-    /// Non-nullable public model object
+    /// Model object
     public var document: StyledMarkdownDocument?
     
     /// Child View Controllers
@@ -30,7 +27,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     init(fileURL: URL?) {
         if let fileURL = fileURL {
-            _document = StyledMarkdownDocument(fileURL: fileURL)
+            document = StyledMarkdownDocument(fileURL: fileURL)
         }
         self.keyboard = KeyboardViewController()
         self.drawing = CanvasViewController()
@@ -67,45 +64,9 @@ final class DrawableMarkdownViewController: PMViewController {
     }
 }
 
-// MARK:- Document Access
 extension DrawableMarkdownViewController {
     
-    /// Returns the underlying document, if any,
-    /// or creates a new one if there isn't.
-    private func getDocument() -> StyledMarkdownDocument {
-        _document ?? StyledMarkdownDocument.temp
-    }
-    
-    /// Updates the document being displayed,
-    /// first closing the old document, if any.
-    private func setDocument(to document: StyledMarkdownDocument) -> Void {
-        
-        func open(new document: StyledMarkdownDocument) {
-            self._document = document
-            document.open { (success) in
-                self.keyboard.updateAttributedText()
-            }
-        }
-        
-        /// Close existing document, if any, then open the new one.
-        if let _document = _document {
-            print("Text was: " + _document.markdown.plain)
-            _document.close { (success) in
-                if success == false {
-                    print("Failed to close document!")
-                } else {
-                    open(new: document)
-                }
-            }
-        } else {
-            open(new: document)
-        }
-    }
-}
-
-extension DrawableMarkdownViewController {
-    
-    /// Make sure we are not editing the temporary document.
+    /// Make sure we are not editing the temporary document or a `nil` document.
     func assertDocumentIsValid() {
         precondition(document?.fileURL != nil, "Edits made to nil document!")
         precondition(document?.fileURL != StyledMarkdownDocument.temp.fileURL, "Edits made to placeholder document!")
@@ -114,11 +75,11 @@ extension DrawableMarkdownViewController {
     /// Close whatever document is currently open, and open the provided URL instead
     func present(fileURL: URL?) {
         /// If URL is already open, do nothing
-        guard _document?.fileURL != fileURL else { return }
+        guard document?.fileURL != fileURL else { return }
         
         /// close document, if any, then open new
-        if let _document = _document {
-            _document.close { (success) in
+        if let document = document {
+            document.close { (success) in
                 guard success else {
                     assert(false, "Failed to close document!")
                     return
@@ -133,15 +94,18 @@ extension DrawableMarkdownViewController {
     /// Open new document, if any
     private func open(fileURL: URL?) {
         if let fileURL = fileURL {
-            _document = StyledMarkdownDocument(fileURL: fileURL)
+            document = StyledMarkdownDocument(fileURL: fileURL)
             
             /// Hide placeholder view.
             view.sendSubviewToBack(noDocument.view)
         } else {
-            _document = nil
+            document = nil
             
             /// Show placeholder view.
             view.bringSubviewToFront(noDocument.view)
         }
+        
+        /// Update Naviagation Bar Title
+        navigationItem.title = document?.localizedName ?? ""
     }
 }

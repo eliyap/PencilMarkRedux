@@ -10,15 +10,11 @@ import UIKit
 
 /// Very small protocol that lets `FileBrowserViewController` set the document of the `DocumentViewController`.
 protocol DocumentSelectionDelegate: AnyObject {
-    associatedtype Document: UIDocument
-    func select(_ document: Document) -> Void
+    func select(_ fileURL: URL) -> Void
 }
 
 extension DrawableMarkdownViewController: DocumentSelectionDelegate {
-    func select(_ document: StyledMarkdownDocument) {
-        /// Update Naviagation Bar Title
-        navigationItem.title = document.localizedName
-
-        self.document = document
+    func select(_ fileURL: URL) {
+        present(fileURL: fileURL)
     }
 }
