@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220B851026AC819A00081536 /* TypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B850F26AC819A00081536 /* TypingViewController.swift */; };
+		220B851026AC819A00081536 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B850F26AC819A00081536 /* KeyboardViewController.swift */; };
 		220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */; };
-		220B851426AC898C00081536 /* TypingViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */; };
+		220B851426AC898C00081536 /* KeyboardViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851326AC898C00081536 /* KeyboardViewController.ObserveTyping.swift */; };
 		220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */; };
 		220B851926AC8BBD00081536 /* PMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851826AC8BBD00081536 /* PMViewController.swift */; };
 		220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */; };
-		220B852126AC90FC00081536 /* TypingViewController.ObserveStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */; };
-		220B852326AC973700081536 /* TypingViewController_UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */; };
-		220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */; };
+		220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */; };
+		220B852326AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852226AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift */; };
+		220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */; };
 		220B852826AC990200081536 /* PMTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852726AC990200081536 /* PMTextView.swift */; };
-		220B852A26AC998C00081536 /* TypingViewController.ObserveCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852926AC998C00081536 /* TypingViewController.ObserveCommands.swift */; };
+		220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */; };
 		220B852D26AC9AC000081536 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852C26AC9AC000081536 /* DrawingViewController.swift */; };
 		220B852F26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */; };
 		220B853126AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */; };
@@ -73,17 +73,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		220B850F26AC819A00081536 /* TypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.swift; sourceTree = "<group>"; };
+		220B850F26AC819A00081536 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.swift; sourceTree = "<group>"; };
-		220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveTyping.swift; sourceTree = "<group>"; };
+		220B851326AC898C00081536 /* KeyboardViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveTyping.swift; sourceTree = "<group>"; };
 		220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.ObserveTyping.swift; sourceTree = "<group>"; };
 		220B851826AC8BBD00081536 /* PMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMViewController.swift; sourceTree = "<group>"; };
 		220B851A26AC8C8B00081536 /* UIViewController.adopt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.adopt.swift; sourceTree = "<group>"; };
-		220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveStrokes.swift; sourceTree = "<group>"; };
-		220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController_UITextViewDelegate.swift; sourceTree = "<group>"; };
-		220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveTouches.swift; sourceTree = "<group>"; };
+		220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveStrokes.swift; sourceTree = "<group>"; };
+		220B852226AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UITextViewDelegate.swift; sourceTree = "<group>"; };
+		220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveTouches.swift; sourceTree = "<group>"; };
 		220B852726AC990200081536 /* PMTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMTextView.swift; sourceTree = "<group>"; };
-		220B852926AC998C00081536 /* TypingViewController.ObserveCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingViewController.ObserveCommands.swift; sourceTree = "<group>"; };
+		220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveCommands.swift; sourceTree = "<group>"; };
 		220B852C26AC9AC000081536 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		220B852E26AC9C1C00081536 /* DrawingViewController.ObserveSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.ObserveSize.swift; sourceTree = "<group>"; };
 		220B853026AC9C5C00081536 /* DrawingViewController_PKCanvasViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController_PKCanvasViewDelegate.swift; sourceTree = "<group>"; };
@@ -164,12 +164,12 @@
 		220B852626AC989700081536 /* TypingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				220B850F26AC819A00081536 /* TypingViewController.swift */,
-				220B852226AC973700081536 /* TypingViewController_UITextViewDelegate.swift */,
-				220B851326AC898C00081536 /* TypingViewController.ObserveTyping.swift */,
-				220B852026AC90FC00081536 /* TypingViewController.ObserveStrokes.swift */,
-				220B852426AC978200081536 /* TypingViewController.ObserveTouches.swift */,
-				220B852926AC998C00081536 /* TypingViewController.ObserveCommands.swift */,
+				220B850F26AC819A00081536 /* KeyboardViewController.swift */,
+				220B852226AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift */,
+				220B851326AC898C00081536 /* KeyboardViewController.ObserveTyping.swift */,
+				220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */,
+				220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */,
+				220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */,
 				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
 				220B852726AC990200081536 /* PMTextView.swift */,
 			);
@@ -460,7 +460,7 @@
 			files = (
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
-				220B852126AC90FC00081536 /* TypingViewController.ObserveStrokes.swift in Sources */,
+				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
@@ -472,12 +472,12 @@
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
-				220B852526AC978200081536 /* TypingViewController.ObserveTouches.swift in Sources */,
+				220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */,
 				2214E13C269CAC3B0046EF32 /* String_Subscript.swift in Sources */,
 				2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */,
 				22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */,
-				220B851026AC819A00081536 /* TypingViewController.swift in Sources */,
-				220B852326AC973700081536 /* TypingViewController_UITextViewDelegate.swift in Sources */,
+				220B851026AC819A00081536 /* KeyboardViewController.swift in Sources */,
+				220B852326AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
@@ -489,7 +489,7 @@
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				220B852826AC990200081536 /* PMTextView.swift in Sources */,
-				220B852A26AC998C00081536 /* TypingViewController.ObserveCommands.swift in Sources */,
+				220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */,
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
@@ -503,7 +503,7 @@
 				22C9F5E426AB99F1003FD426 /* URL.isDirectory.swift in Sources */,
 				220B851B26AC8C8B00081536 /* UIViewController.adopt.swift in Sources */,
 				22CA376E26A0D99F00E95009 /* Path_BezierCurve.swift in Sources */,
-				220B851426AC898C00081536 /* TypingViewController.ObserveTyping.swift in Sources */,
+				220B851426AC898C00081536 /* KeyboardViewController.ObserveTyping.swift in Sources */,
 				22C9F5F526AB9A57003FD426 /* FilesViewController.Refresh.swift in Sources */,
 				22C9F5E626AB9A27003FD426 /* Constants.swift in Sources */,
 			);
