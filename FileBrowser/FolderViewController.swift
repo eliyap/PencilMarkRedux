@@ -62,16 +62,8 @@ final class FolderViewController: UIViewController {
         }
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// Show toolbar
-        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     override func viewWillLayoutSubviews() {
