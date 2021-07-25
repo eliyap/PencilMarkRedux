@@ -30,7 +30,6 @@
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
 		22AF74E4269BB882007D9891 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74E3269BB882007D9891 /* main.js */; };
-		22AF74E6269BB91D007D9891 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74E5269BB91D007D9891 /* Parser.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
 		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
@@ -101,7 +100,6 @@
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
 		22AF74E3269BB882007D9891 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
-		22AF74E5269BB91D007D9891 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 			children = (
 				22C9F5FA26AB9E79003FD426 /* PencilMarkRedux.entitlements */,
 				22C9F5D626AB9326003FD426 /* AppRoot */,
-				22AF74E5269BB91D007D9891 /* Parser.swift */,
 				22AF74BD269BA5F2007D9891 /* Assets.xcassets */,
 				22AF74C2269BA5F2007D9891 /* Info.plist */,
 				22AF74BF269BA5F2007D9891 /* Preview Content */,
@@ -510,7 +507,6 @@
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
-				22AF74E6269BB91D007D9891 /* Parser.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				220B852826AC990200081536 /* PMTextView.swift in Sources */,
 				220B852A26AC998C00081536 /* TypingViewController.ObserveCommands.swift in Sources */,
