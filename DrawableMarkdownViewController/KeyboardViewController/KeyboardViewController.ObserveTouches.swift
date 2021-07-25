@@ -14,6 +14,9 @@ extension KeyboardViewController {
         /// Coordinate scroll position with `PKCanvasView`.
         let scroll: AnyCancellable = coordinator.frameC.$scrollY
             .sink { [weak self] in
+                /// Reject events from own delegate
+                guard self?.coordinator.scrollLead != .keyboard else { return }
+                
                 self?.textView.contentOffset.y = $0
             }
         store(scroll)
