@@ -20,6 +20,5 @@ extension FilesViewController {
         /// Adjust scroll indicator size to account for keyboard.
         guard let inset = view.edgeInset(for: notification) else { return }
         additionalSafeAreaInsets.bottom = inset.bottom + bottomInset
-        navigationController?.additionalSafeAreaInsets.bottom = inset.bottom
     }
 }

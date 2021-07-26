@@ -11,6 +11,9 @@ import UIKit
 /**
  Wraps ``FilesViewController`` so that if the folder is empty,
  we can stick a pretty placeholder in front to indicate that instead of just having an empty table.
+ 
+ - Note: this handles the `UINavigationController` `toolbar`
+    - known issue: toolbar does not adjust for the keyboard. I couldn't get it to work correctly, and it's not _that_ important.
  */
 final class FolderViewController: UIViewController {
     
