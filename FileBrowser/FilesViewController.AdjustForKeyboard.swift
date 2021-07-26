@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension FolderViewController {
+extension FilesViewController {
     /// Register for notifications
     func setupNotifications() {
         let NCD = NotificationCenter.default
@@ -19,6 +19,7 @@ extension FolderViewController {
     func keyboardWillAdjust(_ notification: Notification) {
         /// Adjust scroll indicator size to account for keyboard.
         guard let inset = view.edgeInset(for: notification) else { return }
-        additionalSafeAreaInsets = inset
+        additionalSafeAreaInsets.bottom = inset.bottom + bottomInset
+        navigationController?.additionalSafeAreaInsets.bottom = inset.bottom
     }
 }

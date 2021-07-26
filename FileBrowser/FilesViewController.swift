@@ -36,6 +36,9 @@ class FilesViewController: UITableViewController {
         /// Attach refresh controller
         configureRefresh()
         
+        /// Adjust for keyboard
+        setupNotifications()
+        
         /// Attach custom data source.
         self.tableView.dataSource = self
     }
