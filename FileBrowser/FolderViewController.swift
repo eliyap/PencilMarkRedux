@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import PMAST
 
 /**
  Wraps ``FilesViewController`` so that if the folder is empty,
@@ -133,7 +134,19 @@ extension FolderViewController {
             return
         }
         
-        #warning("New Document Not Implemented")
+        let fileURL: URL = newDocumentURL(in: url)
+        let document = StyledMarkdownDocument(fileURL: fileURL)
+        document.markdown = Markdown("")
+        document.save(to: fileURL, for: .forCreating) { (success) in
+            guard success else {
+                assert(false, "Failed to create document!")
+                return
+                
+                /// refresh UITableView
+                
+                /// push to selection delegate
+            }
+        }
         print("Not Implemented")
     }
 }
