@@ -17,6 +17,7 @@ import UIKit
  */
 final class FolderViewController: UIViewController {
     
+    /// Folder URL
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
@@ -127,6 +128,10 @@ extension FolderViewController {
     @objc
     private func newDocument() {
         /// TODO: check that folder URL is non null!, folder state is not broken
+        guard let url = url else {
+            assert(false, "New Document Cannot Be Created In Null Folder!")
+            return
+        }
         
         #warning("New Document Not Implemented")
         print("Not Implemented")
