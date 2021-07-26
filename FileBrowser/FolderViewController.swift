@@ -135,17 +135,24 @@ extension FolderViewController {
         }
         
         let fileURL: URL = newDocumentURL(in: url)
+        
+        /// Assign document location and empty contents
         let document = StyledMarkdownDocument(fileURL: fileURL)
         document.markdown = Markdown("")
+        
+        /// Write to disk
         document.save(to: fileURL, for: .forCreating) { (success) in
             guard success else {
                 assert(false, "Failed to create document!")
                 return
-                
-                /// refresh UITableView
-                
-                /// push to selection delegate
             }
+            
+            /// Refresh UITableView
+            /// TODO: make table view scroll to new document...
+            self.filesView.tableView.reloadData()
+            
+            /// Open Document In Editor
+            self.selectionDelegate.present(fileURL: fileURL)
         }
         print("Not Implemented")
     }
