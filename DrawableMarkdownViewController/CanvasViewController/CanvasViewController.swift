@@ -32,6 +32,9 @@ final class CanvasViewController: PMViewController {
         
         /// Allow scrolling even when content is too small
         canvasView.alwaysBounceVertical = true
+        
+        /// Setup notifications
+        setupNotifications()
     }
     
     /// Perform with with ``coordinator`` after initialization is complete.

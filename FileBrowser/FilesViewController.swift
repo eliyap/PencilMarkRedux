@@ -36,6 +36,9 @@ class FilesViewController: UITableViewController {
         /// Attach refresh controller
         configureRefresh()
         
+        /// Adjust for keyboard
+        setupNotifications()
+        
         /// Attach custom data source.
         self.tableView.dataSource = self
     }
@@ -44,8 +47,18 @@ class FilesViewController: UITableViewController {
         fatalError("Do Not Use")
     }
     
+    /// Makes `tableView` and scroll insets fit.
+    var bottomInset: CGFloat { 0
+        + (navBarHeight ?? 0)
+        + (statusBarHeight ?? 0)
+        + (toolbarHeight ?? 0)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        /// Makes `tableView` and scroll insets fit.
+        additionalSafeAreaInsets.bottom = bottomInset
         
         guard let source = tableView.dataSource as? Self else {
             fatalError("Wrong type of data source!")

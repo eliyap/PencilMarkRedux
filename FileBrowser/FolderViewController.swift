@@ -11,6 +11,9 @@ import UIKit
 /**
  Wraps ``FilesViewController`` so that if the folder is empty,
  we can stick a pretty placeholder in front to indicate that instead of just having an empty table.
+ 
+ - Note: this handles the `UINavigationController` `toolbar`
+    - known issue: toolbar does not adjust for the keyboard. I couldn't get it to work correctly, and it's not _that_ important.
  */
 final class FolderViewController: UIViewController {
     
@@ -43,20 +46,9 @@ final class FolderViewController: UIViewController {
         scrollView.alwaysBounceVertical = true
         
         /// Add subviews into hierarchy.
-        addChild(filesView)
-        filesView.view.frame = view.frame
-        view.addSubview(filesView.view)
-        filesView.didMove(toParent: self)
-
-        addChild(empty)
-        empty.view.frame = view.frame
-        view.addSubview(empty.view)
-        empty.didMove(toParent: self)
-        
-        addChild(broken)
-        broken.view.frame = view.frame
-        view.addSubview(broken.view)
-        broken.didMove(toParent: self)
+        adopt(filesView)
+        adopt(empty)
+        adopt(broken)
         
         /// Refresh on pull.
         scrollView.refreshControl = UIRefreshControl()
@@ -73,16 +65,8 @@ final class FolderViewController: UIViewController {
         }
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// Show toolbar
-        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     override func viewWillLayoutSubviews() {
@@ -142,6 +126,8 @@ extension FolderViewController {
 
     @objc
     private func newDocument() {
+        /// TODO: check that folder URL is non null!, folder state is not broken
+        
         #warning("New Document Not Implemented")
         print("Not Implemented")
     }
