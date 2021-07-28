@@ -31,6 +31,7 @@
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
+		22C035C526B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
 		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
@@ -106,6 +107,7 @@
 		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
+		22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshablePlaceholderViewController.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
 				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
 				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
+				22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */,
 				22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */,
 				22C9F5EC26AB9A56003FD426 /* iCloudBrokenView.swift */,
 			);
@@ -483,6 +486,7 @@
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */,
 				220B852F26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift in Sources */,
+				22C035C526B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift in Sources */,
 				220B852D26AC9AC000081536 /* CanvasViewController.swift in Sources */,
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */,

@@ -26,8 +26,8 @@ final class FolderViewController: UIViewController {
     
     /// Subviews
     let filesView: FilesViewController
-    let empty = EmptyFolderViewController() /// placeholder for empty folder
-    let broken = iCloudBrokenHost() /// placeholder when iCloud can't be accessed
+    let empty = RefreshablePlaceholderViewController<EmptyFolderHost, EmptyFolderView>() /// placeholder for empty folder
+    let broken = RefreshablePlaceholderViewController<iCloudBrokenHost, iCloudBrokenView>() /// placeholder when iCloud can't be accessed
     
     /// Be aware of iCloud URL
     let iCloudURL: URL? = FileManager.default.url(forUbiquityContainerIdentifier: nil)?
