@@ -12,7 +12,7 @@ extension KeyboardViewController {
     func observeCommands() -> Void {
         let commands: AnyCancellable = coordinator.cmdC.undo
             .sink { [weak self] in
-                print("Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
+                print("Command, Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
                 self?.textView.undoManager?.undo()
             }
         store(commands)
