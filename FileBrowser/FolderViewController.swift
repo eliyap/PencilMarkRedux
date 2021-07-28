@@ -26,7 +26,7 @@ final class FolderViewController: UIViewController {
     
     /// Subviews
     let filesView: FilesViewController
-    let empty = EmptyFolderHost() /// placeholder for empty folder
+    let empty = EmptyFolderViewController() /// placeholder for empty folder
     let broken = iCloudBrokenHost() /// placeholder when iCloud can't be accessed
     
     /// Be aware of iCloud URL
@@ -42,7 +42,7 @@ final class FolderViewController: UIViewController {
         
         /// Set up scroll view so that we can use `UIRefreshControl`.
         let scrollView = UIScrollView()
-        self.view = scrollView
+//        self.view = scrollView
         
         /// Allow scrolling even when content is too small (i.e. when SwiftUI View is shown).
         scrollView.alwaysBounceVertical = true
