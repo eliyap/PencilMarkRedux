@@ -93,9 +93,26 @@ extension KeyboardViewController {
 extension UITextView {
     /// Shorthard for finding the bounding rectangle around the selected text range.
     var selectedRect: CGRect {
-        firstRect(for: textRange(
+        let rect = firstRect(for: textRange(
             from: position(from: beginningOfDocument, offset: selectedRange.lowerBound)!,
             to: position(from: beginningOfDocument, offset: selectedRange.lowerBound)!
         )!)
+        
+        /// Check if rectangle has valid origin.
+        /// I observed that moving to the end of the document could result in a rectangle with origin (NaN, NaN)
+        guard
+            rect.origin.x.isInfinite == false,
+            rect.origin.x.isNaN == false,
+            rect.origin.y.isInfinite == false,
+            rect.origin.y.isNaN == false
+        else {
+            print("Warning: invalid rectangle found!")
+            /// In this case, simply encompass the whole document
+            return firstRect(for: textRange(
+                from: beginningOfDocument,
+                to: endOfDocument
+            )!)
+        }
+        return rect
     }
 }
