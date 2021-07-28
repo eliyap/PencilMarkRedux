@@ -40,21 +40,10 @@ final class FolderViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         filesView.folder = self /// *must* set implicitly unwrapped reference immediately
         
-        /// Set up scroll view so that we can use `UIRefreshControl`.
-        let scrollView = UIScrollView()
-//        self.view = scrollView
-        
-        /// Allow scrolling even when content is too small (i.e. when SwiftUI View is shown).
-        scrollView.alwaysBounceVertical = true
-        
         /// Add subviews into hierarchy.
         adopt(filesView)
         adopt(empty)
         adopt(broken)
-        
-        /// Refresh on pull.
-        scrollView.refreshControl = UIRefreshControl()
-        scrollView.refreshControl?.addTarget(filesView, action: #selector(FilesViewController.refresh), for: .valueChanged)
         
         /// Make area behind `scrollView` seamless with the `scollView` itself.
         view.backgroundColor = .systemBackground
