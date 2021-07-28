@@ -88,4 +88,18 @@ class FilesViewController: UITableViewController {
             selectionDelegate.select(cellURL)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let cellURL: URL = contents![indexPath.row]
+            do {
+                try FileManager.default.removeItem(at: cellURL)
+            } catch let error as NSError {
+                assert(false, "Error \(error.domain)")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            print("Insert Not Implemented")
+        }
+    }
 }

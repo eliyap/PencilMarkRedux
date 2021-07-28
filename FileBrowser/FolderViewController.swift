@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import PMAST
 
 /**
  Wraps ``FilesViewController`` so that if the folder is empty,
@@ -17,6 +18,7 @@ import UIKit
  */
 final class FolderViewController: UIViewController {
     
+    /// Folder URL
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
@@ -24,8 +26,8 @@ final class FolderViewController: UIViewController {
     
     /// Subviews
     let filesView: FilesViewController
-    let empty = EmptyFolderHost() /// placeholder for empty folder
-    let broken = iCloudBrokenHost() /// placeholder when iCloud can't be accessed
+    let empty = RefreshablePlaceholderViewController<EmptyFolderHost, EmptyFolderView>() /// placeholder for empty folder
+    let broken = RefreshablePlaceholderViewController<iCloudBrokenHost, iCloudBrokenView>() /// placeholder when iCloud can't be accessed
     
     /// Be aware of iCloud URL
     let iCloudURL: URL? = FileManager.default.url(forUbiquityContainerIdentifier: nil)?
@@ -38,21 +40,10 @@ final class FolderViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         filesView.folder = self /// *must* set implicitly unwrapped reference immediately
         
-        /// Set up scroll view so that we can use `UIRefreshControl`.
-        let scrollView = UIScrollView()
-        self.view = scrollView
-        
-        /// Allow scrolling even when content is too small (i.e. when SwiftUI View is shown).
-        scrollView.alwaysBounceVertical = true
-        
         /// Add subviews into hierarchy.
         adopt(filesView)
         adopt(empty)
         adopt(broken)
-        
-        /// Refresh on pull.
-        scrollView.refreshControl = UIRefreshControl()
-        scrollView.refreshControl?.addTarget(filesView, action: #selector(FilesViewController.refresh), for: .valueChanged)
         
         /// Make area behind `scrollView` seamless with the `scollView` itself.
         view.backgroundColor = .systemBackground
@@ -127,8 +118,31 @@ extension FolderViewController {
     @objc
     private func newDocument() {
         /// TODO: check that folder URL is non null!, folder state is not broken
+        guard let url = url else {
+            assert(false, "New Document Cannot Be Created In Null Folder!")
+            return
+        }
         
-        #warning("New Document Not Implemented")
+        let fileURL: URL = newDocumentURL(in: url)
+        
+        /// Assign document location and empty contents
+        let document = StyledMarkdownDocument(fileURL: fileURL)
+        document.markdown = Markdown("")
+        
+        /// Write to disk
+        document.save(to: fileURL, for: .forCreating) { (success) in
+            guard success else {
+                assert(false, "Failed to create document!")
+                return
+            }
+            
+            /// Refresh UITableView
+            /// TODO: make table view scroll to new document...
+            self.filesView.tableView.reloadData()
+            
+            /// Open Document In Editor
+            self.selectionDelegate.present(fileURL: fileURL)
+        }
         print("Not Implemented")
     }
 }
