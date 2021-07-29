@@ -80,6 +80,9 @@ extension KeyboardViewController {
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText
         textView.undoManager?.registerUndo(withTarget: textView) { view in
+            /// Before reversing the change, store the current state as a *redo* operation.
+            view.controller.registerUndo()
+            
             /// Freeze current selection to be restored after text is rolled back.
             let selection: UITextRange? = view.selectedTextRange
             
