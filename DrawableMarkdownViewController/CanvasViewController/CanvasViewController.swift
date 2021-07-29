@@ -60,13 +60,19 @@ extension CanvasViewController {
     
     override var keyCommands: [UIKeyCommand]? {
         (super.keyCommands ?? []) + [
-            UIKeyCommand(input: "z", modifierFlags: [.command], action: #selector(undo))
+            UIKeyCommand(input: "z", modifierFlags: [.command], action: #selector(undo)),
+            UIKeyCommand(input: "z", modifierFlags: [.shift, .command], action: #selector(redo)),
         ]
     }
     
     @objc
     func undo() -> Void {
         coordinator.cmdC.undo.send()
+    }
+    
+    @objc
+    func redo() -> Void {
+        coordinator.cmdC.redo.send()
     }
 }
 

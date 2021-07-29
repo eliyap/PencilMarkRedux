@@ -41,9 +41,9 @@ extension KeyboardViewController {
                  */
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
-                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
+                print("Before, Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.attributedText = self?.coordinator.document?.markdown.attributed
-                print("Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
+                print("After, Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }

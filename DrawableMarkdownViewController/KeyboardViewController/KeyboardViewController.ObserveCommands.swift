@@ -10,11 +10,18 @@ import Combine
 extension KeyboardViewController {
     /// Listen for commands and execute them.
     func observeCommands() -> Void {
-        let commands: AnyCancellable = coordinator.cmdC.undo
+        let undo: AnyCancellable = coordinator.cmdC.undo
             .sink { [weak self] in
-                print("Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
+                print("Command, Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
                 self?.textView.undoManager?.undo()
             }
-        store(commands)
+        store(undo)
+        
+        let redo: AnyCancellable = coordinator.cmdC.redo
+            .sink { [weak self] in
+                print("Command, Can redo: " + String(describing: self?.textView.undoManager?.canRedo))
+                self?.textView.undoManager?.redo()
+            }
+        store(redo)
     }
 }
