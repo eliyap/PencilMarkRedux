@@ -78,7 +78,7 @@ extension KeyboardViewController {
         coordinator.assertDocumentIsValid()
         
         /// Register Undo Operation before affecting model object
-        let currentStyledText = textView.attributedText
+        let currentStyledText: NSAttributedString = textView.attributedText!
         coordinator.undoManager.registerUndo(withTarget: textView) { view in
             /// Before reversing the change, store the current state as a *redo* operation.
             view.controller.registerUndo()
@@ -98,7 +98,8 @@ extension KeyboardViewController {
             }
             
             /// Roll back model state
-            view.controller.coordinator.document?.markdown.plain = view.text
+            view.controller.coordinator.document!.markdown.plain = currentStyledText.string
+            #warning("might pummel CPU with repeated AST construction")
             view.controller.coordinator.document?.markdown.updateAttributes()
         }
     }
