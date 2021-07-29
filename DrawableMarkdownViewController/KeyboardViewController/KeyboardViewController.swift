@@ -14,7 +14,7 @@ final class KeyboardViewController: PMViewController {
     let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { coordinator.undoManager }
+    override var undoManager: UndoManager! { coordinator.undoManager }
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
