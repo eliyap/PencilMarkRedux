@@ -14,7 +14,7 @@ final class KeyboardViewController: PMViewController {
     let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { coordinator.undoManager }
+    override var undoManager: UndoManager? { coordinator.document?.undoManager }
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
@@ -79,7 +79,7 @@ extension KeyboardViewController {
         
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText
-        coordinator.undoManager.registerUndo(withTarget: textView) { view in
+        textView.undoManager?.registerUndo(withTarget: textView) { view in
             /// Before reversing the change, store the current state as a *redo* operation.
             view.controller.registerUndo()
             
