@@ -42,13 +42,6 @@ extension KeyboardViewController {
                 let selection = ref.textView.selectedRange
                 ref.textView.isScrollEnabled = false
                 
-                /// Compare old and new strings
-                if ref.textView.attributedText == self?.coordinator.document?.markdown.attributed {
-                    print("No Change")
-                } else {
-                    print("Did Change")
-                }
-                
                 ref.textView.undoManager?.disableUndoRegistration()
                 
                 let before: Bool? = ref.textView.undoManager?.canUndo
