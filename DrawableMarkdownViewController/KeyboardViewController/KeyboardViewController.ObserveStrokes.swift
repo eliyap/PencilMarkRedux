@@ -61,7 +61,11 @@ extension KeyboardViewController {
         let nsRange = textView.nsRange(from: range)
         coordinator.document?.markdown.apply(lineStyle: Delete.self, to: nsRange)
         coordinator.document?.updateChangeCount(.done)
-        textView.attributedText = coordinator.document?.markdown.attributed
+        
+        /// Set and style contents
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.updateAttributes()
+        coordinator.document?.markdown.setAttributes(textView.textStorage)
     }
     
     /// Erase along the provided line
@@ -86,7 +90,11 @@ extension KeyboardViewController {
         let nsRange = textView.nsRange(from: range)
         coordinator.document?.markdown.erase(to: nsRange)
         coordinator.document?.updateChangeCount(.done)
-        textView.attributedText = coordinator.document?.markdown.attributed
+        
+        /// Set and style contents
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.updateAttributes()
+        coordinator.document?.markdown.setAttributes(textView.textStorage)
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
