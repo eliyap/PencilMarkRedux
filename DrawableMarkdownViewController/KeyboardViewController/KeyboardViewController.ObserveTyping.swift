@@ -39,16 +39,12 @@ extension KeyboardViewController {
                  so store the cursor position before modifying the document, then put it right back.
                  Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
                  */
-                ref.textView.undoManager?.disableUndoRegistration()
                 
                 let before: Bool? = ref.textView.undoManager?.canUndo
                 ref.textView.attributedText = self?.coordinator.document?.markdown.attributed
                 let after: Bool? = ref.textView.undoManager?.canUndo
                 if before != after { print("Before \(before), After \(after)")}
                 
-                if ref.textView.undoManager?.isUndoRegistrationEnabled == false {
-                    ref.textView.undoManager?.enableUndoRegistration()
-                }
             }
         self.store(typing)
     }
