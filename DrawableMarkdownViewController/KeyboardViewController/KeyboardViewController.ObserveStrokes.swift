@@ -55,13 +55,11 @@ extension KeyboardViewController {
             return
         }
         
-        registerUndo() /// register before model changes
-        
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
         coordinator.document?.markdown.apply(lineStyle: Delete.self, to: nsRange)
-        coordinator.document?.updateChangeCount(.done)
-        textView.attributedText = coordinator.document?.markdown.attributed
+        coordinator.document?.updateChangeCount(.done) /// report document model update
+        setAttributedText(to: coordinator.document!.markdown.attributed) /// update view
     }
     
     /// Erase along the provided line
@@ -80,13 +78,11 @@ extension KeyboardViewController {
             return
         }
         
-        registerUndo() /// register before model changes
-        
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.erase(to: nsRange)
-        coordinator.document?.updateChangeCount(.done)
-        textView.attributedText = coordinator.document?.markdown.attributed
+        coordinator.document?.markdown.erase(to: nsRange) /// perform changes in model
+        coordinator.document?.updateChangeCount(.done) /// report document model update
+        setAttributedText(to: coordinator.document!.markdown.attributed) /// update view
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
