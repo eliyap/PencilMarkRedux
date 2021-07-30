@@ -9,7 +9,7 @@ import UIKit
 
 extension UIFont {
     /// User's preferred font size for the system body font.
-    var dynamicSize: CGFloat {
+    static var dynamicSize: CGFloat {
         UIFont.preferredFont(forTextStyle: .body).pointSize
     }
 }
