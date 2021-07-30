@@ -117,8 +117,13 @@ extension KeyboardViewController {
 
 extension KeyboardViewController {
     
+    /// Default styling for plain text.
     var defaultAttributes: [NSAttributedString.Key: Any] {[
-        .font: UIFont.monospacedSystemFont(ofSize: UIFont.dynamicSize, weight: .regular)
+        /// Monospaced font to make character targetting easier.
+        .font: UIFont.monospacedSystemFont(ofSize: UIFont.dynamicSize, weight: .regular),
+        
+        /// Dark mode sensitive primary color.
+        .foregroundColor: UIColor.label,
     ]}
     
     /// Applies model styling to text, using our preferred defaults
