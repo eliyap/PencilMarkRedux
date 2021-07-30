@@ -18,6 +18,8 @@ extension KeyboardViewController {
         NCD.addObserver(self, selector: #selector(keyboardWillAdjust), name: UIResponder.keyboardWillHideNotification, object: nil)
         NCD.addObserver(self, selector: #selector(keyboardDidAdjust), name: UIResponder.keyboardDidShowNotification, object: nil)
         NCD.addObserver(self, selector: #selector(keyboardDidAdjust), name: UIResponder.keyboardDidHideNotification, object: nil)
+        
+        NCD.addObserver(self, selector: #selector(fontSizeChanged), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
     
     @objc
@@ -87,6 +89,11 @@ extension KeyboardViewController {
                 self.textView.contentInset.bottom = .zero
             }
         }
+    }
+    
+    @objc /// #selector
+    func fontSizeChanged(_ notification: Notification) {
+        styleText() /// update styling (including font size) whenever font size changes
     }
 }
 
