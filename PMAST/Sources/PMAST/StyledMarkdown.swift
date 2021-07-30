@@ -47,4 +47,15 @@ extension Markdown {
         ast.style(result)
         return result
     }
+    
+    /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!
+    public func setAttributes(_ string: NSMutableAttributedString) -> Void {
+        precondition(string.string == plain, "Cannot style non matching string!")
+        
+        /// Clear all attributes so that typed text is plain by default.
+        string.setAttributes([:], range: NSMakeRange(0, string.length))
+        
+        /// Apply styling via AST.
+        ast.style(string)
+    }
 }
