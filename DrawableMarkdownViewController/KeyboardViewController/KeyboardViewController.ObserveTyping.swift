@@ -60,6 +60,7 @@ extension KeyboardViewController {
                     ref.textView.undoManager?.enableUndoRegistration()
                 }
                 
+                
                 ref.textView.isScrollEnabled = true
                 ref.textView.selectedRange = selection
             }
