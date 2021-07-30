@@ -41,7 +41,10 @@ extension KeyboardViewController {
                  */
                 
                 let before: Bool? = ref.textView.undoManager?.canUndo
-                ref.textView.attributedText = self?.coordinator.document?.markdown.attributed
+
+                /// - Note: setting `textView.attributedText` wipes the `undoManager`,
+                /// which is very bad, but calling `setAttributes` does not!
+                self?.coordinator.document!.markdown.setAttributes(ref.textView.textStorage)
                 let after: Bool? = ref.textView.undoManager?.canUndo
                 if before != after { print("Before \(before), After \(after)")}
                 
