@@ -12,6 +12,6 @@ extension UIFont {
         /// add trait to font descriptor
         var traits = fontDescriptor.symbolicTraits
         traits.insert(trait)
-        return UIFont(descriptor: fontDescriptor.withSymbolicTraits(traits)!, size: UIFont.systemFontSize)
+        return UIFont(descriptor: fontDescriptor.withSymbolicTraits(traits)!, size: UIFont.dynamicSize)
     }
 }
