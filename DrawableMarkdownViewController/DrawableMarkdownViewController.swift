@@ -30,7 +30,7 @@ final class DrawableMarkdownViewController: PMViewController {
     var scrollLead = ScrollLead.canvas
     
     /// Declare our own undoManger, which may then be implicitly unwrapped.
-    private let _undoManager = PMUndoManager()
+    private let _undoManager = UndoManager()
     override var undoManager: UndoManager! { _undoManager }
     
     init(fileURL: URL?) {
@@ -136,17 +136,5 @@ extension DrawableMarkdownViewController {
         
         /// Update Navigation Bar Title
         navigationItem.title = document?.localizedName ?? ""
-    }
-}
-
-final class PMUndoManager: UndoManager {
-    override func undo() {
-        super.undo()
-        print("Undo() called")
-    }
-    
-    override func registerUndo(withTarget target: Any, selector: Selector, object anObject: Any?) {
-        super.registerUndo(withTarget: target, selector: selector, object: anObject)
-        print("Undo Registered")
     }
 }
