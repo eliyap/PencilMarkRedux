@@ -10,7 +10,7 @@ import UIKit
 extension KeyboardViewController: UIScrollViewDelegate {
     /// Set common scroll position if this is leading.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard coordinator.scrollLead == .keyboard else { return }
+        guard coordinator?.scrollLead == .keyboard else { return }
         coordinator.frameC.scrollY = scrollView.contentOffset.y
     }
 }

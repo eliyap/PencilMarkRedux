@@ -31,11 +31,15 @@ extension Markdown {
     }
     
     /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!
-    public func setAttributes(_ string: NSMutableAttributedString) -> Void {
+    /// - Parameters:
+    ///   - string: Attributed String with plain text equal to ``plain``.
+    ///   - default: Attributes to apply to normal text by default. Defaults to no attributes.
+    /// - Returns: `Void`, but mutates the passed `string` to apply styles.
+    public func setAttributes(_ string: NSMutableAttributedString, default: [NSAttributedString.Key:Any] = [:]) -> Void {
         precondition(string.string == plain, "Cannot style non matching string!")
         
         /// Clear all attributes so that typed text is plain by default.
-        string.setAttributes([:], range: NSMakeRange(0, string.length))
+        string.setAttributes(`default`, range: NSMakeRange(0, string.length))
         
         /// Apply styling via AST.
         ast.style(string)

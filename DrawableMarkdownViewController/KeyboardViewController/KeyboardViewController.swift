@@ -18,7 +18,7 @@ final class KeyboardViewController: PMViewController {
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
-    var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
+    var coordinator: DrawableMarkdownViewController! { parent as? DrawableMarkdownViewController }
     
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
@@ -109,8 +109,27 @@ extension KeyboardViewController {
     func present(topInset: CGFloat) {
         /// Set and style the `textView` contents.
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.setAttributes(textView.textStorage)
+        styleText()
         
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
+    }
+}
+
+extension KeyboardViewController {
+    
+    /// Default styling for plain text.
+    var defaultAttributes: [NSAttributedString.Key: Any] {[
+        /// Monospaced font to make character targetting easier.
+        .font: UIFont.monospacedSystemFont(ofSize: UIFont.dynamicSize, weight: .regular),
+        
+        /// Dark mode sensitive primary color.
+        .foregroundColor: UIColor.label,
+    ]}
+    
+    /// Applies model styling to text, using our preferred defaults
+    /// - Note: does **not** rebuild the AST!
+    func styleText() {
+        guard let md = coordinator?.document?.markdown else { return }
+        md.setAttributes(textView.textStorage, default: defaultAttributes)
     }
 }
