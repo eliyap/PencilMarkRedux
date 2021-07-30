@@ -53,7 +53,6 @@ let package = Package(
             exclude: [
             ],
             resources: [
-                .copy("Javascript/dist/main.js"),
             ]
         ),
     ]
