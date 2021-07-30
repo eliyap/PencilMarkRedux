@@ -25,8 +25,8 @@ public final class Heading: Parent {
         super.init(dict: dict, parent: parent)
     }
     
-    override func style(_ string: inout NSMutableAttributedString) {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) {
+        super.style(string)
         /// Match system's preferred heading font size.
         string.addAttribute(
             .font,

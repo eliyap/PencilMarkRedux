@@ -33,10 +33,10 @@ public class Parent: Node {
     
     /// Allows this node to style the passed Attributed String.
     /// Makes the markdown more visually appealing.
-    override func style(_ string: inout NSMutableAttributedString) -> Void {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) -> Void {
+        super.style(string)
         /// Recursively let each child apply their own styles.
-        children.forEach { $0.style(&string) }
+        children.forEach { $0.style(string) }
     }
     
     override func gatherChanges() -> [Node] {

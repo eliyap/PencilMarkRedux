@@ -11,8 +11,8 @@ import UIKit
 public final class Delete: Parent {
     override class var type: String { "delete" }
     
-    override func style(_ string: inout NSMutableAttributedString) {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) {
+        super.style(string)
         string.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: position.nsRange)
         
         /// Style surrounding syntax marks

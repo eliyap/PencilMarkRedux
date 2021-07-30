@@ -34,18 +34,14 @@ extension KeyboardViewController {
                 /// Rebuild AST, recalculate text styling.
                 self?.coordinator.document?.markdown.updateAttributes()
                 
-                /**
-                 Setting the `attributedText` tends to move the cursor to the end of the document,
-                 so store the cursor position before modifying the document, then put it right back.
-                 Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
-                 */
-                let selection = ref.textView.selectedRange
-                ref.textView.isScrollEnabled = false
-                print("Before, Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
-                ref.textView.attributedText = self?.coordinator.document?.markdown.attributed
-                print("After, Can undo: " + String(describing: ref.textView.undoManager?.canUndo))
-                ref.textView.isScrollEnabled = true
-                ref.textView.selectedRange = selection
+                let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
+
+                /// - Note: setting `textView.attributedText` wipes the `undoManager`,
+                /// which is very bad, but calling `setAttributes` does not!
+                self?.coordinator.document!.markdown.setAttributes(ref.textView.textStorage)
+                
+                let canUndoAfter: Bool? = ref.textView.undoManager?.canUndo
+                assert(canUndoBefore == canUndoAfter, "UndoManager State changed during styling!")
             }
         self.store(typing)
     }

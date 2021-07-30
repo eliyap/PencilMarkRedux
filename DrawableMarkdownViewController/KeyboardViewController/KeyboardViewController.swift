@@ -107,7 +107,9 @@ extension KeyboardViewController {
 extension KeyboardViewController {
     /// Call when a new document is opened and the view needs to present it
     func present(topInset: CGFloat) {
-        textView.attributedText = coordinator.document?.markdown.attributed
+        /// Set and style the `textView` contents.
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.setAttributes(textView.textStorage)
         
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }

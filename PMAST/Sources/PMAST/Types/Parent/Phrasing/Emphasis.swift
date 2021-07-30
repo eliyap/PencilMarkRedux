@@ -11,8 +11,8 @@ import UIKit
 public final class Emphasis: Parent {
     override class var type: String { "emphasis" }
     
-    override func style(_ string: inout NSMutableAttributedString) {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) {
+        super.style(string)
         /// Runs the specified block for each differently formatted section of the provided range
         /// Docs: https://developer.apple.com/documentation/foundation/nsattributedstring/enumerationoptions
         string.enumerateAttribute(.font, in: position.nsRange, options: []) { font, range, _ in
