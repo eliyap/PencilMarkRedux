@@ -59,7 +59,6 @@
 		22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377926A22B9300E95009 /* PMCanvasView.swift */; };
 		22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007626A5099500A12F88 /* ScribbleBlockers.swift */; };
 		22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007A26A516F400A12F88 /* CommandConduit.swift */; };
-		22DA13FB269D2BEC00D90EA7 /* UIFont.addingTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA13FA269D2BEC00D90EA7 /* UIFont.addingTrait.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
@@ -138,7 +137,6 @@
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CF007626A5099500A12F88 /* ScribbleBlockers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleBlockers.swift; sourceTree = "<group>"; };
 		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
-		22DA13FA269D2BEC00D90EA7 /* UIFont.addingTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.addingTrait.swift; sourceTree = "<group>"; };
 		22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilMarkReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 		229B6CFF26B460CE0096FE45 /* UIFont */ = {
 			isa = PBXGroup;
 			children = (
-				22DA13FA269D2BEC00D90EA7 /* UIFont.addingTrait.swift */,
 				229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */,
 			);
 			path = UIFont;
@@ -532,7 +529,6 @@
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
 				229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */,
-				22DA13FB269D2BEC00D90EA7 /* UIFont.addingTrait.swift in Sources */,
 				22C9F5F226AB9A57003FD426 /* FilesViewController_UITableViewDataSource.swift in Sources */,
 				22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */,
 				22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */,
