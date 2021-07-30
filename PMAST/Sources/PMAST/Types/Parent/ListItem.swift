@@ -23,8 +23,8 @@ public final class ListItem: Parent {
         super.init(dict: dict, parent: parent)
     }
     
-    override func style(_ string: inout NSMutableAttributedString) {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) {
+        super.style(string)
         if let leading = leadingRange, let trailing = trailingRange {
             string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
             string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)

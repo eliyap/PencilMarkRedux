@@ -28,8 +28,8 @@ public final class Code: Literal {
         super.init(dict: dict, parent: parent)
     }
     
-    override func style(_ string: inout NSMutableAttributedString) {
-        super.style(&string)
+    override func style(_ string: NSMutableAttributedString) {
+        super.style(string)
         
         /// Color whole code block.
         string.addAttribute(.foregroundColor, value: UIColor.blue, range: position.nsRange)

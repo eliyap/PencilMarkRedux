@@ -62,7 +62,7 @@ public class Node {
     
     /// Allows this node to style the passed Attributed String.
     /// Makes the markdown more visually appealing.
-    func style(_ string: inout NSMutableAttributedString) -> Void {
+    func style(_ string: NSMutableAttributedString) -> Void {
         /// Override to apply styles here.
     }
 }

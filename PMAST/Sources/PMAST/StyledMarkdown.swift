@@ -44,7 +44,7 @@ extension Markdown {
                 .font: UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .regular)
             ]
         )
-        ast.style(&result)
+        ast.style(result)
         return result
     }
 }
