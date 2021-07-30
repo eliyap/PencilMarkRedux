@@ -109,7 +109,7 @@ extension KeyboardViewController {
     func present(topInset: CGFloat) {
         /// Set and style the `textView` contents.
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.setAttributes(textView.textStorage)
+        styleText()
         
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }

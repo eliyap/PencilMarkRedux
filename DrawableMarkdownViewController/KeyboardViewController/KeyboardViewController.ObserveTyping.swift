@@ -32,13 +32,13 @@ extension KeyboardViewController {
                 }
                 
                 /// Rebuild AST, recalculate text styling.
-                self?.coordinator.document?.markdown.updateAttributes()
+                ref.coordinator.document?.markdown.updateAttributes()
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 
                 /// - Note: setting `textView.attributedText` wipes the `undoManager`,
                 /// which is very bad, but calling `setAttributes` does not!
-                self?.coordinator.document!.markdown.setAttributes(ref.textView.textStorage)
+                ref.styleText()
                 
                 let canUndoAfter: Bool? = ref.textView.undoManager?.canUndo
                 assert(canUndoBefore == canUndoAfter, "UndoManager State changed during styling!")

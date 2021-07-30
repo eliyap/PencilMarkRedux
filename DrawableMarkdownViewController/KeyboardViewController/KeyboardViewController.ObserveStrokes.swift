@@ -65,7 +65,7 @@ extension KeyboardViewController {
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
         coordinator.document?.markdown.updateAttributes()
-        coordinator.document?.markdown.setAttributes(textView.textStorage)
+        styleText()
     }
     
     /// Erase along the provided line
@@ -94,7 +94,7 @@ extension KeyboardViewController {
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
         coordinator.document?.markdown.updateAttributes()
-        coordinator.document?.markdown.setAttributes(textView.textStorage)
+        styleText()
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
