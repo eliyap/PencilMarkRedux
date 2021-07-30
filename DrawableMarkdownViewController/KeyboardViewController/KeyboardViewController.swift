@@ -18,7 +18,7 @@ final class KeyboardViewController: PMViewController {
     
     /// Force unwrap container VC
     /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
-    var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
+    var coordinator: DrawableMarkdownViewController! { parent as? DrawableMarkdownViewController }
     
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
