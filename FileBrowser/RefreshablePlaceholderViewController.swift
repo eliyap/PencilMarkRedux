@@ -71,6 +71,7 @@ final class RefreshablePlaceholderViewController<VC, Content>: UIViewController
         /// Trigger data refresh in sibling view
         guard let parent = parent as? FolderViewController else {
             assert(false, "Parent of unexpected type!")
+            return
         }
         parent.filesView.refresh()
     }
