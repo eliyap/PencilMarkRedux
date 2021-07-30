@@ -34,9 +34,6 @@ extension KeyboardViewController {
                 /// Rebuild AST, recalculate text styling.
                 self?.coordinator.document?.markdown.updateAttributes()
                 
-                /**
-                 Setting the `attributedText` tends to move the cursor to the end of the document,
-                 so store the cursor position before modifying the document, then put it right back.
                  Also temporarily disable scrolling to prevent iOS snapping view to the bottom.
                  */
                 
