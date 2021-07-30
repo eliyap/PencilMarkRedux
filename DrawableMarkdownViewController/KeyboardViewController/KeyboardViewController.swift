@@ -114,3 +114,17 @@ extension KeyboardViewController {
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
     }
 }
+
+extension KeyboardViewController {
+    
+    var defaultAttributes: [NSAttributedString.Key: Any] {[
+        .font: UIFont.monospacedSystemFont(ofSize: UIFont.dynamicSize, weight: .regular)
+    ]}
+    
+    /// Applies model styling to text, using our preferred defaults
+    /// - Note: does **not** rebuild the AST!
+    func styleText() {
+        guard let md = coordinator?.document?.markdown else { return }
+        md.setAttributes(textView.textStorage, default: defaultAttributes)
+    }
+}
