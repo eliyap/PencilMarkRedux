@@ -29,10 +29,6 @@ final class DrawableMarkdownViewController: PMViewController {
     enum ScrollLead { case keyboard, canvas }
     var scrollLead = ScrollLead.canvas
     
-    /// Declare our own undoManger, which may then be implicitly unwrapped.
-    private let _undoManager = UndoManager()
-    override var undoManager: UndoManager! { _undoManager }
-    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
