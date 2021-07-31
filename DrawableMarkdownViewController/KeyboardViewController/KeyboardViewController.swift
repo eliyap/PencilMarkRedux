@@ -119,6 +119,12 @@ extension KeyboardViewController {
         /// Enable editing
         textView.isEditable = true
     }
+    
+    #warning("not used yet")
+    func close() {
+        /// Disallow the user from entering the text field
+        textView.isEditable = false
+    }
 }
 
 extension KeyboardViewController {
