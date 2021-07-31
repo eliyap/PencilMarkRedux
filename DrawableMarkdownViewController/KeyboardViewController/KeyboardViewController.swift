@@ -36,6 +36,9 @@ final class KeyboardViewController: PMViewController {
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
         textView.addInteraction(UIIndirectScribbleInteraction(delegate: IndirectScribbleBlocker()))
         
+        /// Disable editing until document is ``present``ed
+        textView.isEditable = false
+        
         setupNotifications()
     }
     
@@ -112,6 +115,9 @@ extension KeyboardViewController {
         styleText()
         
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
+        
+        /// Enable editing
+        textView.isEditable = true
     }
 }
 
