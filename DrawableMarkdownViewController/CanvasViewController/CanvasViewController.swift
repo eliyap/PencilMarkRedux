@@ -14,9 +14,14 @@ final class CanvasViewController: PMViewController {
     var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
     
     let canvasView = PMCanvasView()
+
+    /// Custom `UndoManager`.
+    private let _undoManager = CanvasViewController.UndoManager()
+    override var undoManager: UndoManager? { _undoManager }
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        _undoManager.controller = self /// immediately attach to child
         
         self.view = canvasView
         

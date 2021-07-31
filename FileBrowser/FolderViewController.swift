@@ -60,8 +60,8 @@ final class FolderViewController: UIViewController {
         fatalError("Do Not Use")
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.setToolbarHidden(false, animated: false)
     }
     
@@ -137,7 +137,7 @@ extension FolderViewController {
             }
             
             /// Refresh UITableView
-            /// TODO: make table view scroll to new document...
+            #warning("TODO: make table view scroll to new document...")
             self.filesView.tableView.reloadData()
             
             /// Open Document In Editor
