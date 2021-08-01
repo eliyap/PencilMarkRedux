@@ -24,14 +24,16 @@ class FilesViewController: UITableViewController {
     /// A cache of files previously seen in this folder.
     var _cachedContents: [URL] = []
     
+    /// Alias for `tableView` with known type.
+    let filesView = FilesView()
+    
     init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
         super.init(style: .plain)
        
         /// Attach custom `UITableView`
-        let tableView = FilesView()
-        self.tableView = tableView
+        self.tableView = filesView
         
         /// Attach refresh controller
         configureRefresh()
