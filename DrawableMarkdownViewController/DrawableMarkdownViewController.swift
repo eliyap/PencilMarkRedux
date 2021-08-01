@@ -49,6 +49,9 @@ final class DrawableMarkdownViewController: PMViewController {
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
         
         view.bringSubviewToFront(canvas.view)
+        
+        let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        navigationItem.rightBarButtonItems = [closeBtn]
     }
     
     required init?(coder: NSCoder) {
@@ -129,5 +132,26 @@ extension DrawableMarkdownViewController {
         
         /// Update Navigation Bar Title
         navigationItem.title = document?.localizedName ?? ""
+    }
+    
+    @objc
+    func close() {
+        guard document != nil else { return }
+        
+        /// Show placeholder view.
+        self.view.bringSubviewToFront(self.noDocument.view)
+        
+        /// Disable editing
+        keyboard.close()
+        
+        document?.close { (success) in
+            guard success else {
+                assert(false, "Failed to save document!")
+                return
+            }
+            
+            print("closed")
+            self.document = nil
+        }
     }
 }
