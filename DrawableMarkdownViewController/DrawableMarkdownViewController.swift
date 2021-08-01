@@ -29,6 +29,9 @@ final class DrawableMarkdownViewController: PMViewController {
     enum ScrollLead { case keyboard, canvas }
     var scrollLead = ScrollLead.canvas
     
+    /// Action to perform when document is closed
+    var onClose: () -> () = {} /// does nothing by default
+    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
@@ -49,6 +52,9 @@ final class DrawableMarkdownViewController: PMViewController {
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
         
         view.bringSubviewToFront(canvas.view)
+        
+        let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        navigationItem.rightBarButtonItems = [closeBtn]
     }
     
     required init?(coder: NSCoder) {
@@ -129,5 +135,31 @@ extension DrawableMarkdownViewController {
         
         /// Update Navigation Bar Title
         navigationItem.title = document?.localizedName ?? ""
+    }
+    
+    @objc
+    func close() {
+        guard document != nil else { return }
+        
+        /// Show placeholder view.
+        self.view.bringSubviewToFront(self.noDocument.view)
+        
+        /// Disable editing
+        keyboard.close()
+        
+        /// Update Navigation Bar Title
+        navigationItem.title = ""
+        
+        document?.close { (success) in
+            guard success else {
+                assert(false, "Failed to save document!")
+                return
+            }
+            
+            print("closed")
+            self.document = nil
+            self.onClose() /// invoke passed closure
+            self.onClose = {} /// reset to do nothing
+        }
     }
 }

@@ -120,7 +120,6 @@ extension KeyboardViewController {
         textView.isEditable = true
     }
     
-    #warning("not used yet")
     func close() {
         /// Disallow the user from entering the text field
         textView.isEditable = false

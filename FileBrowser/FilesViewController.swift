@@ -24,14 +24,16 @@ class FilesViewController: UITableViewController {
     /// A cache of files previously seen in this folder.
     var _cachedContents: [URL] = []
     
+    /// Alias for `tableView` with known type.
+    let filesView = FilesView()
+    
     init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
         super.init(style: .plain)
        
         /// Attach custom `UITableView`
-        let tableView = FilesView()
-        self.tableView = tableView
+        self.tableView = filesView
         
         /// Attach refresh controller
         configureRefresh()
@@ -75,7 +77,10 @@ class FilesViewController: UITableViewController {
             assert(splitViewController != nil, "Could not find ancestor split view!")
             splitViewController?.show(.secondary)
             
-            selectionDelegate.select(cellURL)
+            selectionDelegate.select(cellURL) {
+                /// Fade cell back to normal color, so that the cell doesn't stay gray.
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         }
     }
     
@@ -83,11 +88,17 @@ class FilesViewController: UITableViewController {
         if editingStyle == .delete {
             let cellURL: URL = contents![indexPath.row]
             do {
+                selectionDelegate.delete(cellURL)
                 try FileManager.default.removeItem(at: cellURL)
             } catch let error as NSError {
                 assert(false, "Error \(error.domain)")
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            /// Wrap deletion in animation block
+            /// Docs: https://developer.apple.com/documentation/uikit/uitableview/2887515-performbatchupdates
+            tableView.performBatchUpdates {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             print("Insert Not Implemented")
         }

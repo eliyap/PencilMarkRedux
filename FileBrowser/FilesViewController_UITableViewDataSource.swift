@@ -57,7 +57,6 @@ extension FilesViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        checkCache(tableView: tableView)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         

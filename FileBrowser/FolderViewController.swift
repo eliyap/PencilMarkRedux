@@ -25,7 +25,7 @@ final class FolderViewController: UIViewController {
     weak var selectionDelegate: FileBrowserViewController.DocumentDelegate!
     
     /// Subviews
-    let filesView: FilesViewController
+    let files: FilesViewController
     let empty = RefreshablePlaceholderViewController<EmptyFolderHost, EmptyFolderView>() /// placeholder for empty folder
     let broken = RefreshablePlaceholderViewController<iCloudBrokenHost, iCloudBrokenView>() /// placeholder when iCloud can't be accessed
     
@@ -36,12 +36,12 @@ final class FolderViewController: UIViewController {
     init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
-        self.filesView = FilesViewController(url: url, selectionDelegate: selectionDelegate)
+        self.files = FilesViewController(url: url, selectionDelegate: selectionDelegate)
         super.init(nibName: nil, bundle: nil)
-        filesView.folder = self /// *must* set implicitly unwrapped reference immediately
+        files.folder = self /// *must* set implicitly unwrapped reference immediately
         
         /// Add subviews into hierarchy.
-        adopt(filesView)
+        adopt(files)
         adopt(empty)
         adopt(broken)
         
@@ -68,7 +68,7 @@ final class FolderViewController: UIViewController {
     /// Update `SwiftUI` constraints when view appears.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        filesView.view.frame = view.frame
+        files.view.frame = view.frame
         empty.view.frame = view.frame
         broken.view.frame = view.frame
         
@@ -88,7 +88,7 @@ extension FolderViewController {
     public func show(_ folderState: FolderState) -> Void {
         switch folderState {
         case .ok:
-            view.bringSubviewToFront(filesView.view)
+            view.bringSubviewToFront(files.view)
         case .empty:
             view.bringSubviewToFront(empty.view)
         case .inaccessible:
@@ -102,11 +102,15 @@ extension FolderViewController {
 
     override var toolbarItems: [UIBarButtonItem]? {
         get {
-            let newDocBtn = UIBarButtonItem(image: UIImage(systemName: "doc.badge.plus"), style: .plain, target: self, action: #selector(newDocument))
+            let newDocBtn = UIBarButtonItem.menuButton(self, action: #selector(newDocument), imageName: "document")
             newDocBtn.tintColor = tint
+
+            let newFolderBtn = UIBarButtonItem.menuButton(self, action: #selector(newFolder), imageName: "folder")
+            newFolderBtn.tintColor = tint
             
             return (super.toolbarItems ?? []) + [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+                newFolderBtn,
                 newDocBtn,
             ]
         }
@@ -123,7 +127,7 @@ extension FolderViewController {
             return
         }
         
-        let fileURL: URL = newDocumentURL(in: url)
+        let fileURL: URL = newURL(in: url, base: "Untitled", suffix: ".txt")
         
         /// Assign document location and empty contents
         let document = StyledMarkdownDocument(fileURL: fileURL)
@@ -136,13 +140,43 @@ extension FolderViewController {
                 return
             }
             
-            /// Refresh UITableView
-            #warning("TODO: make table view scroll to new document...")
-            self.filesView.tableView.reloadData()
+            /// Animate row insertion
+            self.files.filesView.reveal(IndexPath(
+                row: self.files.contents!.firstIndex(of: fileURL)!,
+                section: 0
+            ), select: true)
             
             /// Open Document In Editor
             self.selectionDelegate.present(fileURL: fileURL)
         }
-        print("Not Implemented")
+    }
+    
+    @objc
+    private func newFolder() {
+        guard let url = url else {
+            assert(false, "New Document Cannot Be Created In Null Folder!")
+            return
+        }
+        
+        let folderURL: URL = newURL(in: url, base: "Untitled Folder", suffix: "")
+        precondition(FileManager.default.fileExists(atPath: folderURL.path) == false, "File already exists at URL \(url)")
+        
+        do {
+            /// Should never need to create intermediate directories.
+            try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
+            
+            /// Get index of ".../MyFolder" or ".../MyFolder/"
+            let index: Int? = self.files.contents!.firstIndex(of: folderURL)
+                ?? self.files.contents!.firstIndex(of: folderURL.appendingPathComponent("/"))
+            
+            /// Animate row insertion
+            self.files.filesView.reveal(IndexPath(
+                row: index!,
+                section: 0
+            ), select: false)
+        } catch {
+            assert(false, "Failed to create folder!")
+            return
+        }
     }
 }

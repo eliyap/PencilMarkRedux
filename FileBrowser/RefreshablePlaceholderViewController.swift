@@ -73,6 +73,6 @@ final class RefreshablePlaceholderViewController<VC, Content>: UIViewController
             assert(false, "Parent of unexpected type!")
             return
         }
-        parent.filesView.refresh()
+        parent.files.refresh()
     }
 }
