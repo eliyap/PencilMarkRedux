@@ -26,7 +26,7 @@ func newURL(in folderURL: URL, base: String, suffix: String) -> URL {
     func name() -> String {
         count == 0
             ? "\(base)\(suffix)"
-            : "\(base)-\(count)\(suffix)"
+            : "\(base) \(count)\(suffix)"
     }
     
     /// Increment count until name is unique.

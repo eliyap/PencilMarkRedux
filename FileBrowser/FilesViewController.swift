@@ -84,23 +84,19 @@ class FilesViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let cellURL: URL = contents![indexPath.row]
-            do {
-                selectionDelegate.delete(cellURL)
-                try FileManager.default.removeItem(at: cellURL)
-            } catch let error as NSError {
-                assert(false, "Error \(error.domain)")
-            }
-            
-            /// Wrap deletion in animation block
-            /// Docs: https://developer.apple.com/documentation/uikit/uitableview/2887515-performbatchupdates
-            tableView.performBatchUpdates {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        } else if editingStyle == .insert {
-            print("Insert Not Implemented")
+    func delete(at indexPath: IndexPath) -> Void {
+        let cellURL: URL = contents![indexPath.row]
+        do {
+            selectionDelegate.delete(cellURL)
+            try FileManager.default.removeItem(at: cellURL)
+        } catch let error as NSError {
+            assert(false, "Error \(error.domain)")
+        }
+        
+        /// Wrap deletion in animation block
+        /// Docs: https://developer.apple.com/documentation/uikit/uitableview/2887515-performbatchupdates
+        tableView.performBatchUpdates {
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

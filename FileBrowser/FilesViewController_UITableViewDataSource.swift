@@ -75,5 +75,26 @@ extension FilesViewController {
         }
         return cell
     }
+    
+    /// Custom trailing edge swipe actions
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let renameAction = UIContextualAction(style: .normal, title: "Rename") { (action, view, completionHandler) in
+            #warning("Todo: implement renaming functionality")
+            completionHandler(true)
+        }
+        renameAction.image = UIImage(systemName: "pencil")
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            self.delete(at: indexPath)
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [
+            deleteAction, /// far edge
+//            renameAction, /// closer to row
+        ])
+    }
 }
 
