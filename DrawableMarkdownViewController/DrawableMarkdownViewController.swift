@@ -29,6 +29,9 @@ final class DrawableMarkdownViewController: PMViewController {
     enum ScrollLead { case keyboard, canvas }
     var scrollLead = ScrollLead.canvas
     
+    /// Action to perform when document is closed
+    var onClose: () -> () = {} /// does nothing by default
+    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
@@ -152,6 +155,8 @@ extension DrawableMarkdownViewController {
             
             print("closed")
             self.document = nil
+            self.onClose() /// invoke passed closure
+            self.onClose = {} /// reset to do nothing
         }
     }
 }
