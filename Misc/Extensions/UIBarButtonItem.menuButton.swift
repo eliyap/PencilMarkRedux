@@ -12,8 +12,9 @@ extension UIBarButtonItem {
     /// Make a custom square image button.
     /// Source: https://stackoverflow.com/a/53454225/12395667
     static func menuButton(_ target: Any?, action: Selector, imageName: String) -> UIBarButtonItem {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.setImage(UIImage(named: imageName), for: .normal)
+        button.imageView?.tintColor = tint
         button.addTarget(target, action: action, for: .touchUpInside)
 
         let menuBarItem = UIBarButtonItem(customView: button)
