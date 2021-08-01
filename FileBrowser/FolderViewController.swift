@@ -136,13 +136,22 @@ extension FolderViewController {
                 return
             }
             
-            /// Refresh UITableView
-            #warning("TODO: make table view scroll to new document...")
-            self.filesView.tableView.reloadData()
+            /// Animate row insertion
+            let path: IndexPath = IndexPath(
+                row: self.filesView.contents!.firstIndex(of: fileURL)!,
+                section: 0
+            )
+            self.filesView.tableView.performBatchUpdates {
+                self.filesView.tableView.insertRows(at: [path], with: .automatic)
+            } completion: { (finished) in
+                /// Scroll row into view **after** insertion is complete!
+                /// Docs: https://developer.apple.com/documentation/uikit/uitableview/1614875-selectrow
+                self.filesView.tableView.selectRow(at: path, animated: true, scrollPosition: .none)
+                self.filesView.tableView.scrollToRow(at: path, at: .none, animated: true)
+            }
             
             /// Open Document In Editor
             self.selectionDelegate.present(fileURL: fileURL)
         }
-        print("Not Implemented")
     }
 }
