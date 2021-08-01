@@ -147,6 +147,9 @@ extension DrawableMarkdownViewController {
         /// Disable editing
         keyboard.close()
         
+        /// Update Navigation Bar Title
+        navigationItem.title = ""
+        
         document?.close { (success) in
             guard success else {
                 assert(false, "Failed to save document!")
