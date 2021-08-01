@@ -146,4 +146,28 @@ extension FolderViewController {
             self.selectionDelegate.present(fileURL: fileURL)
         }
     }
+    
+    @objc
+    private func newFolder() {
+        guard let url = url else {
+            assert(false, "New Document Cannot Be Created In Null Folder!")
+            return
+        }
+        
+        let folderURL: URL = newURL(in: url, base: "Untitled Folder", suffix: "")
+        precondition(FileManager.default.fileExists(atPath: folderURL.path), "File already exists at URL \(url)")
+        
+        do {
+            /// Should never need to create intermediate directories.
+            try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
+            /// Animate row insertion
+            self.files.filesView.reveal(IndexPath(
+                row: self.files.contents!.firstIndex(of: folderURL)!,
+                section: 0
+            ))
+        } catch {
+            assert(false, "Failed to create folder!")
+            return
+        }
+    }
 }
