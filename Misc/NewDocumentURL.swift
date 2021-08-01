@@ -30,7 +30,7 @@ func newURL(in folderURL: URL, base: String, suffix: String) -> URL {
     }
     
     /// Increment count until name is unique.
-    while existingNames.contains(name()) { count += 1 }
+    while existingNames.contains(name()) || FileManager.default.fileExists(atPath: folderURL.appendingPathComponent(name()).path) { count += 1 }
     
     return folderURL.appendingPathComponent(name())
 }
