@@ -25,7 +25,7 @@ final class FolderViewController: UIViewController {
     weak var selectionDelegate: FileBrowserViewController.DocumentDelegate!
     
     /// Subviews
-    let filesView: FilesViewController
+    let files: FilesViewController
     let empty = RefreshablePlaceholderViewController<EmptyFolderHost, EmptyFolderView>() /// placeholder for empty folder
     let broken = RefreshablePlaceholderViewController<iCloudBrokenHost, iCloudBrokenView>() /// placeholder when iCloud can't be accessed
     
@@ -36,12 +36,12 @@ final class FolderViewController: UIViewController {
     init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
-        self.filesView = FilesViewController(url: url, selectionDelegate: selectionDelegate)
+        self.files = FilesViewController(url: url, selectionDelegate: selectionDelegate)
         super.init(nibName: nil, bundle: nil)
-        filesView.folder = self /// *must* set implicitly unwrapped reference immediately
+        files.folder = self /// *must* set implicitly unwrapped reference immediately
         
         /// Add subviews into hierarchy.
-        adopt(filesView)
+        adopt(files)
         adopt(empty)
         adopt(broken)
         
@@ -68,7 +68,7 @@ final class FolderViewController: UIViewController {
     /// Update `SwiftUI` constraints when view appears.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        filesView.view.frame = view.frame
+        files.view.frame = view.frame
         empty.view.frame = view.frame
         broken.view.frame = view.frame
         
@@ -88,7 +88,7 @@ extension FolderViewController {
     public func show(_ folderState: FolderState) -> Void {
         switch folderState {
         case .ok:
-            view.bringSubviewToFront(filesView.view)
+            view.bringSubviewToFront(files.view)
         case .empty:
             view.bringSubviewToFront(empty.view)
         case .inaccessible:
