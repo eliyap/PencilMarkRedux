@@ -102,11 +102,15 @@ extension FolderViewController {
 
     override var toolbarItems: [UIBarButtonItem]? {
         get {
-            let newDocBtn = UIBarButtonItem(image: UIImage(systemName: "doc.badge.plus"), style: .plain, target: self, action: #selector(newDocument))
+            let newDocBtn = UIBarButtonItem.menuButton(self, action: #selector(newDocument), imageName: "document")
             newDocBtn.tintColor = tint
+
+            let newFolderBtn = UIBarButtonItem.menuButton(self, action: #selector(newFolder), imageName: "folder")            
+            newFolderBtn.tintColor = tint
             
             return (super.toolbarItems ?? []) + [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+                newFolderBtn,
                 newDocBtn,
             ]
         }
@@ -155,14 +159,19 @@ extension FolderViewController {
         }
         
         let folderURL: URL = newURL(in: url, base: "Untitled Folder", suffix: "")
-        precondition(FileManager.default.fileExists(atPath: folderURL.path), "File already exists at URL \(url)")
+        precondition(FileManager.default.fileExists(atPath: folderURL.path) == false, "File already exists at URL \(url)")
         
         do {
             /// Should never need to create intermediate directories.
             try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
+            
+            /// Get index of ".../MyFolder" or ".../MyFolder/"
+            let index: Int? = self.files.contents!.firstIndex(of: folderURL)
+                ?? self.files.contents!.firstIndex(of: folderURL.appendingPathComponent("/"))
+            
             /// Animate row insertion
             self.files.filesView.reveal(IndexPath(
-                row: self.files.contents!.firstIndex(of: folderURL)!,
+                row: index!,
                 section: 0
             ))
         } catch {
