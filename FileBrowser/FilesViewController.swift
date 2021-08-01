@@ -93,6 +93,7 @@ class FilesViewController: UITableViewController {
             }
             
             /// Wrap deletion in animation block
+            /// Docs: https://developer.apple.com/documentation/uikit/uitableview/2887515-performbatchupdates
             tableView.performBatchUpdates {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
