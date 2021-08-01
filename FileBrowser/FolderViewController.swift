@@ -123,7 +123,7 @@ extension FolderViewController {
             return
         }
         
-        let fileURL: URL = newDocumentURL(in: url)
+        let fileURL: URL = newURL(in: url, base: "Untitled", suffix: ".txt")
         
         /// Assign document location and empty contents
         let document = StyledMarkdownDocument(fileURL: fileURL)
