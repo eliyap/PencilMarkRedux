@@ -86,6 +86,7 @@ class FilesViewController: UITableViewController {
         if editingStyle == .delete {
             let cellURL: URL = contents![indexPath.row]
             do {
+                selectionDelegate.delete(cellURL)
                 try FileManager.default.removeItem(at: cellURL)
             } catch let error as NSError {
                 assert(false, "Error \(error.domain)")
