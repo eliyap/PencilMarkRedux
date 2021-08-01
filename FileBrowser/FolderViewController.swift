@@ -105,7 +105,7 @@ extension FolderViewController {
             let newDocBtn = UIBarButtonItem.menuButton(self, action: #selector(newDocument), imageName: "document")
             newDocBtn.tintColor = tint
 
-            let newFolderBtn = UIBarButtonItem.menuButton(self, action: #selector(newFolder), imageName: "folder")            
+            let newFolderBtn = UIBarButtonItem.menuButton(self, action: #selector(newFolder), imageName: "folder")
             newFolderBtn.tintColor = tint
             
             return (super.toolbarItems ?? []) + [
@@ -144,7 +144,7 @@ extension FolderViewController {
             self.files.filesView.reveal(IndexPath(
                 row: self.files.contents!.firstIndex(of: fileURL)!,
                 section: 0
-            ))
+            ), select: true)
             
             /// Open Document In Editor
             self.selectionDelegate.present(fileURL: fileURL)
@@ -173,7 +173,7 @@ extension FolderViewController {
             self.files.filesView.reveal(IndexPath(
                 row: index!,
                 section: 0
-            ))
+            ), select: false)
         } catch {
             assert(false, "Failed to create folder!")
             return
