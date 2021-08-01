@@ -91,7 +91,11 @@ class FilesViewController: UITableViewController {
             } catch let error as NSError {
                 assert(false, "Error \(error.domain)")
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            /// Wrap deletion in animation block
+            tableView.performBatchUpdates {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             print("Insert Not Implemented")
         }
