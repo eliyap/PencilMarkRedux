@@ -10,6 +10,11 @@ import UIKit
 import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
+
+    override var restorationIdentifier: String? {
+        get { "DrawableMarkdownViewController" }
+        set { assert(false, "Restoration ID set to \(newValue ?? "")") }
+    }
     
     /// Model object
     public var document: StyledMarkdownDocument?
