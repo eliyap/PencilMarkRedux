@@ -31,6 +31,7 @@
 		229B6D0526B754A90096FE45 /* UIBarButtonItem.menuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0426B754A90096FE45 /* UIBarButtonItem.menuButton.swift */; };
 		229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */; };
 		229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */; };
+		229B6D0D26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0C26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -110,6 +111,7 @@
 		229B6D0426B754A90096FE45 /* UIBarButtonItem.menuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.menuButton.swift; sourceTree = "<group>"; };
 		229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_UIStateRestoring.swift; sourceTree = "<group>"; };
 		229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_UISplitViewControllerDelegate.swift; sourceTree = "<group>"; };
+		229B6D0C26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate_StateRestoration.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				22C9F5D126AB9215003FD426 /* AppDelegate.swift */,
 				22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */,
+				229B6D0C26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift */,
 				22C9F5D926AB98AD003FD426 /* ViewController.swift */,
 				229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */,
 				229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */,
@@ -539,6 +542,7 @@
 				220B852A26AC998C00081536 /* KeyboardViewController.ObserveCommands.swift in Sources */,
 				22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */,
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
+				229B6D0D26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
