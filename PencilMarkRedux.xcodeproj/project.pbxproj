@@ -29,6 +29,8 @@
 		229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */; };
 		229B6D0326B467D10096FE45 /* CanvasViewController.UndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */; };
 		229B6D0526B754A90096FE45 /* UIBarButtonItem.menuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0426B754A90096FE45 /* UIBarButtonItem.menuButton.swift */; };
+		229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */; };
+		229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -106,6 +108,8 @@
 		229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.dynamicSize.swift; sourceTree = "<group>"; };
 		229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.UndoManager.swift; sourceTree = "<group>"; };
 		229B6D0426B754A90096FE45 /* UIBarButtonItem.menuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.menuButton.swift; sourceTree = "<group>"; };
+		229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_UIStateRestoring.swift; sourceTree = "<group>"; };
+		229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_UISplitViewControllerDelegate.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				22C9F5D126AB9215003FD426 /* AppDelegate.swift */,
 				22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */,
 				22C9F5D926AB98AD003FD426 /* ViewController.swift */,
+				229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */,
+				229B6D0826B776120096FE45 /* ViewController_UIStateRestoring.swift */,
 				22C9F5D726AB934B003FD426 /* Main.storyboard */,
 			);
 			path = AppRoot;
@@ -492,6 +498,7 @@
 			files = (
 				22CA376626A0C52000E95009 /* Interpret.swift in Sources */,
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
+				229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */,
 				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
@@ -504,6 +511,7 @@
 				220B852D26AC9AC000081536 /* CanvasViewController.swift in Sources */,
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */,
+				229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */,

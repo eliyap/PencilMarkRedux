@@ -81,10 +81,12 @@ final class DrawableMarkdownViewController: PMViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
+        print("Encoding " + "\(#file), \(#function), Line \(#line)")
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
+        print("Decoding " + "\(#file), \(#function), Line \(#line)")
     }
 }
 
