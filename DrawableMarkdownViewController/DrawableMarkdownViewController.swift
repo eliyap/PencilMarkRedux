@@ -11,11 +11,6 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
 
-    override var restorationIdentifier: String? {
-        get { "DrawableMarkdownViewController" }
-        set { assert(false, "Restoration ID set to \(newValue ?? "")") }
-    }
-    
     /// Model object
     public var document: StyledMarkdownDocument?
     
@@ -77,6 +72,20 @@ final class DrawableMarkdownViewController: PMViewController {
         canvas.view.frame = view.frame
         noDocument.view.frame = view.frame
     }
+    
+    // MARK: - State Restoration
+    override var restorationIdentifier: String? {
+        get { "DrawableMarkdownViewController" }
+        set { assert(false, "Restoration ID set to \(newValue ?? "")") }
+    }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+    }
 }
 
 extension DrawableMarkdownViewController {
@@ -86,6 +95,8 @@ extension DrawableMarkdownViewController {
         precondition(document?.fileURL != nil, "Edits made to nil document!")
         precondition(document?.fileURL != StyledMarkdownDocument.temp.fileURL, "Edits made to placeholder document!")
     }
+    
+    // MARK: - Document Open / Close
     
     /// Close whatever document is currently open, and open the provided URL instead
     func present(fileURL: URL?) {
