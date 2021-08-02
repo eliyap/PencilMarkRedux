@@ -38,5 +38,7 @@ final class ViewController: UISplitViewController {
         super.viewDidLoad()
         print("Loaded")
         // Do any additional setup after loading the view.
+        
+        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "TestActivityType")
     }
 }
