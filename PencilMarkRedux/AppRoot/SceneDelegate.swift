@@ -14,14 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Determine the user activity from a new connection or from a session's state restoration.
         guard let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity else { return }
-        print("User Activity is present: \(userActivity != nil)")
-        print("Window is present: \(window != nil)")
         
-        configure(window: window, session: session, with: userActivity)
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-//        guard let _ = (scene as? UIWindowScene) else { return }
+        _ = configure(window: window, session: session, with: userActivity)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -71,12 +65,11 @@ extension SceneDelegate {
         
         switch activity.activityType {
         case ActivityType.example.rawValue:
-            print("Not Implemented Test Activity Type")
+            break
         default:
             fatalError("Unrecognized activity type: \(activity.activityType)")
         }
         
-        print("Configuring with info \(activity.userInfo)")
         StateModel.shared.url = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
         
         return succeeded
