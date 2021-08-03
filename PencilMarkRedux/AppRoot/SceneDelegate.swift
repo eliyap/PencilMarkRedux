@@ -13,7 +13,7 @@ import UIKit
  * **Must** be kept consistent with `Info.plist`!
  */
 enum PMUserActivity: String {
-    case test = "com.pencilmark.test"
+    case example = "com.pencilmark.example"
 }
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -22,8 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Determine the user activity from a new connection or from a session's state restoration.
-        let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity
+        guard let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity else { return }
         print("User Activity is present: \(userActivity != nil)")
+        print("Window is present: \(window != nil)")
+        
+        configure(window: window, session: session, with: userActivity)
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
@@ -67,3 +70,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+// MARK: - Configuration
+extension SceneDelegate {
+    /// Cloned from Apple's sample StateRestoration app.
+    func configure(window: UIWindow?, session: UISceneSession, with activity: NSUserActivity) -> Bool {
+        var succeeded = true
+        
+        switch activity.activityType {
+        case PMUserActivity.example.rawValue:
+            print("Not Implemented Test Activity Type")
+        default:
+            fatalError("Unrecognized activity type: \(activity.activityType)")
+        }
+        
+        return succeeded
+    }
+}
