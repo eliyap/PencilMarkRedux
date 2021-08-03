@@ -5,23 +5,7 @@
 //  Created by Secret Asian Man Dev on 23/7/21.
 //
 
-import Foundation
 import UIKit
-
-/**
- * Types of `NSUserActivity` keyed for our app.
- * **Must** be kept consistent with `Info.plist`!
- */
-enum ActivityType: String {
-    case example = "com.pencilmark.example"
-}
-
-/**
- * Keys used for state restoration in our `NSUserActivity` `userInfo`.
- */
-enum ActivityInfo: NSString {
-    case fileURL
-}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

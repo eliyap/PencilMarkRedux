@@ -33,6 +33,8 @@
 		229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */; };
 		229B6D0D26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0C26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift */; };
 		229B6D0F26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0E26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift */; };
+		229B6D1226B97D8C0096FE45 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D1126B97D8C0096FE45 /* ActivityType.swift */; };
+		229B6D1426B97DB30096FE45 /* ActivityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D1326B97DB30096FE45 /* ActivityInfo.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -114,6 +116,8 @@
 		229B6D0A26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_UISplitViewControllerDelegate.swift; sourceTree = "<group>"; };
 		229B6D0C26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate_StateRestoration.swift; sourceTree = "<group>"; };
 		229B6D0E26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.willEnterBackground.swift; sourceTree = "<group>"; };
+		229B6D1126B97D8C0096FE45 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
+		229B6D1326B97DB30096FE45 /* ActivityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInfo.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 		229B6D1026B97CF80096FE45 /* State Restoration */ = {
 			isa = PBXGroup;
 			children = (
+				229B6D1126B97D8C0096FE45 /* ActivityType.swift */,
+				229B6D1326B97DB30096FE45 /* ActivityInfo.swift */,
 			);
 			path = "State Restoration";
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 				22C9F5E126AB99BE003FD426 /* DocumentSelectionDelegate.swift in Sources */,
 				22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */,
 				229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */,
+				229B6D1426B97DB30096FE45 /* ActivityInfo.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */,
@@ -546,6 +553,7 @@
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
+				229B6D1226B97D8C0096FE45 /* ActivityType.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */,
