@@ -93,25 +93,27 @@ final class DrawableMarkdownViewController: PMViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        restoreState()
+        restoreState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.restoreState()
-        }
-        
+        self.restoreState()
     }
     
     // MARK: - State Restoration
     /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
     func restoreState() -> Void {
         /// Only restore state if document is not already open.
-//        if document?.fileURL == nil {
-//            #warning("disabled due to permissions failure")
-            present(fileURL: StateModel.shared.url)
-//        }
+        guard document?.fileURL == nil else { return }
+        
+        /// Assert control over iCloud drive
+        /// If we do not do this, `UIDocument` reports a permissions failure.
+        guard let iCloudURL = FileBrowserViewController.iCloudURL else { return }
+        _ = try? FileManager.default.contentsOfDirectory(at: iCloudURL, includingPropertiesForKeys: .none)
+        
+        /// Open stored document
+        present(fileURL: StateModel.shared.url)
     }
 }
 
