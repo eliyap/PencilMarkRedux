@@ -31,10 +31,12 @@ extension DrawableMarkdownViewController {
         /// Cast to allowed NS types
         /// Docs: https://developer.apple.com/documentation/foundation/nsuseractivity/1411706-userinfo
         if let url = document?.fileURL {
-            activity.userInfo![PMStateKey.fileURL.rawValue] = url as NSURL
+            let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: url as NSURL]
+            activity.addUserInfoEntries(from: newInfo)
             print("saved URL")
         } else {
-            activity.userInfo![PMStateKey.fileURL.rawValue] = NSNull()
+            let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: NSNull()]
+            activity.addUserInfoEntries(from: newInfo)
             print("saved Null")
         }
         

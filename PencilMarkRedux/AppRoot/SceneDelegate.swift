@@ -12,14 +12,14 @@ import UIKit
  * Types of `NSUserActivity` keyed for our app.
  * **Must** be kept consistent with `Info.plist`!
  */
-enum PMUserActivity: String {
+enum ActivityType: String {
     case example = "com.pencilmark.example"
 }
 
 /**
  * Keys used for state restoration in our `NSUserActivity` `userInfo`.
  */
-enum PMStateKey: NSString {
+enum ActivityInfo: NSString {
     case fileURL
 }
 
@@ -86,11 +86,13 @@ extension SceneDelegate {
         var succeeded = true
         
         switch activity.activityType {
-        case PMUserActivity.example.rawValue:
+        case ActivityType.example.rawValue:
             print("Not Implemented Test Activity Type")
         default:
             fatalError("Unrecognized activity type: \(activity.activityType)")
         }
+        
+        print("Configuring with info \(activity.userInfo)")
         
         return succeeded
     }
