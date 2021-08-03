@@ -36,16 +36,16 @@ final class ViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Loaded")
-        // Do any additional setup after loading the view.
-        
-        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "TestActivityType")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("ViewController Has Window Scene: \(view.window?.windowScene != nil)")
-        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "com.pencilmark.example")
+        /// Initiate `NSUserActivity` on appearance, which seems like the earliest point we may access the `windowScene`.
+        if let scene = view.window?.windowScene {
+            scene.userActivity = NSUserActivity(activityType: ActivityType.example.rawValue)
+        } else {
+            print("Todo: log missing scene!")
+        }
     }
 }
