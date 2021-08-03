@@ -64,6 +64,7 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         observeTyping()
+        observeBackgrounding()
     }
     
     override func viewDidLayoutSubviews() {
