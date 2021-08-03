@@ -107,7 +107,8 @@ final class DrawableMarkdownViewController: PMViewController {
     func restoreState() -> Void {
         /// Only restore state if document is not already open.
         if document?.fileURL == nil {
-            present(fileURL: StateModel.shared.url)
+            #warning("disabled due to permissions failure")
+//            present(fileURL: StateModel.shared.url)
         }
     }
 }
