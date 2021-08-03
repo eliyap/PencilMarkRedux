@@ -77,6 +77,7 @@ extension SceneDelegate {
         }
         
         print("Configuring with info \(activity.userInfo)")
+        StateModel.shared.url = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
         
         return succeeded
     }
