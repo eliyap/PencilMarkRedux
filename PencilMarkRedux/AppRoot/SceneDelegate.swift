@@ -16,6 +16,13 @@ enum PMUserActivity: String {
     case example = "com.pencilmark.example"
 }
 
+/**
+ * Keys used for state restoration in our `NSUserActivity` `userInfo`.
+ */
+enum PMStateKey: String {
+    case fileURL
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
