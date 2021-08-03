@@ -79,6 +79,10 @@ final class DrawableMarkdownViewController: PMViewController {
         super.viewDidLoad()
         observeTyping()
         observeBackgrounding()
+        
+        if let url = StateModel.shared.url {
+            print("Found shared URL on Load: \(url)")
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,34 +92,23 @@ final class DrawableMarkdownViewController: PMViewController {
         noDocument.view.frame = view.frame
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        restoreState()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let activity = view.window?.windowScene?.userActivity {
-            let fileURL: URL? = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
-            print("fileURL: \(fileURL)")
-        } else {
-            print("Todo: log missing NSUserActivity")
-        }
-        
-        print("DrawableVC Has Window Scene: \(view.window?.windowScene != nil)")
-        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "com.pencilmark.example")
+        restoreState()
     }
     
     // MARK: - State Restoration
-    override var restorationIdentifier: String? {
-        get { "DrawableMarkdownViewController" }
-        set { assert(false, "Restoration ID set to \(newValue ?? "")") }
-    }
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        super.encodeRestorableState(with: coder)
-        print("Encoding " + "\(#file), \(#function), Line \(#line)")
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        super.decodeRestorableState(with: coder)
-        print("Decoding " + "\(#file), \(#function), Line \(#line)")
+    /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
+    func restoreState() -> Void {
+        /// Only restore state if document is not already open.
+        if document?.fileURL == nil {
+            present(fileURL: StateModel.shared.url)
+        }
     }
 }
 
