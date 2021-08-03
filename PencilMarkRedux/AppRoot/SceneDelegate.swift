@@ -19,7 +19,7 @@ enum PMUserActivity: String {
 /**
  * Keys used for state restoration in our `NSUserActivity` `userInfo`.
  */
-enum PMStateKey: String {
+enum PMStateKey: NSString {
     case fileURL
 }
 
