@@ -32,8 +32,10 @@ extension DrawableMarkdownViewController {
         /// Docs: https://developer.apple.com/documentation/foundation/nsuseractivity/1411706-userinfo
         if let url = document?.fileURL {
             activity.userInfo![PMStateKey.fileURL.rawValue] = url as NSURL
+            print("saved URL")
         } else {
             activity.userInfo![PMStateKey.fileURL.rawValue] = NSNull()
+            print("saved Null")
         }
         
         print("backgrounded!")
