@@ -33,13 +33,9 @@ extension DrawableMarkdownViewController {
         if let url = document?.fileURL {
             let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: url as NSURL]
             activity.addUserInfoEntries(from: newInfo)
-            print("saved URL")
         } else {
             let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: NSNull()]
             activity.addUserInfoEntries(from: newInfo)
-            print("saved Null")
         }
-        
-        print("backgrounded!")
     }
 }
