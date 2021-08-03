@@ -78,10 +78,7 @@ final class DrawableMarkdownViewController: PMViewController {
         super.viewDidLoad()
         observeTyping()
         observeBackgrounding()
-        
-        if let url = StateModel.shared.url {
-            print("Found shared URL on Load: \(url)")
-        }
+        restoreState()
     }
     
     override func viewDidLayoutSubviews() {
