@@ -52,8 +52,3 @@ final class StyledMarkdownDocument: UIDocument {
         fileURL.lastPathComponent
     }
 }
-
-extension StyledMarkdownDocument {
-    /// A placeholder document. Should never be edited.
-    static let temp = StyledMarkdownDocument(fileURL: documentsURL.appendingPathComponent("TEMP.txt"))
-}

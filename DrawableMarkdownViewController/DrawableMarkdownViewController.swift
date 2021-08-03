@@ -98,7 +98,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.restoreState()
+        restoreState()
     }
     
     // MARK: - State Restoration
@@ -122,7 +122,6 @@ extension DrawableMarkdownViewController {
     /// Make sure we are not editing the temporary document or a `nil` document.
     func assertDocumentIsValid() {
         precondition(document?.fileURL != nil, "Edits made to nil document!")
-        precondition(document?.fileURL != StyledMarkdownDocument.temp.fileURL, "Edits made to placeholder document!")
     }
     
     // MARK: - Document Open / Close
