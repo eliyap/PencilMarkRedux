@@ -55,6 +55,20 @@ final class DrawableMarkdownViewController: PMViewController {
         
         let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
         navigationItem.rightBarButtonItems = [closeBtn]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
+    }
+    
+    @objc
+    func documentStateChanged() -> Void {
+        guard let state = document?.documentState else { return }
+        print("State Change Detected")
+        if state == .normal { }
+        if state.contains(.closed) { print("Document Closed") }
+        if state.contains(.inConflict) { print("Document Conflicted") }
+        if state.contains(.editingDisabled) { print("Document Cannot Edit") }
+        if state.contains(.savingError) { print("Document Encountered Error whilst Saving") }
+        if state.contains(.progressAvailable) { print("Document Progress Available") }
     }
     
     required init?(coder: NSCoder) {
