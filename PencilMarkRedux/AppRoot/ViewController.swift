@@ -41,4 +41,11 @@ final class ViewController: UISplitViewController {
         
         view.window?.windowScene?.userActivity = NSUserActivity(activityType: "TestActivityType")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("Has Window Scene: \(view.window?.windowScene != nil)")
+        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "com.pencilmark.example")
+    }
 }
