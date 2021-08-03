@@ -78,7 +78,7 @@ final class DrawableMarkdownViewController: PMViewController {
         super.viewDidAppear(animated)
         
         if let activity = view.window?.windowScene?.userActivity {
-            let fileURL: URL? = activity.userInfo?[PMStateKey.fileURL.rawValue] as? NSURL as URL?
+            let fileURL: URL? = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
             print("fileURL: \(fileURL)")
         } else {
             print("Todo: log missing NSUserActivity")
