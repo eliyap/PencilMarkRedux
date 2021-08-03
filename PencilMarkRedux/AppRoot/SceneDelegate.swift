@@ -8,10 +8,17 @@
 import Foundation
 import UIKit
 
+/**
+ * Types of `NSUserActivity` keyed for our app.
+ * **Must** be kept consistent with `Info.plist`!
+ */
+enum PMUserActivity: String {
+    case test = "com.pencilmark.test"
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Determine the user activity from a new connection or from a session's state restoration.
