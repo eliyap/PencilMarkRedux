@@ -35,6 +35,7 @@
 		229B6D0F26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0E26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift */; };
 		229B6D1226B97D8C0096FE45 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D1126B97D8C0096FE45 /* ActivityType.swift */; };
 		229B6D1426B97DB30096FE45 /* ActivityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D1326B97DB30096FE45 /* ActivityInfo.swift */; };
+		229B6D1626B980100096FE45 /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D1526B980100096FE45 /* StateModel.swift */; };
 		22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74BD269BA5F2007D9891 /* Assets.xcassets */; };
 		22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */; };
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
@@ -118,6 +119,7 @@
 		229B6D0E26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.willEnterBackground.swift; sourceTree = "<group>"; };
 		229B6D1126B97D8C0096FE45 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		229B6D1326B97DB30096FE45 /* ActivityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInfo.swift; sourceTree = "<group>"; };
+		229B6D1526B980100096FE45 /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		22AF74BD269BA5F2007D9891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22AF74C0269BA5F2007D9891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22AF74C2269BA5F2007D9891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				229B6D1126B97D8C0096FE45 /* ActivityType.swift */,
 				229B6D1326B97DB30096FE45 /* ActivityInfo.swift */,
+				229B6D1526B980100096FE45 /* StateModel.swift */,
 			);
 			path = "State Restoration";
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
+				229B6D1626B980100096FE45 /* StateModel.swift in Sources */,
 				22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
