@@ -52,6 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         if let userActivity = window?.windowScene?.userActivity {
             userActivity.becomeCurrent()
+            print("Scene resuming with activity")
         }
     }
 
@@ -60,6 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         if let userActivity = window?.windowScene?.userActivity {
             userActivity.resignCurrent()
+            print("Scene resigning with activity")
         }
     }
 
