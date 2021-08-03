@@ -21,7 +21,7 @@ final class FileBrowserViewController: UITableViewController {
     /// Maintain a strong reference because the ``UIDocumentPickerViewController`` cannot.
     let pickerDelegate: PickerDelegate!
     
-    var iCloudURL: URL? {
+    static var iCloudURL: URL? {
         FileManager.default.url(forUbiquityContainerIdentifier: nil)?
             .appendingPathComponent("Documents")
     }
@@ -60,7 +60,7 @@ final class FileBrowserViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             /// Push over to iCloud Drive.
-            let iCloudVC = FolderViewController(url: iCloudURL, selectionDelegate: selectionDelegate)
+            let iCloudVC = FolderViewController(url: Self.iCloudURL, selectionDelegate: selectionDelegate)
             navigationController?.pushViewController(iCloudVC, animated: true)
         case 1:
             /// Present modal document picker.

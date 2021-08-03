@@ -36,26 +36,16 @@ final class ViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Loaded")
-        // Do any additional setup after loading the view.
-    }
-}
-
-
-extension ViewController: UISplitViewControllerDelegate {
-    
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-//        print("Swipey")
     }
     
-    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
-//        print("New Mode: \(displayMode.rawValue), \(svc.preferredDisplayMode.rawValue)")
-//        print("Behaviour: \(svc.splitBehavior.rawValue), \(svc.preferredSplitBehavior.rawValue)")
-    }
-    
-    /// Prefer primary view controller in compact width.
-    /// Docs: https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/3580925-splitviewcontroller
-    func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
-        .primary
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /// Initiate `NSUserActivity` on appearance, which seems like the earliest point we may access the `windowScene`.
+        if let scene = view.window?.windowScene {
+            scene.userActivity = NSUserActivity(activityType: ActivityType.example.rawValue)
+        } else {
+            print("Todo: log missing scene!")
+        }
     }
 }

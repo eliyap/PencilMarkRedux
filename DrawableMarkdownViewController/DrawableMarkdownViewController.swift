@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
-    
+
     /// Model object
     public var document: StyledMarkdownDocument?
     
@@ -55,6 +55,19 @@ final class DrawableMarkdownViewController: PMViewController {
         
         let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
         navigationItem.rightBarButtonItems = [closeBtn]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
+    }
+    
+    @objc
+    func documentStateChanged() -> Void {
+        guard let state = document?.documentState else { return }
+        if state == .normal { }
+        if state.contains(.closed) { print("Document Closed") }
+        if state.contains(.inConflict) { print("Document Conflicted") }
+        if state.contains(.editingDisabled) { print("Document Cannot Edit") }
+        if state.contains(.savingError) { print("Document Encountered Error whilst Saving") }
+        if state.contains(.progressAvailable) { print("Document Progress Available") }
     }
     
     required init?(coder: NSCoder) {
@@ -64,6 +77,11 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         observeTyping()
+        observeBackgrounding()
+        
+        if let url = StateModel.shared.url {
+            print("Found shared URL on Load: \(url)")
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,6 +90,31 @@ final class DrawableMarkdownViewController: PMViewController {
         canvas.view.frame = view.frame
         noDocument.view.frame = view.frame
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        restoreState()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreState()
+    }
+    
+    // MARK: - State Restoration
+    /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
+    func restoreState() -> Void {
+        /// Only restore state if document is not already open.
+        guard document?.fileURL == nil else { return }
+        
+        /// Assert control over iCloud drive
+        /// If we do not do this, `UIDocument` reports a permissions failure.
+        guard let iCloudURL = FileBrowserViewController.iCloudURL else { return }
+        _ = try? FileManager.default.contentsOfDirectory(at: iCloudURL, includingPropertiesForKeys: .none)
+        
+        /// Open stored document
+        present(fileURL: StateModel.shared.url)
+    }
 }
 
 extension DrawableMarkdownViewController {
@@ -79,8 +122,9 @@ extension DrawableMarkdownViewController {
     /// Make sure we are not editing the temporary document or a `nil` document.
     func assertDocumentIsValid() {
         precondition(document?.fileURL != nil, "Edits made to nil document!")
-        precondition(document?.fileURL != StyledMarkdownDocument.temp.fileURL, "Edits made to placeholder document!")
     }
+    
+    // MARK: - Document Open / Close
     
     /// Close whatever document is currently open, and open the provided URL instead
     func present(fileURL: URL?) {
@@ -109,6 +153,7 @@ extension DrawableMarkdownViewController {
     /// Open new document, if any
     private func open(fileURL: URL?) {
         if let fileURL = fileURL {
+            print("File URL is \(fileURL)")
             document = StyledMarkdownDocument(fileURL: fileURL)
             document?.open { (success) in
                 guard success else {

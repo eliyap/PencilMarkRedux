@@ -43,12 +43,12 @@ final class StyledMarkdownDocument: UIDocument {
         markdown = Markdown(newText)
     }
     
+    override func handleError(_ error: Error, userInteractionPermitted: Bool) {
+        super.handleError(error, userInteractionPermitted: userInteractionPermitted)
+        print("UIDocument Error \(error.localizedDescription)")
+    }
+    
     override var localizedName: String {
         fileURL.lastPathComponent
     }
-}
-
-extension StyledMarkdownDocument {
-    /// A placeholder document. Should never be edited.
-    static let temp = StyledMarkdownDocument(fileURL: documentsURL.appendingPathComponent("TEMP.txt"))
 }
