@@ -43,6 +43,11 @@ final class StyledMarkdownDocument: UIDocument {
         markdown = Markdown(newText)
     }
     
+    override func handleError(_ error: Error, userInteractionPermitted: Bool) {
+        super.handleError(error, userInteractionPermitted: userInteractionPermitted)
+        print("UIDocument Error \(error.localizedDescription)")
+    }
+    
     override var localizedName: String {
         fileURL.lastPathComponent
     }
