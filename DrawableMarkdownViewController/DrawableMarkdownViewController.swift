@@ -74,6 +74,20 @@ final class DrawableMarkdownViewController: PMViewController {
         noDocument.view.frame = view.frame
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let activity = view.window?.windowScene?.userActivity {
+            let fileURL: URL? = activity.userInfo?[PMStateKey.fileURL.rawValue] as? NSURL as URL?
+            print("fileURL: \(fileURL)")
+        } else {
+            print("Todo: log missing NSUserActivity")
+        }
+        
+        print("DrawableVC Has Window Scene: \(view.window?.windowScene != nil)")
+        view.window?.windowScene?.userActivity = NSUserActivity(activityType: "com.pencilmark.example")
+    }
+    
     // MARK: - State Restoration
     override var restorationIdentifier: String? {
         get { "DrawableMarkdownViewController" }

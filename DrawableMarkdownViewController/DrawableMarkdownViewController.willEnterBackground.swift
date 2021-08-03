@@ -20,6 +20,22 @@ extension DrawableMarkdownViewController {
     
     @objc
     func willEnterBackground(_ notification: Notification) {
+        guard let activity = view.window?.windowScene?.userActivity else {
+            print("TODO: Log missing scene here!")
+            return
+        }
+        if activity.userInfo == nil {
+            activity.userInfo = [:]
+        }
+        
+        /// Cast to allowed NS types
+        /// Docs: https://developer.apple.com/documentation/foundation/nsuseractivity/1411706-userinfo
+        if let url = document?.fileURL {
+            activity.userInfo![PMStateKey.fileURL.rawValue] = url as NSURL
+        } else {
+            activity.userInfo![PMStateKey.fileURL.rawValue] = NSNull()
+        }
+        
         print("backgrounded!")
     }
 }
