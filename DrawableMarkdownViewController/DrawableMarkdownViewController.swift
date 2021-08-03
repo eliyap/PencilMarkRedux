@@ -62,7 +62,6 @@ final class DrawableMarkdownViewController: PMViewController {
     @objc
     func documentStateChanged() -> Void {
         guard let state = document?.documentState else { return }
-        print("State Change Detected")
         if state == .normal { }
         if state.contains(.closed) { print("Document Closed") }
         if state.contains(.inConflict) { print("Document Conflicted") }
@@ -94,22 +93,25 @@ final class DrawableMarkdownViewController: PMViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        restoreState()
+//        restoreState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        restoreState()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.restoreState()
+        }
+        
     }
     
     // MARK: - State Restoration
     /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
     func restoreState() -> Void {
         /// Only restore state if document is not already open.
-        if document?.fileURL == nil {
-            #warning("disabled due to permissions failure")
-//            present(fileURL: StateModel.shared.url)
-        }
+//        if document?.fileURL == nil {
+//            #warning("disabled due to permissions failure")
+            present(fileURL: StateModel.shared.url)
+//        }
     }
 }
 
@@ -150,6 +152,7 @@ extension DrawableMarkdownViewController {
     /// Open new document, if any
     private func open(fileURL: URL?) {
         if let fileURL = fileURL {
+            print("File URL is \(fileURL)")
             document = StyledMarkdownDocument(fileURL: fileURL)
             document?.open { (success) in
                 guard success else {
