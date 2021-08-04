@@ -36,6 +36,13 @@ extension Markdown {
     ///   - default: Attributes to apply to normal text by default. Defaults to no attributes.
     /// - Returns: `Void`, but mutates the passed `string` to apply styles.
     public func setAttributes(_ string: NSMutableAttributedString, default: [NSAttributedString.Key:Any] = [:]) -> Void {
+        guard string.string == plain else {
+            /// John encountered a crash while typing quickly, it seems that the model fell out of sync with the view's text.
+            /// For now, we will simply refuse to style non-matching text.
+            #warning("Todo, log warning about bad string!")
+            assert(false, "Cannot style non matching string!")
+            return
+        }
         precondition(string.string == plain, "Cannot style non matching string!")
         
         /// Clear all attributes so that typed text is plain by default.
