@@ -67,7 +67,7 @@
       "size" : "29x29"
     },
     {
-      "filename" : "icon-ipadSettings58-1.png",
+      "filename" : "icon-settings58.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -79,7 +79,7 @@
       "size" : "40x40"
     },
     {
-      "filename" : "icon-ipadSpotlight80-1.png",
+      "filename" : "icon-spotlight80.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
@@ -139,13 +139,13 @@
       "size" : "128x128"
     },
     {
-      "filename" : "icon-mac256.png",
+      "filename" : "icon-mac256-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "icon-mac256-1.png",
+      "filename" : "icon-mac256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
