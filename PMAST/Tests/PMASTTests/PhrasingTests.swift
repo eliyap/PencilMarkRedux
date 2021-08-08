@@ -131,4 +131,14 @@ class PhrasingTests: XCTestCase {
         document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 9)) /// strike `AAA ~~BBB`
         XCTAssertEqual(document.plain, "~~AAA BBB CCC~~")
     }
+    
+    func testAdjacentJoinableInline() throws {
+        var document = Markdown("")
+        
+        document = Markdown("~~**M**~~**M**")
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(0, 14)) /// strike`~~**M**~~**M**`
+        XCTExpectFailure("Smart Join Not Implemented!") {
+            XCTAssertEqual(document.plain, "~~**MM**~~")
+        }
+    }
 }
