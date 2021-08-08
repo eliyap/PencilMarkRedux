@@ -21,7 +21,8 @@ extension Parent {
         
         if (_type == style.type) {
             /// mark self for removal
-            _change = .toRemove
+            _leading_change = .toRemove
+            _trailing_change = .toRemove
         }
     }
 }

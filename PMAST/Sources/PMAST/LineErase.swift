@@ -39,7 +39,7 @@ extension Text {
         let trimmedTarget = document.plain[intersection].trimmingCharacters(in: .whitespaces)
         let trimmedWhole = document.plain[position.nsRange].trimmingCharacters(in: .whitespaces)
         if trimmedWhole == trimmedTarget {
-            _change = .toRemove
+            _content_change = .toRemove
         } else {
             let (prefix, middle, suffix) = self.split(on: range)
             
@@ -49,7 +49,7 @@ extension Text {
             suffix?.parent = parent
             
             /// Mark target for removal.
-            middle._change = .toRemove
+            middle._content_change = .toRemove
             
             /// remove `nil` nodes
             let pieces: [Text] = [prefix, middle, suffix].compactMap{ $0 }

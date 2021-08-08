@@ -21,7 +21,9 @@ extension Root {
      */
     func infect() -> Void {
         let removals: [Node] = gatherChanges()
-            .filter { $0._change == .toRemove }
+            .filter { (node) in
+                node._content_change == .toRemove
+            }
         
         guard removals.isEmpty == false else { return }
         let LCA: Node = removals.lowestCommonAncestor()
@@ -53,8 +55,10 @@ extension Root {
             else { continue }
             
             /// If all of the non-zero number of children set to be removed (i.e. none are not infected), set the parent for removal also
-            if parent.children.filter({ $0._change != .toRemove }).count == 0 {
-                parent._change = .toRemove
+            if parent.children.filter({ $0._content_change != .toRemove }).count == 0 {
+                parent._content_change = .toRemove
+                parent._leading_change = .toRemove
+                parent._trailing_change = .toRemove
             }
         }
     }

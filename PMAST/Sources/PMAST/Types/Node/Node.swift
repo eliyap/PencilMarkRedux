@@ -19,8 +19,10 @@ public class Node {
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
     
-    /// An internal, transient marker signalling that this node is part of a modification we want to make
-    var _change: Change? = nil
+    /// Internal, transient markers signalling that this node is part of a modification we want to make
+    var _leading_change: Change? = nil
+    var _content_change: Change? = nil
+    var _trailing_change: Change? = nil
     
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
@@ -49,9 +51,9 @@ public class Node {
     /// Recursive function that gathers all ``Node``s which are marked as having changed.
     func gatherChanges() -> [Node] {
         /// include `self` if flagged for change,
-        (_change == nil)
-            ? []
-            : [self]
+        (_leading_change ?? _content_change ?? _trailing_change != nil)
+            ? [self]
+            : []
     }
     
     /// The text replacements that need to happen when this part of the tree is changed.

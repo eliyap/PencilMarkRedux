@@ -46,17 +46,16 @@ public final class Heading: Parent {
     }
     
     override func getReplacement() -> [Replacement] {
-        switch _change {
+        var result: [Replacement] = []
+        
+        switch _leading_change {
         case .none:
-            fatalError("Replacement requested for nil change!")
+            break
         case .toAdd:
             fatalError("Not Implemented!")
         case .toRemove:
-            if let leading = leadingRange, let trailing = trailingRange {
-                return [
-                    Replacement(range: leading, replacement: ""),
-                    Replacement(range: trailing, replacement: ""),
-                ]
+            if let leading = leadingRange, let _ = trailingRange {
+                result += [Replacement(range: leading, replacement: "")]
             } else {
                 print("Requested replacement on Heading with no children!")
                 
@@ -64,6 +63,24 @@ public final class Heading: Parent {
                 return [Replacement(range: position.nsRange, replacement: "")]
             }
         }
+        
+        switch _trailing_change {
+        case .none:
+            break
+        case .toAdd:
+            fatalError("Not Implemented!")
+        case .toRemove:
+            if let _ = leadingRange, let trailing = trailingRange {
+                result += [Replacement(range: trailing, replacement: "")]
+            } else {
+                print("Requested replacement on Heading with no children!")
+                
+                /// return whole range to erase everything
+                return [Replacement(range: position.nsRange, replacement: "")]
+            }
+        }
+        
+        return result
     }
 }
 

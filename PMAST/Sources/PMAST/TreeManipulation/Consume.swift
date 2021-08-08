@@ -15,7 +15,7 @@ extension Markdown {
     func consume<T: Parent>(style: T.Type) -> Void {
         /// Only examine nodes that were recently added.
         let flagged: [Parent] = ast.gatherChanges()
-            .filter { $0._change == .toAdd }
+            .filter { $0._leading_change == .toAdd || $0._trailing_change == .toAdd || $0._content_change == .toAdd }
             .compactMap { $0 as? Parent }
         
         /// Track nodes that were removed.
@@ -49,10 +49,10 @@ extension Parent {
             /// If previous sibling is nothing, just exit
             guard let prev = prev.consumePrev(consumed: &consumed, in: document) else { return self }
             
-            switch prev._change {
+            switch (prev._leading_change, prev._trailing_change) {
             
             /// Node is newly added, let us (also being added) take over.
-            case .toAdd:
+            case (.toAdd, .toAdd):
                 /// Adopt previous sibling's children.
                 prev.children.forEach { $0.parent = self }
                 children.insert(contentsOf: prev.children, at: 0)
@@ -67,22 +67,29 @@ extension Parent {
                 prev.parent = nil
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
-            case .toRemove:
+            case (.toRemove, .toRemove):
                 print("Encountered Removal")
                 break
             
             /// Pre-existing node.
-            case .none:
+            case (.none, .none):
                 /// Adopt previous sibling.
                 parent.children.remove(at: prev.indexInParent!)
                 prev.parent = self
                 children.insert(prev, at: 0)
                 
                 /// Flag syntax marks for removal.
-                prev._change = .toRemove
+                prev._leading_change = .toRemove
+                prev._trailing_change = .toRemove
                 
                 /// extend text range to include range of sibling
                 position.start = prev.position.start
+            
+            case (.toAdd, .toRemove), (.toRemove, .toAdd):
+                fatalError("Logical Paradox!")
+                
+            default:
+                fatalError("Unhandled Case!")
             }
             return self
         } else {
@@ -100,10 +107,10 @@ extension Parent {
             /// Head recursion: let it eat it's `prevSibling` first.
             guard let next = next.consumeNext(consumed: &consumed, in: document) else { return self }
             
-            switch next._change {
+            switch (next._leading_change, next._trailing_change) {
             
             /// Node is newly added, let us (also being added) take over.
-            case .toAdd:
+            case (.toAdd, .toAdd):
                 /// Adopt sibling's children.
                 next.children.forEach { $0.parent = self }
                 children.append(contentsOf: next.children)
@@ -118,22 +125,28 @@ extension Parent {
                 next.parent = nil
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
-            case .toRemove:
+            case (.toRemove, .toRemove):
                 print("Encountered Removal")
                 break
             
             /// Pre-existing node.
-            case .none:
+            case (.none, .none):
                 /// Adopt previous sibling.
                 parent.children.remove(at: next.indexInParent!)
                 next.parent = self
                 children.append(next)
                 
                 /// Flag syntax marks for removal.
-                next._change = .toRemove
+                next._leading_change = .toRemove
+                next._trailing_change = .toRemove
                 
                 /// extend text range to include range of sibling
                 position.end = next.position.end
+            case (.toAdd, .toRemove), (.toRemove, .toAdd):
+                fatalError("Logical Paradox!")
+                
+            default:
+                fatalError("Unhandled Case!")
             }
             return self
         } else {
@@ -174,7 +187,7 @@ extension Parent {
         
         /// if nothing is left after ejecting whitespace, remove self from tree
         if position.nsRange.length == 0 {
-            assert(_change == .toAdd, "Pre-existing zero width with Change: \(String(describing: _change)), type: \(_type)")
+//            assert(_change == .toAdd, "Pre-existing zero width with Change: \(String(describing: _change)), type: \(_type)")
             
             /// remove from tree
             parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: children)

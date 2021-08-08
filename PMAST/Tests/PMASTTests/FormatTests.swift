@@ -33,7 +33,7 @@ class FormatTests: XCTestCase {
         
         document.apply(lineStyle: Emphasis.self, to: NSMakeRange(2, 6))
         /// accept either kind of emphasis marker
-        XCTAssertTrue(document.plain == "a _FORMAT_ a" || document.plain == "a *FORMAT* a")
+        XCTAssertTrue(document.plain == "a _FORMAT_ a" || document.plain == "a *FORMAT* a", document.plain)
     }
     
     func testStrongAvailable() throws {
@@ -41,6 +41,6 @@ class FormatTests: XCTestCase {
         
         document.apply(lineStyle: Strong.self, to: NSMakeRange(2, 6))
         /// accept either kind of emphasis marker
-        XCTAssertTrue(document.plain == "a __FORMAT__ a" || document.plain == "a **FORMAT** a")
+        XCTAssertTrue(document.plain == "a __FORMAT__ a" || document.plain == "a **FORMAT** a", document.plain)
     }
 }

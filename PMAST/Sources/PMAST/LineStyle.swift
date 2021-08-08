@@ -27,7 +27,7 @@ extension Markdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
-        combine()
+//        combine()
         
         makeReplacements()
     }
@@ -91,7 +91,8 @@ extension Node {
             ],
             parent: parent /// attach node to own parent
         )!
-        styled._change = .toAdd
+        styled._leading_change = .toAdd
+        styled._trailing_change = .toAdd
         
         /// replace self in parent's children
         parent.children.replaceSubrange(indexInParent!..<(indexInParent! + 1), with: [styled])
@@ -139,7 +140,8 @@ extension Text {
             ],
             parent: parent
         )!
-        styled._change = .toAdd
+        styled._leading_change = .toAdd
+        styled._trailing_change = .toAdd
         
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: range)

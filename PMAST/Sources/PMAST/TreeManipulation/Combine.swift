@@ -33,7 +33,7 @@ extension Node {
     func build(_ list: inout [Node]) -> Void {
         if let p = self as? Parent {
             /// represents leading syntax marks
-            if _change != .toRemove {
+            if _leading_change != .toRemove {
                 list.append(self)
             }
             
@@ -41,12 +41,12 @@ extension Node {
             p.children.forEach { $0.build(&list) }
             
             /// represents trailing syntax marks
-            if _change != .toRemove {
+            if _trailing_change != .toRemove {
                 list.append(self)
             }
         } else {
             /// represents contents
-            if _change != .toRemove {
+            if _content_change != .toRemove {
                 list.append(self)
             }
         }

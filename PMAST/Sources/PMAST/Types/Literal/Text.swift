@@ -11,9 +11,9 @@ public final class Text: Literal {
     override class var type: String { "text" }
     
     override func getReplacement() -> [Replacement] {
-        switch _change {
+        switch _content_change {
         case .none:
-            fatalError("Replacement called when change was nil!")
+            return []
         case .toAdd:
             fatalError("Not implemented!")
         case .toRemove:
