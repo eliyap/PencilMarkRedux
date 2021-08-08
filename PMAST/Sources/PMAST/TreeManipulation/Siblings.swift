@@ -37,7 +37,7 @@ extension Node {
         return result
     }
     
-    /// Find the ``parent``'s closest next child that is not marked for removal.
+    /// Find the ``parent``'s closest subsequent child that is not marked for removal.
     var nextNonRemovedSibling: Node? {
         var result: Node? = nextSibling
         while let r = result {
