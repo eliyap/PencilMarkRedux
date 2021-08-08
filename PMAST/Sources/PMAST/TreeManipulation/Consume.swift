@@ -63,7 +63,7 @@ extension Parent {
                 
                 /// Remove `prev` from tree. Should then be deallocated.
                 consumed.append(prev)
-                parent.children.remove(at: prev.indexInParent)
+                parent.children.remove(at: prev.indexInParent!)
                 prev.parent = nil
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
@@ -74,7 +74,7 @@ extension Parent {
             /// Pre-existing node.
             case .none:
                 /// Adopt previous sibling.
-                parent.children.remove(at: prev.indexInParent)
+                parent.children.remove(at: prev.indexInParent!)
                 prev.parent = self
                 children.insert(prev, at: 0)
                 
@@ -114,7 +114,7 @@ extension Parent {
                 
                 /// Remove `next` from tree. Should then be deallocated.
                 consumed.append(next)
-                parent.children.remove(at: next.indexInParent)
+                parent.children.remove(at: next.indexInParent!)
                 next.parent = nil
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
@@ -125,7 +125,7 @@ extension Parent {
             /// Pre-existing node.
             case .none:
                 /// Adopt previous sibling.
-                parent.children.remove(at: next.indexInParent)
+                parent.children.remove(at: next.indexInParent!)
                 next.parent = self
                 children.append(next)
                 
@@ -177,7 +177,7 @@ extension Parent {
             assert(_change == .toAdd, "Pre-existing zero width with Change: \(String(describing: _change)), type: \(_type)")
             
             /// remove from tree
-            parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: children)
+            parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: children)
             children.forEach { $0.parent = parent }
             parent = nil
             

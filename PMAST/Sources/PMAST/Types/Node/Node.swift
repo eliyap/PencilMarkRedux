@@ -69,8 +69,8 @@ public class Node {
 
 extension Node {
     /// index in parent's ``children`` array.
-    var indexInParent: Int {
-        parent.children
+    var indexInParent: Int? {
+        parent?.children
             .firstIndex { $0 == self }! /// force unwrap!
     }
 }

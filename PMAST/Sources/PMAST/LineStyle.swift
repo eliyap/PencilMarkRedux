@@ -92,7 +92,7 @@ extension Node {
         styled._change = .toAdd
         
         /// replace self in parent's children
-        parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: [styled])
+        parent.children.replaceSubrange(indexInParent!..<(indexInParent! + 1), with: [styled])
         
         /// attach self as `styled`'s only child
         styled.children = [self]
@@ -152,7 +152,7 @@ extension Text {
             .compactMap { $0 }
         
         /// replace `self` with broken up nodes
-        parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: pieces)
+        parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: pieces)
         
         /// release reference, should now be de-allocated
         parent = nil

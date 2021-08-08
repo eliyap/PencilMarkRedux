@@ -55,7 +55,7 @@ extension Text {
             let pieces: [Text] = [prefix, middle, suffix].compactMap{ $0 }
             
             /// replace self in parent's children
-            parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: pieces)
+            parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: pieces)
             
             /// finally, remove parent pointer, should now be de-allocated
             parent = nil
