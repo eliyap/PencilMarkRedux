@@ -16,6 +16,8 @@ extension Markdown {
         var adjacencyList: [Node] = []
         ast.build(&adjacencyList)
         
+        guard adjacencyList.count >= 2 else { return }
+        
         (0..<(adjacencyList.count - 2)).forEach { (i) in
             let curr = adjacencyList[i]
             let next = adjacencyList[i+1]
