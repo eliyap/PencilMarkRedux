@@ -1,169 +1,169 @@
 {
   "images" : [
     {
-      "filename" : "notification40.png",
+      "filename" : "icon-notification40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "notification60.png",
+      "filename" : "icon-notification60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "settings58.png",
+      "filename" : "icon-ipadSettings58.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "settings87.png",
+      "filename" : "icon-settings87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "spotlight80.png",
+      "filename" : "icon-ipadSpotlight80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "spotlight120.png",
+      "filename" : "icon-iphone120.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "iphone120.png",
+      "filename" : "icon-spotlight120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "iphone180.png",
+      "filename" : "icon-iphone180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "ipadNotification20.png",
+      "filename" : "icon-ipadNotification20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "ipadNotification40.png",
+      "filename" : "icon-ipadNotification40.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "ipadSettings29.png",
+      "filename" : "icon-ipadSettings29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "ipadSettings58.png",
+      "filename" : "icon-settings58.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "ipadSpotlight40.png",
+      "filename" : "icon-ipadSpotlight40.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "ipadSpotlight80.png",
+      "filename" : "icon-spotlight80.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "ipad76.png",
+      "filename" : "icon-ipad76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "ipad152.png",
+      "filename" : "icon-ipad152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "ipadPro167.png",
+      "filename" : "icon-ipadPro167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "appstore1024.png",
+      "filename" : "icon-appstore1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
     },
     {
-      "filename" : "mac16.png",
+      "filename" : "icon-mac16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "mac32.png",
+      "filename" : "icon-mac32.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "mac32.png",
+      "filename" : "icon-mac32-1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "mac64.png",
+      "filename" : "icon-mac64.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "mac128.png",
+      "filename" : "icon-mac128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "mac256.png",
+      "filename" : "icon-mac256-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "mac256.png",
+      "filename" : "icon-mac256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "mac512.png",
+      "filename" : "icon-mac512.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "mac512.png",
+      "filename" : "icon-mac512-1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "mac1024.png",
+      "filename" : "icon-mac1024.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

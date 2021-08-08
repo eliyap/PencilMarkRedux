@@ -13,21 +13,22 @@ extension Markdown {
     /// - does this by having one ``Parent`` "consume" its sibling.
     /// - Parameter style: the type of ``Parent`` formatting being applied.
     func consume<T: Parent>(style: T.Type) -> Void {
-        /// only examine nodes that were recently added
+        /// Only examine nodes that were recently added.
         let flagged: [Parent] = ast.gatherChanges()
             .filter { $0._change == .toAdd }
             .compactMap { $0 as? Parent }
         
-        /// track nodes that were removed
+        /// Track nodes that were removed.
         var consumed: OrderedSet<Parent> = []
+        
         flagged.forEach {
-            /// skip over already consumed elements
+            /// Skip over already consumed elements.
             guard consumed.contains($0) == false else { return }
             
             #warning("may wish to revise this assertion when running consume after a delete, as john pointed out.")
             assert($0._type == style.type, "Mismatched type")
             
-            /// Consume siblings before and after
+            /// Consume siblings before and after.
             _ = $0
                 .consumePrev(consumed: &consumed, in: self)? /// optional chaining in case node is deleted after ejecting whitespace
                 .consumeNext(consumed: &consumed, in: self)
@@ -35,7 +36,7 @@ extension Markdown {
     }
 }
 
-// MARK:- Consume Guts
+// MARK: - Consume Guts
 extension Parent {
     var prevSibling: Node? {
         self.indexInParent - 1 >= 0

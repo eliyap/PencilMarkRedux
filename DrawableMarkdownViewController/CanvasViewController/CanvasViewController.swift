@@ -25,6 +25,13 @@ final class CanvasViewController: PMViewController {
         
         self.view = canvasView
         
+        /**
+         Permits finger to be used for drawing.
+         Enable **only** for Simulator screenshots on iPad!
+         - Note: this causes an index crash due to the way I draw bezier splines, and MUST NOT be shipped!
+         */
+//        canvasView.drawingPolicy = .anyInput
+        
         /// Assign PencilKit delegate
         canvasView.delegate = self
         

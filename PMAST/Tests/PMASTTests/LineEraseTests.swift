@@ -55,6 +55,38 @@ class LineEraseTests: XCTestCase {
         }
     }
     
+    func testJoin() throws {
+        var document = Markdown("")
+        
+        /// Basic joining case.
+        document = Markdown("_a_ _a_")
+        document.erase(to: NSMakeRange(3, 1)) /// target ' '
+        XCTExpectFailure("Haven't implemented smart joining") {
+            XCTAssertEqual(document.plain, "_aa_") /// is actually `_a__a_`
+        }
+        
+        /// Case with nested element.
+        document = Markdown("_a_ _~~a~~_")
+        document.erase(to: NSMakeRange(3, 1)) /// target ' '
+        XCTExpectFailure("Haven't implemented smart joining") {
+            XCTAssertEqual(document.plain, "_a~~a~~_") /// is actually `_a__~~a~~_`
+        }
+        
+        /// Case with nested joinable element.
+        document = Markdown("_~~a~~_ _~~a~~_")
+        document.erase(to: NSMakeRange(7, 1)) /// target ' '
+        XCTExpectFailure("Haven't implemented smart joining") {
+            XCTAssertEqual(document.plain, "_~~aa~~_") /// is actually `_~~a~~__~~a~~_`
+        }
+        
+        /// Ensure does not consume syntax.
+        document = Markdown("_~~a~~_ _~~a~~_")
+        document.erase(to: NSMakeRange(4, 7)) /// target `~~_ _~~`
+        XCTExpectFailure("Haven't implemented smart joining") {
+            XCTAssertEqual(document.plain, "_~~aa~~_") /// is actually `_~~a~~__~~a~~_`
+        }
+    }
+    
     /// test deep nesting of phrasing blocks
     func testNestedPhrasing() throws {
         var document = Markdown("")

@@ -51,8 +51,6 @@ let package = Package(
                 .product(name: "OrderedCollections", package: "swift-collections"),
             ],
             exclude: [
-            ],
-            resources: [
             ]
         ),
     ]

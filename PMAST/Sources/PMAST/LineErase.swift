@@ -11,8 +11,9 @@ import UIKit
 extension Markdown {
     /// A straight line erase operation.
     public mutating func erase(to range: NSRange) -> Void {
-        /// reject empty ranges
+        /// Reject empty ranges.
         guard range.length > 0 else { return }
+        
         let intersected: [Text] = ast.intersectingText(in: range)
         
         /// Mark nodes that were directly erased along this range in the AST.
@@ -20,6 +21,7 @@ extension Markdown {
         
         /// Mark nodes that need to be removed as a result of previous removals.
         ast.infect()
+        
         #warning("Todo: run some form of `consume`!")
         
         makeReplacements()
@@ -41,12 +43,12 @@ extension Text {
         } else {
             let (prefix, middle, suffix) = self.split(on: range)
             
-            /// point split nodes to parent
+            /// Point split nodes to parent.
             prefix?.parent = parent
             middle.parent = parent
             suffix?.parent = parent
             
-            /// mark target for removal
+            /// Mark target for removal.
             middle._change = .toRemove
             
             /// remove `nil` nodes
