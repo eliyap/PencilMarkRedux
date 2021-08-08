@@ -20,9 +20,11 @@ public class Node {
     var _type: String
     
     /// Internal, transient markers signalling that this node is part of a modification we want to make
-    var _leading_change: Change? = nil
-    var _content_change: Change? = nil
-    var _trailing_change: Change? = nil
+    /// - Note: by convention, ``_content_change`` on non-``Literal`` classes has no effect on ``get_replacement``.
+    ///   - however, it still signals that the ``Parent``'s contents will all be removed, especially in the tree infection algorithm.
+    var _leading_change: Change? = nil /// leading syntax changes
+    var _content_change: Change? = nil /// content changes, applies to literals mostly
+    var _trailing_change: Change? = nil /// trailing syntax changes
     
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
