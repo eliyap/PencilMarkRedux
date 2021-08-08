@@ -38,18 +38,6 @@ extension Markdown {
 
 // MARK: - Consume Guts
 extension Parent {
-    var prevSibling: Node? {
-        self.indexInParent - 1 >= 0
-            ? parent.children[self.indexInParent - 1]
-            : nil
-    }
-
-    var nextSibling: Node? {
-        self.indexInParent + 1 < parent.children.count
-            ? parent.children[self.indexInParent + 1]
-            : nil
-    }
-    
     /// Returns itself after consuming the next element or ejecting whitespace
     func consumePrev(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Self? {
         /// Check if previous sibling is a ``Parent`` of same `_type`.
