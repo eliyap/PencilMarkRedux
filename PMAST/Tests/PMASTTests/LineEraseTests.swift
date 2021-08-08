@@ -71,16 +71,12 @@ class LineEraseTests: XCTestCase {
         /// Case with nested joinable element.
         document = Markdown("_~~a~~_ _~~a~~_")
         document.erase(to: NSMakeRange(7, 1)) /// target ' '
-        XCTExpectFailure("Haven't implemented smart joining") {
-            XCTAssertEqual(document.plain, "_~~aa~~_") /// is actually `_~~a~~__~~a~~_`
-        }
+        XCTAssertEqual(document.plain, "_~~aa~~_")
         
         /// Ensure does not consume syntax.
         document = Markdown("_~~a~~_ _~~a~~_")
         document.erase(to: NSMakeRange(4, 7)) /// target `~~_ _~~`
-        XCTExpectFailure("Haven't implemented smart joining") {
-            XCTAssertEqual(document.plain, "_~~aa~~_") /// is actually `_~~a~~__~~a~~_`
-        }
+        XCTAssertEqual(document.plain, "_~~aa~~_")
     }
     
     /// test deep nesting of phrasing blocks
