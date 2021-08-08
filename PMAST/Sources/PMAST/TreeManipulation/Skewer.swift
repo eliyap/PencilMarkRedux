@@ -12,6 +12,8 @@ extension Node {
     func highestSkeweredAncestor(in range: NSRange) -> Node {
         var content: Node = self
         while (content.parent.skewered(by: range)) {
+            /// Do not allow `Root` to be considered skewered, as it does not have a ``parent``, breaking many assumptions.
+            guard content.parent._type != Root.type else { break }
             content = content.parent
         }
         return content
