@@ -8,8 +8,18 @@
 import Foundation
 import UIKit
 
-public final class Delete: Parent {
+public final class Delete: Parent, InlineJoinable {
+    
     override class var type: String { "delete" }
+    
+    required init?(dict: [AnyHashable : Any]?, parent: Parent?) {
+        super.init(dict: dict, parent: parent)
+    }
+    
+    /// Conformance to ``InlineJoinable``, allow no-child `init`.
+    init(parent: Parent?, position: Position, _type: String) {
+        super.init(parent: parent, position: position, _type: _type, children: [])
+    }
     
     override func style(_ string: NSMutableAttributedString) {
         super.style(string)
