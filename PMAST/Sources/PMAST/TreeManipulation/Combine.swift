@@ -22,7 +22,8 @@ extension Markdown {
             guard
                 curr != next,
                 curr is InlineJoinable,
-                next is InlineJoinable
+                next is InlineJoinable,
+                curr._type == next._type
             else { return }
             print("Adjacent!")
         }
