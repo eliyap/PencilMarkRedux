@@ -27,6 +27,8 @@ extension Markdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
+        combine()
+        
         makeReplacements()
     }
     
