@@ -18,6 +18,9 @@ extension Markdown {
         
         guard adjacencyList.count >= 2 else { return }
         
+        /// Flags whether we did combine something.
+        var tripped = false
+        
         (0..<(adjacencyList.count - 2)).forEach { (i) in
             let curr = adjacencyList[i]
             let next = adjacencyList[i+1]
@@ -27,6 +30,8 @@ extension Markdown {
                 next is InlineJoinable,
                 curr._type == next._type
             else { return }
+            
+            tripped = true
             
             switch curr._trailing_change {
             case .toAdd:
@@ -46,6 +51,9 @@ extension Markdown {
                 fatalError("Unexpected state!")
             }
         }
+        
+        /// If we remove some stuff, that might expose more joinable elements, so recursively check again.
+        if tripped { combine() }
     }
 }
 
