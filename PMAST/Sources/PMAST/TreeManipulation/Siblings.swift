@@ -22,3 +22,31 @@ extension Node {
             : nil
     }
 }
+
+extension Node {
+    /// Find the ``parent``'s closest previous child that is not marked for removal.
+    var prevNonRemovedSibling: Node? {
+        var result: Node? = prevSibling
+        while let r = result {
+            if r._change != .toRemove {
+                return r
+            } else {
+                result = r.prevSibling
+            }
+        }
+        return result
+    }
+    
+    /// Find the ``parent``'s closest next child that is not marked for removal.
+    var nextNonRemovedSibling: Node? {
+        var result: Node? = nextSibling
+        while let r = result {
+            if r._change != .toRemove {
+                return r
+            } else {
+                result = r.nextSibling
+            }
+        }
+        return result
+    }
+}
