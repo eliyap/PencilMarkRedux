@@ -22,7 +22,7 @@ extension Markdown {
         /// Mark nodes that need to be removed as a result of previous removals.
         ast.infect()
         
-        #warning("Todo: run some form of `consume`!")
+        combine()
         
         makeReplacements()
     }
