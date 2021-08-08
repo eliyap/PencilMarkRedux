@@ -25,7 +25,24 @@ extension Markdown {
                 next is InlineJoinable,
                 curr._type == next._type
             else { return }
-            print("Adjacent!")
+            
+            switch curr._trailing_change {
+            case .toAdd:
+                curr._trailing_change = .none
+            case .none:
+                curr._trailing_change = .toRemove
+            case .toRemove:
+                fatalError("Unexpected state!")
+            }
+            
+            switch next._leading_change {
+            case .toAdd:
+                next._leading_change = .none
+            case .none:
+                next._leading_change = .toRemove
+            case .toRemove:
+                fatalError("Unexpected state!")
+            }
         }
     }
 }
