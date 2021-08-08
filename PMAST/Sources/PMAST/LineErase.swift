@@ -22,7 +22,7 @@ extension Markdown {
         /// Mark nodes that need to be removed as a result of previous removals.
         ast.infect()
         
-        #warning("Todo: run some form of `consume`!")
+        combine()
         
         makeReplacements()
     }
@@ -39,7 +39,7 @@ extension Text {
         let trimmedTarget = document.plain[intersection].trimmingCharacters(in: .whitespaces)
         let trimmedWhole = document.plain[position.nsRange].trimmingCharacters(in: .whitespaces)
         if trimmedWhole == trimmedTarget {
-            _change = .toRemove
+            _content_change = .toRemove
         } else {
             let (prefix, middle, suffix) = self.split(on: range)
             
@@ -49,13 +49,13 @@ extension Text {
             suffix?.parent = parent
             
             /// Mark target for removal.
-            middle._change = .toRemove
+            middle._content_change = .toRemove
             
             /// remove `nil` nodes
             let pieces: [Text] = [prefix, middle, suffix].compactMap{ $0 }
             
             /// replace self in parent's children
-            parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: pieces)
+            parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: pieces)
             
             /// finally, remove parent pointer, should now be de-allocated
             parent = nil

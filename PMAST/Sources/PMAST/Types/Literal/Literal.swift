@@ -27,4 +27,15 @@ public class Literal: Node {
             return nil
         }
     }
+    
+    /// Explicit member wise `init`.
+    init(
+        parent: Parent?,
+        position: Position,
+        _type: String,
+        value: String
+    ) {
+        self.value = value
+        super.init(parent: parent, position: position, _type: _type)
+    }
 }

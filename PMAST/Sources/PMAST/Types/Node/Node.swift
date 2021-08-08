@@ -19,8 +19,12 @@ public class Node {
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
     
-    /// An internal, transient marker signalling that this node is part of a modification we want to make
-    var _change: Change? = nil
+    /// Internal, transient markers signalling that this node is part of a modification we want to make
+    /// - Note: by convention, ``_content_change`` on non-``Literal`` classes has no effect on ``get_replacement``.
+    ///   - however, it still signals that the ``Parent``'s contents will all be removed, especially in the tree infection algorithm.
+    var _leading_change: Change? = nil /// leading syntax changes
+    var _content_change: Change? = nil /// content changes, applies to literals mostly
+    var _trailing_change: Change? = nil /// trailing syntax changes
     
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
@@ -49,9 +53,9 @@ public class Node {
     /// Recursive function that gathers all ``Node``s which are marked as having changed.
     func gatherChanges() -> [Node] {
         /// include `self` if flagged for change,
-        (_change == nil)
-            ? []
-            : [self]
+        (_leading_change ?? _content_change ?? _trailing_change != nil)
+            ? [self]
+            : []
     }
     
     /// The text replacements that need to happen when this part of the tree is changed.
@@ -69,8 +73,8 @@ public class Node {
 
 extension Node {
     /// index in parent's ``children`` array.
-    var indexInParent: Int {
-        parent.children
+    var indexInParent: Int? {
+        parent?.children
             .firstIndex { $0 == self }! /// force unwrap!
     }
 }

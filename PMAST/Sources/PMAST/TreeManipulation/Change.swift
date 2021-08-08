@@ -11,6 +11,6 @@ enum Change {
     case toAdd
     
     /// a format being removed
+    /// - Note: this does *not* mean the contents are being removed!
     case toRemove
 }
-

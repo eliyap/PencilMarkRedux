@@ -31,6 +31,17 @@ public class Parent: Node {
         }
     }
     
+    /// Explicit member wise `init`.
+    init(
+        parent: Parent?,
+        position: Position,
+        _type: String,
+        children: [Node]
+    ) {
+        self.children = children
+        super.init(parent: parent, position: position, _type: _type)
+    }
+    
     /// Allows this node to style the passed Attributed String.
     /// Makes the markdown more visually appealing.
     override func style(_ string: NSMutableAttributedString) -> Void {

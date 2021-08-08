@@ -27,6 +27,8 @@ extension Markdown {
         complete.forEach { $0.apply(style: lineStyle, in: self) }
         consume(style: lineStyle)
         
+        combine()
+        
         makeReplacements()
     }
     
@@ -89,10 +91,11 @@ extension Node {
             ],
             parent: parent /// attach node to own parent
         )!
-        styled._change = .toAdd
+        styled._leading_change = .toAdd
+        styled._trailing_change = .toAdd
         
         /// replace self in parent's children
-        parent.children.replaceSubrange(indexInParent..<(indexInParent + 1), with: [styled])
+        parent.children.replaceSubrange(indexInParent!..<(indexInParent! + 1), with: [styled])
         
         /// attach self as `styled`'s only child
         styled.children = [self]
@@ -137,7 +140,8 @@ extension Text {
             ],
             parent: parent
         )!
-        styled._change = .toAdd
+        styled._leading_change = .toAdd
+        styled._trailing_change = .toAdd
         
         /// construct broken up nodes
         let (prefix, middle, suffix) = split(on: range)
@@ -152,7 +156,7 @@ extension Text {
             .compactMap { $0 }
         
         /// replace `self` with broken up nodes
-        parent.children.replaceSubrange(indexInParent..<(indexInParent+1), with: pieces)
+        parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: pieces)
         
         /// release reference, should now be de-allocated
         parent = nil
