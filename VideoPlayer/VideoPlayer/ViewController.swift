@@ -27,8 +27,15 @@ class ViewController: UIViewController {
         let player = AVPlayer(url: url)
         playerView.player = player
         
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinish), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        
         view = playerView
         playerView.player?.play()
+    }
+    
+    @objc
+    func didFinish(_: NotificationCenter) -> Void {
+        print("Finished!")
     }
     
     override func viewDidLoad() {
