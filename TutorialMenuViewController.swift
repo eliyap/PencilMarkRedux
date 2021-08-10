@@ -11,6 +11,8 @@ final class TutorialMenuViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
+        #warning("Placeholder!")
         let label = UILabel()
         label.text = "Not Implemented"
         view = label

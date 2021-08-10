@@ -62,11 +62,17 @@ final class DrawableMarkdownViewController: PMViewController {
             tutorialBtn,
         ]
         
+        /// Anchor popover on tutorial button.
+        /// - Note: Mandatory! App will crash if not anchored properly.
+        tutorial.modalPresentationStyle = .popover
+        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
+        
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
     }
     
     @objc
     func showTutorial() -> Void {
+        tutorial.popoverPresentationController?.sourceView = self.view
         present(tutorial, animated: true)
     }
     
@@ -123,6 +129,7 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Open stored document
         present(fileURL: StateModel.shared.url)
     }
+    
 }
 
 extension DrawableMarkdownViewController {
