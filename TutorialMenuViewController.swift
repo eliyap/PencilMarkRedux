@@ -8,7 +8,7 @@
 import UIKit
 
 enum Gesture: Int, CaseIterable {
-    case strike = 1
+    case strike
     case scribble
     
     var name: String {
@@ -23,14 +23,24 @@ enum Gesture: Int, CaseIterable {
 
 final class TutorialMenuViewController: UITableViewController {
     
+    let source = TutorialDataSource()
+    
     init() {
         super.init(style: .plain)
         
-        tableView.dataSource = self
+        tableView = TutorialTable()
+        tableView.dataSource = source
     }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
+    }
+}
+
+final class TutorialTable: UITableView {
+    /// Initialize new cell if one is not available
+    override func dequeueReusableCell(withIdentifier identifier: String) -> UITableViewCell? {
+        super.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell()
     }
 }
 
