@@ -28,14 +28,22 @@ class ViewController: UIViewController {
         playerView.player = player
         
         NotificationCenter.default.addObserver(self, selector: #selector(didFinish), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didFail), name: .AVPlayerItemFailedToPlayToEndTime, object: nil)
         
         view = playerView
         playerView.player?.play()
     }
     
     @objc
-    func didFinish(_: NotificationCenter) -> Void {
+    func didFinish(_: Notification) -> Void {
         print("Finished!")
+    }
+    
+    @objc
+    func didFail(_ notification: Notification) -> Void {
+        assert(false, "Failed!")
+        let info = notification.userInfo
+        print(info?[AVPlayerItemFailedToPlayToEndTimeErrorKey] ?? "None")
     }
     
     override func viewDidLoad() {
