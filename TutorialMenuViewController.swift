@@ -21,7 +21,21 @@ enum Gesture: Int, CaseIterable {
     }
 }
 
-final class TutorialMenuViewController: UITableViewController {
+final class TutorialMenuViewController: UINavigationController {
+    
+    let table = TutorialTableViewController()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        adopt(table)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Do Not use")
+    }
+}
+
+final class TutorialTableViewController: UITableViewController {
     
     let source = TutorialDataSource()
     
