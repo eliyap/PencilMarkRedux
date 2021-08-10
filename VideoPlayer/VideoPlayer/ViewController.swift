@@ -21,7 +21,11 @@ class ViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(nibName: nil, bundle: nil)
+        addChild(av)
+        view.addSubview(av.view)
+        av.didMove(toParent: self)
+        av.view.frame = view.frame
     }
     
     override func viewDidLoad() {
@@ -35,7 +39,7 @@ class ViewController: UIViewController {
 final class AVPVC: AVPlayerViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
-        let url: URL = Bundle.main.url(forResource: "Example", withExtension: "mp4")!
+        let url: URL = Bundle.main.url(forResource: "Example", withExtension: "MP4")!
         player = AVPlayer(url: url)
     }
     
