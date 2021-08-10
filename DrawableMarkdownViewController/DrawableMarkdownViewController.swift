@@ -18,6 +18,7 @@ final class DrawableMarkdownViewController: PMViewController {
     let keyboard: KeyboardViewController
     let canvas: CanvasViewController
     let noDocument: NoDocumentHost
+    let tutorial: TutorialMenuViewController
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -39,6 +40,7 @@ final class DrawableMarkdownViewController: PMViewController {
         self.keyboard = KeyboardViewController()
         self.canvas = CanvasViewController()
         self.noDocument = NoDocumentHost()
+        self.tutorial = TutorialMenuViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -54,9 +56,18 @@ final class DrawableMarkdownViewController: PMViewController {
         view.bringSubviewToFront(canvas.view)
         
         let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
-        navigationItem.rightBarButtonItems = [closeBtn]
+        let tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
+        navigationItem.rightBarButtonItems = [
+            closeBtn,
+            tutorialBtn,
+        ]
         
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
+    }
+    
+    @objc
+    func showTutorial() -> Void {
+        present(tutorial, animated: true)
     }
     
     @objc
