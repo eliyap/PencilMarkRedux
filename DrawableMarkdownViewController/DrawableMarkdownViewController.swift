@@ -61,7 +61,7 @@ final class DrawableMarkdownViewController: PMViewController {
         view.bringSubviewToFront(canvas.view)
         
         /// Set up bar buttons
-        closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
         tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
         navigationItem.rightBarButtonItems = [
             closeBtn,
