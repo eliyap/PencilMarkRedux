@@ -80,6 +80,7 @@ final class DrawableMarkdownViewController: PMViewController {
         /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
         tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
         tutorial.popoverPresentationController?.sourceView = self.view
+        
         present(tutorial, animated: true)
     }
     

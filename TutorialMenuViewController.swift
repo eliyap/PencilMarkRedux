@@ -49,6 +49,13 @@ final class TutorialTableViewController: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navHeight = navigationController?.navigationBar.frame.height
+            ?? 50 /// observed value, use it as the best guess
+        preferredContentSize.height = tableView.contentSize.height + navHeight
+    }
 }
 
 final class TutorialTable: UITableView {
