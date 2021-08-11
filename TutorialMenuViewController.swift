@@ -44,6 +44,8 @@ final class TutorialTableViewController: UITableViewController {
         
         tableView = TutorialTable()
         tableView.dataSource = source
+        
+        navigationItem.title = "Gestures"
     }
     
     required init?(coder: NSCoder) {
@@ -52,9 +54,13 @@ final class TutorialTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let navHeight = navigationController?.navigationBar.frame.height
-            ?? 50 /// observed value, use it as the best guess
-        preferredContentSize.height = tableView.contentSize.height + navHeight
+        preferredContentSize.height = tableView.rowHeight * CGFloat(Gesture.allCases.count)
+        print("Height: \(tableView.contentSize.height)")
+        print(UIFont.dynamicSize)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.rowHeight
     }
 }
 
@@ -63,6 +69,13 @@ final class TutorialTable: UITableView {
     override func dequeueReusableCell(withIdentifier identifier: String) -> UITableViewCell? {
         super.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell()
     }
+    
+    /// Guess-timate a sufficient height to display the text, with some padding.
+    /// Set this explicitly so we know the table size ahead of time.
+    override var rowHeight: CGFloat {
+        get { UIFont.dynamicSize * 2.5 }
+        set {  /* Ignore */ }
+     }
 }
 
 // MARK: - Data Source
