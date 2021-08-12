@@ -22,6 +22,7 @@ enum Gesture: Int, CaseIterable {
     
     /// The URL for the video demonstrating the gesture.
     var url: URL {
+        #warning("Placeholder assets!")
         switch self {
         case .strike:
             return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
@@ -30,7 +31,7 @@ enum Gesture: Int, CaseIterable {
         }
     }
     
-    /// SF Symbol representing the thing
+    /// SF Symbol representing the gesture.
     var symbol: String {
         switch self {
         case .strike:
