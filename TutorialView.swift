@@ -17,6 +17,10 @@ class TutorialViewController: UIViewController {
         view = label
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        preferredContentSize = CGSize(width: 100.0, height: 100.0)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
     }

@@ -39,6 +39,9 @@ final class TutorialTableViewController: UITableViewController {
     
     let source = TutorialDataSource()
     
+    /// Source: https://developer.apple.com/documentation/uikit/uiviewcontroller/1619323-contentsizeforviewinpopover
+    static let popoverWidth: CGFloat = 320
+    
     init() {
         super.init(style: .plain)
         
@@ -55,6 +58,7 @@ final class TutorialTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         preferredContentSize.height = tableView.rowHeight * CGFloat(Gesture.allCases.count)
+        preferredContentSize.width = Self.popoverWidth
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
