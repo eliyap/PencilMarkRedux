@@ -25,9 +25,6 @@ final class TutorialTableViewController: UITableViewController {
     
     let source = TutorialDataSource()
     
-    /// Source: https://developer.apple.com/documentation/uikit/uiviewcontroller/1619323-contentsizeforviewinpopover
-    static let popoverWidth: CGFloat = 320
-    
     init() {
         super.init(style: .plain)
         
