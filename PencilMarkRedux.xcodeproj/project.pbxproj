@@ -26,6 +26,7 @@
 		2215B88526AD13CB00D2A0AE /* PMAST in Frameworks */ = {isa = PBXBuildFile; productRef = 2215B88426AD13CB00D2A0AE /* PMAST */; };
 		2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */; };
 		2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88826ADB27600D2A0AE /* NoDocumentView.swift */; };
+		2228356D26C49D030026D468 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228356C26C49C960026D468 /* TutorialView.swift */; };
 		225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */; };
 		229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */; };
 		229B6D0326B467D10096FE45 /* CanvasViewController.UndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */; };
@@ -111,6 +112,7 @@
 		2214E13B269CAC3B0046EF32 /* String_Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Subscript.swift; sourceTree = "<group>"; };
 		2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocumentError.swift; sourceTree = "<group>"; };
 		2215B88826ADB27600D2A0AE /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
+		2228356C26C49C960026D468 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMenuViewController.swift; sourceTree = "<group>"; };
 		229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.dynamicSize.swift; sourceTree = "<group>"; };
 		229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.UndoManager.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */,
+				2228356C26C49C960026D468 /* TutorialView.swift */,
 				220B853826ACD3EC00081536 /* PMAST */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
@@ -554,6 +557,7 @@
 				229B6D0F26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift in Sources */,
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
+				2228356D26C49D030026D468 /* TutorialView.swift in Sources */,
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				229B6D1626B980100096FE45 /* StateModel.swift in Sources */,

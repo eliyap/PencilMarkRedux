@@ -55,12 +55,23 @@ final class TutorialTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         preferredContentSize.height = tableView.rowHeight * CGFloat(Gesture.allCases.count)
-        print("Height: \(tableView.contentSize.height)")
-        print(UIFont.dynamicSize)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.rowHeight
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
+        
+        switch Gesture(rawValue: indexPath.row) {
+        case .strike:
+            navigationController?.pushViewController(TutorialViewController(), animated: true)
+        case .scribble:
+            navigationController?.pushViewController(TutorialViewController(), animated: true)
+        case .none:
+            fatalError("Invalid Row: \(indexPath.row)")
+        }
     }
 }
 
