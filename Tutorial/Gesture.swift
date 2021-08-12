@@ -29,5 +29,15 @@ enum Gesture: Int, CaseIterable {
             return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
         }
     }
+    
+    /// SF Symbol representing the thing
+    var symbol: String {
+        switch self {
+        case .strike:
+            return "strikethrough"
+        case .scribble:
+            return "scribble"
+        }
+    }
 }
 

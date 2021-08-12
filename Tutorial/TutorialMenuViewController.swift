@@ -89,8 +89,12 @@ final class TutorialDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let gesture = Gesture(rawValue: indexPath.row)
-        cell.textLabel?.text = gesture?.name
+        guard let gesture = Gesture(rawValue: indexPath.row) else {
+            assert(false, "Invalid Row: \(indexPath.row)")
+        }
+        
+        cell.textLabel?.text = gesture.name
+        cell.imageView?.image = UIImage(systemName: gesture.symbol)
         
         return cell
     }
