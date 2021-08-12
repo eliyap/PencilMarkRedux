@@ -72,7 +72,7 @@ final class TutorialTable: UITableView {
     override var rowHeight: CGFloat {
         get { UIFont.dynamicSize * 2.5 }
         set {  /* Ignore */ }
-     }
+    }
 }
 
 // MARK: - Data Source
