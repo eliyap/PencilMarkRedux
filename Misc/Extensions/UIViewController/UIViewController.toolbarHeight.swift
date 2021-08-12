@@ -11,6 +11,7 @@ import UIKit
 extension UIViewController {
     var toolbarHeight: CGFloat? { navigationController?.toolbar.frame.height }
     
+    /// - Note: call this on own view controller, not `navigationController`!
     var navBarHeight: CGFloat? { navigationController?.navigationBar.frame.height }
     
     var statusBarHeight: CGFloat? { UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.windowScene?.statusBarManager?.statusBarFrame.height }
