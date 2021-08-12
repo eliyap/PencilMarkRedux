@@ -12,3 +12,6 @@ import UIKit
 let documentsURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
 let tint = UIColor.orange
+
+/// Source: https://developer.apple.com/documentation/uikit/uiviewcontroller/1619323-contentsizeforviewinpopover
+let popoverWidth: CGFloat = 320

@@ -16,11 +16,10 @@ extension Markdown {
         var adjacencyList: [Node] = []
         ast.build(&adjacencyList)
         
-        guard adjacencyList.count >= 2 else { return }
-        
         /// Flags whether we did combine something.
         var tripped = false
         
+        guard adjacencyList.count >= 2 else { return }
         (0..<(adjacencyList.count - 2)).forEach { (i) in
             let curr = adjacencyList[i]
             let next = adjacencyList[i+1]

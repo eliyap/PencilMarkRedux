@@ -18,6 +18,7 @@ final class DrawableMarkdownViewController: PMViewController {
     let keyboard: KeyboardViewController
     let canvas: CanvasViewController
     let noDocument: NoDocumentHost
+    let tutorial: TutorialMenuViewController
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -32,6 +33,11 @@ final class DrawableMarkdownViewController: PMViewController {
     /// Action to perform when document is closed
     var onClose: () -> () = {} /// does nothing by default
     
+    /// Menu Buttons
+    /// Must be stored so that they can be accessed in methods.
+    var closeBtn: UIBarButtonItem!
+    var tutorialBtn: UIBarButtonItem!
+    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
@@ -39,6 +45,7 @@ final class DrawableMarkdownViewController: PMViewController {
         self.keyboard = KeyboardViewController()
         self.canvas = CanvasViewController()
         self.noDocument = NoDocumentHost()
+        self.tutorial = TutorialMenuViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -53,10 +60,28 @@ final class DrawableMarkdownViewController: PMViewController {
         
         view.bringSubviewToFront(canvas.view)
         
-        let closeBtn = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
-        navigationItem.rightBarButtonItems = [closeBtn]
+        /// Set up bar buttons
+        closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
+        tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
+        navigationItem.rightBarButtonItems = [
+            closeBtn,
+            tutorialBtn,
+        ]
+        
+        tutorial.modalPresentationStyle = .popover
         
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
+    }
+    
+    @objc
+    func showTutorial() -> Void {
+        /// Anchor popover on tutorial button.
+        /// - Note: Mandatory! App will crash if not anchored properly.
+        /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
+        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
+        tutorial.popoverPresentationController?.sourceView = self.view
+        
+        present(tutorial, animated: true)
     }
     
     @objc
