@@ -43,11 +43,8 @@ class VideoViewController: UIViewController {
     
     @objc
     func replay() {
-        print("not implemented")
-        /// https://stackoverflow.com/questions/5361145/looping-a-video-with-avfoundation-avplayer
-        /// seek zero?
-        
-        
+        playerController.player?.seek(to: CMTime.zero)
+        playerController.player?.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
