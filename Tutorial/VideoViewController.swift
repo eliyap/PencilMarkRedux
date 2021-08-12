@@ -19,9 +19,15 @@ class VideoViewController: UIViewController {
         self.url = url
         self.navHeight = navHeight ?? 50
         
+        /// Attach video asset.
         let player = AVPlayer(url: url)
         playerController.player = player
+        
+        /// Auto play video.
         player.play()
+        
+        /// Remove playback chrome.
+        playerController.showsPlaybackControls = false
         
         super.init(nibName: nil, bundle: nil)
         
