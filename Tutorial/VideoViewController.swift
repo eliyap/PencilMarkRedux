@@ -39,9 +39,6 @@ class VideoViewController: UIViewController {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(replay))
         ]
-        
-        /// Disable replay until first play is finished
-        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     @objc
