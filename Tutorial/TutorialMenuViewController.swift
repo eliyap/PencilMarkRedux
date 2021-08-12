@@ -41,7 +41,7 @@ final class TutorialTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         preferredContentSize.height = tableView.rowHeight * CGFloat(Gesture.allCases.count)
-        preferredContentSize.width = Self.popoverWidth
+        preferredContentSize.width = popoverWidth
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
