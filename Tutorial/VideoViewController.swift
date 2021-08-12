@@ -11,9 +11,14 @@ import AVKit
 class VideoViewController: UIViewController {
     
     let playerView = PlayerView()
+    let url: URL
+    let playerController: AVPlayerViewController
     
-    init(url: URL) {
-        super.init(nibName: nil, bundle: nil)
+    let navHeight: CGFloat
+    
+    init(url: URL, navHeight: CGFloat?) {
+        self.url = url
+        self.navHeight = navHeight ?? 50
         
         let player = AVPlayer(url: url)
         playerView.player = player

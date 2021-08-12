@@ -56,7 +56,8 @@ final class TutorialTableViewController: UITableViewController {
             return
         }
         
-        navigationController?.pushViewController(VideoViewController(url: gesture.url), animated: true)
+        /// Pass in navHeight explicitly, as child seems not to be able to access it.
+        navigationController?.pushViewController(VideoViewController(url: gesture.url, navHeight: navBarHeight), animated: true)
     }
 }
 
