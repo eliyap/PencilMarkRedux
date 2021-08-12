@@ -7,30 +7,6 @@
 
 import UIKit
 
-enum Gesture: Int, CaseIterable {
-    case strike
-    case scribble
-    
-    var name: String {
-        switch self {
-        case .strike:
-            return "Strike"
-        case .scribble:
-            return "Scribble"
-        }
-    }
-    
-    /// The URL for the video demonstrating the gesture.
-    var url: URL {
-        switch self {
-        case .strike:
-            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
-        case .scribble:
-            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
-        }
-    }
-}
-
 final class TutorialMenuViewController: UINavigationController {
     
     let table = TutorialTableViewController()
