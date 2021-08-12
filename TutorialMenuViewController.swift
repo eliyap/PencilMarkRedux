@@ -19,6 +19,16 @@ enum Gesture: Int, CaseIterable {
             return "Scribble"
         }
     }
+    
+    /// The URL for the video demonstrating the gesture.
+    var url: URL {
+        switch self {
+        case .strike:
+            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+        case .scribble:
+            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+        }
+    }
 }
 
 final class TutorialMenuViewController: UINavigationController {
@@ -68,15 +78,12 @@ final class TutorialTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
         
-        switch Gesture(rawValue: indexPath.row) {
-        case .strike:
-            let url = Bundle.main.url(forResource: "Example", withExtension: "MP4")!
-            navigationController?.pushViewController(VideoViewController(url: url), animated: true)
-        case .scribble:
-            navigationController?.pushViewController(TutorialViewController(), animated: true)
-        case .none:
-            fatalError("Invalid Row: \(indexPath.row)")
+        guard let gesture = Gesture(rawValue: indexPath.row) else {
+            assert(false, "Invalid Row \(indexPath.row)")
+            return
         }
+        
+        navigationController?.pushViewController(VideoViewController(url: gesture.url), animated: true)
     }
 }
 
