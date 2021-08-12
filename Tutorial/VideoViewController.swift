@@ -42,12 +42,17 @@ class VideoViewController: UIViewController {
         
         /// Disable replay until first play is finished
         navigationItem.rightBarButtonItem?.isEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(enableReplay), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     @objc
     func replay() {
         playerController.player?.seek(to: CMTime.zero)
         playerController.player?.play()
+    }
+    
+    @objc
+        navigationItem.rightBarButtonItem?.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
