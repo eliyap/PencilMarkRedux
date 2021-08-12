@@ -70,7 +70,8 @@ final class TutorialTableViewController: UITableViewController {
         
         switch Gesture(rawValue: indexPath.row) {
         case .strike:
-            navigationController?.pushViewController(TutorialViewController(), animated: true)
+            let url = Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+            navigationController?.pushViewController(VideoViewController(url: url), animated: true)
         case .scribble:
             navigationController?.pushViewController(TutorialViewController(), animated: true)
         case .none:

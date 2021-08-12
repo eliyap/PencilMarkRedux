@@ -27,6 +27,7 @@
 		2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */; };
 		2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88826ADB27600D2A0AE /* NoDocumentView.swift */; };
 		2228356D26C49D030026D468 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228356C26C49C960026D468 /* TutorialView.swift */; };
+		2228356F26C4A7710026D468 /* Example.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228356E26C4A7710026D468 /* Example.MP4 */; };
 		225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */; };
 		229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */; };
 		229B6D0326B467D10096FE45 /* CanvasViewController.UndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */; };
@@ -113,6 +114,7 @@
 		2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocumentError.swift; sourceTree = "<group>"; };
 		2215B88826ADB27600D2A0AE /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		2228356C26C49C960026D468 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		2228356E26C4A7710026D468 /* Example.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Example.MP4; path = VideoPlayer/VideoPlayer/Example.MP4; sourceTree = "<group>"; };
 		225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMenuViewController.swift; sourceTree = "<group>"; };
 		229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.dynamicSize.swift; sourceTree = "<group>"; };
 		229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.UndoManager.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
+				2228356E26C4A7710026D468 /* Example.MP4 */,
 				225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */,
 				2228356C26C49C960026D468 /* TutorialView.swift */,
 				220B853826ACD3EC00081536 /* PMAST */,
@@ -507,6 +510,7 @@
 			files = (
 				22AF74C1269BA5F2007D9891 /* Preview Assets.xcassets in Resources */,
 				22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */,
+				2228356F26C4A7710026D468 /* Example.MP4 in Resources */,
 				22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
