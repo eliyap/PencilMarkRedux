@@ -20,6 +20,15 @@ class VideoViewController: UIViewController {
         
         view = playerView
         playerView.player?.play()
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(replay))
+        ]
+    }
+    
+    @objc
+    func replay() {
+        print("not implemented")
     }
     
     override func viewWillAppear(_ animated: Bool) {
