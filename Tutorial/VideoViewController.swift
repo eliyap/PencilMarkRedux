@@ -10,6 +10,9 @@ import AVKit
 
 class VideoViewController: UIViewController {
     
+    /// Make the video's bigger for legibility as compared to the default ``popoverWidth``
+    static let preferredWidth: CGFloat = 500
+    
     let url: URL
     let playerController = AVPlayerViewController()
     
@@ -53,8 +56,8 @@ class VideoViewController: UIViewController {
         
         /// Scale container to match video size.
         preferredContentSize = CGSize(
-            width: popoverWidth,
-            height: popoverWidth * aspectRatio
+            width: Self.preferredWidth,
+            height: Self.preferredWidth * aspectRatio
         )
     }
     
