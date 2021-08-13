@@ -153,3 +153,20 @@ extension KeyboardViewController {
         md.setAttributes(textView.textStorage, default: defaultAttributes)
     }
 }
+
+// MARK:- Commands
+extension KeyboardViewController {
+    
+    override var keyCommands: [UIKeyCommand]? {
+        (super.keyCommands ?? []) + [
+            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(escape)),
+        ]
+    }
+    
+    @objc
+    func escape() -> Void {
+        /// Stop typing.
+        resignFirstResponder()
+        textView.endEditing(true)
+    }
+}
