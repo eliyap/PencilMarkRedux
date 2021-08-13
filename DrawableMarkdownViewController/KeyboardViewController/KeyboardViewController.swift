@@ -68,6 +68,11 @@ final class KeyboardViewController: PMViewController {
         canvasSize.height = max(view.frame.height, contentSize.height)
         
         coordinator.frameC.contentSize = canvasSize
+        
+        /// Adjust ``textView`` padding.
+        let horizontalPadding: CGFloat = frameWidth * 0.1
+        textView.textContainerInset.left = horizontalPadding
+        textView.textContainerInset.right = horizontalPadding
     }
     
     required init?(coder: NSCoder) {
