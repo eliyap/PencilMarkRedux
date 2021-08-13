@@ -22,11 +22,22 @@ enum Gesture: Int, CaseIterable {
     
     /// The URL for the video demonstrating the gesture.
     var url: URL {
+        #warning("Placeholder assets!")
         switch self {
         case .strike:
             return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
         case .scribble:
             return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+        }
+    }
+    
+    /// SF Symbol representing the gesture.
+    var symbol: String {
+        switch self {
+        case .strike:
+            return "strikethrough"
+        case .scribble:
+            return "scribble"
         }
     }
 }
