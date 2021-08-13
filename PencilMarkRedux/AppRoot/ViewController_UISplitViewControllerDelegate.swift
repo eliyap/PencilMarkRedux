@@ -10,12 +10,11 @@ import UIKit
 extension ViewController: UISplitViewControllerDelegate {
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-//        print("Swipey")
+        /// Nothing
     }
     
     func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
-//        print("New Mode: \(displayMode.rawValue), \(svc.preferredDisplayMode.rawValue)")
-//        print("Behaviour: \(svc.splitBehavior.rawValue), \(svc.preferredSplitBehavior.rawValue)")
+        /// Nothing
     }
     
     /// Prefer primary view controller in compact width.
@@ -25,22 +24,21 @@ extension ViewController: UISplitViewControllerDelegate {
     }
     
     func splitViewControllerDidCollapse(_ svc: UISplitViewController) {
-//        print("Split Controller Did Collapse")
+        /// Nothing
     }
     
     func splitViewControllerDidExpand(_ svc: UISplitViewController) {
-//        print("Split Controller Did Expand")
+        /// Nothing
     }
     
     func splitViewController(_ svc: UISplitViewController, willHide column: UISplitViewController.Column) {
-        if column == .primary {
-            SplitConduit.shared.primaryColumnChange.send()
-        }
+        /// Nothing
     }
     
     func splitViewController(_ svc: UISplitViewController, willShow column: UISplitViewController.Column) {
         if column == .primary {
-            SplitConduit.shared.primaryColumnChange.send()
+            /// request an extra layout pass
+            SplitConduit.shared.needLayoutKeyboard = true
         }
     }
 }
