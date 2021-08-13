@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PencilKit
 
 final class CanvasViewController: PMViewController {
     
@@ -24,6 +25,8 @@ final class CanvasViewController: PMViewController {
         _undoManager.controller = self /// immediately attach to child
         
         self.view = canvasView
+        
+        canvasView.tool = PKInkingTool(.pen, color: .systemBlue, width: 3)
         
         /**
          Permits finger to be used for drawing.
