@@ -23,4 +23,24 @@ extension ViewController: UISplitViewControllerDelegate {
     func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
         .primary
     }
+    
+    func splitViewControllerDidCollapse(_ svc: UISplitViewController) {
+//        print("Split Controller Did Collapse")
+    }
+    
+    func splitViewControllerDidExpand(_ svc: UISplitViewController) {
+//        print("Split Controller Did Expand")
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willHide column: UISplitViewController.Column) {
+        if column == .primary {
+            SplitConduit.shared.primaryColumnChange.send()
+        }
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willShow column: UISplitViewController.Column) {
+        if column == .primary {
+            SplitConduit.shared.primaryColumnChange.send()
+        }
+    }
 }

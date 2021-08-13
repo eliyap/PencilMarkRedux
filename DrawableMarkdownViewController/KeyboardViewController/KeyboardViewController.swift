@@ -49,6 +49,15 @@ final class KeyboardViewController: PMViewController {
         observeStrokes()
         observeTouchEvents()
         observeCommands()
+        observeSplit()
+    }
+    
+    func observeSplit() {
+        let split: AnyCancellable = SplitConduit.shared.primaryColumnChange
+            .sink {
+                print("Did Change Split")
+            }
+        store(split)
     }
     
     override func viewWillLayoutSubviews() {
