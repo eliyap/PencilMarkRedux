@@ -69,17 +69,13 @@ final class KeyboardViewController: PMViewController {
         
         coordinator.frameC.contentSize = canvasSize
         
+        /// 10% is an arbitrary choice, may wish to revisit it in future.
         let horizontalPadding: CGFloat = frameWidth * 0.1
+        
+        /// Only adjust padding if it doesn't match. No particular reason for this.
         if textView.contentInset.left != horizontalPadding {
-            print("View Width: \(frameWidth)")
-
-            /// Adjust ``textView`` padding.
-            print("Layout \(textView.contentInset.left) vs \(horizontalPadding)")
-
-
             textView.textContainerInset.left = horizontalPadding
             textView.textContainerInset.right = horizontalPadding
-
         }
     }
     
