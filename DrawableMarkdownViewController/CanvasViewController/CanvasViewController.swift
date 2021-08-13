@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PencilKit
 
 final class CanvasViewController: PMViewController {
     
@@ -24,6 +25,12 @@ final class CanvasViewController: PMViewController {
         _undoManager.controller = self /// immediately attach to child
         
         self.view = canvasView
+        
+        /**
+         Use a blue color to make the tool stand out visually, especially in demo videos.
+         Do not use ``tint``, whose orange is not distinct enough from the red rejection color.
+         */
+        canvasView.tool = PKInkingTool(.pen, color: .systemBlue, width: 3)
         
         /**
          Permits finger to be used for drawing.

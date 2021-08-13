@@ -120,6 +120,16 @@ final class DrawableMarkdownViewController: PMViewController {
         restoreState()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        /// Perform an extra layout pass **once** when requested.
+        if SplitConduit.shared.needLayoutKeyboard {
+            keyboard.view.setNeedsLayout()
+            SplitConduit.shared.needLayoutKeyboard = false
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         keyboard.view.frame = view.frame

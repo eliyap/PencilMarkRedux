@@ -10,17 +10,35 @@ import UIKit
 extension ViewController: UISplitViewControllerDelegate {
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-//        print("Swipey")
+        /// Nothing
     }
     
     func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
-//        print("New Mode: \(displayMode.rawValue), \(svc.preferredDisplayMode.rawValue)")
-//        print("Behaviour: \(svc.splitBehavior.rawValue), \(svc.preferredSplitBehavior.rawValue)")
+        /// Nothing
     }
     
     /// Prefer primary view controller in compact width.
     /// Docs: https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/3580925-splitviewcontroller
     func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
         .primary
+    }
+    
+    func splitViewControllerDidCollapse(_ svc: UISplitViewController) {
+        /// Nothing
+    }
+    
+    func splitViewControllerDidExpand(_ svc: UISplitViewController) {
+        /// Nothing
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willHide column: UISplitViewController.Column) {
+        /// Nothing
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willShow column: UISplitViewController.Column) {
+        if column == .primary {
+            /// request an extra layout pass
+            SplitConduit.shared.needLayoutKeyboard = true
+        }
     }
 }
