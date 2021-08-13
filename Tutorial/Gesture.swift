@@ -22,12 +22,11 @@ enum Gesture: Int, CaseIterable {
     
     /// The URL for the video demonstrating the gesture.
     var url: URL {
-        #warning("Placeholder assets!")
         switch self {
         case .strike:
-            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+            return Bundle.main.url(forResource: "Strike", withExtension: "mp4")!
         case .scribble:
-            return Bundle.main.url(forResource: "Example", withExtension: "MP4")!
+            return Bundle.main.url(forResource: "Scribble", withExtension: "mp4")!
         }
     }
     
