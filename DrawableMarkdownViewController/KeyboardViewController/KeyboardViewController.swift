@@ -49,22 +49,13 @@ final class KeyboardViewController: PMViewController {
         observeStrokes()
         observeTouchEvents()
         observeCommands()
-        observeSplit()
-    }
-    
-    func observeSplit() {
-        let split: AnyCancellable = SplitConduit.shared.primaryColumnChange
-            .sink {
-                print("Did Change Split")
-            }
-        store(split)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         /// Update `PKCanvasView` as to the size it should adopt.
-        let frameWidth = view.frame.size.width
+        let frameWidth = view.frame.width
         let contentSize = textView.sizeThatFits(CGSize(width: frameWidth, height: .infinity))
         
         /**
@@ -78,10 +69,18 @@ final class KeyboardViewController: PMViewController {
         
         coordinator.frameC.contentSize = canvasSize
         
-        /// Adjust ``textView`` padding.
         let horizontalPadding: CGFloat = frameWidth * 0.1
-        textView.textContainerInset.left = horizontalPadding
-        textView.textContainerInset.right = horizontalPadding
+        if textView.contentInset.left != horizontalPadding {
+            print("View Width: \(frameWidth)")
+
+            /// Adjust ``textView`` padding.
+            print("Layout \(textView.contentInset.left) vs \(horizontalPadding)")
+
+
+            textView.textContainerInset.left = horizontalPadding
+            textView.textContainerInset.right = horizontalPadding
+
+        }
     }
     
     required init?(coder: NSCoder) {
