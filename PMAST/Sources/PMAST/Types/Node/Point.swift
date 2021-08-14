@@ -7,9 +7,18 @@
 
 import Foundation
 
+/**
+ Reflects a UNIST Point.
+ */
 struct Point {
+    
+    /// Column in a source file (1-indexed integer).
     let column: Int
+    
+    /// Line in a source file (1-indexed integer).
     let line: Int
+    
+    /// Character in a source file (0-indexed integer).
     var offset: Int
     
     init?(dict: [AnyHashable: Any]?) {
