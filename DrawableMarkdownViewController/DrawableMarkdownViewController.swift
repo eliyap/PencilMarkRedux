@@ -92,7 +92,7 @@ final class DrawableMarkdownViewController: PMViewController {
         if state.contains(.inConflict) { print("Document Conflicted") }
         if state.contains(.editingDisabled) { print("Document Cannot Edit") }
         if state.contains(.savingError) { print("Document Encountered Error whilst Saving") }
-        if state.contains(.progressAvailable) { print("Document Progress Available") }
+//        if state.contains(.progressAvailable) { print("Document Progress Available") }
     }
     
     required init?(coder: NSCoder) {
