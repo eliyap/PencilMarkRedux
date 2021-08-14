@@ -109,7 +109,7 @@ extension Parent {
             
             switch (next._leading_change, next._trailing_change) {
             
-            /// Node is newly added, let us (also being added) take over.
+            /// Node is newly added, so simply remove it from the tree.
             case (.toAdd, .toAdd):
                 /// Adopt sibling's children.
                 next.children.forEach { $0.parent = self }
@@ -142,6 +142,7 @@ extension Parent {
                 
                 /// extend text range to include range of sibling
                 position.end = next.position.end
+            
             case (.toAdd, .toRemove), (.toRemove, .toAdd):
                 fatalError("Logical Paradox!")
                 
