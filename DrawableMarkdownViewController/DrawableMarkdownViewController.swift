@@ -63,13 +63,9 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Set up bar buttons
         closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
         tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
-        let redoBtn = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.right"), style: .plain, target: self, action: #selector(redo))
-        let undoBtn = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.left"), style: .plain, target: self, action: #selector(undo))
         navigationItem.rightBarButtonItems = [
             closeBtn,
             tutorialBtn,
-            redoBtn,
-            undoBtn,
         ]
         
         tutorial.modalPresentationStyle = .popover
@@ -86,16 +82,6 @@ final class DrawableMarkdownViewController: PMViewController {
         tutorial.popoverPresentationController?.sourceView = self.view
         
         present(tutorial, animated: true)
-    }
-    
-    @objc
-    func undo() -> Void {
-        
-    }
-    
-    @objc
-    func redo() -> Void {
-        
     }
     
     @objc
