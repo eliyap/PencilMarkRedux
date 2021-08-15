@@ -11,11 +11,47 @@ extension DrawableMarkdownViewController {
     
     /// Add `UINavigationController` toolbar items.
     func makeButtons() {
-        /// Set up bar buttons
-        closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
-        tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
-        let undoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.backward"), style: .plain, target: self, action: #selector(undo))
-        let redoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.forward"), style: .plain, target: self, action: #selector(redo))
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 10)
+        
+        closeBtn = UIBarButtonItem(
+            image: UIImage(
+                systemName: "xmark",
+                withConfiguration: config
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(close))
+        
+        tutorialBtn = UIBarButtonItem(
+            image: UIImage(
+                systemName: "pencil.and.outline",
+                withConfiguration: config
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(showTutorial)
+        )
+        
+        undoButton = UIBarButtonItem(
+            image: UIImage(
+                systemName: "arrow.uturn.backward",
+                withConfiguration: config
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(undo)
+        )
+        
+        redoButton = UIBarButtonItem(
+            image: UIImage(
+                systemName: "arrow.uturn.forward",
+                withConfiguration: config
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(redo)
+        )
         
         let buttons: [UIBarButtonItem] = [
             undoButton,
@@ -32,8 +68,12 @@ extension DrawableMarkdownViewController {
         redoButton.isEnabled = false
         
         /// Observe for undo updates.
-        store(cmdC.undoStatus.sink { undoButton.isEnabled = $0 })
-        store(cmdC.redoStatus.sink { redoButton.isEnabled = $0 })
+        store(cmdC.undoStatus.sink { [weak self] in
+            self?.undoButton.isEnabled = $0
+        })
+        store(cmdC.redoStatus.sink { [weak self] in
+            self?.redoButton.isEnabled = $0
+        })
     }
     
     @objc

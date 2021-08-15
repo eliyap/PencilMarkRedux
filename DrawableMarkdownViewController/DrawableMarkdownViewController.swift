@@ -37,6 +37,8 @@ final class DrawableMarkdownViewController: PMViewController {
     /// Must be stored so that they can be accessed in methods.
     var closeBtn: UIBarButtonItem!
     var tutorialBtn: UIBarButtonItem!
+    var undoButton: UIBarButtonItem!
+    var redoButton: UIBarButtonItem!
     
     init(fileURL: URL?) {
         if let fileURL = fileURL {
