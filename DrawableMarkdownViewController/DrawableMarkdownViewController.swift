@@ -60,7 +60,10 @@ final class DrawableMarkdownViewController: PMViewController {
         canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
         
+        /// Set view layer hierarchy.
+        view.sendSubviewToBack(keyboard.view)
         view.bringSubviewToFront(canvas.view)
+        view.bringSubviewToFront(toolbar.view)
         
         /// Add `UINavigationController` toolbar items.
         makeButtons()
