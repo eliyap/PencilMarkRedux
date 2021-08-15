@@ -50,6 +50,17 @@ extension DrawableMarkdownViewController {
         cmdC.redo.send()
     }
     
+    @objc
+    func showTutorial() -> Void {
+        /// Anchor popover on tutorial button.
+        /// - Note: Mandatory! App will crash if not anchored properly.
+        /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
+        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
+        tutorial.popoverPresentationController?.sourceView = self.view
+        
+        present(tutorial, animated: true)
+    }
+    
     /// Make custom image views without padding
     /// Source: https://gist.github.com/sonnguyen0310/6720cbf39ce877c20fea1a987543fb99
     func makeButton(image: UIImage, action: Selector) -> UIBarButtonItem {

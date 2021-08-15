@@ -71,17 +71,6 @@ final class DrawableMarkdownViewController: PMViewController {
     }
     
     @objc
-    func showTutorial() -> Void {
-        /// Anchor popover on tutorial button.
-        /// - Note: Mandatory! App will crash if not anchored properly.
-        /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
-        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
-        tutorial.popoverPresentationController?.sourceView = self.view
-        
-        present(tutorial, animated: true)
-    }
-    
-    @objc
     func documentStateChanged() -> Void {
         guard let state = document?.documentState else { return }
         if state == .normal { }
