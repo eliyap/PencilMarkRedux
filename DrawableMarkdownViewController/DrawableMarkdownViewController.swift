@@ -74,6 +74,10 @@ final class DrawableMarkdownViewController: PMViewController {
             undoButton,
         ]
         
+        /// Disable buttons initially.
+        undoButton.isEnabled = false
+        redoButton.isEnabled = false
+        
         /// Observe for undo updates.
         store(cmdC.undoStatus.sink { undoButton.isEnabled = $0 })
         store(cmdC.redoStatus.sink { redoButton.isEnabled = $0 })
