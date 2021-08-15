@@ -11,12 +11,12 @@ extension DrawableMarkdownViewController {
     
     /// Add `UINavigationController` toolbar items.
     func makeButtons() {
-        /// Set up bar buttons
-        closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
-        tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
-        let undoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.backward"), style: .plain, target: self, action: #selector(undo))
-        let redoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.forward"), style: .plain, target: self, action: #selector(redo))
         
+        closeBtn = makeButton(image: UIImage(systemName: "xmark")!, action: #selector(close))
+        tutorialBtn = makeButton(image: UIImage(systemName: "pencil.and.outline")!, action: #selector(showTutorial))
+        undoButton = makeButton(image: UIImage(systemName: "arrow.uturn.backward")!, action: #selector(undo))
+        redoButton = makeButton(image: UIImage(systemName: "arrow.uturn.forward")!, action: #selector(redo))
+            
         let buttons: [UIBarButtonItem] = [
             undoButton,
             redoButton,
@@ -32,8 +32,12 @@ extension DrawableMarkdownViewController {
         redoButton.isEnabled = false
         
         /// Observe for undo updates.
-        store(cmdC.undoStatus.sink { undoButton.isEnabled = $0 })
-        store(cmdC.redoStatus.sink { redoButton.isEnabled = $0 })
+        store(cmdC.undoStatus.sink { [weak self] in
+            self?.undoButton.isEnabled = $0
+        })
+        store(cmdC.redoStatus.sink { [weak self] in
+            self?.redoButton.isEnabled = $0
+        })
     }
     
     @objc
@@ -45,4 +49,25 @@ extension DrawableMarkdownViewController {
     func redo() {
         cmdC.redo.send()
     }
+    
+    /// Make custom image views without padding
+    /// Source: https://gist.github.com/sonnguyen0310/6720cbf39ce877c20fea1a987543fb99
+    func makeButton(image: UIImage, action: Selector) -> UIBarButtonItem {
+        
+        let imageSize: CGFloat = 20
+        let buttonSize: CGFloat = 25
+        
+        let view = UIButton.systemButton(with: image, target: self, action: action)
+        view.frame = CGRect(x: 0.0, y: 0.0, width: imageSize, height: imageSize)
+        
+        let button = UIBarButtonItem(customView: view)
+        let currWidth = button.customView?.widthAnchor.constraint(equalToConstant: buttonSize)
+        currWidth?.isActive = true
+        let currHeight = button.customView?.heightAnchor.constraint(equalToConstant: buttonSize)
+        currHeight?.isActive = true
+        
+        return button
+    }
 }
+
+
