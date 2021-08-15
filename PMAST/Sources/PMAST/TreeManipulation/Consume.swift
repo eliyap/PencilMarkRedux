@@ -22,16 +22,12 @@ extension Markdown {
         var consumed: OrderedSet<Parent> = []
         
         flagged.forEach {
-            /// Skip over already consumed elements.
+            /// Consume siblings before and after, expanding range to accomodate their descendants.
             guard consumed.contains($0) == false else { return }
+            $0.position.start = $0.consumePrev(consumed: &consumed, in: self)
             
-            #warning("may wish to revise this assertion when running consume after a delete, as john pointed out.")
-            assert($0._type == style.type, "Mismatched type")
-            
-            /// Consume siblings before and after.
-            _ = $0
-                .consumePrev(consumed: &consumed, in: self)? /// optional chaining in case node is deleted after ejecting whitespace
-                .consumeNext(consumed: &consumed, in: self)
+            guard consumed.contains($0) == false else { return }
+            $0.position.end = $0.consumeNext(consumed: &consumed, in: self)
         }
     }
 }
@@ -39,32 +35,22 @@ extension Markdown {
 // MARK: - Consume Guts
 extension Parent {
     /// Returns itself after consuming the next element or ejecting whitespace
-    func consumePrev(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Self? {
+    func consumePrev(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Point {
         /// Check if previous sibling is a ``Parent`` of same `_type`.
         if
             let prev = prevSibling as? Parent,
             prev._type == _type
         {
-            /// Head recursion: let it eat it's `prevSibling` first.
-            /// If previous sibling is nothing, just exit
-            guard let prev = prev.consumePrev(consumed: &consumed, in: document) else { return self }
+            /// Recursion: let sibling eat it's `prevSibling` also.
+            let edge = prev.consumePrev(consumed: &consumed, in: document)
             
             switch (prev._leading_change, prev._trailing_change) {
-            
-            /// Node is newly added, let us (also being added) take over.
+            /// Node was newly added, simply remove it from the tree.
             case (.toAdd, .toAdd):
-                /// Adopt previous sibling's children.
-                prev.children.forEach { $0.parent = self }
-                children.insert(contentsOf: prev.children, at: 0)
-                prev.children = []
-                
-                /// extend text range to include range of sibling
-                position.start = prev.position.start
-                
-                /// Remove `prev` from tree. Should then be deallocated.
+                /// Signal that this node should be skipped
                 consumed.append(prev)
-                parent.children.remove(at: prev.indexInParent!)
-                prev.parent = nil
+                
+                prev.apoptose()
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
             case (.toRemove, .toRemove):
@@ -73,17 +59,9 @@ extension Parent {
             
             /// Pre-existing node.
             case (.none, .none):
-                /// Adopt previous sibling.
-                parent.children.remove(at: prev.indexInParent!)
-                prev.parent = self
-                children.insert(prev, at: 0)
-                
                 /// Flag syntax marks for removal.
                 prev._leading_change = .toRemove
                 prev._trailing_change = .toRemove
-                
-                /// extend text range to include range of sibling
-                position.start = prev.position.start
             
             case (.toAdd, .toRemove), (.toRemove, .toAdd):
                 fatalError("Logical Paradox!")
@@ -91,38 +69,30 @@ extension Parent {
             default:
                 fatalError("Unhandled Case!")
             }
-            return self
+            
+            return edge
         } else {
-            return contractWhitespace(for: .leading, in: document)
+            return contractWhitespace(for: .leading, in: document, consumed: &consumed)
         }
     }
     
     /// Returns itself after consuming the previous element or ejecting whitespace
-    func consumeNext(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Self? {
+    func consumeNext(consumed: inout OrderedSet<Parent>, in document: Markdown) -> Point {
         /// Check if next sibling is a ``Node`` of same `_type`.
         if
             let next = nextSibling as? Parent,
             next._type == _type
         {
-            /// Head recursion: let it eat it's `prevSibling` first.
-            guard let next = next.consumeNext(consumed: &consumed, in: document) else { return self }
+            /// Recursion: let sibling eat it's `nextSibling` also.
+            let edge = next.consumeNext(consumed: &consumed, in: document)
             
             switch (next._leading_change, next._trailing_change) {
-            
-            /// Node is newly added, let us (also being added) take over.
+            /// Node is newly added, so simply remove it from the tree.
             case (.toAdd, .toAdd):
-                /// Adopt sibling's children.
-                next.children.forEach { $0.parent = self }
-                children.append(contentsOf: next.children)
-                next.children = []
-                
-                /// extend text range to include range of sibling
-                position.end = next.position.end
-                
-                /// Remove `next` from tree. Should then be deallocated.
+                /// Signal that this node should be skipped
                 consumed.append(next)
-                parent.children.remove(at: next.indexInParent!)
-                next.parent = nil
+                
+                next.apoptose()
             
             /// Node is in the process of being removed, not sure when this might happen, warn us.
             case (.toRemove, .toRemove):
@@ -131,26 +101,20 @@ extension Parent {
             
             /// Pre-existing node.
             case (.none, .none):
-                /// Adopt previous sibling.
-                parent.children.remove(at: next.indexInParent!)
-                next.parent = self
-                children.append(next)
-                
                 /// Flag syntax marks for removal.
                 next._leading_change = .toRemove
                 next._trailing_change = .toRemove
                 
-                /// extend text range to include range of sibling
-                position.end = next.position.end
             case (.toAdd, .toRemove), (.toRemove, .toAdd):
                 fatalError("Logical Paradox!")
                 
             default:
                 fatalError("Unhandled Case!")
             }
-            return self
+            
+            return edge
         } else {
-            return contractWhitespace(for: .trailing, in: document)
+            return contractWhitespace(for: .trailing, in: document, consumed: &consumed)
         }
     }
     
@@ -161,7 +125,7 @@ extension Parent {
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
-    func contractWhitespace(for edge: Edge, in document: Markdown) -> Self? {
+    func contractWhitespace(for edge: Edge, in document: Markdown, consumed: inout OrderedSet<Parent>) -> Point {
         switch edge {
         case .leading:
             while
@@ -185,18 +149,21 @@ extension Parent {
             }
         }
         
-        /// if nothing is left after ejecting whitespace, remove self from tree
+        /// if nothing is left after ejecting whitespace, remove `self` from tree
         if position.nsRange.length == 0 {
-//            assert(_change == .toAdd, "Pre-existing zero width with Change: \(String(describing: _change)), type: \(_type)")
+            self.apoptose()
+            consumed.append(self)
             
-            /// remove from tree
-            parent.children.replaceSubrange(indexInParent!..<(indexInParent!+1), with: children)
-            children.forEach { $0.parent = parent }
-            parent = nil
-            
-            return nil
+            /// Since length is zero, ``end`` == ``start``, so we can return either
+            return position.start
         } else {
-            return self
+            /// Return appropriate edge's position.
+            switch edge {
+            case .leading:
+                return position.start
+            case .trailing:
+                return position.end
+            }
         }
     }
 }

@@ -120,7 +120,8 @@ extension Text {
         let lowerBound = max(range.lowerBound, position.nsRange.lowerBound)
         let upperBound = min(range.upperBound, position.nsRange.upperBound)
         
-        /// construct styled node
+        /// Construct styled node.
+        /// - Note: ignore the line / column offsets, which we do not rigorously clamp!
         let styled: Parent = style.init(
             dict: [
                 "position": [
@@ -140,6 +141,8 @@ extension Text {
             ],
             parent: parent
         )!
+        
+        /// Flag `style` node as newly added.
         styled._leading_change = .toAdd
         styled._trailing_change = .toAdd
         

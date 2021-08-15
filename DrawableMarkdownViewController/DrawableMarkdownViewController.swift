@@ -63,13 +63,9 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Set up bar buttons
         closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
         tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
-        let redoBtn = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.right"), style: .plain, target: self, action: #selector(redo))
-        let undoBtn = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.left"), style: .plain, target: self, action: #selector(undo))
         navigationItem.rightBarButtonItems = [
             closeBtn,
             tutorialBtn,
-            redoBtn,
-            undoBtn,
         ]
         
         tutorial.modalPresentationStyle = .popover
@@ -89,16 +85,6 @@ final class DrawableMarkdownViewController: PMViewController {
     }
     
     @objc
-    func undo() -> Void {
-        
-    }
-    
-    @objc
-    func redo() -> Void {
-        
-    }
-    
-    @objc
     func documentStateChanged() -> Void {
         guard let state = document?.documentState else { return }
         if state == .normal { }
@@ -106,7 +92,7 @@ final class DrawableMarkdownViewController: PMViewController {
         if state.contains(.inConflict) { print("Document Conflicted") }
         if state.contains(.editingDisabled) { print("Document Cannot Edit") }
         if state.contains(.savingError) { print("Document Encountered Error whilst Saving") }
-        if state.contains(.progressAvailable) { print("Document Progress Available") }
+//        if state.contains(.progressAvailable) { print("Document Progress Available") }
     }
     
     required init?(coder: NSCoder) {

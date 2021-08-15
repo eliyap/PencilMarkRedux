@@ -113,6 +113,10 @@ class PhrasingTests: XCTestCase {
         document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 13))
         XCTAssertEqual(document.plain, "a~~S _SSS_ S~~a")
         
+        document = Markdown("cr~~a~~zy")
+        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 7))
+        XCTAssertEqual(document.plain, "c~~raz~~y")
+        
         #warning("TODO: add other phasing content")
     }
     
