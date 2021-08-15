@@ -15,6 +15,7 @@ final class DrawableMarkdownViewController: PMViewController {
     public var document: StyledMarkdownDocument?
     
     /// Child View Controllers
+    let toolbar: ToolbarViewController
     let keyboard: KeyboardViewController
     let canvas: CanvasViewController
     let noDocument: NoDocumentHost
@@ -48,6 +49,7 @@ final class DrawableMarkdownViewController: PMViewController {
         self.canvas = CanvasViewController()
         self.noDocument = NoDocumentHost()
         self.tutorial = TutorialMenuViewController()
+        self.toolbar = ToolbarViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -56,6 +58,9 @@ final class DrawableMarkdownViewController: PMViewController {
         adopt(canvas)
         canvas.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(noDocument)
+        
+        adopt(toolbar)
+        toolbar.coordinate(with: self) /// call after `init` and `adopt` are complete
         
         canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
@@ -129,5 +134,33 @@ final class DrawableMarkdownViewController: PMViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         setButtons(for: traitCollection.horizontalSizeClass)
+    }
+}
+
+final class ToolbarViewController: UIViewController {
+    
+    typealias Coordinator = DrawableMarkdownViewController
+    weak var coordinator: Coordinator!
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = .green
+    }
+    
+    func coordinate(with coordinator: Coordinator) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            view.leftAnchor.constraint(equalTo: coordinator.view.leftAnchor),
+            view.rightAnchor.constraint(equalTo: coordinator.view.rightAnchor),
+            view.topAnchor.constraint(equalTo: coordinator.view.safeAreaLayoutGuide.topAnchor),
+            view.heightAnchor.constraint(equalToConstant: 50)
+        ]
+        coordinator.keyboard.textView.textContainerInset.top = 50
+        coordinator.canvas.canvasView.verticalScrollIndicatorInsets.top = 50
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Do Not Use")
     }
 }
