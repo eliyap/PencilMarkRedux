@@ -19,13 +19,49 @@ extension DrawableMarkdownViewController {
         keyboard.textView.textContainerInset.top = additionalToolbarHeight
     }
     
-    final class ToolbarViewController: UIHostingController<Toolbar> {
+    final class ToolbarViewController: UIViewController {
         
         typealias Coordinator = DrawableMarkdownViewController
         weak var coordinator: Coordinator!
         
         init() {
-            super.init(rootView: Toolbar())
+            super.init(nibName: nil, bundle: nil)
+            
+            let stackView = UIStackView(arrangedSubviews: [
+                UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
+                makeButton(image: UIImage(systemName: "heart"), action: #selector(setPencil)),
+                makeButton(image: UIImage(systemName: "xmark"), action: #selector(setEraser)),
+            ])
+            stackView.axis = .horizontal
+            stackView.alignment = .center
+            view = stackView
+            
+            
+            view.backgroundColor = .tertiarySystemBackground
+        }
+        
+        func makeButton(image: UIImage?, action: Selector) -> UIButton {
+            let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
+            button.addTarget(self, action: action, for: .touchUpInside)
+            button.setImage(image, for: .normal)
+            
+            let constraints = [
+                button.widthAnchor.constraint(equalToConstant: 35),
+                button.heightAnchor.constraint(equalToConstant: 35),
+            ]
+            NSLayoutConstraint.activate(constraints)
+            
+            return button
+        }
+        
+        @objc
+        func setPencil() {
+            print("set pencil!")
+        }
+        
+        @objc
+        func setEraser() {
+            print("set eraser!")
         }
         
         func coordinate(with coordinator: Coordinator) {
@@ -50,19 +86,6 @@ extension DrawableMarkdownViewController {
         
         required init?(coder: NSCoder) {
             fatalError("Do Not Use")
-        }
-    }
-    
-    struct Toolbar: View {
-        var body: some View {
-            HStack {
-                Spacer()
-                Button {
-                    print("Hoi!")
-                } label: {
-                    Image(systemName: "heart")
-                }
-            }
         }
     }
 }
