@@ -32,6 +32,7 @@
 		2228357826C7283A0026D468 /* Strike.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228357726C728340026D468 /* Strike.mp4 */; };
 		2228357B26C72A810026D468 /* Example.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228357A26C72A810026D468 /* Example.mp4 */; };
 		2228357D26C733A50026D468 /* Scribble.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228357C26C733370026D468 /* Scribble.mp4 */; };
+		2228359F26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228359E26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift */; };
 		225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */; };
 		229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */; };
 		229B6D0326B467D10096FE45 /* CanvasViewController.UndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */; };
@@ -123,6 +124,7 @@
 		2228357726C728340026D468 /* Strike.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Strike.mp4; sourceTree = "<group>"; };
 		2228357A26C72A810026D468 /* Example.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Example.mp4; sourceTree = "<group>"; };
 		2228357C26C733370026D468 /* Scribble.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Scribble.mp4; sourceTree = "<group>"; };
+		2228359E26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.restoreState.swift; sourceTree = "<group>"; };
 		225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMenuViewController.swift; sourceTree = "<group>"; };
 		229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.dynamicSize.swift; sourceTree = "<group>"; };
 		229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.UndoManager.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 			children = (
 				220B851126AC844D00081536 /* DrawableMarkdownViewController.swift */,
 				229B6D0E26B8CE6B0096FE45 /* DrawableMarkdownViewController.willEnterBackground.swift */,
+				2228359E26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift */,
 				220B851526AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift */,
 				22C9F5DE26AB99BE003FD426 /* DocumentSelectionDelegate.swift */,
 				2215B88826ADB27600D2A0AE /* NoDocumentView.swift */,
@@ -594,6 +597,7 @@
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				2228356D26C49D030026D468 /* VideoViewController.swift in Sources */,
+				2228359F26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift in Sources */,
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				229B6D1626B980100096FE45 /* StateModel.swift in Sources */,
