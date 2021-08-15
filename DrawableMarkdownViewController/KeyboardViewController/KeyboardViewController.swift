@@ -109,10 +109,20 @@ extension KeyboardViewController {
                 view.selectedTextRange = selection
             }
             
-            /// Roll back model state
+            /// Roll back model state.
             view.controller.coordinator.document?.markdown.plain = view.text
             view.controller.coordinator.document?.markdown.updateAttributes()
+            
+            /// Update undo buttons.
+            /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
+            /// do **not** fire on Pencil changes, so we fire this manually!
+            view.controller.updateCommandStatus()
         }
+        
+        /// Update undo buttons.
+        /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
+        /// do **not** fire on Pencil changes, so we fire this manually!
+        updateCommandStatus()
     }
 }
 
