@@ -8,6 +8,8 @@
 import UIKit
 
 extension DrawableMarkdownViewController {
+    
+    /// Add `UINavigationController` toolbar items.
     func makeButtons() {
         /// Set up bar buttons
         closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))

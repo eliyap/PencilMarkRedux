@@ -60,6 +60,9 @@ final class DrawableMarkdownViewController: PMViewController {
         
         view.bringSubviewToFront(canvas.view)
         
+        /// Add `UINavigationController` toolbar items.
+        makeButtons()
+        
         tutorial.modalPresentationStyle = .popover
         
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
