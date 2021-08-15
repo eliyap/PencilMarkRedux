@@ -54,15 +54,16 @@ extension DrawableMarkdownViewController {
     /// Source: https://gist.github.com/sonnguyen0310/6720cbf39ce877c20fea1a987543fb99
     func makeButton(image: UIImage, action: Selector) -> UIBarButtonItem {
         
-        let size: CGFloat = 25
+        let imageSize: CGFloat = 20
+        let buttonSize: CGFloat = 25
         
         let view = UIButton.systemButton(with: image, target: self, action: action)
-        view.frame = CGRect(x: 0.0, y: 0.0, width: size, height: size)
+        view.frame = CGRect(x: 0.0, y: 0.0, width: imageSize, height: imageSize)
         
         let button = UIBarButtonItem(customView: view)
-        let currWidth = button.customView?.widthAnchor.constraint(equalToConstant: size)
+        let currWidth = button.customView?.widthAnchor.constraint(equalToConstant: buttonSize)
         currWidth?.isActive = true
-        let currHeight = button.customView?.heightAnchor.constraint(equalToConstant: size)
+        let currHeight = button.customView?.heightAnchor.constraint(equalToConstant: buttonSize)
         currHeight?.isActive = true
         
         return button
