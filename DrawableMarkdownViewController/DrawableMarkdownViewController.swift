@@ -112,10 +112,22 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         restoreState()
+        
+        /// If the user compresses from `.regular` to `.horizontal`, we want to avoid a "snap" button transition,
+        /// so adjust the buttons pre-emptively!
+        setButtons(for: traitCollection.horizontalSizeClass)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         restoreState()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        setButtons(for: traitCollection.horizontalSizeClass)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setButtons(for: traitCollection.horizontalSizeClass)
     }
 }

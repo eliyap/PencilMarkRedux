@@ -17,15 +17,7 @@ extension DrawableMarkdownViewController {
         undoButton = makeButton(image: UIImage(systemName: "arrow.uturn.backward")!, action: #selector(undo))
         redoButton = makeButton(image: UIImage(systemName: "arrow.uturn.forward")!, action: #selector(redo))
             
-        let buttons: [UIBarButtonItem] = [
-            undoButton,
-            redoButton,
-            tutorialBtn,
-            closeBtn,
-        ]
-        
-        /// Reverse buttons, since they are arranged from the right edge inwards.
-        navigationItem.rightBarButtonItems = buttons.reversed()
+        setButtons(for: traitCollection.horizontalSizeClass)
         
         /// Disable undo buttons initially.
         undoButton.isEnabled = false
@@ -78,5 +70,35 @@ extension DrawableMarkdownViewController {
         currHeight?.isActive = true
         
         return button
+    }
+    
+    /// Chooses which toolbar buttons to show based on the horizontal space available.
+    func setButtons(for horizontalSizeClass: UIUserInterfaceSizeClass) -> Void {
+        var buttons: [UIBarButtonItem] = []
+        
+        switch horizontalSizeClass {
+        case .regular:
+            buttons = [
+                undoButton,
+                redoButton,
+                tutorialBtn,
+                closeBtn,
+            ]
+        
+        case .compact, .unspecified:
+            buttons = [
+                undoButton,
+                /// redoButton, omitted, similar to GoodNotes, since it's less important
+                tutorialBtn,
+                /// closeBtn, omitted, since the back button pops the document, effectively closing it.
+            ]
+        
+        @unknown default:
+            assert(false, "Unrecognized size class!")
+            break
+        }
+        
+        /// Reverse buttons, since they are arranged from the right edge inwards.
+        navigationItem.rightBarButtonItems = buttons.reversed()
     }
 }
