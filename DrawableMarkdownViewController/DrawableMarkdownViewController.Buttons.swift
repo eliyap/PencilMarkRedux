@@ -35,4 +35,14 @@ extension DrawableMarkdownViewController {
         store(cmdC.undoStatus.sink { undoButton.isEnabled = $0 })
         store(cmdC.redoStatus.sink { redoButton.isEnabled = $0 })
     }
+    
+    @objc
+    func undo() {
+        cmdC.undo.send()
+    }
+    
+    @objc
+    func redo() {
+        cmdC.redo.send()
+    }
 }

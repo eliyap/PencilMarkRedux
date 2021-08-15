@@ -69,16 +69,6 @@ final class DrawableMarkdownViewController: PMViewController {
     }
     
     @objc
-    func undo() {
-        cmdC.undo.send()
-    }
-    
-    @objc
-    func redo() {
-        cmdC.redo.send()
-    }
-    
-    @objc
     func showTutorial() -> Void {
         /// Anchor popover on tutorial button.
         /// - Note: Mandatory! App will crash if not anchored properly.
