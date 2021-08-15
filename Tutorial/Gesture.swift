@@ -22,6 +22,15 @@ enum Tool: Int, CaseIterable {
     case pencil
     case eraser
     
+    var name: String {
+        switch self {
+        case .pencil:
+            return "Pencil"
+        case .eraser:
+            return "Eraser"
+        }
+    }
+    
     enum Pencil: Int, CaseIterable, Tutorial {
         case strike
         case scribble

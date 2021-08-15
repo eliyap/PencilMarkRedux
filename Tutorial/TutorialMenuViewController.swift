@@ -40,9 +40,15 @@ final class TutorialTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        #warning("Not Implemented!")
-//        preferredContentSize.height = tableView.rowHeight * CGFloat(PencilGesture.allCases.count)
-//        preferredContentSize.width = popoverWidth
+        preferredContentSize.height = 0
+            + tableView.rowHeight * CGFloat(Tool.Pencil.allCases.count)
+            + tableView.rowHeight * CGFloat(Tool.Eraser.allCases.count)
+            + tableView.sectionHeaderHeight * CGFloat(Tool.allCases.count)
+        preferredContentSize.width = popoverWidth
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        tableView.sectionHeaderHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -88,6 +94,11 @@ final class TutorialTable: UITableView {
         get { UIFont.dynamicSize * 2.5 }
         set {  /* Ignore */ }
     }
+    
+    override var sectionHeaderHeight: CGFloat {
+        get { 30 } /// an observed sufficient value for the largest non-accesbility text size
+        set {  /* Ignore */ }
+    }
 }
 
 // MARK: - Data Source
@@ -95,6 +106,10 @@ final class TutorialDataSource: NSObject, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         Tool.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        Tool(rawValue: section)!.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
