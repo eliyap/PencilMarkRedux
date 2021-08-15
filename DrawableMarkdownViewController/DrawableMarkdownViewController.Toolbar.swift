@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension DrawableMarkdownViewController {
 
@@ -45,13 +46,23 @@ extension DrawableMarkdownViewController {
             NSLayoutConstraint.activate(constraints)
         }
         
+        #warning("does not relay undo / redo commands when it becomes first responder!")
+        
         required init?(coder: NSCoder) {
             fatalError("Do Not Use")
         }
     }
-}
-
-import SwiftUI
-struct Toolbar: View {
-    var body: some View { Color.green }
+    
+    struct Toolbar: View {
+        var body: some View {
+            HStack {
+                Spacer()
+                Button {
+                    print("Hoi!")
+                } label: {
+                    Image(systemName: "heart")
+                }
+            }
+        }
+    }
 }
