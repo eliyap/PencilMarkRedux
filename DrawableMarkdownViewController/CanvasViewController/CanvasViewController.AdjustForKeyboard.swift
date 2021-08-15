@@ -19,7 +19,7 @@ extension CanvasViewController {
     @objc
     func keyboardWillAdjust(_ notification: Notification) {
         /// Adjust scroll indicator size to account for keyboard.
-        guard let inset = view.edgeInset(for: notification) else { return }
-        canvasView.scrollIndicatorInsets = inset
+        guard let inset = view.bottomInset(for: notification) else { return }
+        canvasView.verticalScrollIndicatorInsets.bottom = inset
     }
 }
