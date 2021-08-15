@@ -65,14 +65,15 @@ final class DrawableMarkdownViewController: PMViewController {
         tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
         let undoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.backward"), style: .plain, target: self, action: #selector(undo))
         let redoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.forward"), style: .plain, target: self, action: #selector(redo))
+        let buttons: [UIBarButtonItem] = [
+            undoButton,
+            redoButton,
+            tutorialBtn,
+            closeBtn,
+        ]
         
         /// Arranged from the right edge inwards.
-        navigationItem.rightBarButtonItems = [
-            closeBtn,
-            tutorialBtn,
-            redoButton,
-            undoButton,
-        ]
+        navigationItem.rightBarButtonItems = buttons.reversed()
         
         /// Disable buttons initially.
         undoButton.isEnabled = false
