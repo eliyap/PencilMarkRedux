@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Gesture: Int, CaseIterable {
+enum PencilGesture: Int, CaseIterable {
     case strike
     case scribble
     

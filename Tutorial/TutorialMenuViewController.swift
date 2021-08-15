@@ -40,7 +40,7 @@ final class TutorialTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        preferredContentSize.height = tableView.rowHeight * CGFloat(Gesture.allCases.count)
+        preferredContentSize.height = tableView.rowHeight * CGFloat(PencilGesture.allCases.count)
         preferredContentSize.width = popoverWidth
     }
     
@@ -51,7 +51,7 @@ final class TutorialTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
         
-        guard let gesture = Gesture(rawValue: indexPath.row) else {
+        guard let gesture = PencilGesture(rawValue: indexPath.row) else {
             assert(false, "Invalid Row \(indexPath.row)")
             return
         }
@@ -83,13 +83,13 @@ final class TutorialDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Gesture.allCases.count
+        PencilGesture.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        guard let gesture = Gesture(rawValue: indexPath.row) else {
+        guard let gesture = PencilGesture(rawValue: indexPath.row) else {
             assert(false, "Invalid Row: \(indexPath.row)")
         }
         
