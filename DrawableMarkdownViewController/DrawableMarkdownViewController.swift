@@ -14,11 +14,11 @@ final class DrawableMarkdownViewController: PMViewController {
     public var document: StyledMarkdownDocument?
     
     /// Child View Controllers
-    let toolbar: ToolbarViewController
-    let keyboard: KeyboardViewController
-    let canvas: CanvasViewController
-    let noDocument: NoDocumentHost
-    let tutorial: TutorialMenuViewController
+    let keyboard = KeyboardViewController()
+    let canvas = CanvasViewController()
+    let noDocument = NoDocumentHost()
+    let tutorial = TutorialMenuViewController()
+    let toolbar = ToolbarViewController()
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -44,11 +44,6 @@ final class DrawableMarkdownViewController: PMViewController {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
         }
-        self.keyboard = KeyboardViewController()
-        self.canvas = CanvasViewController()
-        self.noDocument = NoDocumentHost()
-        self.tutorial = TutorialMenuViewController()
-        self.toolbar = ToolbarViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -60,6 +55,7 @@ final class DrawableMarkdownViewController: PMViewController {
         
         adopt(toolbar)
         toolbar.coordinate(with: self) /// call after `init` and `adopt` are complete
+        setToolbarInsets()
         
         canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
