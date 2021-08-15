@@ -18,18 +18,24 @@ extension DrawableMarkdownViewController {
         keyboard.textView.textContainerInset.top = additionalToolbarHeight
     }
     
-    final class ToolbarViewController: UIViewController {
+    final class ToolbarViewController: UIHostingController<Toolbar> {
         
         typealias Coordinator = DrawableMarkdownViewController
         weak var coordinator: Coordinator!
         
         init() {
-            super.init(nibName: nil, bundle: nil)
-            view.backgroundColor = .green
+            super.init(rootView: Toolbar())
         }
         
         func coordinate(with coordinator: Coordinator) {
             view.translatesAutoresizingMaskIntoConstraints = false
+            
+            /**
+             Constrain to
+             - consume full width
+             - sit at the top
+             - have a fixed height
+             */
             let constraints = [
                 view.leftAnchor.constraint(equalTo: coordinator.view.leftAnchor),
                 view.rightAnchor.constraint(equalTo: coordinator.view.rightAnchor),
@@ -43,4 +49,9 @@ extension DrawableMarkdownViewController {
             fatalError("Do Not Use")
         }
     }
+}
+
+import SwiftUI
+struct Toolbar: View {
+    var body: some View { Color.green }
 }
