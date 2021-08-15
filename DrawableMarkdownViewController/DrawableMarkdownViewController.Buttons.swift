@@ -12,47 +12,11 @@ extension DrawableMarkdownViewController {
     /// Add `UINavigationController` toolbar items.
     func makeButtons() {
         
-        let config = UIImage.SymbolConfiguration(pointSize: 10)
-        
-        closeBtn = UIBarButtonItem(
-            image: UIImage(
-                systemName: "xmark",
-                withConfiguration: config
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(close))
-        
-        tutorialBtn = UIBarButtonItem(
-            image: UIImage(
-                systemName: "pencil.and.outline",
-                withConfiguration: config
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(showTutorial)
-        )
-        
-        undoButton = UIBarButtonItem(
-            image: UIImage(
-                systemName: "arrow.uturn.backward",
-                withConfiguration: config
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(undo)
-        )
-        
-        redoButton = UIBarButtonItem(
-            image: UIImage(
-                systemName: "arrow.uturn.forward",
-                withConfiguration: config
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(redo)
-        )
-        
+        closeBtn = makeButton(image: UIImage(systemName: "heart")!, action: #selector(close))
+        tutorialBtn = makeButton(image: UIImage(systemName: "pencil.and.outline")!, action: #selector(showTutorial))
+        undoButton = makeButton(image: UIImage(systemName: "arrow.uturn.backward")!, action: #selector(undo))
+        redoButton = makeButton(image: UIImage(systemName: "arrow.uturn.forward")!, action: #selector(redo))
+            
         let buttons: [UIBarButtonItem] = [
             undoButton,
             redoButton,
@@ -77,6 +41,29 @@ extension DrawableMarkdownViewController {
     }
     
     @objc
+    func configureButtons() {
+        closeBtn.image = UIImage(
+            systemName: "xmark",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
+        )
+        
+        tutorialBtn.image = UIImage(
+            systemName: "pencil.and.outline",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
+        )
+        
+        undoButton.image = UIImage(
+            systemName: "arrow.uturn.backward",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
+        )
+        
+        redoButton.image = UIImage(
+            systemName: "arrow.uturn.forward",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
+        )
+    }
+    
+    @objc
     func undo() {
         cmdC.undo.send()
     }
@@ -85,4 +72,24 @@ extension DrawableMarkdownViewController {
     func redo() {
         cmdC.redo.send()
     }
+    
+    /// Make custom image views without padding
+    /// Source: https://gist.github.com/sonnguyen0310/6720cbf39ce877c20fea1a987543fb99
+    func makeButton(image: UIImage, action: Selector) -> UIBarButtonItem {
+        
+        let size: CGFloat = 25
+        
+        let view = UIButton.systemButton(with: image, target: self, action: action)
+        view.frame = CGRect(x: 0.0, y: 0.0, width: size, height: size)
+        
+        let button = UIBarButtonItem(customView: view)
+        let currWidth = button.customView?.widthAnchor.constraint(equalToConstant: size)
+        currWidth?.isActive = true
+        let currHeight = button.customView?.heightAnchor.constraint(equalToConstant: size)
+        currHeight?.isActive = true
+        
+        return button
+    }
 }
+
+
