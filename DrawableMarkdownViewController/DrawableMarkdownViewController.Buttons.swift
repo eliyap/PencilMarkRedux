@@ -12,7 +12,7 @@ extension DrawableMarkdownViewController {
     /// Add `UINavigationController` toolbar items.
     func makeButtons() {
         
-        closeBtn = makeButton(image: UIImage(systemName: "heart")!, action: #selector(close))
+        closeBtn = makeButton(image: UIImage(systemName: "xmark")!, action: #selector(close))
         tutorialBtn = makeButton(image: UIImage(systemName: "pencil.and.outline")!, action: #selector(showTutorial))
         undoButton = makeButton(image: UIImage(systemName: "arrow.uturn.backward")!, action: #selector(undo))
         redoButton = makeButton(image: UIImage(systemName: "arrow.uturn.forward")!, action: #selector(redo))
@@ -38,29 +38,6 @@ extension DrawableMarkdownViewController {
         store(cmdC.redoStatus.sink { [weak self] in
             self?.redoButton.isEnabled = $0
         })
-    }
-    
-    @objc
-    func configureButtons() {
-        closeBtn.image = UIImage(
-            systemName: "xmark",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
-        )
-        
-        tutorialBtn.image = UIImage(
-            systemName: "pencil.and.outline",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
-        )
-        
-        undoButton.image = UIImage(
-            systemName: "arrow.uturn.backward",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
-        )
-        
-        redoButton.image = UIImage(
-            systemName: "arrow.uturn.forward",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.dynamicSize)
-        )
     }
     
     @objc
