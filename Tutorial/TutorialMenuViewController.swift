@@ -40,8 +40,9 @@ final class TutorialTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        preferredContentSize.height = tableView.rowHeight * CGFloat(PencilGesture.allCases.count)
-        preferredContentSize.width = popoverWidth
+        #warning("Not Implemented!")
+//        preferredContentSize.height = tableView.rowHeight * CGFloat(PencilGesture.allCases.count)
+//        preferredContentSize.width = popoverWidth
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -49,15 +50,29 @@ final class TutorialTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
-        
-        guard let gesture = PencilGesture(rawValue: indexPath.row) else {
-            assert(false, "Invalid Row \(indexPath.row)")
-            return
+        switch indexPath.section {
+        case Tool.pencil.rawValue:
+            guard let gesture = Tool.Pencil(rawValue: indexPath.row) else {
+                assert(false, "Unrecognized Pencil Gesture \(indexPath.row)")
+                return
+            }
+            
+            /// Pass in navHeight explicitly, as child seems not to be able to access it.
+            navigationController?.pushViewController(VideoViewController(url: gesture.url, navHeight: navBarHeight), animated: true)
+            
+        case Tool.eraser.rawValue:
+            guard let gesture = Tool.Eraser(rawValue: indexPath.row) else {
+                assert(false, "Unrecognized Eraser Gesture \(indexPath.row)")
+                return
+            }
+            
+            /// Pass in navHeight explicitly, as child seems not to be able to access it.
+            navigationController?.pushViewController(VideoViewController(url: gesture.url, navHeight: navBarHeight), animated: true)
+            
+        default:
+            assert(false, "Unrecognized Section \(indexPath.section)")
+            break
         }
-        
-        /// Pass in navHeight explicitly, as child seems not to be able to access it.
-        navigationController?.pushViewController(VideoViewController(url: gesture.url, navHeight: navBarHeight), animated: true)
     }
 }
 
@@ -79,22 +94,43 @@ final class TutorialTable: UITableView {
 final class TutorialDataSource: NSObject, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        Tool.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        PencilGesture.allCases.count
+        switch section {
+        case Tool.pencil.rawValue:
+            return Tool.Pencil.allCases.count
+        case Tool.eraser.rawValue:
+            return Tool.Eraser.allCases.count
+        default:
+            fatalError("Unrecognized Section \(section)")
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        guard let gesture = PencilGesture(rawValue: indexPath.row) else {
-            assert(false, "Invalid Row: \(indexPath.row)")
-        }
+        switch indexPath.section {
+        case Tool.pencil.rawValue:
+            guard let gesture = Tool.Pencil(rawValue: indexPath.row) else {
+                assert(false, "Invalid Row: \(indexPath.row)")
+            }
+            
+            cell.textLabel?.text = gesture.name
+            cell.imageView?.image = UIImage(systemName: gesture.symbol)
         
-        cell.textLabel?.text = gesture.name
-        cell.imageView?.image = UIImage(systemName: gesture.symbol)
+        case Tool.eraser.rawValue:
+            guard let gesture = Tool.Eraser(rawValue: indexPath.row) else {
+                assert(false, "Invalid Row: \(indexPath.row)")
+            }
+            
+            cell.textLabel?.text = gesture.name
+            cell.imageView?.image = UIImage(systemName: gesture.symbol)
+        
+        default:
+            fatalError("Unrecognized Section \(indexPath.section)")
+        }
         
         return cell
     }
