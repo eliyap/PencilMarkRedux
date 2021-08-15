@@ -14,6 +14,9 @@ extension KeyboardViewController: UITextViewDelegate {
         coordinator.document?.markdown.plain = textView.text
         coordinator.document?.updateChangeCount(.done)
         coordinator.typingC.send()
+        
+        /// Update undo buttons.
+        updateCommandStatus()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -22,5 +25,13 @@ extension KeyboardViewController: UITextViewDelegate {
         coordinator.document?.markdown.plain = textView.text
         coordinator.document?.updateChangeCount(.done)
         coordinator.typingC.send()
+    }
+}
+
+extension KeyboardViewController {
+    /// Update undo buttons.
+    func updateCommandStatus() {
+        coordinator.cmdC.undoStatus.send(textView.undoManager?.canUndo ?? true)
+        coordinator.cmdC.redoStatus.send(textView.undoManager?.canRedo ?? true)
     }
 }

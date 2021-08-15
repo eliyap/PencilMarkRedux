@@ -14,6 +14,9 @@ extension KeyboardViewController {
             .sink { [weak self] in
                 print("Command, Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
                 self?.textView.undoManager?.undo()
+                
+                /// Update undo buttons.
+                self?.updateCommandStatus()
             }
         store(undo)
         
@@ -21,6 +24,9 @@ extension KeyboardViewController {
             .sink { [weak self] in
                 print("Command, Can redo: " + String(describing: self?.textView.undoManager?.canRedo))
                 self?.textView.undoManager?.redo()
+                
+                /// Update undo buttons.
+                self?.updateCommandStatus()
             }
         store(redo)
     }

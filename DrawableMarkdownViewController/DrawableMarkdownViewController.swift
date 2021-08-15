@@ -63,14 +63,34 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Set up bar buttons
         closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(close))
         tutorialBtn = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .plain, target: self, action: #selector(showTutorial))
+        let undoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.backward"), style: .plain, target: self, action: #selector(undo))
+        let redoButton = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.forward"), style: .plain, target: self, action: #selector(redo))
+        
+        /// Arranged from the right edge inwards.
         navigationItem.rightBarButtonItems = [
             closeBtn,
             tutorialBtn,
+            redoButton,
+            undoButton,
         ]
+        
+        /// Observe for undo updates.
+        store(cmdC.undoStatus.sink { undoButton.isEnabled = $0 })
+        store(cmdC.redoStatus.sink { redoButton.isEnabled = $0 })
         
         tutorial.modalPresentationStyle = .popover
         
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
+    }
+    
+    @objc
+    func undo() {
+        cmdC.undo.send()
+    }
+    
+    @objc
+    func redo() {
+        cmdC.redo.send()
     }
     
     @objc

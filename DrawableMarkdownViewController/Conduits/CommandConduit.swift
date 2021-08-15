@@ -12,4 +12,6 @@ import Combine
 struct CommandConduit {
     let undo = PassthroughSubject<Void, Never>()
     let redo = PassthroughSubject<Void, Never>()
+    let undoStatus = PassthroughSubject<Bool, Never>()
+    let redoStatus = PassthroughSubject<Bool, Never>()
 }
