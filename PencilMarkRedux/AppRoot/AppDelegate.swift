@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         /// Debug setting: make auto layout can it
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        /// Do not hijack audio when playing tutorial videos.
+        /// Source: https://stackoverflow.com/questions/31828654/turn-off-audio-playback-of-avplayer
+        do{
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            #warning("Todo: log failure here!")
+            assert(false, "Failed to mute!")
+        }
+        
         return true
     }
 
