@@ -69,5 +69,3 @@ extension DrawableMarkdownViewController {
         return button
     }
 }
-
-
