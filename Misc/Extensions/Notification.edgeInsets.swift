@@ -11,7 +11,7 @@ extension UIView {
     /**
      Given a keyboard will show/hide notification, get the edge insets to avoid the keyboard frame.
      */
-    func edgeInset(for keyboardNotification: Notification) -> UIEdgeInsets? {
+    func bottomInset(for keyboardNotification: Notification) -> CGFloat? {
         /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey
         guard
             let keyboardFrame = keyboardNotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
@@ -23,12 +23,7 @@ extension UIView {
         if keyboardNotification.name == UIResponder.keyboardWillHideNotification {
             return .zero
         } else {
-            return UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keyboardViewEndFrame.height - self.safeAreaInsets.bottom,
-                right: 0
-            )
+            return keyboardViewEndFrame.height - self.safeAreaInsets.bottom
         }
     }
 }
