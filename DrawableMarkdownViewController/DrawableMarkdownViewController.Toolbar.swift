@@ -22,16 +22,22 @@ extension DrawableMarkdownViewController {
     final class ToolbarViewController: UIViewController {
         
         typealias Coordinator = DrawableMarkdownViewController
-        weak var coordinator: Coordinator!
+        private weak var coordinator: Coordinator!
+        
+        /// Unwrapped optional allows us to use `#selectors` in init
+        private var pencilBtn: Button! = nil
+        private var eraserBtn: Button! = nil
         
         init() {
             super.init(nibName: nil, bundle: nil)
+            pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
+            eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
-                makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil)),
+                pencilBtn,
                 Padding(width: 6),
-                makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser)),
+                eraserBtn,
                 Padding(width: 6),
             ])
             stackView.axis = .horizontal
@@ -41,7 +47,19 @@ extension DrawableMarkdownViewController {
             view.backgroundColor = .tertiarySystemBackground
         }
         
-        func makeButton(image: UIImage?, action: Selector) -> UIButton {
+        /// Updates which tools are selected, which in turn should update their background colors.
+        func highlight(tool: Tool) {
+            switch tool {
+            case .pencil:
+                pencilBtn.toolSelected = true
+                eraserBtn.toolSelected = false
+            case .eraser:
+                pencilBtn.toolSelected = false
+                eraserBtn.toolSelected = true
+            }
+        }
+        
+        func makeButton(image: UIImage?, action: Selector) -> Button {
             let button = Button(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
             button.addTarget(self, action: action, for: .touchUpInside)
             button.setImage(image, for: .normal)
@@ -64,15 +82,17 @@ extension DrawableMarkdownViewController {
         
         @objc
         func setPencil() {
-            print("set pencil!")
+            coordinator.tool = .pencil
         }
         
         @objc
         func setEraser() {
-            print("set eraser!")
+            coordinator.tool = .eraser
         }
         
         func coordinate(with coordinator: Coordinator) {
+            self.coordinator = coordinator
+            
             view.translatesAutoresizingMaskIntoConstraints = false
             
             /**
@@ -104,7 +124,6 @@ extension DrawableMarkdownViewController {
                 backgroundColor = toolSelected
                     ? .secondarySystemFill
                     : .clear
-                print("set")
             }
         }
         

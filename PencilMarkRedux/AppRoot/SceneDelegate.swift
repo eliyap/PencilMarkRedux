@@ -68,7 +68,16 @@ extension SceneDelegate {
             fatalError("Unrecognized activity type: \(activity.activityType)")
         }
         
+        /// Restore file URL.
         StateModel.shared.url = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
+        
+        /// Restore active tool.
+        if
+            let rawTool = activity.userInfo?[ActivityInfo.activeTool.rawValue] as? NSInteger as Int?,
+            let tool = Tool(rawValue: rawTool)
+        {
+            StateModel.shared.tool = tool
+        }
         
         return succeeded
     }

@@ -40,6 +40,13 @@ final class DrawableMarkdownViewController: PMViewController {
     var undoButton: UIBarButtonItem!
     var redoButton: UIBarButtonItem!
     
+    /// Active tool
+    var tool: Tool = .pencil {
+        didSet {
+            toolbar.highlight(tool: tool)
+        }
+    }
+    
     init(fileURL: URL?) {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
