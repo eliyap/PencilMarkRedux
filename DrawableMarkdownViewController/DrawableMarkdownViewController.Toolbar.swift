@@ -22,7 +22,7 @@ extension DrawableMarkdownViewController {
     final class ToolbarViewController: UIViewController {
         
         typealias Coordinator = DrawableMarkdownViewController
-        weak var coordinator: Coordinator!
+        private weak var coordinator: Coordinator!
         
         init() {
             super.init(nibName: nil, bundle: nil)
