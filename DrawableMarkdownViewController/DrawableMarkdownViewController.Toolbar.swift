@@ -27,10 +27,15 @@ extension DrawableMarkdownViewController {
         init() {
             super.init(nibName: nil, bundle: nil)
             
+            /// Define a constant width padding view. Magic number.
+            let padding = UIView()
+            padding.widthAnchor.constraint(equalToConstant: 6).isActive = true
+            
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
                 makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil)),
                 makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser)),
+                padding,
             ])
             stackView.axis = .horizontal
             stackView.alignment = .center
