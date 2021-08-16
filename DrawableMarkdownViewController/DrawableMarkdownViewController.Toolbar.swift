@@ -36,12 +36,11 @@ extension DrawableMarkdownViewController {
             stackView.alignment = .center
             view = stackView
             
-            
             view.backgroundColor = .tertiarySystemBackground
         }
         
         func makeButton(image: UIImage?, action: Selector) -> UIButton {
-            let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
+            let button = Button(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
             button.addTarget(self, action: action, for: .touchUpInside)
             button.setImage(image, for: .normal)
             
@@ -86,6 +85,31 @@ extension DrawableMarkdownViewController {
         
         required init?(coder: NSCoder) {
             fatalError("Do Not Use")
+        }
+    }
+    
+    final class Button: UIButton {
+        
+        var toolSelected: Bool = false {
+            didSet {
+                backgroundColor = toolSelected
+                    ? .secondarySystemFill
+                    : .clear
+                print("set")
+            }
+        }
+        
+        /// Source: https://stackoverflow.com/a/17602296/12395667
+        override var isHighlighted: Bool {
+            didSet {
+                if isHighlighted {
+                    backgroundColor = .secondarySystemGroupedBackground
+                } else {
+                    backgroundColor = toolSelected
+                        ? .secondarySystemFill
+                        : .clear
+                }
+            }
         }
     }
 }
