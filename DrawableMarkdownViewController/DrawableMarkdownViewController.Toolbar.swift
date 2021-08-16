@@ -29,8 +29,8 @@ extension DrawableMarkdownViewController {
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
-                makeButton(image: UIImage(systemName: "heart"), action: #selector(setPencil)),
-                makeButton(image: UIImage(systemName: "xmark"), action: #selector(setEraser)),
+                makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil)),
+                makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser)),
             ])
             stackView.axis = .horizontal
             stackView.alignment = .center
