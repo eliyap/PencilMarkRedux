@@ -81,12 +81,12 @@ extension DrawableMarkdownViewController {
         
         @objc
         func setPencil() {
-            print("set pencil!")
+            coordinator.tool = .pencil
         }
         
         @objc
         func setEraser() {
-            print("set eraser!")
+            coordinator.tool = .eraser
         }
         
         func coordinate(with coordinator: Coordinator) {
