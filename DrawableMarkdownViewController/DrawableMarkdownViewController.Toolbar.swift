@@ -43,6 +43,13 @@ extension DrawableMarkdownViewController {
             let button = Button(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
             button.addTarget(self, action: action, for: .touchUpInside)
             button.setImage(image, for: .normal)
+            button.tintColor = tint
+            
+            /// Trigger `didSet` automatically. Temp measure
+            button.isEnabled = true
+            
+            /// Round corners on background color.
+            button.layer.cornerRadius = 6
             
             let constraints = [
                 button.widthAnchor.constraint(equalToConstant: 35),
