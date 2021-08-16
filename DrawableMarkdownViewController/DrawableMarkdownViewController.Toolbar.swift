@@ -123,7 +123,6 @@ extension DrawableMarkdownViewController {
                 backgroundColor = toolSelected
                     ? .secondarySystemFill
                     : .clear
-                print("set")
             }
         }
         
