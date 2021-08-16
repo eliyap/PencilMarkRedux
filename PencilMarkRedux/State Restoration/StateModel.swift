@@ -13,5 +13,11 @@ final class StateModel {
         return instance
     }()
     
+    /// URL of open document.
+    /// By default, no document is open
     var url: URL? = nil
+    
+    /// User's active tool.
+    /// By default, the `pencil` is used.
+    var tool: Tool = .pencil
 }
