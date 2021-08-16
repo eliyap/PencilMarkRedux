@@ -24,14 +24,20 @@ extension DrawableMarkdownViewController {
         typealias Coordinator = DrawableMarkdownViewController
         private weak var coordinator: Coordinator!
         
+        /// Unwrapped optional allows us to use `#selectors` in init
+        public var pencilBtn: Button! = nil
+        public var eraserBtn: Button! = nil
+        
         init() {
             super.init(nibName: nil, bundle: nil)
+            pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
+            eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
-                makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil)),
+                pencilBtn,
                 Padding(width: 6),
-                makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser)),
+                eraserBtn,
                 Padding(width: 6),
             ])
             stackView.axis = .horizontal
