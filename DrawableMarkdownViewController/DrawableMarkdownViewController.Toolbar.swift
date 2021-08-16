@@ -90,6 +90,8 @@ extension DrawableMarkdownViewController {
         }
         
         func coordinate(with coordinator: Coordinator) {
+            self.coordinator = coordinator
+            
             view.translatesAutoresizingMaskIntoConstraints = false
             
             /**
