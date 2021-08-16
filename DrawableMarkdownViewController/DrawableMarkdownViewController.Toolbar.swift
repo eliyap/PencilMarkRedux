@@ -47,6 +47,7 @@ extension DrawableMarkdownViewController {
             view.backgroundColor = .tertiarySystemBackground
         }
         
+        /// Updates which tools are selected, which in turn should update their background colors.
         func highlight(tool: Tool) {
             switch tool {
             case .pencil:
