@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PencilKit
 
 protocol Tutorial: CaseIterable {
     /// The gesture's name.
@@ -21,6 +22,19 @@ protocol Tutorial: CaseIterable {
 enum Tool: Int, CaseIterable {
     case pencil
     case eraser
+    
+    var inkingTool: PencilKit.PKInkingTool {
+        switch self {
+        case .pencil:
+            /**
+             Use a blue color to make the tool stand out visually, especially in demo videos.
+             Do not use ``tint``, whose orange is not distinct enough from the red rejection color.
+             */
+            return PKInkingTool(.pen, color: .systemBlue, width: 3)
+        case .eraser:
+            return PKInkingTool(.pen, color: .systemBlue, width: 3)
+        }
+    }
     
     var name: String {
         switch self {

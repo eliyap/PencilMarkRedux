@@ -44,6 +44,7 @@ final class DrawableMarkdownViewController: PMViewController {
     var tool: Tool = .pencil {
         didSet {
             toolbar.highlight(tool: tool)
+            canvas.set(tool: tool)
         }
     }
     
