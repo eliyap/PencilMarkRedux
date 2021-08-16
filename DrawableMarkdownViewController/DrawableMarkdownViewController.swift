@@ -5,7 +5,6 @@
 //  Created by Secret Asian Man Dev on 24/7/21.
 //
 
-import Foundation
 import UIKit
 import Combine
 
@@ -15,10 +14,11 @@ final class DrawableMarkdownViewController: PMViewController {
     public var document: StyledMarkdownDocument?
     
     /// Child View Controllers
-    let keyboard: KeyboardViewController
-    let canvas: CanvasViewController
-    let noDocument: NoDocumentHost
-    let tutorial: TutorialMenuViewController
+    let keyboard = KeyboardViewController()
+    let canvas = CanvasViewController()
+    let noDocument = NoDocumentHost()
+    let tutorial = TutorialMenuViewController()
+    let toolbar = ToolbarViewController()
     
     /// Combine Conduits
     let strokeC = StrokeConduit()
@@ -44,10 +44,6 @@ final class DrawableMarkdownViewController: PMViewController {
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
         }
-        self.keyboard = KeyboardViewController()
-        self.canvas = CanvasViewController()
-        self.noDocument = NoDocumentHost()
-        self.tutorial = TutorialMenuViewController()
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
@@ -57,10 +53,17 @@ final class DrawableMarkdownViewController: PMViewController {
         canvas.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(noDocument)
         
+        adopt(toolbar)
+        toolbar.coordinate(with: self) /// call after `init` and `adopt` are complete
+        setToolbarInsets()
+        
         canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
         
+        /// Set view layer hierarchy.
+        view.sendSubviewToBack(keyboard.view)
         view.bringSubviewToFront(canvas.view)
+        view.bringSubviewToFront(toolbar.view)
         
         /// Add `UINavigationController` toolbar items.
         makeButtons()
@@ -68,17 +71,6 @@ final class DrawableMarkdownViewController: PMViewController {
         tutorial.modalPresentationStyle = .popover
         
         NotificationCenter.default.addObserver(self, selector: #selector(documentStateChanged), name: UIDocument.stateChangedNotification, object: nil)
-    }
-    
-    @objc
-    func showTutorial() -> Void {
-        /// Anchor popover on tutorial button.
-        /// - Note: Mandatory! App will crash if not anchored properly.
-        /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
-        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
-        tutorial.popoverPresentationController?.sourceView = self.view
-        
-        present(tutorial, animated: true)
     }
     
     @objc
@@ -123,10 +115,22 @@ final class DrawableMarkdownViewController: PMViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         restoreState()
+        
+        /// If the user compresses from `.regular` to `.horizontal`, we want to avoid a "snap" button transition,
+        /// so adjust the buttons pre-emptively!
+        setButtons(for: traitCollection.horizontalSizeClass)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         restoreState()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        setButtons(for: traitCollection.horizontalSizeClass)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setButtons(for: traitCollection.horizontalSizeClass)
     }
 }

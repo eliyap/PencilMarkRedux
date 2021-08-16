@@ -17,10 +17,16 @@ extension ViewController: UISplitViewControllerDelegate {
         /// Nothing
     }
     
-    /// Prefer primary view controller in compact width.
+    /// Prefer secondary view controller in compact width.
+    /// This allows the user to keep editing the document.
     /// Docs: https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/3580925-splitviewcontroller
     func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
-        .primary
+        /// Collapse to document if one is open, otherwise collapse to the document picker.
+        if documentDelegate.document == nil {
+            return .primary
+        } else {
+            return .secondary
+        }
     }
     
     func splitViewControllerDidCollapse(_ svc: UISplitViewController) {

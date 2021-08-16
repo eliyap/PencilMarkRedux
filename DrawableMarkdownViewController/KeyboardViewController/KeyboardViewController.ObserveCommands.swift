@@ -12,6 +12,10 @@ extension KeyboardViewController {
     func observeCommands() -> Void {
         let undo: AnyCancellable = coordinator.cmdC.undo
             .sink { [weak self] in
+                guard self?.coordinator.document != nil else {
+                    assert(false, "Attempted to undo on nil document!")
+                    return
+                }
                 print("Command, Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
                 self?.textView.undoManager?.undo()
                 
@@ -22,6 +26,10 @@ extension KeyboardViewController {
         
         let redo: AnyCancellable = coordinator.cmdC.redo
             .sink { [weak self] in
+                guard self?.coordinator.document != nil else {
+                    assert(false, "Attempted to redo on nil document!")
+                    return
+                }
                 print("Command, Can redo: " + String(describing: self?.textView.undoManager?.canRedo))
                 self?.textView.undoManager?.redo()
                 

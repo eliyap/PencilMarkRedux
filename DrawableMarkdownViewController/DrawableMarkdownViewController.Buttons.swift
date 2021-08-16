@@ -17,15 +17,7 @@ extension DrawableMarkdownViewController {
         undoButton = makeButton(image: UIImage(systemName: "arrow.uturn.backward")!, action: #selector(undo))
         redoButton = makeButton(image: UIImage(systemName: "arrow.uturn.forward")!, action: #selector(redo))
             
-        let buttons: [UIBarButtonItem] = [
-            undoButton,
-            redoButton,
-            tutorialBtn,
-            closeBtn,
-        ]
-        
-        /// Reverse buttons, since they are arranged from the right edge inwards.
-        navigationItem.rightBarButtonItems = buttons.reversed()
+        setButtons(for: traitCollection.horizontalSizeClass)
         
         /// Disable undo buttons initially.
         undoButton.isEnabled = false
@@ -50,6 +42,17 @@ extension DrawableMarkdownViewController {
         cmdC.redo.send()
     }
     
+    @objc
+    func showTutorial() -> Void {
+        /// Anchor popover on tutorial button.
+        /// - Note: Mandatory! App will crash if not anchored properly.
+        /// - Note: Set every time, otherwise bubble will be anchored in the wrong place!
+        tutorial.popoverPresentationController?.barButtonItem = tutorialBtn
+        tutorial.popoverPresentationController?.sourceView = self.view
+        
+        present(tutorial, animated: true)
+    }
+    
     /// Make custom image views without padding
     /// Source: https://gist.github.com/sonnguyen0310/6720cbf39ce877c20fea1a987543fb99
     func makeButton(image: UIImage, action: Selector) -> UIBarButtonItem {
@@ -68,6 +71,34 @@ extension DrawableMarkdownViewController {
         
         return button
     }
+    
+    /// Chooses which toolbar buttons to show based on the horizontal space available.
+    func setButtons(for horizontalSizeClass: UIUserInterfaceSizeClass) -> Void {
+        var buttons: [UIBarButtonItem] = []
+        
+        switch horizontalSizeClass {
+        case .regular:
+            buttons = [
+                undoButton,
+                redoButton,
+                tutorialBtn,
+                closeBtn,
+            ]
+        
+        case .compact, .unspecified:
+            buttons = [
+                undoButton,
+                /// redoButton, omitted, similar to GoodNotes, since it's less important
+                tutorialBtn,
+                /// closeBtn, omitted, since the back button pops the document, effectively closing it.
+            ]
+        
+        @unknown default:
+            assert(false, "Unrecognized size class!")
+            break
+        }
+        
+        /// Reverse buttons, since they are arranged from the right edge inwards.
+        navigationItem.rightBarButtonItems = buttons.reversed()
+    }
 }
-
-

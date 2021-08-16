@@ -26,6 +26,9 @@ class VideoViewController: UIViewController {
         let player = AVPlayer(url: url)
         playerController.player = player
         
+        /// Mute audio, just in case.
+        player.isMuted = true
+        
         /// Auto play video.
         player.play()
         

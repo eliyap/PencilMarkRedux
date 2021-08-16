@@ -28,11 +28,11 @@ extension KeyboardViewController {
         /// Is reset after keyboard finishes showing.
         coordinator.scrollLead = .keyboard
         
-        guard let inset = view.edgeInset(for: notification) else { return }
+        guard let inset = view.bottomInset(for: notification) else { return }
         
         /// Adjust text and scrollbars to avoid keyboard frame
-        textView.textContainerInset = inset
-        textView.scrollIndicatorInsets = inset
+        textView.textContainerInset.bottom = inset
+        textView.verticalScrollIndicatorInsets.bottom = inset
         
         /**
          Note to `self`: do not set `contentInset` here!

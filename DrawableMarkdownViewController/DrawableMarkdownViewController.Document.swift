@@ -96,5 +96,9 @@ extension DrawableMarkdownViewController {
             self.onClose() /// invoke passed closure
             self.onClose = {} /// reset to do nothing
         }
+        
+        /// Disable undo / redo buttons.
+        cmdC.undoStatus.send(false)
+        cmdC.redoStatus.send(false)
     }
 }
