@@ -37,5 +37,8 @@ extension DrawableMarkdownViewController {
             let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: NSNull()]
             activity.addUserInfoEntries(from: newInfo)
         }
+        
+        let toolInfo: [AnyHashable: Any] = [ActivityInfo.activeTool.rawValue: tool.rawValue as NSInteger]
+        activity.addUserInfoEntries(from: toolInfo)
     }
 }
