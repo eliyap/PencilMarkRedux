@@ -25,8 +25,8 @@ extension DrawableMarkdownViewController {
         private weak var coordinator: Coordinator!
         
         /// Unwrapped optional allows us to use `#selectors` in init
-        public var pencilBtn: Button! = nil
-        public var eraserBtn: Button! = nil
+        private var pencilBtn: Button! = nil
+        private var eraserBtn: Button! = nil
         
         init() {
             super.init(nibName: nil, bundle: nil)
