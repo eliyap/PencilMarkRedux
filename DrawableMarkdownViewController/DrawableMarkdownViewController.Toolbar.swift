@@ -47,7 +47,7 @@ extension DrawableMarkdownViewController {
             view.backgroundColor = .tertiarySystemBackground
         }
         
-        func makeButton(image: UIImage?, action: Selector) -> UIButton {
+        func makeButton(image: UIImage?, action: Selector) -> Button {
             let button = Button(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
             button.addTarget(self, action: action, for: .touchUpInside)
             button.setImage(image, for: .normal)
