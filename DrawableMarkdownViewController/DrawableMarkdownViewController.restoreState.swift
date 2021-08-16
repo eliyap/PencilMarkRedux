@@ -11,6 +11,14 @@ import Foundation
 extension DrawableMarkdownViewController {
     /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
     func restoreState() -> Void {
+        restoreDocument()
+        
+        /// Simply set enum, doesn't matter if this happens repeatedly.
+        tool = StateModel.shared.tool
+    }
+    
+    /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
+    fileprivate func restoreDocument() {
         /// Only restore state if document is not already open.
         guard document?.fileURL == nil else { return }
         
