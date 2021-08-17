@@ -20,6 +20,12 @@ extension CanvasViewController: PKCanvasViewDelegate {
             return
         }
         
+        /// Safety check, ensure document is available for editing.
+        guard coordinator.document != nil else {
+            assert(false, "Should not be able to draw on closed document!")
+            return
+        }
+        
         coordinator.strokeC.stroke = lastStroke
         
         /// erase canvas immediately

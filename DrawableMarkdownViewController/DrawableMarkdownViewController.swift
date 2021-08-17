@@ -72,6 +72,7 @@ final class DrawableMarkdownViewController: PMViewController {
         view.sendSubviewToBack(keyboard.view)
         view.bringSubviewToFront(canvas.view)
         view.bringSubviewToFront(toolbar.view)
+        view.bringSubviewToFront(noDocument.view)
         
         /// Add `UINavigationController` toolbar items.
         makeButtons()
