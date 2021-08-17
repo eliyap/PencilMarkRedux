@@ -26,7 +26,10 @@ extension CanvasViewController: PKCanvasViewDelegate {
             return
         }
         
-        PencilConduit.shared.stroke = lastStroke
+        /// Only forwards pencil strokes.
+        if coordinator.tool == .pencil {
+            PencilConduit.shared.stroke = lastStroke
+        }
         
         /// erase canvas immediately
         canvasView.drawing = PKDrawing(strokes: [])
