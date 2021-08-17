@@ -13,5 +13,12 @@ final class PencilConduit: ObservableObject {
     
     static let shared = PencilConduit()
     
+    /// Conduit for pencil strokes.
     @Published var stroke: PKStroke? = nil
+    
+    /// Conduit for eraser points.
+    @Published var eraser: CGPoint? = nil
+    
+    /// Eraser diameter.
+    var eraserDiameter: CGFloat = 20
 }

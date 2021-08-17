@@ -9,6 +9,13 @@ import Foundation
 import PencilKit
 
 final class PMCanvasView: PKCanvasView {
+    
+    /// Contains a circle that indicates the eraser's position.
+    var circleLayer: CAShapeLayer? = nil
+    
+    /// Tracks whether the eraser tool is currently being dragged.
+    var eraserDown = false
+    
     /// Currently a no-op
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -43,25 +50,61 @@ extension PMCanvasView {
             return
         }
         
-        print("touch")
-//        eraserActive = true
-//
-//        /// correct for scrolling offset before sending
-//        var location = touch.preciseLocation(in: view)
-//        trackCircle(location: location)
-//
-//        location.y -= self.contentOffset.y
-//        eraserConduit.location = location
+        eraserDown = true
+        
+        /// Correct for scrolling offset before sending.
+        var location = touch.preciseLocation(in: self)
+        trackCircle(location: location)
+
+        location.y -= self.contentOffset.y
+        PencilConduit.shared.eraser = location
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        /// reject end events that result from finger taps
-//        guard eraserActive else { return }
-//
-//        removeCircle()
-//        eraserConduit.location = .none
-//        eraserActive = false
+        /// Reject end events that result from finger taps.
+        guard eraserDown else { return }
+
+        removeCircle()
+        PencilConduit.shared.eraser = nil
+        eraserDown = false
+    }
+}
+
+// MARK: - Visual Eraser Indicator
+extension PMCanvasView {
+
+    /// Places a visual representation of the eraser under the pencil tip.
+    fileprivate func trackCircle(location: CGPoint) -> Void {
+        
+        let cl = getOrInitCircleLayer()
+        
+        var location = location
+        let size = PencilConduit.shared.eraserDiameter
+        
+        /// Center circle.
+        location.x -= size / 2
+        location.y -= size / 2
+        
+        cl.path = UIBezierPath(ovalIn: CGRect(x: location.x, y: location.y, width: size, height: size)).cgPath
+        cl.fillColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+    }
+    
+    /// Removes circle when eraser is lifted.
+    fileprivate func removeCircle() -> Void {
+        let cl = getOrInitCircleLayer()
+        cl.path = .none
+        cl.fillColor = CGColor.init(gray: .zero, alpha: .zero)
+    }
+    
+    /// Insert layer into hierarchy if it is missing.
+    /// This is here because I'm terrified of overriding the `PKCanvasView` `init`.
+    fileprivate func getOrInitCircleLayer() -> CAShapeLayer {
+        if circleLayer == nil {
+            self.circleLayer = CAShapeLayer()
+            self.layer.insertSublayer(self.circleLayer!, at: 0)
+        }
+        return self.circleLayer!
     }
 }
