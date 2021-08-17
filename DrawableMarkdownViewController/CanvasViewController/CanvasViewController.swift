@@ -27,12 +27,6 @@ final class CanvasViewController: PMViewController {
         self.view = canvasView
         
         /**
-         Use a blue color to make the tool stand out visually, especially in demo videos.
-         Do not use ``tint``, whose orange is not distinct enough from the red rejection color.
-         */
-        canvasView.tool = PKInkingTool(.pen, color: .systemBlue, width: 3)
-        
-        /**
          Permits finger to be used for drawing.
          Enable **only** for Simulator screenshots on iPad!
          - Note: this causes an index crash due to the way I draw bezier splines, and MUST NOT be shipped!
@@ -68,6 +62,10 @@ final class CanvasViewController: PMViewController {
         print("Content Size: \(canvasView.contentSize)")
     }
     
+    /// Update appearance of tool.
+    public func set(tool: Tool) -> Void {
+        canvasView.tool = tool.inkingTool
+    }
     
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")

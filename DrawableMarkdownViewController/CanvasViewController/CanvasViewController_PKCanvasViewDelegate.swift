@@ -20,7 +20,16 @@ extension CanvasViewController: PKCanvasViewDelegate {
             return
         }
         
-        coordinator.strokeC.stroke = lastStroke
+        /// Safety check, ensure document is available for editing.
+        guard coordinator.document != nil else {
+            assert(false, "Should not be able to draw on closed document!")
+            return
+        }
+        
+        /// Only forwards pencil strokes.
+        if coordinator.tool == .pencil {
+            PencilConduit.shared.stroke = lastStroke
+        }
         
         /// erase canvas immediately
         canvasView.drawing = PKDrawing(strokes: [])
