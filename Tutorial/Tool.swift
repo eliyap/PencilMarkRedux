@@ -7,7 +7,6 @@
 
 import Foundation
 import PencilKit
-import SwiftUI
 
 enum Tool: Int, CaseIterable {
     case pencil
@@ -22,7 +21,7 @@ enum Tool: Int, CaseIterable {
              */
             return PKInkingTool(.pen, color: .systemBlue, width: 3)
         case .eraser:
-            return PKInkingTool(.pen, color: UIColor(Color(.sRGB, red: 1, green: 0, blue: 0, opacity: 0.5)), width: 100)
+            return PKInkingTool(.pen, color: .clear, width: 0)
         }
     }
     
