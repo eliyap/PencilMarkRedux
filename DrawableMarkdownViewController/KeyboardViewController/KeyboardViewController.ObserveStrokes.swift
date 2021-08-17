@@ -14,7 +14,7 @@ extension KeyboardViewController {
     /// Run at `init` to start `Combine` sink.
     func observeStrokes() -> Void {
         /// Receive and respond to strokes from `PKCanvasView`.
-        let strokes = coordinator.strokeC.$stroke
+        let strokes = PencilConduit.shared.$stroke
             .compactMap { $0 }
             .sink { [weak self] stroke in
                 /// Stop keyboard editing **first**, so that the cursor is not sent to the bottom of the screen.

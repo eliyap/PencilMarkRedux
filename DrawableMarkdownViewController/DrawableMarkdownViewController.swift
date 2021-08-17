@@ -21,7 +21,6 @@ final class DrawableMarkdownViewController: PMViewController {
     let toolbar = ToolbarViewController()
     
     /// Combine Conduits
-    let strokeC = StrokeConduit()
     let frameC = FrameConduit()
     let cmdC = CommandConduit()
     let typingC = PassthroughSubject<Void, Never>()
