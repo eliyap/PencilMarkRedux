@@ -27,7 +27,7 @@
 		2215B88726AD9E0600D2A0AE /* TextDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */; };
 		2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215B88826ADB27600D2A0AE /* NoDocumentView.swift */; };
 		2228356D26C49D030026D468 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228356C26C49C960026D468 /* VideoViewController.swift */; };
-		2228357426C4A8BD0026D468 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228357326C4A8BD0026D468 /* Gesture.swift */; };
+		2228357426C4A8BD0026D468 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228357326C4A8BD0026D468 /* Tool.swift */; };
 		2228357626C6F3E90026D468 /* SplitConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228357526C6F3E90026D468 /* SplitConduit.swift */; };
 		2228357826C7283A0026D468 /* Strike.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228357726C728340026D468 /* Strike.mp4 */; };
 		2228357B26C72A810026D468 /* Example.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2228357A26C72A810026D468 /* Example.mp4 */; };
@@ -53,6 +53,9 @@
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
 		22C035C526B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */; };
+		22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BC26CB39EA000BAD55 /* Tutorial.swift */; };
+		22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */; };
+		22C767C126CB3ADA000BAD55 /* Tool.Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
 		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
@@ -122,7 +125,7 @@
 		2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDocumentError.swift; sourceTree = "<group>"; };
 		2215B88826ADB27600D2A0AE /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		2228356C26C49C960026D468 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		2228357326C4A8BD0026D468 /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
+		2228357326C4A8BD0026D468 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		2228357526C6F3E90026D468 /* SplitConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitConduit.swift; sourceTree = "<group>"; };
 		2228357726C728340026D468 /* Strike.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Strike.mp4; sourceTree = "<group>"; };
 		2228357A26C72A810026D468 /* Example.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Example.mp4; sourceTree = "<group>"; };
@@ -149,6 +152,9 @@
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
 		22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshablePlaceholderViewController.swift; sourceTree = "<group>"; };
+		22C767BC26CB39EA000BAD55 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Pencil.swift; sourceTree = "<group>"; };
+		22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Eraser.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -262,7 +268,10 @@
 		2228357026C4A8A30026D468 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				2228357326C4A8BD0026D468 /* Gesture.swift */,
+				2228357326C4A8BD0026D468 /* Tool.swift */,
+				22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */,
+				22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */,
+				22C767BC26CB39EA000BAD55 /* Tutorial.swift */,
 				225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */,
 				2228356C26C49C960026D468 /* VideoViewController.swift */,
 				2228357926C72A410026D468 /* Videos */,
@@ -579,7 +588,8 @@
 				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,
-				2228357426C4A8BD0026D468 /* Gesture.swift in Sources */,
+				2228357426C4A8BD0026D468 /* Tool.swift in Sources */,
+				22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
@@ -612,11 +622,13 @@
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				229B6D1626B980100096FE45 /* StateModel.swift in Sources */,
+				22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */,
 				22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,
 				22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */,
 				229B6D1226B97D8C0096FE45 /* ActivityType.swift in Sources */,
+				22C767C126CB3ADA000BAD55 /* Tool.Eraser.swift in Sources */,
 				22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */,
 				22CA376826A0C58D00E95009 /* ThreePointAngle.swift in Sources */,
 				2215B88926ADB27600D2A0AE /* NoDocumentView.swift in Sources */,
