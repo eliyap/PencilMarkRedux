@@ -56,6 +56,7 @@
 		22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BC26CB39EA000BAD55 /* Tutorial.swift */; };
 		22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */; };
 		22C767C126CB3ADA000BAD55 /* Tool.Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */; };
+		22C767C326CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
 		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
@@ -155,6 +156,7 @@
 		22C767BC26CB39EA000BAD55 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Pencil.swift; sourceTree = "<group>"; };
 		22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Eraser.swift; sourceTree = "<group>"; };
+		22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveEraser.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				220B852226AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift */,
 				220B851326AC898C00081536 /* KeyboardViewController.ObserveTyping.swift */,
 				220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */,
+				22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */,
 				220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */,
 				220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */,
 				22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */,
@@ -639,6 +642,7 @@
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
 				229B6D0D26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
+				22C767C326CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
 				229B6D0526B754A90096FE45 /* UIBarButtonItem.menuButton.swift in Sources */,

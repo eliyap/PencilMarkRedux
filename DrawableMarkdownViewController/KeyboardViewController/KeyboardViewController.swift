@@ -47,6 +47,7 @@ final class KeyboardViewController: PMViewController {
         /// Coordinate via `Combine` with ``coordinator``.
         observeTyping()
         observeStrokes()
+        observeEraser()
         observeTouchEvents()
         observeCommands()
     }
