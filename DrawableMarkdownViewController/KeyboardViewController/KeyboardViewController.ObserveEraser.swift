@@ -109,6 +109,7 @@ extension UITextView {
 extension Array where Element == UITextView.Region {
     
     /// Find the range of lines within the provided sub-``range`` which intersect (on the y-axis) the given ``rect``.
+    /// Uses binary search strategy to achieve `log(n)` time, where `n` is the number of lines (`range.count`).
     func getBounds(within range: Range<Index>, intersecting rect: CGRect) -> (high: Index, low: Index)? {
         guard isEmpty == false else { return nil }
         
@@ -126,6 +127,8 @@ extension Array where Element == UITextView.Region {
         } else {
             /// Split range into top and bottom half
             let half: Int = range.count / 2
+            
+            /// Recursion! Use binary search strategy to discard either half if it does not intersect ``rect``.
             let t = getBounds(within: range.lowerBound..<(range.lowerBound + half), intersecting: rect)
             let b = getBounds(within: (range.lowerBound + half)..<range.upperBound, intersecting: rect)
 
