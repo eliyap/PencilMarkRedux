@@ -53,14 +53,14 @@ extension KeyboardViewController {
 
 extension UITextView {
     
-    func getLines() -> [Line] {
-        var lines: [Line] = []
+    func getLines() -> [Region] {
+        var lines: [Region] = []
         
         /// Start with the whole string.
         var substring: Substring = text[text.startIndex..<text.endIndex]
         
         while let s = substring.firstIndex(where: {$0.isNewline}) {
-            lines.append(Line(in: self, start: substring.startIndex, end: s))
+            lines.append(Region(in: self, start: substring.startIndex, end: s))
             
             /// Skip past the newline to the rest of the string
             substring = text[text.index(after: s)..<text.endIndex]
@@ -69,8 +69,9 @@ extension UITextView {
         return lines
     }
     
-    /// Represents a line of text in the text view.
-    struct Line {
+    /// Represents a region of text in the text view.
+    /// Most frequently represents a line or a few lines.
+    struct Region {
         
         unowned var textView: UITextView
         let start: String.Index
@@ -82,6 +83,7 @@ extension UITextView {
             self.end = end
         }
         
+        /// The rectangles in the this `UITextRange`.
         func rects() -> [CGRect] {
             guard
                 let start = textView.position(from: textView.beginningOfDocument, offset: start.utf16Offset(in: textView.text)),
@@ -94,7 +96,7 @@ extension UITextView {
             return textView.selectionRects(for: range).map { $0.rect }
         }
         
-        /// Whether the bounding rectangle for this region
+        /// Whether any the rectangles for this region intersect (on the y-axis) the givn rectangle.
         func intersectsY(_ rectangle: CGRect) -> Bool {
             rects()
                 .map{ $0.intersectsY(of: rectangle) }
@@ -103,13 +105,13 @@ extension UITextView {
     }
 }
 
-extension Array where Element == UITextView.Line {
+extension Array where Element == UITextView.Region {
     
     func getBounds(within range: Range<Index>, intersecting rect: CGRect) -> (high: Index, low: Index)? {
         guard isEmpty == false else { return nil }
         
         /// Unify lines in range.
-        let lines = UITextView.Line(in: first!.textView, start: self[range.lowerBound].start, end: self[range.upperBound - 1].end)
+        let lines = UITextView.Region(in: first!.textView, start: self[range.lowerBound].start, end: self[range.upperBound - 1].end)
         
         guard lines.intersectsY(rect) else {
             /// no intersection, nothing to contribute!
