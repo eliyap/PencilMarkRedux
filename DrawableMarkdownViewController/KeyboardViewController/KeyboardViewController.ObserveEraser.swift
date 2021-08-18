@@ -53,6 +53,7 @@ extension KeyboardViewController {
 
 extension UITextView {
     
+    /// Split the ``text`` into one line regions,
     func getLines() -> [Region] {
         var lines: [Region] = []
         
@@ -107,6 +108,7 @@ extension UITextView {
 
 extension Array where Element == UITextView.Region {
     
+    /// Find the range of lines within the provided sub-``range`` which intersect (on the y-axis) the given ``rect``.
     func getBounds(within range: Range<Index>, intersecting rect: CGRect) -> (high: Index, low: Index)? {
         guard isEmpty == false else { return nil }
         
