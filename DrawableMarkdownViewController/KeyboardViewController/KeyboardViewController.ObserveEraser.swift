@@ -23,6 +23,7 @@ extension KeyboardViewController {
     
     /// Mark the region around this point to this point to be erased.
     fileprivate func add(point: CGPoint) -> Void {
+        binaryLineSearch(to: point)
         #warning("not implemented")
     }
     
@@ -34,6 +35,19 @@ extension KeyboardViewController {
     func binaryLineSearch(to point: CGPoint) -> Void {
         precondition(textView.text == coordinator.document?.markdown.plain, "Mismatched Text!")
         
+        let lines = textView.getLines()
+        let bounds = lines.getBounds(
+            within: lines.startIndex..<lines.endIndex,
+            intersecting: CGRect(
+                origin: point,
+                size: CGSize(
+                    width: PencilConduit.shared.eraserDiameter,
+                    height: PencilConduit.shared.eraserDiameter
+                )
+            )
+        )
+        
+        print("Bounds: \(bounds)")
     }
 }
 
@@ -68,21 +82,23 @@ extension UITextView {
             self.end = end
         }
         
-        func rect() -> CGRect {
+        func rects() -> [CGRect] {
             guard
                 let start = textView.position(from: textView.beginningOfDocument, offset: start.utf16Offset(in: textView.text)),
                 let end = textView.position(from: textView.beginningOfDocument, offset: end.utf16Offset(in: textView.text)),
                 let range = textView.textRange(from: start, to: end)
             else {
                 assert(false, "Failed to find range in line")
-                return CGRect.zero
+                return []
             }
-            return textView.firstRect(for: range)
+            return textView.selectionRects(for: range).map { $0.rect }
         }
         
         /// Whether the bounding rectangle for this region
-        func intersects(_ rectangle: CGRect) -> Bool {
-            rect().intersects(rectangle)
+        func intersectsY(_ rectangle: CGRect) -> Bool {
+            rects()
+                .map{ $0.intersectsY(of: rectangle) }
+                .reduce(into: false, {$0 = $0||$1})
         }
     }
 }
@@ -93,9 +109,9 @@ extension Array where Element == UITextView.Line {
         guard isEmpty == false else { return nil }
         
         /// Unify lines in range.
-        let lines = UITextView.Line(in: first!.textView, start: self[range.lowerBound].start, end: self[range.upperBound].end)
+        let lines = UITextView.Line(in: first!.textView, start: self[range.lowerBound].start, end: self[range.upperBound - 1].end)
         
-        guard lines.rect().intersects(rect) else {
+        guard lines.intersectsY(rect) else {
             /// no intersection, nothing to contribute!
             return nil
         }
@@ -110,7 +126,7 @@ extension Array where Element == UITextView.Line {
             let b = getBounds(within: (range.lowerBound + half)..<range.upperBound, intersecting: rect)
 
             if case let (.some(t), .some(b)) = (t,b) {
-                precondition(t.low == b.high, "Ranges don't touch!")
+                precondition(t.low + 1 == b.high, "Ranges don't touch! \(t), \(b)")
 
                 /// merge ranges
                 return (t.high, b.low)
@@ -120,5 +136,11 @@ extension Array where Element == UITextView.Line {
                 return t ?? b
             }
         }
+    }
+}
+
+extension CGRect {
+    func intersectsY(of other: CGRect) -> Bool {
+        other.minY < maxY && other.maxY > minY
     }
 }
