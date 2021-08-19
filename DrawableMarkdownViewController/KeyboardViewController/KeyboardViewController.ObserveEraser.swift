@@ -23,8 +23,18 @@ extension KeyboardViewController {
     
     /// Mark the region around this point to this point to be erased.
     fileprivate func add(point: CGPoint) -> Void {
+        
+        var point = point
+        
+        /// Adjust point to text area coordinates.
+        point.y -= textView.safeAreaInsets.top
+        
+        /// Add one line of height.
+        point.y += UIFont.dynamicSize
+        
+        
 //        binaryLineSearch(to: point)
-        test()
+        hitTestFragments(against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2))
         print("Non Contig \(textView.layoutManager.allowsNonContiguousLayout)")
         #warning("not implemented")
     }
@@ -34,37 +44,14 @@ extension KeyboardViewController {
         #warning("not implemented")
     }
     
-    func test() {
-        var woops = 0
-        /// The rect most recently passed to us in `block`.
-        var lastRect: CGRect? = nil
+    func hitTestFragments(against circle: Circle) {
+        let fragments = textView.fragmentModel.fragments
         
-        var topIntersectingLineFragmentRect: CGRect? = nil
-        var bottomIntersectingLineFragmentRect: CGRect? = nil
+        var topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.rect.intersects(circle)})
+        var bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.rect.intersects(circle)})
         
-        /// Closure passed into `enumerateLineFragments`
-        func block(
-            rect: CGRect,
-            usedRect: CGRect,
-            textContainter: NSTextContainer,
-            glyphRange: NSRange,
-            stop: UnsafeMutablePointer<ObjCBool>
-        ) -> Void {
-            /// Update most recent rect.
-            defer { lastRect = rect }
-            
-            /// Validate assumption that closure runs from top to bottom of document.
-            precondition((lastRect?.origin.y ?? -.infinity) < rect.origin.y, "Last rect was below this rect! \(lastRect ?? .zero), \(rect)")
-            
-            
-            
-            woops += 1
-            
-        }
-        
-        textView.layoutManager.enumerateLineFragments(forGlyphRange: NSMakeRange(0, textView.layoutManager.numberOfGlyphs), using: block)
-        
-        print("\(woops) Woops!")
+        print(topIntersectingLineFragment, bottomIntersectingLineFragment)
+        print(circle.center)
     }
     
     func binaryLineSearch(to point: CGPoint) -> Void {
@@ -282,5 +269,46 @@ final class FragmentModel {
         textView.layoutManager.enumerateLineFragments(forGlyphRange: textView.allGlyphs, using: block)
         
         return fragments
+    }
+}
+
+struct Circle {
+    let center: CGPoint
+    let radius: CGFloat
+    
+    var bounds: CGRect {
+        CGRect(origin: CGPoint(x: center.x - radius, y: center.y - radius), size: CGSize(width: 2 * radius, height: 2 * radius))
+    }
+}
+
+extension CGRect {
+    func intersects(_ circle: Circle) -> Bool {
+        guard intersects(circle.bounds) else { return false }
+        /// Checks if rectangle...
+        
+        /// Contains circle's center.
+        return contains(circle.center)
+            
+            /// Between x-range, and within acceptable y-range.
+            || ((minX <= circle.center.x && circle.center.x <= maxX) && (abs(minY - circle.center.y) <= circle.radius || abs(maxY - circle.center.y) <= circle.radius))
+            
+            /// Between y-range, and within acceptable x-range.
+            || ((minY <= circle.center.y && circle.center.y <= maxY) && (abs(minX - circle.center.x) <= circle.radius || abs(maxX - circle.center.x) <= circle.radius))
+        
+            /// Within radius of each of the four corners.
+            || CGPoint(x: minX, y: minY).within(circle.radius, of: circle.center)
+            || CGPoint(x: minX, y: maxY).within(circle.radius, of: circle.center)
+            || CGPoint(x: maxX, y: minY).within(circle.radius, of: circle.center)
+            || CGPoint(x: maxX, y: maxY).within(circle.radius, of: circle.center)
+    }
+}
+
+extension CGPoint {
+    func within(_ threshold: CGFloat, of other: CGPoint) -> Bool {
+        distance(to: other) <= threshold
+    }
+    
+    func distance(to other: CGPoint) -> CGFloat {
+        sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
     }
 }
