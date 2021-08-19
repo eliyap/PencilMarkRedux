@@ -42,6 +42,9 @@ extension KeyboardViewController {
     fileprivate func erase() -> Void {
         /// Reset formatting
         styleText()
+        
+        /// Discard model in light of updates.
+        textView.fragmentModel.invalidate()
     }
     
     func hitTestFragments(against circle: Circle) {
