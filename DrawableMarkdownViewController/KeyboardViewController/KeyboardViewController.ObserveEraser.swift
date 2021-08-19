@@ -53,7 +53,7 @@ extension KeyboardViewController {
         
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
-            (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle) }
+            (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: LineFragment.redText) }
         default:
             break
         }

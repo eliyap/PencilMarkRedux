@@ -68,7 +68,7 @@ final class LineFragment {
         self.glyphRange = glyphRange
     }
     
-    public func styleCharacters(intersecting circle: Circle) {
+    public func styleCharacters(intersecting circle: Circle, with style: Style) {
         glyphRects.keys
             .compactMap { characterRange(intersecting: circle, at: $0) }
             .compactMap {
@@ -79,7 +79,7 @@ final class LineFragment {
                     return $0
                 }
             }
-            .forEach { textView.textStorage.addAttributes(Self.redText, range: $0) }
+            .forEach { textView.textStorage.addAttributes(style, range: $0) }
     }
     
     /// If the glyph at `glyphIndex` intersects `circle`, return its chracter range.
