@@ -27,4 +27,9 @@ internal extension CGRect {
             || CGPoint(x: maxX, y: minY).within(circle.radius, of: circle.center)
             || CGPoint(x: maxX, y: maxY).within(circle.radius, of: circle.center)
     }
+    
+    /// Checks whether this ``CGRect`` might intersect the circle on the y-axis.
+    func intersectsY(_ circle: Circle) -> Bool {
+        circle.minY < maxY && circle.maxY > minY
+    }
 }
