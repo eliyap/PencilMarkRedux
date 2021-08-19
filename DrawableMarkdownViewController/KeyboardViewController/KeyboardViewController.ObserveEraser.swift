@@ -28,6 +28,7 @@ extension KeyboardViewController {
         
         /// Adjust point to text area coordinates.
         point.y -= textView.safeAreaInsets.top
+        point.x -= textView.textContainerInset.left
         
         /// Add one line of height.
         point.y += UIFont.dynamicSize
@@ -40,7 +41,8 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
-        #warning("not implemented")
+        /// Reset formatting
+        styleText()
     }
     
     func hitTestFragments(against circle: Circle) {
@@ -51,7 +53,7 @@ extension KeyboardViewController {
         
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
-            (t...b).forEach { fragments[$0].test() }
+            (t...b).forEach { fragments[$0].test(circle) }
         default:
             break
         }
