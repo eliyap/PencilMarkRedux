@@ -33,9 +33,7 @@ extension KeyboardViewController {
         /// Add one line of height.
         point.y += UIFont.dynamicSize
         
-        
         hitTestFragments(against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2))
-        #warning("not implemented")
     }
     
     /// Erase marked regions.
@@ -55,7 +53,7 @@ extension KeyboardViewController {
         
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
-            (t...b).forEach { fragments[$0].test(circle) }
+            (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: LineFragment.redText) }
         default:
             break
         }
