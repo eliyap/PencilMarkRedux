@@ -33,7 +33,6 @@ extension KeyboardViewController {
         point.y += UIFont.dynamicSize
         
         
-//        binaryLineSearch(to: point)
         hitTestFragments(against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2))
         print("Non Contig \(textView.layoutManager.allowsNonContiguousLayout)")
         #warning("not implemented")
@@ -59,11 +58,5 @@ extension KeyboardViewController {
         
         print(topIntersectingLineFragment, bottomIntersectingLineFragment)
         print(circle.center)
-    }
-}
-
-extension UITextView {
-    var allGlyphs: NSRange {
-        NSMakeRange(0, layoutManager.numberOfGlyphs)
     }
 }

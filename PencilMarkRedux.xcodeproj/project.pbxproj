@@ -88,6 +88,7 @@
 		22E6BEA526CEAF550000A3B3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA426CEAF550000A3B3 /* Circle.swift */; };
 		22E6BEA726CEAF6C0000A3B3 /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */; };
 		22E6BEA926CEAFA70000A3B3 /* LineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */; };
+		22E6BEAB26CEB0130000A3B3 /* UITextView.allGlyphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
@@ -197,6 +198,7 @@
 		22E6BEA426CEAF550000A3B3 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
 		22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineFragment.swift; sourceTree = "<group>"; };
+		22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.allGlyphs.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */,
+				22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */,
 				2228357026C4A8A30026D468 /* Tutorial */,
 				220B853826ACD3EC00081536 /* PMAST */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
@@ -680,6 +683,7 @@
 				22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */,
 				22F70B3826AE28E900CC8935 /* FilesViewController.AdjustForKeyboard.swift in Sources */,
 				22CA376426A0C4B200E95009 /* PMShape.swift in Sources */,
+				22E6BEAB26CEB0130000A3B3 /* UITextView.allGlyphs.swift in Sources */,
 				220B851926AC8BBD00081536 /* PMViewController.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22C9F5E426AB99F1003FD426 /* URL.isDirectory.swift in Sources */,
