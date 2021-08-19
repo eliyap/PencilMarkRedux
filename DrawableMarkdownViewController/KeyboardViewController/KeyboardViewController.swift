@@ -81,6 +81,11 @@ final class KeyboardViewController: PMViewController {
             textView.textContainerInset.left = horizontalPadding
             textView.textContainerInset.right = horizontalPadding
         }
+        
+        /// Set overscroll region
+        if textView.textContainerInset.bottom != textView.frame.height / 2 {
+            textView.textContainerInset.bottom = textView.frame.height / 2
+        }
     }
     
     required init?(coder: NSCoder) {

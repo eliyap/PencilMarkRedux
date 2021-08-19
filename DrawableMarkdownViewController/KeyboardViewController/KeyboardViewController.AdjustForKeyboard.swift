@@ -32,6 +32,8 @@ extension KeyboardViewController {
         
         /// Adjust text and scrollbars to avoid keyboard frame
         textView.textContainerInset.bottom = inset
+            /// include the overscroll region
+            + textView.frame.height / 2
         textView.verticalScrollIndicatorInsets.bottom = inset
         
         /**
