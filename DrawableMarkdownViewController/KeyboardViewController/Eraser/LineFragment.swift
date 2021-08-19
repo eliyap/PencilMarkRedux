@@ -21,6 +21,18 @@ struct LineFragment {
     /// The range of glyphs laid out in the current line fragment.
     let glyphRange: NSRange
     
+    init(
+        rect: CGRect,
+        usedRect: CGRect,
+        textView: UITextView,
+        glyphRange: NSRange
+    ) {
+        self.rect = rect
+        self.usedRect = usedRect
+        self.textView = textView
+        self.glyphRange = glyphRange
+    }
+    
     func test(_ circle: Circle) {
         styleCharacters(intersecting: circle)
     }
