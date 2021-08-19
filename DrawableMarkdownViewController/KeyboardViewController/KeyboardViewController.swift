@@ -28,6 +28,9 @@ final class KeyboardViewController: PMViewController {
         
         view = textView
         
+        /// Attach model immediately.
+        textView.fragmentModel = FragmentModel(textView: textView)
+        
         /// Observe `textView` events.
         textView.delegate = self
         textView.controller = self

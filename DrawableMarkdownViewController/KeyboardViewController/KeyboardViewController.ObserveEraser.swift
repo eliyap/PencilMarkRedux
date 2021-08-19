@@ -23,13 +23,48 @@ extension KeyboardViewController {
     
     /// Mark the region around this point to this point to be erased.
     fileprivate func add(point: CGPoint) -> Void {
-        binaryLineSearch(to: point)
+//        binaryLineSearch(to: point)
+        test()
+        print("Non Contig \(textView.layoutManager.allowsNonContiguousLayout)")
         #warning("not implemented")
     }
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
         #warning("not implemented")
+    }
+    
+    func test() {
+        var woops = 0
+        /// The rect most recently passed to us in `block`.
+        var lastRect: CGRect? = nil
+        
+        var topIntersectingLineFragmentRect: CGRect? = nil
+        var bottomIntersectingLineFragmentRect: CGRect? = nil
+        
+        /// Closure passed into `enumerateLineFragments`
+        func block(
+            rect: CGRect,
+            usedRect: CGRect,
+            textContainter: NSTextContainer,
+            glyphRange: NSRange,
+            stop: UnsafeMutablePointer<ObjCBool>
+        ) -> Void {
+            /// Update most recent rect.
+            defer { lastRect = rect }
+            
+            /// Validate assumption that closure runs from top to bottom of document.
+            precondition((lastRect?.origin.y ?? -.infinity) < rect.origin.y, "Last rect was below this rect! \(lastRect ?? .zero), \(rect)")
+            
+            
+            
+            woops += 1
+            
+        }
+        
+        textView.layoutManager.enumerateLineFragments(forGlyphRange: NSMakeRange(0, textView.layoutManager.numberOfGlyphs), using: block)
+        
+        print("\(woops) Woops!")
     }
     
     func binaryLineSearch(to point: CGPoint) -> Void {
@@ -167,5 +202,85 @@ extension Array where Element == UITextView.Region {
 extension CGRect {
     func intersectsY(of other: CGRect) -> Bool {
         other.minY < maxY && other.maxY > minY
+    }
+}
+
+extension UITextView {
+    var allGlyphs: NSRange {
+        NSMakeRange(0, layoutManager.numberOfGlyphs)
+    }
+}
+
+struct LineFragment {
+    /// Line fragment rectangle.
+    let rect: CGRect
+    
+    /// The portion of the line fragment rectangle that actually contains glyphs or other marks that are drawn
+    /// (including the text container’s line fragment padding).
+    let usedRect: CGRect
+    
+    /// The text container in which the glyphs are laid out.
+    unowned let textContainer: NSTextContainer
+    
+    /// The range of glyphs laid out in the current line fragment.
+    let glyphRange: NSRange
+}
+
+final class FragmentModel {
+    /**
+     Line fragments in the `PMTextView`.
+     If none are available, generate them!
+     */
+    private var _fragments: [LineFragment]? = nil
+    public var fragments: [LineFragment] {
+        get {
+            if let f = _fragments {
+                return f
+            } else {
+                let new = getFragments()
+                _fragments = new
+                return new
+            }
+        }
+    }
+    
+    unowned let textView: PMTextView
+    
+    init(textView: PMTextView){
+        self.textView = textView
+    }
+    
+    /// Notify us that the text has changed and our fragments are out of date.
+    public func invalidate() {
+        _fragments = nil
+    }
+    
+    private func getFragments() -> [LineFragment] {
+        var fragments: [LineFragment] = []
+        
+        /// The rect most recently passed to us in `block`.
+        var lastRect: CGRect? = nil
+        
+        /// Closure passed into `enumerateLineFragments`
+        func block(
+            rect: CGRect,
+            usedRect: CGRect,
+            textContainter: NSTextContainer,
+            glyphRange: NSRange,
+            stop: UnsafeMutablePointer<ObjCBool>
+        ) -> Void {
+            /// Update most recent rect.
+            defer { lastRect = rect }
+            
+            /// Validate assumption that closure runs from top to bottom of document.
+            precondition((lastRect?.origin.y ?? -.infinity) < rect.origin.y, "Last rect was below this rect! \(lastRect ?? .zero), \(rect)")
+            
+            fragments.append(LineFragment(rect: rect, usedRect: usedRect, textContainer: textContainter, glyphRange: glyphRange))
+        }
+        
+        /// Invoke with block
+        textView.layoutManager.enumerateLineFragments(forGlyphRange: textView.allGlyphs, using: block)
+        
+        return fragments
     }
 }
