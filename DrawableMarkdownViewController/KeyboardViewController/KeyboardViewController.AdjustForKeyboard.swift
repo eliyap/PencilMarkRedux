@@ -95,7 +95,10 @@ extension KeyboardViewController {
     
     @objc /// #selector
     func fontSizeChanged(_ notification: Notification) {
-        styleText() /// update styling (including font size) whenever font size changes
+        /// update styling (including font size) whenever font size changes
+        styleText()
+        
+        textView.fragmentModel.invalidate()
     }
 }
 
