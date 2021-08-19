@@ -31,9 +31,11 @@ final class LineFragment {
                 _glyphRects = g
                 return g
             }
-            
         }
     }
+    
+    /// Character ranges that have already been styled.
+    private var styledRanges: Set<NSRange> = Set([])
     
     init(
         rect: CGRect,
@@ -54,6 +56,14 @@ final class LineFragment {
     func styleCharacters(intersecting circle: Circle) {
         glyphRects.keys
             .compactMap { characterRange(intersecting: circle, at: $0) }
+            .compactMap {
+                if styledRanges.contains($0) {
+                    return nil
+                } else {
+                    styledRanges.insert($0)
+                    return $0
+                }
+            }
             .forEach { textView.textStorage.addAttributes(Self.redText, range: $0) }
     }
     
