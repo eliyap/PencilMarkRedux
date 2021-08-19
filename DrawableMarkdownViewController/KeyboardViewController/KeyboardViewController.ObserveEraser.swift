@@ -50,6 +50,13 @@ extension KeyboardViewController {
         var topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.rect.intersects(circle)})
         var bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.rect.intersects(circle)})
         
+        switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
+        case (.some(let t), .some(let b)):
+            (t...b).forEach { fragments[$0].test() }
+        default:
+            break
+        }
+        
         print(topIntersectingLineFragment, bottomIntersectingLineFragment)
         print(circle.center)
     }
@@ -207,10 +214,17 @@ struct LineFragment {
     let usedRect: CGRect
     
     /// The text container in which the glyphs are laid out.
-    unowned let textContainer: NSTextContainer
+    unowned let textView: UITextView
     
     /// The range of glyphs laid out in the current line fragment.
     let glyphRange: NSRange
+    
+    func test() {
+        for i in glyphRange.lowerBound..<glyphRange.upperBound {
+            textView.layoutManager.boundingRect(forGlyphRange: NSMakeRange(i, 1), in: textView.textContainer)
+        }
+        
+    }
 }
 
 final class FragmentModel {
@@ -262,7 +276,7 @@ final class FragmentModel {
             /// Validate assumption that closure runs from top to bottom of document.
             precondition((lastRect?.origin.y ?? -.infinity) < rect.origin.y, "Last rect was below this rect! \(lastRect ?? .zero), \(rect)")
             
-            fragments.append(LineFragment(rect: rect, usedRect: usedRect, textContainer: textContainter, glyphRange: glyphRange))
+            fragments.append(LineFragment(rect: rect, usedRect: usedRect, textView: textView, glyphRange: glyphRange))
         }
         
         /// Invoke with block
