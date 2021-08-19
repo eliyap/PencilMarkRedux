@@ -7,7 +7,11 @@
 
 import UIKit
 
+/**
+ Represents one visual line in our ``UITextView``, which is distinct from a "line" as delineated by newline characters.
+ */
 final class LineFragment {
+
     /// Line fragment rectangle.
     let rect: CGRect
     
@@ -15,12 +19,17 @@ final class LineFragment {
     /// (including the text container’s line fragment padding).
     let usedRect: CGRect
     
-    /// The text container in which the glyphs are laid out.
+    /// The text view in which the glyphs are laid out.
     unowned let textView: UITextView
     
     /// The range of glyphs laid out in the current line fragment.
     let glyphRange: NSRange
     
+    /// A memoized structure for looking up the bounding rectangle of each glyph in this line fragment.
+    /// - Key: the glyph index in ``textView``.
+    /// - Value: the bounding rectangle around that glyph.
+    /// For performance reasons, we try to avoid generating this data at all,
+    /// and always generate it at most once (until the model is invalidated.
     private var _glyphRects: [Int: CGRect]? = nil
     private var glyphRects: [Int: CGRect] {
         get {
@@ -47,10 +56,6 @@ final class LineFragment {
         self.usedRect = usedRect
         self.textView = textView
         self.glyphRange = glyphRange
-    }
-    
-    func test(_ circle: Circle) {
-        styleCharacters(intersecting: circle)
     }
     
     func styleCharacters(intersecting circle: Circle) {
