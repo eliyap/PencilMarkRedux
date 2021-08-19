@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LineFragment {
+final class LineFragment {
     /// Line fragment rectangle.
     let rect: CGRect
     
@@ -20,6 +20,20 @@ struct LineFragment {
     
     /// The range of glyphs laid out in the current line fragment.
     let glyphRange: NSRange
+    
+    private var _glyphRects: [Int: CGRect]? = nil
+    private var glyphRects: [Int: CGRect] {
+        get {
+            if let g = _glyphRects {
+                return g
+            } else {
+                let g = findGlyphRects()
+                _glyphRects = g
+                return g
+            }
+            
+        }
+    }
     
     init(
         rect: CGRect,
@@ -38,20 +52,35 @@ struct LineFragment {
     }
     
     func styleCharacters(intersecting circle: Circle) {
-        (glyphRange.lowerBound..<glyphRange.upperBound)
+        glyphRects.keys
             .compactMap { characterRange(intersecting: circle, at: $0) }
             .forEach { textView.textStorage.addAttributes(Self.redText, range: $0) }
     }
     
     /// If the glyph at `glyphIndex` intersects `circle`, return its chracter range.
     func characterRange(intersecting circle: Circle, at glyphIndex: Int) -> NSRange? {
-        let glyphRange = NSMakeRange(glyphIndex, 1)
-        let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textView.textContainer)
-        if glyphRect.intersects(circle) {
-            return textView.layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+        if glyphRects[glyphIndex]!.intersects(circle) {
+            return textView.layoutManager.characterRange(forGlyphRange: NSMakeRange(glyphIndex, 1), actualGlyphRange: nil)
         } else {
             return nil
         }
+    }
+    
+    /// Get the bounding rectangles for each glyph in this line fragment.
+    /// Results should be memo-ized so we don't need to call this expensive operation often.
+    private func findGlyphRects() -> [Int: CGRect] {
+        var table: [Int: CGRect] = [:]
+        for glyphIndex in (glyphRange.lowerBound..<glyphRange.upperBound) {
+            let glyphRange = NSMakeRange(glyphIndex, 1)
+            let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textView.textContainer)
+            table[glyphIndex] = glyphRect
+        }
+        return table
+    }
+    
+    /// - Note: may be irrelevant anyway.
+    public func invalidate() -> Void {
+        _glyphRects = nil
     }
         
     static let redText: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red]
