@@ -48,14 +48,19 @@ extension KeyboardViewController {
     func hitTestFragments(against circle: Circle) {
         let fragments = textView.fragmentModel.fragments
         
-        let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.usedRect.intersects(circle)})
-        let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.usedRect.intersects(circle)})
+        /// Find the sub-array of line fragments whose characters might intersect the circle.
+        /// - Note: we assume this sub-array is a closed range that is continuous,
+        ///         which rests on the assumption that the fragment array runs in one direction from top to bottom.
+        let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.usedRect.intersectsY(circle)})
+        let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.usedRect.intersectsY(circle)})
         
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
             (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: LineFragment.redText) }
-        default:
+        case (.none, .none): /// out of bounds
             break
+        case (.some, .none), (.none, .some):
+            fatalError("Open Line Fragment Range!")
         }
     }
 }
