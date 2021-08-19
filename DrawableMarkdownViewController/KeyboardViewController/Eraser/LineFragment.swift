@@ -59,10 +59,28 @@ final class LineFragment {
     
     /// If the glyph at `glyphIndex` intersects `circle`, return its chracter range.
     func characterRange(intersecting circle: Circle, at glyphIndex: Int) -> NSRange? {
-        if glyphRects[glyphIndex]!.intersects(circle) {
+        let glyphRect = glyphRects[glyphIndex]!
+        
+        #if DEBUG /// validate memoized values
+        check(rect: glyphRect, at: glyphIndex)
+        #endif
+        
+        if glyphRect.intersects(circle) {
             return textView.layoutManager.characterRange(forGlyphRange: NSMakeRange(glyphIndex, 1), actualGlyphRange: nil)
         } else {
             return nil
+        }
+    }
+    
+    /// Debugging check, seeing if the memoized and actual values are consistent.
+    fileprivate func check(rect: CGRect, at glyphIndex: Int) {
+        let range = NSMakeRange(glyphIndex, 1)
+        let r = textView.layoutManager.boundingRect(forGlyphRange: range, in: textView.textContainer)
+        assert(r.width == rect.width)
+        assert(r.height == rect.height)
+        assert(r.origin.x == rect.origin.x)
+        if r.origin.x != rect.origin.x {
+            print("Y Diff: \(r.origin.y - rect.origin.y)")
         }
     }
     
