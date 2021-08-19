@@ -17,7 +17,12 @@ final class LineFragment {
     /// - Key: the glyph index in ``textView``.
     /// - Value: the bounding rectangle around that glyph.
     typealias GlyphTable = [Int: CGRect]
-
+    
+    /// A style we can apply to an `NSAttributedString`.
+    typealias Style = [NSAttributedString.Key: Any]
+        
+    public static let redText: Style = [.foregroundColor: UIColor.red]
+    
     /// Line fragment rectangle.
     public let rect: CGRect
     
@@ -33,8 +38,8 @@ final class LineFragment {
     
     /// For performance reasons, we try to avoid generating this data at all,
     /// and always avoid generate it at most once (until the model is invalidated) using memoization.
-    private var _glyphRects: [Int: CGRect]? = nil
-    private var glyphRects: [Int: CGRect] {
+    private var _glyphRects: GlyphTable? = nil
+    private var glyphRects: GlyphTable {
         get {
             if let g = _glyphRects {
                 return g
@@ -104,7 +109,7 @@ final class LineFragment {
     
     /// Get the bounding rectangles for each glyph in this line fragment.
     /// Results should be memo-ized so we don't need to call this expensive operation often.
-    private func findGlyphRects() -> [Int: CGRect] {
+    private func findGlyphRects() -> GlyphTable {
         var table: [Int: CGRect] = [:]
         for glyphIndex in (glyphRange.lowerBound..<glyphRange.upperBound) {
             let glyphRange = NSMakeRange(glyphIndex, 1)
@@ -118,6 +123,4 @@ final class LineFragment {
     public func invalidate() -> Void {
         _glyphRects = nil
     }
-        
-    public static let redText: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red]
 }
