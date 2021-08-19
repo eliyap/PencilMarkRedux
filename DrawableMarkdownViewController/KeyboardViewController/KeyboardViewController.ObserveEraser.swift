@@ -35,7 +35,21 @@ extension KeyboardViewController {
     func binaryLineSearch(to point: CGPoint) -> Void {
         precondition(textView.text == coordinator.document?.markdown.plain, "Mismatched Text!")
         
+        var point = point
+        
+        /// Adjust point to center rect.
+        point.x -= PencilConduit.shared.eraserDiameter / 2
+        point.y -= PencilConduit.shared.eraserDiameter / 2
+        
+        /// Adjust point to text area coordinates.
+        point.y -= textView.safeAreaInsets.top
+        
         let lines = textView.getLines()
+        
+        let all = UITextView.Region(in: textView, start: textView.text.startIndex, end: textView.text.endIndex)
+        print("All: \(all.rects())")
+        print(textView.safeAreaInsets.top)
+        
         let bounds = lines.getBounds(
             within: lines.startIndex..<lines.endIndex,
             intersecting: CGRect(
