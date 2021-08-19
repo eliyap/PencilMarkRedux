@@ -52,11 +52,8 @@ extension PMCanvasView {
         
         eraserDown = true
         
-        /// Correct for scrolling offset before sending.
-        var location = touch.preciseLocation(in: self)
+        let location = touch.preciseLocation(in: self)
         trackCircle(location: location)
-
-        location.y -= self.contentOffset.y
         PencilConduit.shared.eraser = location
     }
     
