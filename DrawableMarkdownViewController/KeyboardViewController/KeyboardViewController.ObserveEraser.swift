@@ -44,6 +44,9 @@ extension KeyboardViewController {
         /// Adjust point to text area coordinates.
         point.y -= textView.safeAreaInsets.top
         
+        /// Add one line of height to the rect.
+        point.y -= UIFont.dynamicSize
+        
         let lines = textView.getLines()
         
         let all = UITextView.Region(in: textView, start: textView.text.startIndex, end: textView.text.endIndex)
@@ -56,7 +59,8 @@ extension KeyboardViewController {
                 origin: point,
                 size: CGSize(
                     width: PencilConduit.shared.eraserDiameter,
-                    height: PencilConduit.shared.eraserDiameter
+                    /// Add one line of height to the rect.
+                    height: PencilConduit.shared.eraserDiameter + UIFont.dynamicSize
                 )
             )
         )
