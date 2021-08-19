@@ -52,6 +52,8 @@ final class LineFragment {
     }
     
     /// Character ranges that have already been styled.
+    /// - Warning: assumes only one temporary style is being applied at once!
+    /// - Warning: assumes each range represents a single / glyph or character, and does not attempt to do any intersecting!
     private var styledRanges: Set<NSRange> = Set([])
     
     init(
@@ -110,7 +112,7 @@ final class LineFragment {
     /// Get the bounding rectangles for each glyph in this line fragment.
     /// Results should be memo-ized so we don't need to call this expensive operation often.
     private func findGlyphRects() -> GlyphTable {
-        var table: [Int: CGRect] = [:]
+        var table: GlyphTable = [:]
         for glyphIndex in (glyphRange.lowerBound..<glyphRange.upperBound) {
             let glyphRange = NSMakeRange(glyphIndex, 1)
             let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textView.textContainer)
