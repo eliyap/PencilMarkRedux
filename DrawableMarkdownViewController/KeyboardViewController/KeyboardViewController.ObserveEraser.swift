@@ -294,35 +294,3 @@ struct Circle {
         CGRect(origin: CGPoint(x: center.x - radius, y: center.y - radius), size: CGSize(width: 2 * radius, height: 2 * radius))
     }
 }
-
-extension CGRect {
-    func intersects(_ circle: Circle) -> Bool {
-        guard intersects(circle.bounds) else { return false }
-        /// Checks if rectangle...
-        
-        /// Contains circle's center.
-        return contains(circle.center)
-            
-            /// Between x-range, and within acceptable y-range.
-            || ((minX <= circle.center.x && circle.center.x <= maxX) && (abs(minY - circle.center.y) <= circle.radius || abs(maxY - circle.center.y) <= circle.radius))
-            
-            /// Between y-range, and within acceptable x-range.
-            || ((minY <= circle.center.y && circle.center.y <= maxY) && (abs(minX - circle.center.x) <= circle.radius || abs(maxX - circle.center.x) <= circle.radius))
-        
-            /// Within radius of each of the four corners.
-            || CGPoint(x: minX, y: minY).within(circle.radius, of: circle.center)
-            || CGPoint(x: minX, y: maxY).within(circle.radius, of: circle.center)
-            || CGPoint(x: maxX, y: minY).within(circle.radius, of: circle.center)
-            || CGPoint(x: maxX, y: maxY).within(circle.radius, of: circle.center)
-    }
-}
-
-extension CGPoint {
-    func within(_ threshold: CGFloat, of other: CGPoint) -> Bool {
-        distance(to: other) <= threshold
-    }
-    
-    func distance(to other: CGPoint) -> CGFloat {
-        sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
-    }
-}
