@@ -32,6 +32,8 @@ extension KeyboardViewController {
         
         /// Adjust text and scrollbars to avoid keyboard frame
         textView.textContainerInset.bottom = inset
+            /// include the overscroll region
+            + textView.frame.height / 2
         textView.verticalScrollIndicatorInsets.bottom = inset
         
         /**
@@ -93,7 +95,10 @@ extension KeyboardViewController {
     
     @objc /// #selector
     func fontSizeChanged(_ notification: Notification) {
-        styleText() /// update styling (including font size) whenever font size changes
+        /// update styling (including font size) whenever font size changes
+        styleText()
+        
+        textView.fragmentModel.invalidate()
     }
 }
 

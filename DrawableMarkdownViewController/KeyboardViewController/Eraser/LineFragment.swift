@@ -1,0 +1,115 @@
+//
+//  LineFragment.swift
+//  PencilMarkRedux
+//
+//  Created by Secret Asian Man Dev on 19/8/21.
+//
+
+import UIKit
+
+final class LineFragment {
+    /// Line fragment rectangle.
+    let rect: CGRect
+    
+    /// The portion of the line fragment rectangle that actually contains glyphs or other marks that are drawn
+    /// (including the text container’s line fragment padding).
+    let usedRect: CGRect
+    
+    /// The text container in which the glyphs are laid out.
+    unowned let textView: UITextView
+    
+    /// The range of glyphs laid out in the current line fragment.
+    let glyphRange: NSRange
+    
+    private var _glyphRects: [Int: CGRect]? = nil
+    private var glyphRects: [Int: CGRect] {
+        get {
+            if let g = _glyphRects {
+                return g
+            } else {
+                let g = findGlyphRects()
+                _glyphRects = g
+                return g
+            }
+        }
+    }
+    
+    /// Character ranges that have already been styled.
+    private var styledRanges: Set<NSRange> = Set([])
+    
+    init(
+        rect: CGRect,
+        usedRect: CGRect,
+        textView: UITextView,
+        glyphRange: NSRange
+    ) {
+        self.rect = rect
+        self.usedRect = usedRect
+        self.textView = textView
+        self.glyphRange = glyphRange
+    }
+    
+    func test(_ circle: Circle) {
+        styleCharacters(intersecting: circle)
+    }
+    
+    func styleCharacters(intersecting circle: Circle) {
+        glyphRects.keys
+            .compactMap { characterRange(intersecting: circle, at: $0) }
+            .compactMap {
+                if styledRanges.contains($0) {
+                    return nil
+                } else {
+                    styledRanges.insert($0)
+                    return $0
+                }
+            }
+            .forEach { textView.textStorage.addAttributes(Self.redText, range: $0) }
+    }
+    
+    /// If the glyph at `glyphIndex` intersects `circle`, return its chracter range.
+    func characterRange(intersecting circle: Circle, at glyphIndex: Int) -> NSRange? {
+        let glyphRect = glyphRects[glyphIndex]!
+        
+        #if DEBUG /// validate memoized values
+        check(rect: glyphRect, at: glyphIndex)
+        #endif
+        
+        if glyphRect.intersects(circle) {
+            return textView.layoutManager.characterRange(forGlyphRange: NSMakeRange(glyphIndex, 1), actualGlyphRange: nil)
+        } else {
+            return nil
+        }
+    }
+    
+    /// Debugging check, seeing if the memoized and actual values are consistent.
+    fileprivate func check(rect: CGRect, at glyphIndex: Int) {
+        let range = NSMakeRange(glyphIndex, 1)
+        let r = textView.layoutManager.boundingRect(forGlyphRange: range, in: textView.textContainer)
+        assert(r.width == rect.width)
+        assert(r.height == rect.height)
+        assert(r.origin.x == rect.origin.x)
+        if r.origin.x != rect.origin.x {
+            print("Y Diff: \(r.origin.y - rect.origin.y)")
+        }
+    }
+    
+    /// Get the bounding rectangles for each glyph in this line fragment.
+    /// Results should be memo-ized so we don't need to call this expensive operation often.
+    private func findGlyphRects() -> [Int: CGRect] {
+        var table: [Int: CGRect] = [:]
+        for glyphIndex in (glyphRange.lowerBound..<glyphRange.upperBound) {
+            let glyphRange = NSMakeRange(glyphIndex, 1)
+            let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textView.textContainer)
+            table[glyphIndex] = glyphRect
+        }
+        return table
+    }
+    
+    /// - Note: may be irrelevant anyway.
+    public func invalidate() -> Void {
+        _glyphRects = nil
+    }
+        
+    static let redText: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red]
+}

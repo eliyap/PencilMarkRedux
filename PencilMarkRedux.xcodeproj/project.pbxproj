@@ -56,6 +56,7 @@
 		22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BC26CB39EA000BAD55 /* Tutorial.swift */; };
 		22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */; };
 		22C767C126CB3ADA000BAD55 /* Tool.Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */; };
+		22C767C326CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */; };
 		22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D126AB9215003FD426 /* AppDelegate.swift */; };
 		22C9F5D426AB92D5003FD426 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */; };
 		22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C9F5D726AB934B003FD426 /* Main.storyboard */; };
@@ -82,6 +83,12 @@
 		22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377926A22B9300E95009 /* PMCanvasView.swift */; };
 		22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007626A5099500A12F88 /* ScribbleBlockers.swift */; };
 		22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007A26A516F400A12F88 /* CommandConduit.swift */; };
+		22E6BEA126CEAF110000A3B3 /* CGPoint.distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */; };
+		22E6BEA326CEAF2E0000A3B3 /* CGRect.intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */; };
+		22E6BEA526CEAF550000A3B3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA426CEAF550000A3B3 /* Circle.swift */; };
+		22E6BEA726CEAF6C0000A3B3 /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */; };
+		22E6BEA926CEAFA70000A3B3 /* LineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */; };
+		22E6BEAB26CEB0130000A3B3 /* UITextView.allGlyphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
@@ -155,6 +162,7 @@
 		22C767BC26CB39EA000BAD55 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Pencil.swift; sourceTree = "<group>"; };
 		22C767C026CB3ADA000BAD55 /* Tool.Eraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Eraser.swift; sourceTree = "<group>"; };
+		22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.ObserveEraser.swift; sourceTree = "<group>"; };
 		22C9F5D126AB9215003FD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D326AB92D5003FD426 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22C9F5D726AB934B003FD426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +193,12 @@
 		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
 		22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilMarkReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.distance.swift; sourceTree = "<group>"; };
+		22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.intersects.swift; sourceTree = "<group>"; };
+		22E6BEA426CEAF550000A3B3 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
+		22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineFragment.swift; sourceTree = "<group>"; };
+		22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.allGlyphs.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
@@ -234,11 +248,13 @@
 				220B852226AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift */,
 				220B851326AC898C00081536 /* KeyboardViewController.ObserveTyping.swift */,
 				220B852026AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift */,
+				22C767C226CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift */,
 				220B852426AC978200081536 /* KeyboardViewController.ObserveTouches.swift */,
 				220B852926AC998C00081536 /* KeyboardViewController.ObserveCommands.swift */,
 				22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */,
 				22CF007626A5099500A12F88 /* ScribbleBlockers.swift */,
 				220B852726AC990200081536 /* PMTextView.swift */,
+				22E6BE9F26CEAEF30000A3B3 /* Eraser */,
 			);
 			path = KeyboardViewController;
 			sourceTree = "<group>";
@@ -463,6 +479,19 @@
 			path = PencilMarkReduxTests;
 			sourceTree = "<group>";
 		};
+		22E6BE9F26CEAEF30000A3B3 /* Eraser */ = {
+			isa = PBXGroup;
+			children = (
+				22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */,
+				22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */,
+				22E6BEA426CEAF550000A3B3 /* Circle.swift */,
+				22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */,
+				22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */,
+				22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */,
+			);
+			path = Eraser;
+			sourceTree = "<group>";
+		};
 		22F70B3D26AE4AEF00CC8935 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +630,8 @@
 				22F70B3626AE263600CC8935 /* Notification.edgeInsets.swift in Sources */,
 				229B6D0B26B7765C0096FE45 /* ViewController_UISplitViewControllerDelegate.swift in Sources */,
 				229B6D1426B97DB30096FE45 /* ActivityInfo.swift in Sources */,
+				22E6BEA726CEAF6C0000A3B3 /* FragmentModel.swift in Sources */,
+				22E6BEA326CEAF2E0000A3B3 /* CGRect.intersects.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				2228357626C6F3E90026D468 /* SplitConduit.swift in Sources */,
@@ -610,6 +641,9 @@
 				22CA376C26A0D97C00E95009 /* PKStrokePath_Path.swift in Sources */,
 				220B851026AC819A00081536 /* KeyboardViewController.swift in Sources */,
 				220B852326AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift in Sources */,
+				22E6BEA526CEAF550000A3B3 /* Circle.swift in Sources */,
+				22E6BEA926CEAFA70000A3B3 /* LineFragment.swift in Sources */,
+				22E6BEA126CEAF110000A3B3 /* CGPoint.distance.swift in Sources */,
 				22F70B3F26AE4B0300CC8935 /* NewDocumentURL.swift in Sources */,
 				22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */,
 				222835A526C994EE0026D468 /* DrawableMarkdownViewController.Toolbar.swift in Sources */,
@@ -639,6 +673,7 @@
 				22C9F5F026AB9A57003FD426 /* FilesViewController.swift in Sources */,
 				229B6D0D26B7782F0096FE45 /* SceneDelegate_StateRestoration.swift in Sources */,
 				22C9F5FF26ABA27F003FD426 /* StyledMarkdownDocument.swift in Sources */,
+				22C767C326CB612A000BAD55 /* KeyboardViewController.ObserveEraser.swift in Sources */,
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
 				229B6D0526B754A90096FE45 /* UIBarButtonItem.menuButton.swift in Sources */,
@@ -648,6 +683,7 @@
 				22C9F5EF26AB9A57003FD426 /* FolderViewController.swift in Sources */,
 				22F70B3826AE28E900CC8935 /* FilesViewController.AdjustForKeyboard.swift in Sources */,
 				22CA376426A0C4B200E95009 /* PMShape.swift in Sources */,
+				22E6BEAB26CEB0130000A3B3 /* UITextView.allGlyphs.swift in Sources */,
 				220B851926AC8BBD00081536 /* PMViewController.swift in Sources */,
 				22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */,
 				22C9F5E426AB99F1003FD426 /* URL.isDirectory.swift in Sources */,

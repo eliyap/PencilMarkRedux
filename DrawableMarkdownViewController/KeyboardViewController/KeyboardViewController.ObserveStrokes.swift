@@ -23,13 +23,6 @@ extension KeyboardViewController {
                 self?.handle(stroke)
             }
         store(strokes)
-        
-        let eraser = PencilConduit.shared.$eraser
-            .compactMap { $0 }
-            .sink { pt in
-                
-            }
-        store(eraser)
     }
     
     func handle(_ stroke: PKStroke) -> Void {

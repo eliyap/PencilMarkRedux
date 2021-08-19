@@ -28,6 +28,9 @@ final class KeyboardViewController: PMViewController {
         
         view = textView
         
+        /// Attach model immediately.
+        textView.fragmentModel = FragmentModel(textView: textView)
+        
         /// Observe `textView` events.
         textView.delegate = self
         textView.controller = self
@@ -47,6 +50,7 @@ final class KeyboardViewController: PMViewController {
         /// Coordinate via `Combine` with ``coordinator``.
         observeTyping()
         observeStrokes()
+        observeEraser()
         observeTouchEvents()
         observeCommands()
     }
@@ -76,6 +80,11 @@ final class KeyboardViewController: PMViewController {
         if textView.contentInset.left != horizontalPadding {
             textView.textContainerInset.left = horizontalPadding
             textView.textContainerInset.right = horizontalPadding
+        }
+        
+        /// Set overscroll region
+        if textView.textContainerInset.bottom != textView.frame.height / 2 {
+            textView.textContainerInset.bottom = textView.frame.height / 2
         }
     }
     

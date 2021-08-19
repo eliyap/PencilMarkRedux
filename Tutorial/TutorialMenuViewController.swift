@@ -128,21 +128,21 @@ final class TutorialDataSource: NSObject, UITableViewDataSource {
         
         switch indexPath.section {
         case Tool.pencil.rawValue:
-            guard let gesture = Tool.Pencil(rawValue: indexPath.row) else {
+            if let gesture = Tool.Pencil(rawValue: indexPath.row) {
+                cell.textLabel?.text = gesture.name
+                cell.imageView?.image = UIImage(systemName: gesture.symbol)
+            } else {
                 assert(false, "Invalid Row: \(indexPath.row)")
             }
             
-            cell.textLabel?.text = gesture.name
-            cell.imageView?.image = UIImage(systemName: gesture.symbol)
-        
         case Tool.eraser.rawValue:
-            guard let gesture = Tool.Eraser(rawValue: indexPath.row) else {
+            if let gesture = Tool.Eraser(rawValue: indexPath.row) {
+                cell.textLabel?.text = gesture.name
+                cell.imageView?.image = UIImage(systemName: gesture.symbol)
+            } else {
                 assert(false, "Invalid Row: \(indexPath.row)")
             }
             
-            cell.textLabel?.text = gesture.name
-            cell.imageView?.image = UIImage(systemName: gesture.symbol)
-        
         default:
             fatalError("Unrecognized Section \(indexPath.section)")
         }
