@@ -47,8 +47,8 @@ extension KeyboardViewController {
     func hitTestFragments(against circle: Circle) {
         let fragments = textView.fragmentModel.fragments
         
-        let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.rect.intersects(circle)})
-        let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.rect.intersects(circle)})
+        let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.usedRect.intersects(circle)})
+        let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.usedRect.intersects(circle)})
         
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
