@@ -23,6 +23,9 @@ final class KeyboardViewController: PMViewController {
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
     
+    /// Tracks whether the eraser is currently being used.
+    var eraserDown = false
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         

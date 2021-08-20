@@ -24,6 +24,9 @@ extension KeyboardViewController {
     /// Mark the region around this point to this point to be erased.
     fileprivate func add(point: CGPoint) -> Void {
         
+        /// Update state variable.
+        eraserDown = true
+        
         var point = point
         
         /// Adjust point to text area coordinates.
@@ -38,8 +41,14 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
-        /// Discard model in light of updates.
-        defer { textView.fragmentModel.invalidate() }
+        /// Reset model state.
+        defer {
+            /// Update state variable.
+            eraserDown = false
+            
+            /// Discard model in light of updates.
+            textView.fragmentModel.invalidate()
+        }
         
         /// Update model, then report update, then update view.
         let ranges = textView.fragmentModel.getMergedRanges()
