@@ -57,7 +57,7 @@ extension KeyboardViewController {
         
         /// - Warning: Crashes the app if document is not already open!
         ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
-        registerUndo() /// register before model changes
+        registerUndo(restyle: true) /// register before model changes
         
         coordinator.document?.markdown.erase(ranges)
         coordinator.document?.updateChangeCount(.done)
