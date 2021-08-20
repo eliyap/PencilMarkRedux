@@ -38,12 +38,21 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
-        #warning("gather ranges into NSRange")
-        print(textView.fragmentModel.getMergedRanges())
+        /// Update model, then report update, then update view.
+        let ranges = textView.fragmentModel.getMergedRanges()
         
-        #warning("Apply delete across multiple ranges.")
+        guard ranges.isEmpty == false else { return }
         
-        /// Reset formatting
+        /// - Warning: Crashes the app if document is not already open!
+        ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
+        registerUndo() /// register before model changes
+        
+        coordinator.document?.markdown.erase(ranges)
+        coordinator.document?.updateChangeCount(.done)
+        
+        /// Set and style contents
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.updateAttributes()
         styleText()
         
         /// Discard model in light of updates.

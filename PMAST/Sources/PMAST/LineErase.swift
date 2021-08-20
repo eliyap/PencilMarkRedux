@@ -26,6 +26,27 @@ extension Markdown {
         
         makeReplacements()
     }
+    
+    #warning("Experimental")
+    /// A straight line erase operation.
+    public mutating func erase(_ ranges: [NSRange]) -> Void {
+        /// Reject empty ranges.
+        let ranges = ranges.filter { $0.length > 0 }
+        
+        for range in ranges {
+            let intersected: [Text] = ast.intersectingText(in: range)
+            
+            /// Mark nodes that were directly erased along this range in the AST.
+            intersected.forEach { $0.erase(in: range, in: self) }    
+        }
+        
+        /// Mark nodes that need to be removed as a result of previous removals.
+        ast.infect()
+        
+        combine()
+        
+        makeReplacements()
+    }
 }
 
 extension Text {
