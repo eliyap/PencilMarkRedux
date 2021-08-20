@@ -7,6 +7,9 @@
 
 import Foundation
 import JavaScriptCore
+import os.log
+
+let ParseHandler = OSLog(subsystem: "com.pencilmark.parse", category: .pointsOfInterest)
 
 final internal class Parser {
     
@@ -20,6 +23,11 @@ final internal class Parser {
     }
     
     func parse(markdown: String) -> Root {
+        /// Mark point of interest for profiling.
+        /// Guide: https://www.donnywals.com/measuring-performance-with-os_signpost/
+        os_signpost(.begin, log: ParseHandler, name: "Parse Markdown", "Begin Parse")
+        defer { os_signpost(.end, log: ParseHandler, name: "Parse Markdown", "End Parse") }
+        
         let result = context
             .objectForKeyedSubscript("PMJS")
             .objectForKeyedSubscript("parse")
@@ -33,7 +41,6 @@ final internal class Parser {
         /// assert tree is ok
         try! ast.linkCheck()
         
-        return ast
-        
+        return ast   
     }
 }
