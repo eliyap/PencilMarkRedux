@@ -24,7 +24,13 @@ final class KeyboardViewController: PMViewController {
     var strokeLayer: CAShapeLayer? = nil
     
     /// Tracks whether the eraser is currently being used.
-    var eraserDown = false
+    var eraserDown = false {
+        willSet {
+            if eraserDown == false && newValue == true {
+                print("Started Erasing!")
+            }
+        }
+    }
     
     init() {
         super.init(nibName: nil, bundle: nil)
