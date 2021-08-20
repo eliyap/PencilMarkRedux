@@ -38,6 +38,11 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
+        #warning("gather ranges into NSRange")
+        print(textView.fragmentModel.getMergedRanges())
+        
+        #warning("Apply delete across multiple ranges.")
+        
         /// Reset formatting
         styleText()
         

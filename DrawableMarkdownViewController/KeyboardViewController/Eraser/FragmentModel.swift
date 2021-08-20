@@ -67,6 +67,10 @@ final class FragmentModel {
 }
 
 extension FragmentModel {
+    public func getMergedRanges() -> [NSRange] {
+        merge(getStyledRanges())
+    }
+    
     /// Find all styled ranges in fragments.
     private func getStyledRanges() -> [NSRange] {
         fragments
@@ -84,7 +88,7 @@ extension FragmentModel {
         var nsRange: NSRange { NSMakeRange(lowerBound, length) }
     }
     
-    func merge(_ ranges: [NSRange]) -> [NSRange] {
+    private func merge(_ ranges: [NSRange]) -> [NSRange] {
         guard ranges.isEmpty == false else { return [] }
         
         let ranges = ranges.sorted { $0.lowerBound < $1.lowerBound }
