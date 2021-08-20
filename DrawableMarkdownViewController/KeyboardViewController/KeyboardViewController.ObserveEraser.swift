@@ -38,6 +38,9 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
+        /// Discard model in light of updates.
+        defer { textView.fragmentModel.invalidate() }
+        
         /// Update model, then report update, then update view.
         let ranges = textView.fragmentModel.getMergedRanges()
         
@@ -54,9 +57,6 @@ extension KeyboardViewController {
         textView.text = coordinator.document?.markdown.plain
         coordinator.document?.markdown.updateAttributes()
         styleText()
-        
-        /// Discard model in light of updates.
-        textView.fragmentModel.invalidate()
     }
     
     func hitTestFragments(against circle: Circle) {
