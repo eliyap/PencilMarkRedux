@@ -89,6 +89,7 @@
 		22E6BEA726CEAF6C0000A3B3 /* FragmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */; };
 		22E6BEA926CEAFA70000A3B3 /* LineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */; };
 		22E6BEAB26CEB0130000A3B3 /* UITextView.allGlyphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */; };
+		22E6BEAD26CF5C080000A3B3 /* FragmentModel_Ranges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEAC26CF5C080000A3B3 /* FragmentModel_Ranges.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
@@ -199,6 +200,7 @@
 		22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel.swift; sourceTree = "<group>"; };
 		22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineFragment.swift; sourceTree = "<group>"; };
 		22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.allGlyphs.swift; sourceTree = "<group>"; };
+		22E6BEAC26CF5C080000A3B3 /* FragmentModel_Ranges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel_Ranges.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */,
 				22E6BEA426CEAF550000A3B3 /* Circle.swift */,
 				22E6BEA626CEAF6C0000A3B3 /* FragmentModel.swift */,
+				22E6BEAC26CF5C080000A3B3 /* FragmentModel_Ranges.swift */,
 				22E6BEA826CEAFA60000A3B3 /* LineFragment.swift */,
 				22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */,
 			);
@@ -614,6 +617,7 @@
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */,
 				229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */,
+				22E6BEAD26CF5C080000A3B3 /* FragmentModel_Ranges.swift in Sources */,
 				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
 				22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */,

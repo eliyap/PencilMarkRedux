@@ -24,6 +24,9 @@ extension KeyboardViewController {
     /// Mark the region around this point to this point to be erased.
     fileprivate func add(point: CGPoint) -> Void {
         
+        /// Update state variable.
+        eraserDown = true
+        
         var point = point
         
         /// Adjust point to text area coordinates.
@@ -38,11 +41,31 @@ extension KeyboardViewController {
     
     /// Erase marked regions.
     fileprivate func erase() -> Void {
-        /// Reset formatting
-        styleText()
+        /// Reset model state.
+        defer {
+            /// Update state variable.
+            eraserDown = false
+            
+            /// Discard model in light of updates.
+            textView.fragmentModel.invalidate()
+        }
         
-        /// Discard model in light of updates.
-        textView.fragmentModel.invalidate()
+        /// Update model, then report update, then update view.
+        let ranges = textView.fragmentModel.getMergedRanges()
+        
+        guard ranges.isEmpty == false else { return }
+        
+        /// - Warning: Crashes the app if document is not already open!
+        ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
+        registerUndo(restyle: true) /// register before model changes
+        
+        coordinator.document?.markdown.erase(ranges)
+        coordinator.document?.updateChangeCount(.done)
+        
+        /// Set and style contents
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.updateAttributes()
+        styleText()
     }
     
     func hitTestFragments(against circle: Circle) {

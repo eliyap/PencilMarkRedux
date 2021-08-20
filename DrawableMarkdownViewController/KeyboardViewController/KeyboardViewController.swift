@@ -23,6 +23,15 @@ final class KeyboardViewController: PMViewController {
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
     
+    /// Tracks whether the eraser is currently being used.
+    var eraserDown = false {
+        willSet {
+            if eraserDown == false && newValue == true {
+                print("Started Erasing!")
+            }
+        }
+    }
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -95,7 +104,9 @@ final class KeyboardViewController: PMViewController {
 
 extension KeyboardViewController {
     /// General way to store the current state before it is mutated.
-    func registerUndo() {
+    /// - `restyle`: Whether to re-style the text after rollback.
+    ///             Useful if some temporary styling had been applied to the text.
+    func registerUndo(restyle: Bool = false) {
         coordinator.assertDocumentIsValid()
         
         /// Register Undo Operation before affecting model object
@@ -121,6 +132,11 @@ extension KeyboardViewController {
             /// Roll back model state.
             view.controller.coordinator.document?.markdown.plain = view.text
             view.controller.coordinator.document?.markdown.updateAttributes()
+            
+            /// Re-calculate styling if desired.
+            if restyle {
+                view.controller.styleText()
+            }
             
             /// Update undo buttons.
             /// - Note: found that `textViewDidChange` and `textDidChangeNotification`

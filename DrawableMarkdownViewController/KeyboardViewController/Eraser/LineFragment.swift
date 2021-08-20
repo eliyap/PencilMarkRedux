@@ -54,7 +54,10 @@ final class LineFragment {
     /// Character ranges that have already been styled.
     /// - Warning: assumes only one temporary style is being applied at once!
     /// - Warning: assumes each range represents a single / glyph or character, and does not attempt to do any intersecting!
-    private var styledRanges: Set<NSRange> = Set([])
+    private var _styledRanges: Set<NSRange> = Set([])
+    
+    /// Expose get-only.
+    public var styledRanges: Set<NSRange> { get { _styledRanges } }
     
     init(
         rect: CGRect,
@@ -72,10 +75,10 @@ final class LineFragment {
         glyphRects.keys
             .compactMap { characterRange(intersecting: circle, at: $0) }
             .compactMap {
-                if styledRanges.contains($0) {
+                if _styledRanges.contains($0) {
                     return nil
                 } else {
-                    styledRanges.insert($0)
+                    _styledRanges.insert($0)
                     return $0
                 }
             }
