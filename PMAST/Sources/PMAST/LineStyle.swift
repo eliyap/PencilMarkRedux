@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 extension Markdown {
     /// Note: view controllers should register undo before this method mutates the model.

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 extension Markdown {
     /// A straight line erase operation.
@@ -37,7 +36,7 @@ extension Markdown {
             let intersected: [Text] = ast.intersectingText(in: range)
             
             /// Mark nodes that were directly erased along this range in the AST.
-            intersected.forEach { $0.erase(in: range, in: self) }    
+            intersected.forEach { $0.erase(in: range, in: self) }
         }
         
         /// Mark nodes that need to be removed as a result of previous removals.

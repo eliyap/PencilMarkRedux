@@ -5,7 +5,7 @@
 //  Created by Secret Asian Man Dev on 24/7/21.
 //
 
-import UIKit
+import Foundation
 
 /// A model object representing a simple markdown document.
 public struct Markdown {
