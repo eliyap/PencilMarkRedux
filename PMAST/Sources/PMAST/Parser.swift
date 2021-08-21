@@ -41,6 +41,59 @@ final internal class Parser {
         /// assert tree is ok
         try! ast.linkCheck()
         
-        return ast   
+        // WIP: find actual top level node boundaries.
+        let actual: [Chunk] = ast.children.map {
+            Chunk(start: $0.position.start, end: $0.position.end)
+        }
+        
+        let lines = OptionalArray(markdown.makeLines())
+        (lines.startIndex..<lines.endIndex).forEach { idx in
+            let line = lines[idx]!
+            
+            /// Skip blank lines,
+            guard line.string.isBlank == false else { return }
+            
+            /// Checks if preceding line is blank.
+            let isPrecedingBlank = lines[idx - 1]?.string.isBlank ?? true
+            
+            if isPrecedingBlank && (line.string.isPotentiallyContinuation == false) {
+                print("Chunk Boundary: Line \(idx)")
+            }
+        }
+        
+        return ast
+    }
+}
+
+struct PMAbstractSyntaxTree {
+    let root: Root
+    let chunks: [Chunk]
+    
+    
+}
+
+struct Chunk {
+    var start: Point
+    var end: Point
+}
+
+/// Simple way to avoid crashing out of bounds errors.
+struct OptionalArray<T> {
+    
+    private var array: [T]
+    
+    init(_ array: [T]) {
+        self.array = array
+    }
+    
+    /// Make struct transparent to underlying array.
+    var startIndex: Int { array.startIndex }
+    var endIndex: Int { array.endIndex }
+    
+    /// The core of the struct, performs a safety check and returns nil if unsafe.
+    subscript(idx: Int) -> T? {
+        array.startIndex <= idx && idx < array.endIndex
+            ? array[idx]
+            : nil
     }
 }
