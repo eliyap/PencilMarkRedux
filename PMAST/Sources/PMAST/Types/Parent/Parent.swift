@@ -42,14 +42,6 @@ public class Parent: Node {
         super.init(parent: parent, position: position, _type: _type)
     }
     
-    /// Allows this node to style the passed Attributed String.
-    /// Makes the markdown more visually appealing.
-    override func style(_ string: NSMutableAttributedString) -> Void {
-        super.style(string)
-        /// Recursively let each child apply their own styles.
-        children.forEach { $0.style(string) }
-    }
-    
     override func gatherChanges() -> [Node] {
         /// Include changes from children as well using recursive call.
         return super.gatherChanges() + children.flatMap { $0.gatherChanges() }

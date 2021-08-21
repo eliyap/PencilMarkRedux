@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public final class Heading: Parent {
     
@@ -23,26 +22,6 @@ public final class Heading: Parent {
         }
         self.depth = depth
         super.init(dict: dict, parent: parent)
-    }
-    
-    override func style(_ string: NSMutableAttributedString) {
-        super.style(string)
-        /// Match system's preferred heading font size.
-        string.addAttribute(
-            .font,
-            value: UIFont.monospacedSystemFont(
-                ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize,
-                weight: .semibold
-            ),
-            range: position.nsRange
-        )
-        
-        /// De-emphasize syntax marks with a secondary color.
-        /// Apply to leading (for ATX headings) and trailing (for Setext headings)
-        if let leading = leadingRange, let trailing = trailingRange {
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
-        }
     }
     
     override func getReplacement() -> [Replacement] {

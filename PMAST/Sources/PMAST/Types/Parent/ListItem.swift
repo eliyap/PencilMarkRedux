@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public final class ListItem: Parent {
     override class var type: String { "listItem" }
@@ -21,14 +20,6 @@ public final class ListItem: Parent {
         self.checked = checked
         self.spread = spread
         super.init(dict: dict, parent: parent)
-    }
-    
-    override func style(_ string: NSMutableAttributedString) {
-        super.style(string)
-        if let leading = leadingRange, let trailing = trailingRange {
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
-        }
     }
     
     override func getReplacement() -> [Replacement] {

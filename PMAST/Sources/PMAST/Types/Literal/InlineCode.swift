@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public final class InlineCode: Literal, InlineJoinable {
 
@@ -19,12 +18,5 @@ public final class InlineCode: Literal, InlineJoinable {
     /// Conformance to ``InlineJoinable``, allow no-value `init`.
     init(parent: Parent?, position: Position, _type: String) {
         super.init(parent: parent, position: position, _type: _type, value: "")
-    }
-
-    override func style(_ string: NSMutableAttributedString) {
-        super.style(string)
-        
-        /// Color whole code block.
-        string.addAttribute(.foregroundColor, value: UIColor.blue, range: position.nsRange)
     }
 }

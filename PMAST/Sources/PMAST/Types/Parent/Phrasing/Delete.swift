@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public final class Delete: Parent, InlineJoinable {
     
@@ -19,17 +18,6 @@ public final class Delete: Parent, InlineJoinable {
     /// Conformance to ``InlineJoinable``, allow no-child `init`.
     init(parent: Parent?, position: Position, _type: String) {
         super.init(parent: parent, position: position, _type: _type, children: [])
-    }
-    
-    override func style(_ string: NSMutableAttributedString) {
-        super.style(string)
-        string.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: position.nsRange)
-        
-        /// Style surrounding syntax marks
-        if let leading = leadingRange, let trailing = trailingRange {
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: leading)
-            string.addAttribute(.foregroundColor, value: UIColor.tertiaryLabel, range: trailing)
-        }
     }
     
     override func getReplacement() -> [Replacement] {
