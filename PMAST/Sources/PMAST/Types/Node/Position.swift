@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Position {
+public struct Position {
     var start: Point
     var end: Point
 
@@ -15,7 +15,7 @@ struct Position {
         end.offset - start.offset
     }
     
-    var nsRange: NSRange {
+    public var nsRange: NSRange {
         NSMakeRange(start.offset, length)
     }
     
@@ -42,13 +42,13 @@ struct Position {
 }
 
 extension Position: Equatable {
-    static func == (lhs: Position, rhs: Position) -> Bool {
+    public static func == (lhs: Position, rhs: Position) -> Bool {
         lhs.start == rhs.start && lhs.end == rhs.end
     }
 }
 
 extension Position: Hashable {
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(start)
         hasher.combine(end)
     }

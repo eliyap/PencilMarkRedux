@@ -12,7 +12,7 @@ public class Parent: Node {
     override class var type: String { "Node" }
         
     /// Child Nodes
-    var children: [Node]
+    public internal(set) var children: [Node]
     
     required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
         if
@@ -58,7 +58,7 @@ extension Parent {
 
 extension Parent {
     /// range up to the range of the first child
-    var leadingRange: NSRange? {
+    public var leadingRange: NSRange? {
         if let firstChild = children.first {
             let lowerBound = position.start.offset
             let upperBound = firstChild.position.start.offset
@@ -69,7 +69,7 @@ extension Parent {
     }
     
     /// range from the end of the last child
-    var trailingRange: NSRange? {
+    public var trailingRange: NSRange? {
         if let lastChild = children.last {
             let lowerBound = lastChild.position.end.offset
             let upperBound = position.end.offset

@@ -14,7 +14,7 @@ public struct Markdown {
     public var plain: String
     
     /// A Swift representation of a Unified.JS MarkDown Abstract Syntax Tree (AST).
-    internal var ast: Root! = nil
+    public internal(set) var ast: Root! = nil
     
     public init(_ text: String) {
         self.plain = text

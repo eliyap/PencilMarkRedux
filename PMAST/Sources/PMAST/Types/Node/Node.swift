@@ -14,7 +14,7 @@ public class Node {
     weak var parent: Parent!
     
     /// The position of the substring in the source Markdown that this Node represents.
-    var position: Position
+    public internal(set) var position: Position
     
     /// An internal string for figuring out node type independent of class hierarchy
     var _type: String
