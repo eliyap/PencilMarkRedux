@@ -37,6 +37,10 @@ internal extension String {
             result.append(Line(string: substring, substringNsRange: substringRange, enclosingNsRange: enclosingRange))
         }
         
+        /// Invoke with block
+        let nsString = NSString(string: self)
+        nsString.enumerateSubstrings(in: NSMakeRange(0, nsString.length), options: .byLines, using: block)
+        
         return result
     }
 }
