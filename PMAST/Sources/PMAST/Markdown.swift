@@ -29,26 +29,4 @@ extension Markdown {
         /// re-formulate AST
         ast = Parser.shared.parse(markdown: plain)
     }
-    
-    /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!
-    /// - Parameters:
-    ///   - string: Attributed String with plain text equal to ``plain``.
-    ///   - default: Attributes to apply to normal text by default. Defaults to no attributes.
-    /// - Returns: `Void`, but mutates the passed `string` to apply styles.
-    public func setAttributes(_ string: NSMutableAttributedString, default: [NSAttributedString.Key:Any] = [:]) -> Void {
-        guard string.string == plain else {
-            /// John encountered a crash while typing quickly, it seems that the model fell out of sync with the view's text.
-            /// For now, we will simply refuse to style non-matching text.
-            #warning("Todo, log warning about bad string!")
-            assert(false, "Cannot style non matching string!")
-            return
-        }
-        precondition(string.string == plain, "Cannot style non matching string!")
-        
-        /// Clear all attributes so that typed text is plain by default.
-        string.setAttributes(`default`, range: NSMakeRange(0, string.length))
-        
-        /// Apply styling via AST.
-        ast.style(string)
-    }
 }

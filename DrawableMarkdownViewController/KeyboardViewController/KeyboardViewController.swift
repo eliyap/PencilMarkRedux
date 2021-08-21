@@ -7,6 +7,8 @@
 
 import UIKit
 import Combine
+import PMAST
+import PMStyle
 
 final class KeyboardViewController: PMViewController {
     
@@ -185,7 +187,29 @@ extension KeyboardViewController {
     /// - Note: does **not** rebuild the AST!
     func styleText() {
         guard let md = coordinator?.document?.markdown else { return }
-        md.setAttributes(textView.textStorage, default: defaultAttributes)
+        setAttributes(textView.textStorage, default: defaultAttributes, markdown: md)
+    }
+    
+    /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!
+    /// - Parameters:
+    ///   - string: Attributed String with plain text equal to ``plain``.
+    ///   - default: Attributes to apply to normal text by default. Defaults to no attributes.
+    /// - Returns: `Void`, but mutates the passed `string` to apply styles.
+    fileprivate func setAttributes(_ string: NSMutableAttributedString, default: [NSAttributedString.Key:Any] = [:], markdown: Markdown) -> Void {
+        guard string.string == markdown.plain else {
+            /// John encountered a crash while typing quickly, it seems that the model fell out of sync with the view's text.
+            /// For now, we will simply refuse to style non-matching text.
+            #warning("Todo, log warning about bad string!")
+            assert(false, "Cannot style non matching string!")
+            return
+        }
+        precondition(string.string == markdown.plain, "Cannot style non matching string!")
+        
+        /// Clear all attributes so that typed text is plain by default.
+        string.setAttributes(`default`, range: NSMakeRange(0, string.length))
+        
+        /// Apply styling via AST.
+        markdown.style(string)
     }
 }
 
