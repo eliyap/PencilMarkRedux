@@ -36,12 +36,15 @@ extension Markdown {
 }
 
 extension Markdown {
-    func getChunks() {
-        
+    
+    func getChunks(in lines: [SKLine]) -> [ArraySlice<SKLine>] {
+        let boundaries = findBoundaries(in: lines)
+        return (1..<boundaries.count).map { idx in
+           lines[boundaries[idx-1]..<boundaries[idx]]
+        }
     }
     
-    func getBoundaries() -> [Array<SKLine>.Index] {
-        let lines = plain.makeLines()
+    func findBoundaries(in lines: [SKLine]) -> [Array<SKLine>.Index] {
         var boundaries: [Array<SKLine>.Index] = []
         
         (lines.startIndex..<lines.endIndex).forEach { idx in
