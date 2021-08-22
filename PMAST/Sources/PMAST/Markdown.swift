@@ -109,19 +109,13 @@ internal extension CollectionDifference where ChangeElement == ArraySlice<SKLine
     /// Docs for `insert` and `remove`: https://developer.apple.com/documentation/swift/collectiondifference/change/insert_offset_element_associatedwith
     
     func report() -> Void {
-        insertions.forEach { change in
-            if case .insert(let offset, let element, let associatedWith) = change {
+        self.forEach { change in
+            print("Chunk Change: ")
+            switch change {
+            case .insert(let offset, let element, let associatedWith):
                 Self.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "+")
-            } else {
-                fatalError("Non insert insertion!")
-            }
-        }
-        
-        removals.forEach { change in
-            if case .remove(let offset, let element, let associatedWith) = change {
+            case .remove(let offset, let element, let associatedWith):
                 Self.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "-")
-            } else {
-                fatalError("Non remove removal!")
             }
         }
     }
@@ -132,6 +126,7 @@ internal extension CollectionDifference where ChangeElement == ArraySlice<SKLine
             /// Format something like this:
             /// (+) 12: "new line!"
             print(
+                "   ", /// padding
                 "(\(symbol))",
                 "\(idx)".padding(toLength: 3, withPad: " ", startingAt: 0) + ":", /// make line length uniform up to 999 lines
                 "\"\(element[idx].string)\""
