@@ -20,10 +20,14 @@ class SandboxTests: XCTestCase {
     
     /// Do sandbox stuff here.
     func testStuffOut() throws {
-        var document = Markdown("")
+        var document = Markdown("""
+            Some Stuff
+            """)
         
-        document = Markdown("aaa")
-        document.apply(lineStyle: Delete.self, to: NSMakeRange(1, 0))
-        XCTAssertEqual(document.plain, "aaa")
+        document.updateTree(with: """
+            Some Stuff
+            
+            AND MORE!
+            """)
     }
 }

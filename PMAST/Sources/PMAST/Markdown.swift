@@ -31,7 +31,7 @@ extension Markdown {
     }
     
     public mutating func updateTree(with text: String) -> Void {
-        
+        diffChunks(with: text)
     }
 }
 
@@ -40,8 +40,12 @@ extension Markdown {
     func diffChunks(with new: String) -> Void {
         let original = getChunks(in: plain.makeLines())
         let other = getChunks(in: new.makeLines())
+        
+        print("Chunks: \(original)")
+        
         let diff = original.difference(from: other)
         print(diff)
+        diff.print()
     }
     
     func getChunks(in lines: [SKLine]) -> [ArraySlice<SKLine>] {
@@ -72,5 +76,11 @@ extension Markdown {
         
         /// Cap the document at both ends.
         return [0] + boundaries + [lines.endIndex]
+    }
+}
+
+extension CollectionDifference where ChangeElement == ArraySlice<SKLine> {
+    func print() -> Void {
+        Swift.print("Hi!")
     }
 }
