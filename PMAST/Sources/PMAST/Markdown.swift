@@ -16,8 +16,12 @@ public struct Markdown {
     /// A Swift representation of a Unified.JS MarkDown Abstract Syntax Tree (AST).
     public internal(set) var ast: Root! = nil
     
+    /// Convenient internal storage of ``plain`` broken into lines.
+    internal var chunks: [SKLine]
+    
     public init(_ text: String) {
         self.plain = text
+        self.chunks = plain.makeLines()
         self.updateAttributes()
     }
 }
@@ -28,10 +32,5 @@ extension Markdown {
     public mutating func updateAttributes() -> Void {
         /// re-formulate AST
         ast = Parser.shared.parse(markdown: plain)
-    }
-    
-    #warning("⚠️ UNDER CONSTRUCTION ⚠️")
-    public mutating func updateTree(with text: String) -> Void {
-        diffChunks(with: text)
     }
 }

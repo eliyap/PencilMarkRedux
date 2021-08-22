@@ -24,7 +24,7 @@ class SandboxTests: XCTestCase {
             Some Stuff
             """)
         
-        document.updateTree(with: """
+        document.patch(with: """
             new line
             
             Some Stuff
