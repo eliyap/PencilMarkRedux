@@ -21,4 +21,10 @@ module.exports = {
     },
     mode: "development",
     watch: true,
+    resolve: {
+        fallback: {
+            fs: "browserify-fs",
+            path: "path-browserify",
+        }
+    }
 };
