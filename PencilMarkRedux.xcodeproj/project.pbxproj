@@ -193,7 +193,6 @@
 		22CDCB0F269BBD6F00988085 /* PencilMarkRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilMarkRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CF007626A5099500A12F88 /* ScribbleBlockers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleBlockers.swift; sourceTree = "<group>"; };
 		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
-		22D5297A26D2D539001050C3 /* PMTreeSitter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PMTreeSitter; sourceTree = "<group>"; };
 		22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilMarkReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.distance.swift; sourceTree = "<group>"; };
@@ -332,7 +331,6 @@
 		22AF74AD269BA5F0007D9891 = {
 			isa = PBXGroup;
 			children = (
-				22D5297A26D2D539001050C3 /* PMTreeSitter */,
 				22E6BEAE26D07BAB0000A3B3 /* PMStyle */,
 				220B853826ACD3EC00081536 /* PMAST */,
 				2228357026C4A8A30026D468 /* Tutorial */,
