@@ -5,3 +5,9 @@
 xcuserdata/
 DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
+# Virtual Environments
+**/venv/
+**/env/
+
+# etc
