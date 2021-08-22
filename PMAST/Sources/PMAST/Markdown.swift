@@ -30,21 +30,8 @@ extension Markdown {
         ast = Parser.shared.parse(markdown: plain)
     }
     
+    #warning("⚠️ UNDER CONSTRUCTION ⚠️")
     public mutating func updateTree(with text: String) -> Void {
         diffChunks(with: text)
-    }
-}
-
-extension Markdown {
-    
-    func diffChunks(with new: String) -> Void {
-        let original = getChunks(in: plain.makeLines())
-        let other = getChunks(in: new.makeLines())
-        
-        print("Chunks: \(original)")
-        
-        let diff = original.difference(from: other)
-        print(diff)
-        diff.report()
     }
 }
