@@ -50,9 +50,15 @@ extension Markdown {
     
     func getChunks(in lines: [SKLine]) -> [ArraySlice<SKLine>] {
         let boundaries = findBoundaries(in: lines)
-        return (1..<boundaries.count).map { idx in
-           lines[boundaries[idx-1]..<boundaries[idx]]
-        }
+        return (1..<boundaries.count)
+            .map { idx in
+                lines[boundaries[idx-1]..<boundaries[idx]]
+            }
+            .map(\.trimmed)
+            .filter {
+                /// Discard empty chunks
+                $0.isEmpty == false
+            }
     }
     
     func findBoundaries(in lines: [SKLine]) -> [Array<SKLine>.Index] {
@@ -76,6 +82,24 @@ extension Markdown {
         
         /// Cap the document at both ends.
         return [0] + boundaries + [lines.endIndex]
+    }
+}
+
+extension ArraySlice where Element == SKLine {
+    var trimmed: ArraySlice<Element> {
+        var result = self
+        
+        /// Trim leading blank lines
+        while result.first?.string.isBlank == true {
+            result = result[(result.startIndex + 1)..<result.endIndex]
+        }
+        
+        /// Trim trailing blank lines
+        while result.last?.string.isBlank == true {
+            result = result[result.startIndex..<(result.endIndex - 1)]
+        }
+        
+        return result
     }
 }
 

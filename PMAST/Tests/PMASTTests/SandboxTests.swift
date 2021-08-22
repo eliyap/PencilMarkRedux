@@ -25,6 +25,8 @@ class SandboxTests: XCTestCase {
             """)
         
         document.updateTree(with: """
+            new line
+            
             Some Stuff
             
             AND MORE!
