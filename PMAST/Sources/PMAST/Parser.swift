@@ -41,26 +41,6 @@ final internal class Parser {
         /// assert tree is ok
         try! ast.linkCheck()
         
-        // WIP: find actual top level node boundaries.
-        let actual: [Chunk] = ast.children.map {
-            Chunk(start: $0.position.start, end: $0.position.end)
-        }
-        
-        let lines = OptionalArray(markdown.makeLines())
-        (lines.startIndex..<lines.endIndex).forEach { idx in
-            let line = lines[idx]!
-            
-            /// Skip blank lines,
-            guard line.string.isBlank == false else { return }
-            
-            /// Checks if preceding line is blank.
-            let isPrecedingBlank = lines[idx - 1]?.string.isBlank ?? true
-            
-            if isPrecedingBlank && (line.string.isPotentiallyContinuation == false) {
-                print("Chunk Boundary: Line \(idx)")
-            }
-        }
-        
         return ast
     }
 }
