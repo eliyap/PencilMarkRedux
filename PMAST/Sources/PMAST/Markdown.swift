@@ -37,6 +37,13 @@ extension Markdown {
 
 extension Markdown {
     
+    func diffChunks(with new: String) -> Void {
+        let original = getChunks(in: plain.makeLines())
+        let other = getChunks(in: new.makeLines())
+        let diff = original.difference(from: other)
+        print(diff)
+    }
+    
     func getChunks(in lines: [SKLine]) -> [ArraySlice<SKLine>] {
         let boundaries = findBoundaries(in: lines)
         return (1..<boundaries.count).map { idx in
