@@ -21,6 +21,7 @@ module.exports = {
     },
     mode: "development",
     watch: true,
+    target: 'node',
     resolve: {
         fallback: {
             fs: "browserify-fs",
