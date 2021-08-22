@@ -10,5 +10,5 @@ import Foundation
 /// A series of lines in a larger multiline plain text document.
 internal typealias Chunk = ArraySlice<SKLine>
 
-/// A series of 
+/// A series of
 internal typealias Boundary = Array<SKLine>.Index
