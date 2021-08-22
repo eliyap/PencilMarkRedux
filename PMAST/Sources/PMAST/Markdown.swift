@@ -18,7 +18,7 @@ public struct Markdown {
     
     public init(_ text: String) {
         self.plain = text
-        self.ast = Parser.shared.parse(markdown: text)
+        self.updateAttributes()
     }
 }
 
