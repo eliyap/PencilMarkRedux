@@ -332,8 +332,8 @@
 			isa = PBXGroup;
 			children = (
 				22E6BEAE26D07BAB0000A3B3 /* PMStyle */,
-				2228357026C4A8A30026D468 /* Tutorial */,
 				220B853826ACD3EC00081536 /* PMAST */,
+				2228357026C4A8A30026D468 /* Tutorial */,
 				22C9F60026ABA4D8003FD426 /* StyledMarkdownDocument */,
 				22C9F5FD26ABA26F003FD426 /* DrawableMarkdownViewController */,
 				22AF74B8269BA5F1007D9891 /* PencilMarkRedux */,
