@@ -44,36 +44,3 @@ final internal class Parser {
         return ast
     }
 }
-
-struct PMAbstractSyntaxTree {
-    let root: Root
-    let chunks: [Chunk]
-    
-    
-}
-
-struct Chunk {
-    var start: Point
-    var end: Point
-}
-
-/// Simple way to avoid crashing out of bounds errors.
-struct OptionalArray<T> {
-    
-    private var array: [T]
-    
-    init(_ array: [T]) {
-        self.array = array
-    }
-    
-    /// Make struct transparent to underlying array.
-    var startIndex: Int { array.startIndex }
-    var endIndex: Int { array.endIndex }
-    
-    /// The core of the struct, performs a safety check and returns nil if unsafe.
-    subscript(idx: Int) -> T? {
-        array.startIndex <= idx && idx < array.endIndex
-            ? array[idx]
-            : nil
-    }
-}

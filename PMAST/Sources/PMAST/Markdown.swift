@@ -29,10 +29,18 @@ extension Markdown {
         /// re-formulate AST
         ast = Parser.shared.parse(markdown: plain)
     }
+    
+    public mutating func updateTree(with text: String) -> Void {
+        
+    }
 }
 
 extension Markdown {
-    func chunk() -> [Array<String.Line>.Index] {
+    func getChunks() {
+        
+    }
+    
+    func getBoundaries() -> [Array<String.Line>.Index] {
         let lines = plain.makeLines()
         var boundaries: [Array<String.Line>.Index] = []
         
@@ -49,13 +57,8 @@ extension Markdown {
             }
         }
         
-        // WIP: find actual top level node boundaries.
-        let actual: [Chunk] = ast.children.map {
-            Chunk(start: $0.position.start, end: $0.position.end)
-        }
-        
         print("Found \(boundaries)")
-        print("Actual \(actual.map(\.start.line))")
+        print("Actual \(ast.children.map(\.position.start.line))")
         
         
         /// Cap the document at both ends.
