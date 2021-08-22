@@ -10,4 +10,7 @@ DerivedData/
 **/venv/
 **/env/
 
+# NPM
+**/node_modules/
+
 # etc
