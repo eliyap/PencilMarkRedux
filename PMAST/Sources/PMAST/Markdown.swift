@@ -40,9 +40,9 @@ extension Markdown {
         
     }
     
-    func getBoundaries() -> [Array<String.Line>.Index] {
+    func getBoundaries() -> [Array<SKLine>.Index] {
         let lines = plain.makeLines()
-        var boundaries: [Array<String.Line>.Index] = []
+        var boundaries: [Array<SKLine>.Index] = []
         
         (lines.startIndex..<lines.endIndex).forEach { idx in
             let line = lines[idx]
@@ -59,7 +59,6 @@ extension Markdown {
         
         print("Found \(boundaries)")
         print("Actual \(ast.children.map(\.position.start.line))")
-        
         
         /// Cap the document at both ends.
         return [0] + boundaries + [lines.endIndex]
