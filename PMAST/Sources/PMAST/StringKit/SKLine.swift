@@ -15,3 +15,7 @@ internal struct SKLine {
     let substringNsRange: NSRange
     let enclosingNsRange: NSRange
 }
+
+extension SKLine : Equatable {
+    /// Automagical!
+}
