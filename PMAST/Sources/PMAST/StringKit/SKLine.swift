@@ -17,5 +17,8 @@ internal struct SKLine {
 }
 
 extension SKLine : Equatable {
-    /// Automagical!
+    /// Compare strings by their contents only, not their ranges.
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        lhs.string == rhs.string
+    }
 }

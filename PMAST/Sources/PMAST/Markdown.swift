@@ -45,7 +45,7 @@ extension Markdown {
         
         let diff = original.difference(from: other)
         print(diff)
-        diff.print()
+        diff.report()
     }
     
     func getChunks(in lines: [SKLine]) -> [ArraySlice<SKLine>] {
@@ -79,8 +79,39 @@ extension Markdown {
     }
 }
 
-extension CollectionDifference where ChangeElement == ArraySlice<SKLine> {
-    func print() -> Void {
-        Swift.print("Hi!")
+/// Custom debug printout.
+internal extension CollectionDifference where ChangeElement == ArraySlice<SKLine> {
+    
+    /// Docs for `insert` and `remove`: https://developer.apple.com/documentation/swift/collectiondifference/change/insert_offset_element_associatedwith
+    
+    func report() -> Void {
+        insertions.forEach { change in
+            if case .insert(let offset, let element, let associatedWith) = change {
+                Self.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "+")
+            } else {
+                fatalError("Non insert insertion!")
+            }
+        }
+        
+        removals.forEach { change in
+            if case .remove(let offset, let element, let associatedWith) = change {
+                Self.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "-")
+            } else {
+                fatalError("Non remove removal!")
+            }
+        }
+    }
+    
+    /// `offset`, `element`, `associatedWith`, from standard change parameters: https://developer.apple.com/documentation/swift/collectiondifference/change/insert_offset_element_associatedwith
+    static func report(offset: Int, element: ChangeElement, associatedWith: Int?, symbol: Character) -> Void {
+        (element.startIndex..<element.endIndex).forEach { idx in
+            /// Format something like this:
+            /// (+) 12: "new line!"
+            print(
+                "(\(symbol))",
+                "\(idx)".padding(toLength: 3, withPad: " ", startingAt: 0) + ":", /// make line length uniform up to 999 lines
+                "\"\(element[idx].string)\""
+            )
+        }
     }
 }
