@@ -28,10 +28,12 @@ final internal class Parser {
         os_signpost(.begin, log: ParseHandler, name: "Parse Markdown", "Begin Parse")
         defer { os_signpost(.end, log: ParseHandler, name: "Parse Markdown", "End Parse") }
         
+        os_signpost(.begin, log: ParseHandler, name: "JS Parse", "Begin JS")
         let result = context
             .objectForKeyedSubscript("PMJS")
             .objectForKeyedSubscript("parse")
             .call(withArguments: [markdown])
+        os_signpost(.end, log: ParseHandler, name: "JS Parse", "End JS")
         
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
