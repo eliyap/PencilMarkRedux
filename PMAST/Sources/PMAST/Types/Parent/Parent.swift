@@ -55,10 +55,16 @@ public class Parent: Node {
         return super.gatherChanges() + children.flatMap { $0.gatherChanges() }
     }
     
+    /// Include ``children``'s descriptions.
     public override var description: [Event] {
         [.enter(point: position.start, type: _type)]
-            + children.flatMap(\.description)
+            + childDescriptions
             + [.exit(point: position.start, type: _type)]
+    }
+    
+    /// Join ``children``'s descriptions.
+    internal var childDescriptions: [Event] {
+        children.flatMap(\.description)
     }
 }
 

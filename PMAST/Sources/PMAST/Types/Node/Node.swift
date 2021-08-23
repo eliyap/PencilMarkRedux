@@ -77,19 +77,6 @@ public class Node {
     ]}
 }
 
-/// Borrowed from UNIST, an event occurs when we enter / exit a node.
-public enum Event {
-    /// Entering a node.
-    case enter(point: Point, type: String)
-    
-    /// Describe a ``Node``'s contents.
-    /// Intended for use by ``Literal``s so we can inspect their ``value``.
-    case contents(String)
-    
-    /// Exiting a node.
-    case exit(point: Point, type: String)
-}
-
 extension Node {
     /// index in parent's ``children`` array.
     var indexInParent: Int? {
