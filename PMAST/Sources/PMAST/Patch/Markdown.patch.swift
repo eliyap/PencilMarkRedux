@@ -13,7 +13,18 @@ extension Markdown {
         let oldChunks = plain.makeLines().chunked()
         let newChunks = new.makeLines().chunked()
         
-        let diff = oldChunks.difference(from: newChunks)
+        let diff = newChunks.difference(from: oldChunks)
         diff.report()
+        
+        diff.forEach { change in
+            switch change {
+            case .insert(let offset, let element, let associatedWith):
+                print("Contents: \(new.contents(of: element))")
+                let node = Parser.shared.parse(markdown: new.contents(of: element))
+                #warning("TODO: insert this into tree")
+            case .remove(let offset, let element, let associatedWith):
+                break
+            }
+        }
     }
 }

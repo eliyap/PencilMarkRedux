@@ -34,11 +34,11 @@ class PatchTests: XCTestCase {
         XCTExpectFailure() {
             checkPatch(
                 old: """
-                New Text
-                
                 Old Text
                 """,
                 new: """
+                New Text
+                
                 Old Text
                 """
             )
@@ -49,11 +49,11 @@ class PatchTests: XCTestCase {
             checkPatch(
                 old: """
                 Old Text
-                
-                New Text
                 """,
                 new: """
                 Old Text
+                
+                New Text
                 """
             )
         }
