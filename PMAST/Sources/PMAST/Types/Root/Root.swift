@@ -21,3 +21,15 @@ final class Root: Parent {
         }
     }
 }
+
+extension Root {
+    /// Insert the other tree's nodes into our tree at the specified ``index``.
+    func graft(_ other: Root, at index: Int) -> Void {
+        /// "Adopt" tree as a child.
+        children.insert(other, at: index)
+        other.parent = self
+        
+        /// Lyse the node.
+        other.apoptose()
+    }
+}
