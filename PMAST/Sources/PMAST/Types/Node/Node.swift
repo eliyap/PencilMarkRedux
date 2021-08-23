@@ -75,6 +75,12 @@ public class Node {
         .enter(point: position.start, type: _type),
         .exit(point: position.start, type: _type),
     ]}
+    
+    /// Offsets the node's ``position`` by `point`.
+    internal func offsetPosition(by point: Point) -> Void {
+        position.start += point
+        position.end -= point
+    }
 }
 
 extension Node {

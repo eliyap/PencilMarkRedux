@@ -66,6 +66,12 @@ public class Parent: Node {
     internal var childDescriptions: [Event] {
         children.flatMap(\.description)
     }
+    
+    /// Also increment ``children``.
+    override func offsetPosition(by point: Point) {
+        super.offsetPosition(by: point)
+        children.forEach { $0.offsetPosition(by: point) }
+    }
 }
 
 // MARK:- Convenience Methods
