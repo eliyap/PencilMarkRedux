@@ -33,7 +33,7 @@ extension Chunk: Diffable {
 }
 
 /// Custom debug printout.
-internal extension CollectionDifference where ChangeElement == Chunk {
+internal extension CollectionDifference where ChangeElement: Diffable {
     
     /// Docs for `insert` and `remove`: https://developer.apple.com/documentation/swift/collectiondifference/change/insert_offset_element_associatedwith
     
@@ -42,9 +42,9 @@ internal extension CollectionDifference where ChangeElement == Chunk {
             print("Chunk Change: ")
             switch change {
             case .insert(let offset, let element, let associatedWith):
-                Chunk.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "+")
+                ChangeElement.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "+")
             case .remove(let offset, let element, let associatedWith):
-                Chunk.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "-")
+                ChangeElement.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "-")
             }
         }
     }
