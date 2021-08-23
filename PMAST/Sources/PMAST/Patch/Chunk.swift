@@ -14,6 +14,17 @@ typealias Chunk = ArraySlice<Line>
 typealias Boundary = Array<Line>.Index
 
 extension Chunk {
+    
+    var lowerBound: Int {
+        /// We may assume the chunk is non empty.
+        first!.substringNsRange.lowerBound
+    }
+    
+    var upperBound: Int {
+        /// We may assume the chunk is non empty.
+        last!.substringNsRange.upperBound
+    }
+    
     /// The ``NSRange`` enclosing all lines in the chunk.
     var nsRange: NSRange {
         #if DEBUG /// Safety check for contiguous lines
@@ -23,9 +34,7 @@ extension Chunk {
         #endif
         
         /// We may assume the chunk is non empty.
-        let low = first!.substringNsRange.lowerBound
-        let upp = last!.substringNsRange.upperBound
-        return NSMakeRange(low, upp - low)
+        return NSMakeRange(lowerBound, upperBound - lowerBound)
     }
 }
 
