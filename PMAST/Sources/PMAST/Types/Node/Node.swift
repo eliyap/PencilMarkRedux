@@ -71,22 +71,23 @@ public class Node {
     }
     
     /// Describe this node in terms of events.
-    public func describe() -> [Event] {
-        [.enter(position.start), .exit(position.end)]
-    }
+    public var description: [Event] {[
+        .enter(point: position.start, type: _type),
+        .exit(point: position.start, type: _type),
+    ]}
 }
 
 /// Borrowed from UNIST, an event occurs when we enter / exit a node.
 public enum Event {
     /// Entering a node.
-    case enter(Point)
+    case enter(point: Point, type: String)
     
     /// Describe a ``Node``'s contents.
     /// Intended for use by ``Literal``s so we can inspect their ``value``.
     case contents(String)
     
     /// Exiting a node.
-    case exit(Point)
+    case exit(point: Point, type: String)
 }
 
 extension Node {
