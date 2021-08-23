@@ -10,7 +10,7 @@ import Foundation
 /**
  Reflects a UNIST Point.
  */
-struct Point {
+public struct Point {
     
     /// Column in a source file (1-indexed integer).
     let column: Int

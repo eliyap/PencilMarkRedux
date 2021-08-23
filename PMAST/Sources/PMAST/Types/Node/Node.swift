@@ -69,6 +69,25 @@ public class Node {
     func style(_ string: NSMutableAttributedString) -> Void {
         /// Override to apply styles here.
     }
+    
+    /// Describe this node in terms of events.
+    public var description: [Event] {[
+        .enter(point: position.start, type: _type),
+        .exit(point: position.start, type: _type),
+    ]}
+}
+
+/// Borrowed from UNIST, an event occurs when we enter / exit a node.
+public enum Event {
+    /// Entering a node.
+    case enter(point: Point, type: String)
+    
+    /// Describe a ``Node``'s contents.
+    /// Intended for use by ``Literal``s so we can inspect their ``value``.
+    case contents(String)
+    
+    /// Exiting a node.
+    case exit(point: Point, type: String)
 }
 
 extension Node {

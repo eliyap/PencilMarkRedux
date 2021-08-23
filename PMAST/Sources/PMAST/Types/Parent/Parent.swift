@@ -54,6 +54,12 @@ public class Parent: Node {
         /// Include changes from children as well using recursive call.
         return super.gatherChanges() + children.flatMap { $0.gatherChanges() }
     }
+    
+    public override var description: [Event] {
+        [.enter(point: position.start, type: _type)]
+            + children.flatMap(\.description)
+            + [.exit(point: position.start, type: _type)]
+    }
 }
 
 // MARK:- Convenience Methods
