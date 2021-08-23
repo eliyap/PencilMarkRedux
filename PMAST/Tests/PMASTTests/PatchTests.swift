@@ -63,7 +63,7 @@ class PatchTests: XCTestCase {
     func checkPatch(old: String, new: String) {
         var oldMD = Markdown(old)
         oldMD.patch(with: new)
-        print(oldMD.ast.description)
-        XCTAssertEqual(oldMD.ast.description, Markdown(new).ast.description)
+        let diff = oldMD.ast.description.difference(from: Markdown(new).ast.description)
+        XCTAssertEqual(diff.count, 0, "\(diff.report())")
     }
 }
