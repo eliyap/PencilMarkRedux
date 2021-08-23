@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A chunk is a contiguous slice of lines in a larger document.
+/// A contiguous slice of lines in a larger document.
 typealias Chunk = ArraySlice<Line>
 
 /// Marks the boundary between ``Chunk``s.
