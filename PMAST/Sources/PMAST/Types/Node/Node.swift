@@ -90,6 +90,10 @@ public enum Event {
     case exit(point: Point, type: String)
 }
 
+extension Event: Equatable {
+    /// Automagical!
+}
+
 extension Node {
     /// index in parent's ``children`` array.
     var indexInParent: Int? {
