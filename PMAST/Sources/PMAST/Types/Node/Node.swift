@@ -63,6 +63,11 @@ public class Node {
         print("Warning: Generic getReplacement called because inheriting class did not implement it!")
         return [] /// override to replace this
     }
+    
+    /// Check whether a node in another tree is effectively the same.
+    func equivalent(to other: Node) -> Bool {
+        self._type == other._type && self.position == other.position
+    }
 }
 
 extension Node {
