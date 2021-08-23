@@ -24,7 +24,6 @@ internal extension CollectionDifference where ChangeElement: Diffable {
     /// Docs for `insert` and `remove`: https://developer.apple.com/documentation/swift/collectiondifference/change/insert_offset_element_associatedwith
     func report() -> Void {
         self.forEach { change in
-            print("Chunk Change: ")
             switch change {
             case .insert(let offset, let element, let associatedWith):
                 ChangeElement.report(offset: offset, element: element, associatedWith: associatedWith, symbol: "+")
