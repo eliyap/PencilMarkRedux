@@ -11,6 +11,6 @@ public class Paragraph: Parent {
     override class var type: String { "paragraph" }
     
     override public var description: [Event] {
-        [] /// suppress ``Paragraph`` descriptions!
+        childDescriptions /// suppress ``Paragraph`` descriptions!
     }
 }
