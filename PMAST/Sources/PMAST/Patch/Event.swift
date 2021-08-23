@@ -8,6 +8,7 @@
 import Foundation
 
 /// Borrowed from UNIST, an event occurs when we enter / exit a node.
+/// Used to check whether 2 ASTs are functionally equivalent for our purposes.
 public enum Event {
     /// Entering a node.
     case enter(point: Point, type: String)
