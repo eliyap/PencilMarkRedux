@@ -38,4 +38,10 @@ public class Literal: Node {
         self.value = value
         super.init(parent: parent, position: position, _type: _type)
     }
+    
+    override public var description: [Event] {[
+        .enter(point: position.start, type: _type),
+        .contents(value),
+        .exit(point: position.start, type: _type),
+    ]}
 }
