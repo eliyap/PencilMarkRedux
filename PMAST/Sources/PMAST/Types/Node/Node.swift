@@ -79,7 +79,7 @@ public class Node {
     /// Offsets the node's ``position`` by `point`.
     internal func offsetPosition(by point: Point) -> Void {
         position.start += point
-        position.end -= point
+        position.end += point
     }
 }
 
