@@ -46,7 +46,7 @@ extension Chunk {
     
     var upperEnclosingBound: Int {
         /// We may assume the chunk is non empty.
-        last!.enclosingNsRange.lowerBound
+        last!.enclosingNsRange.upperBound
     }
     
     var enclosingNsRange: NSRange {
