@@ -125,6 +125,58 @@ class PatchTests: XCTestCase {
         )
     }
     
+    func testCloseFormatting() throws {
+        /// Close at the end.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2~~
+            """
+        )
+        
+        /// Close at the beginning.
+        checkPatch(
+            old: """
+            Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2~~
+            """
+        )
+    }
+    
+    func testUncloseFormatting() throws {
+        /// Unclose at the end.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2
+            """
+        )
+        
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            Old Text 1
+            Old Text 2~~
+            """
+        )
+    }
+    
     /// Generic function for checking ``Markdown.patch``.
     func checkPatch(old: String, new: String) {
         var oldMD = Markdown(old)
