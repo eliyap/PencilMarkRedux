@@ -23,6 +23,17 @@ extension ChunkDiff {
 
 extension ChunkDiff: Comparable {
     public static func <(lhs: Self, rhs: Self) -> Bool {
-        lhs.startIndex < rhs.startIndex
+        /// Always let the later change go first.
+        guard lhs.startIndex == rhs.startIndex else {
+            return lhs.startIndex > rhs.startIndex
+        }
+        switch (lhs, rhs) {
+        case (.insert, .remove):
+            return true /// let removal go first
+        case (.remove, .insert):
+            return false /// let removal go first
+        default:
+            fatalError("Two Insertions / Removals at the same line index!")
+        }
     }
 }

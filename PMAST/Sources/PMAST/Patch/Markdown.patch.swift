@@ -17,39 +17,46 @@ extension Markdown {
         diff
             .sorted()
             .forEach { change in
-            switch change {
-            case .insert(let offset, let element, let associatedWith):
-                let (_, _) = (offset, associatedWith) /// Hush now, Swift.
-                let node = Parser.shared.parse(markdown: new.contents(of: element))
-                
-                /// Shift new nodes into the correct ``position``.
-                let offset = Point(column: 0, line: element.startIndex, offset: element.lowerBound)
-                node.offsetPosition(by: offset)
-                
-                /// Locate immediately preceding node.
-                let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= element.lowerBound }
-                
-                let insertionIndex = precedingIndex != nil
-                    ? precedingIndex! + 1     /// Insertion point should be after the identified node.
-                    : ast.children.startIndex /// assume start of tree if not found.
-                
-                /// Offset following nodes to account for inserted lines.
-                let chunkSize = Point(column: 0, line: element.count, offset: element.enclosingNsRange.length)
-                ast.children[insertionIndex..<ast.children.endIndex].forEach {
-                    $0.offsetPosition(by: chunkSize)
+                print("Change \(change.startIndex)")
+                switch change {
+                case .insert(let offset, let element, let associatedWith):
+                    insert(offset: offset, element: element, associatedWith: associatedWith, new: new)
+                case .remove(let offset, let element, let associatedWith):
+                    remove(offset: offset, element: element, associatedWith: associatedWith, new: new)
                 }
-                
-                /// Also offset the document end to account for inserted lines.
-                ast.position.end += chunkSize
-                
-                /// Insert node into tree structure.
-                ast.graft(node, at: insertionIndex)
-                
-                print(ast.description)
-            case .remove(let offset, let element, let associatedWith):
-                let (_, _) = (offset, associatedWith) /// Hush now, Swift.
-                
             }
+    }
+    
+    fileprivate mutating func insert(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
+        let node = Parser.shared.parse(markdown: new.contents(of: element))
+        
+        /// Shift new nodes into the correct ``position``.
+        let offset = Point(column: 0, line: element.startIndex, offset: element.lowerBound)
+        node.offsetPosition(by: offset)
+        
+        /// Locate immediately preceding node.
+        let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= element.lowerBound }
+        
+        let insertionIndex = precedingIndex != nil
+            ? precedingIndex! + 1     /// Insertion point should be after the identified node.
+            : ast.children.startIndex /// assume start of tree if not found.
+        
+        /// Offset following nodes to account for inserted lines.
+        let chunkSize = Point(column: 0, line: element.count, offset: element.enclosingNsRange.length)
+        ast.children[insertionIndex..<ast.children.endIndex].forEach {
+            $0.offsetPosition(by: chunkSize)
         }
+        
+        /// Also offset the document end to account for inserted lines.
+        ast.position.end += chunkSize
+        
+        /// Insert node into tree structure.
+        ast.graft(node, at: insertionIndex)
+        
+        print(ast.description)
+    }
+    
+    fileprivate mutating func remove(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
+        print(ast.description)
     }
 }
