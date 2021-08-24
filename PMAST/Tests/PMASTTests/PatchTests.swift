@@ -29,7 +29,7 @@ class PatchTests: XCTestCase {
         )
     }
     
-    func testInsert() throws {
+    func testNewlineBefore() throws {
         /// Insert Before
         checkPatch(
             old: """
@@ -40,7 +40,9 @@ class PatchTests: XCTestCase {
             Old Text
             """
         )
-        
+    }
+    
+    func testLineBefore() throws {
         checkPatch(
             old: """
             Old Text
@@ -51,7 +53,9 @@ class PatchTests: XCTestCase {
             Old Text
             """
         )
-        
+    }
+    
+    func testInsert() throws {
         /// Insert After
         checkPatch(
             old: """
@@ -72,7 +76,8 @@ class PatchTests: XCTestCase {
         let oldDescription = oldMD.ast.description
         let newDescription = Markdown(new).ast.description
         let diff = oldDescription.difference(from: newDescription)
-        XCTAssertEqual(diff.count, 0, "\(diff.report())\n\(oldDescription)\n\(newDescription)")
         
+        /// Check that there are no differences, and print a detailed report of the differences if there are any.
+        XCTAssertEqual(diff.count, 0, "\(diff.report())\n\(oldDescription)\n\(newDescription)")
     }
 }
