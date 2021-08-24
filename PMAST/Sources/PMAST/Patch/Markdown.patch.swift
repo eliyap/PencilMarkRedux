@@ -43,13 +43,12 @@ extension Markdown {
             : ast.children.startIndex /// assume start of tree if not found.
         
         /// Offset following nodes to account for inserted lines.
-        let chunkSize = Point(column: 0, line: element.count, offset: element.enclosingNsRange.length)
         ast.children[insertionIndex..<ast.children.endIndex].forEach {
-            $0.offsetPosition(by: chunkSize)
+            $0.offsetPosition(by: element.chunkSize)
         }
         
         /// Also offset the document end to account for inserted lines.
-        ast.position.end += chunkSize
+        ast.position.end += element.chunkSize
         
         /// Insert node into tree structure.
         ast.graft(node, at: insertionIndex)
@@ -65,15 +64,10 @@ extension Markdown {
         }
         
         /// Offset following nodes to account for removed lines.
-        let chunkSize = Point(
-            column: 0,
-            line: -element.count,
-            offset: -element.enclosingNsRange.length
-        )
-        ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: chunkSize)}
+        ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -element.chunkSize)}
         
         /// Also offset the document end to account for removed lines.
-        ast.position.end += chunkSize
+        ast.position.end -= element.chunkSize
         
         /// Disconnect node, allowing it to be de-allocated.
         ast.children[targetIndex].parent = nil
