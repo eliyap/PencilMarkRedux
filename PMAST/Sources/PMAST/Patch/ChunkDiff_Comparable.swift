@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias ChunkDiff = CollectionDifference<Chunk>.Element
+typealias ChunkChange = CollectionDifference<Chunk>.Element
 
-extension ChunkDiff {
+extension ChunkChange {
     /// Expose `startIndex`.
     var startIndex: Chunk.Index {
         switch self {
@@ -21,7 +21,7 @@ extension ChunkDiff {
     }
 }
 
-extension ChunkDiff: Comparable {
+extension ChunkChange: Comparable {
     public static func <(lhs: Self, rhs: Self) -> Bool {
         /// Always let the later change go first.
         guard lhs.startIndex == rhs.startIndex else {
