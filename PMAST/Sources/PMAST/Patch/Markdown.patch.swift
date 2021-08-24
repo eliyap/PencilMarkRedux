@@ -20,18 +20,18 @@ extension Markdown {
         
         chunkDiff.report() /// - Warning: DEBUG
         
-        func remove(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
-            let targetIndex: Int? = ast.children.firstIndex { element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= element.upperBound }
+        func remove(details: ChunkChangeDetails) -> Void {
+            let targetIndex: Int? = ast.children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
             guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
                 assert(false, "Could not find target node!")
                 return
             }
             
             /// Offset following nodes to account for removed lines.
-            ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -element.chunkSize)}
+            ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
             
             /// Also offset the document end to account for removed lines.
-            ast.position.end -= element.chunkSize
+            ast.position.end -= details.element.chunkSize
             
             /// Manually set `root` column to be consistent with text.
             if let lastLine = newLines.last {
@@ -51,7 +51,7 @@ extension Markdown {
                 case .insert(let offset, let element, let associatedWith):
                     insert(details: (offset, element, associatedWith), new: new, newLines: newLines)
                 case .remove(let offset, let element, let associatedWith):
-                    remove(offset: offset, element: element, associatedWith: associatedWith, new: new)
+                    remove(details: (offset, element, associatedWith))
                 }
             }
     }
