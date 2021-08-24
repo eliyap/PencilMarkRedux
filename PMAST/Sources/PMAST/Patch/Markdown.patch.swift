@@ -20,30 +20,6 @@ extension Markdown {
         
         chunkDiff.report() /// - Warning: DEBUG
         
-        func remove(details: ChunkChangeDetails) -> Void {
-            let targetIndex: Int? = ast.children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
-            guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
-                assert(false, "Could not find target node!")
-                return
-            }
-            
-            /// Offset following nodes to account for removed lines.
-            ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
-            
-            /// Also offset the document end to account for removed lines.
-            ast.position.end -= details.element.chunkSize
-            
-            /// Manually set `root` column to be consistent with text.
-            if let lastLine = newLines.last {
-                /// Add one to account for 1-indexing.
-                ast.position.end.column = lastLine.string.utf16.count + 1
-            }
-            
-            /// Disconnect node, allowing it to be de-allocated.
-            ast.children[targetIndex].parent = nil
-            ast.children.remove(at: targetIndex)
-        }
-        
         chunkDiff
             .forEach { (chunkChange: ChunkChange) in
                 print("Change \(chunkChange.startIndex)")
@@ -51,12 +27,16 @@ extension Markdown {
                 case .insert(let offset, let element, let associatedWith):
                     insert(details: (offset, element, associatedWith), new: new, newLines: newLines)
                 case .remove(let offset, let element, let associatedWith):
-                    remove(details: (offset, element, associatedWith))
+                    remove(details: (offset, element, associatedWith), new: new, newLines: newLines)
                 }
             }
     }
     
-    fileprivate mutating func insert(details: ChunkChangeDetails, new: String, newLines: [Line]) -> Void {
+    fileprivate mutating func insert(
+        details: ChunkChangeDetails,
+        new: String,
+        newLines: [Line]
+    ) -> Void {
         let node = Parser.shared.parse(markdown: new.contents(of: details.element))
         
         /// Shift new nodes into the correct ``position``.
@@ -83,4 +63,34 @@ extension Markdown {
         
         print(ast.description)
     }
+    
+    fileprivate mutating func remove(
+        details: ChunkChangeDetails,
+        new: String,
+        newLines: [Line]
+    ) -> Void {
+        let targetIndex: Int? = ast.children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
+        guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
+            assert(false, "Could not find target node!")
+            return
+        }
+        
+        /// Offset following nodes to account for removed lines.
+        ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
+        
+        /// Also offset the document end to account for removed lines.
+        ast.position.end -= details.element.chunkSize
+        
+        /// Manually set `root` column to be consistent with text.
+        if let lastLine = newLines.last {
+            /// Add one to account for 1-indexing.
+            ast.position.end.column = lastLine.string.utf16.count + 1
+        }
+        
+        /// Disconnect node, allowing it to be de-allocated.
+        ast.children[targetIndex].parent = nil
+        ast.children.remove(at: targetIndex)
+    }
+    
+    
 }
