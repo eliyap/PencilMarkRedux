@@ -19,6 +19,10 @@ internal struct Line {
 extension Line : Equatable {
     /// Compare strings by their contents only, not their ranges.
     static func ==(lhs: Self, rhs: Self) -> Bool {
-        lhs.string == rhs.string
+        /// Compares:
+        /// - string contents
+        /// - newline length
+        /// - Warning: does not compare newline contents!
+        (lhs.string == rhs.string) && (lhs.enclosingNsRange.length == rhs.enclosingNsRange.length)
     }
 }
