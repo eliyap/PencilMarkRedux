@@ -14,8 +14,9 @@ extension Markdown {
         
         let diff = newChunks.difference(from: oldChunks)
         
+        diff.report() /// - Warning: DEBUG
+        
         diff
-            .sorted()
             .forEach { change in
                 print("Change \(change.startIndex)")
                 switch change {
@@ -57,6 +58,25 @@ extension Markdown {
     }
     
     fileprivate mutating func remove(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
-        print(ast.description)
+        let targetIndex: Int? = ast.children.firstIndex { element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= element.upperBound }
+        guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
+            assert(false, "Could not find target node!")
+            return
+        }
+        
+        /// Offset following nodes to account for removed lines.
+        let chunkSize = Point(
+            column: 0,
+            line: -element.count,
+            offset: -element.enclosingNsRange.length
+        )
+        ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: chunkSize)}
+        
+        /// Also offset the document end to account for removed lines.
+        ast.position.end += chunkSize
+        
+        /// Disconnect node, allowing it to be de-allocated.
+        ast.children[targetIndex].parent = nil
+        ast.children.remove(at: targetIndex)
     }
 }
