@@ -42,7 +42,7 @@ class PatchTests: XCTestCase {
         )
     }
     
-    func testLineBefore() throws {
+    func testInsertLineBefore() throws {
         checkPatch(
             old: """
             Old Text
@@ -55,7 +55,7 @@ class PatchTests: XCTestCase {
         )
     }
     
-    func testInsert() throws {
+    func testInsertLineAfter() throws {
         /// Insert After
         checkPatch(
             old: """
@@ -65,6 +65,35 @@ class PatchTests: XCTestCase {
             Old Text
 
             New Text
+            """
+        )
+    }
+    
+    func testModifyLines() throws {
+        checkPatch(
+            old: """
+            Old Text 1
+            
+            Old Text 2
+            """,
+            new: """
+            New Text 1
+            
+            New Text 2
+            """
+        )
+    }
+    
+    func testBreakBlock() throws {
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            ~~Old Text 1
+            
+            Old Text 2~~
             """
         )
     }
