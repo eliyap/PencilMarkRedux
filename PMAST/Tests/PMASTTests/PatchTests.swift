@@ -80,6 +80,18 @@ class PatchTests: XCTestCase {
             New Text
             """
         )
+        
+        /// Insert After
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            Old Text
+
+            New Text Long Line
+            """
+        )
     }
     
     func testModifyLines() throws {
