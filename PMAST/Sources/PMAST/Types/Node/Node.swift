@@ -73,13 +73,13 @@ public class Node {
     /// Describe this node in terms of events.
     public var description: [Event] {[
         .enter(point: position.start, type: _type),
-        .exit(point: position.start, type: _type),
+        .exit(point: position.end, type: _type),
     ]}
     
     /// Offsets the node's ``position`` by `point`.
     internal func offsetPosition(by point: Point) -> Void {
         position.start += point
-        position.end -= point
+        position.end += point
     }
 }
 

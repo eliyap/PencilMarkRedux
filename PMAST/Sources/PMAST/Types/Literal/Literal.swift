@@ -42,6 +42,6 @@ public class Literal: Node {
     override public var description: [Event] {[
         .enter(point: position.start, type: _type),
         .contents(value),
-        .exit(point: position.start, type: _type),
+        .exit(point: position.end, type: _type),
     ]}
 }

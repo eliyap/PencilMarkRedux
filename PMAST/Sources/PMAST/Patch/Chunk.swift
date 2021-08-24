@@ -38,6 +38,22 @@ extension Chunk {
     }
 }
 
+extension Chunk {
+    var lowerEnclosingBound: Int {
+        /// We may assume the chunk is non empty.
+        first!.enclosingNsRange.lowerBound
+    }
+    
+    var upperEnclosingBound: Int {
+        /// We may assume the chunk is non empty.
+        last!.enclosingNsRange.upperBound
+    }
+    
+    var enclosingNsRange: NSRange {
+        return NSMakeRange(lowerEnclosingBound, upperEnclosingBound - lowerEnclosingBound)
+    }
+}
+
 extension String {
     func contents(of chunk: Chunk) -> String {
         NSString(string: self).substring(with: chunk.nsRange)

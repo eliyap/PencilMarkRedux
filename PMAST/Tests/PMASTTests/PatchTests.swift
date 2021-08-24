@@ -31,39 +31,48 @@ class PatchTests: XCTestCase {
     
     func testInsert() throws {
         /// Insert Before
-        XCTExpectFailure() {
-            checkPatch(
-                old: """
-                Old Text
-                """,
-                new: """
-                New Text
-                
-                Old Text
-                """
-            )
-        }
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            
+            Old Text
+            """
+        )
+        
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            New Text
+            
+            Old Text
+            """
+        )
         
         /// Insert After
-        XCTExpectFailure() {
-            checkPatch(
-                old: """
-                Old Text
-                """,
-                new: """
-                Old Text
-                
-                New Text
-                """
-            )
-        }
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            Old Text
+
+            New Text
+            """
+        )
     }
     
     /// Generic function for checking ``Markdown.patch``.
     func checkPatch(old: String, new: String) {
         var oldMD = Markdown(old)
         oldMD.patch(with: new)
-        let diff = oldMD.ast.description.difference(from: Markdown(new).ast.description)
-        XCTAssertEqual(diff.count, 0, "\(diff.report())")
+        let oldDescription = oldMD.ast.description
+        let newDescription = Markdown(new).ast.description
+        let diff = oldDescription.difference(from: newDescription)
+        XCTAssertEqual(diff.count, 0, "\(diff.report())\n\(oldDescription)\n\(newDescription)")
+        
     }
 }

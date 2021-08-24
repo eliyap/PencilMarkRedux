@@ -59,7 +59,7 @@ public class Parent: Node {
     public override var description: [Event] {
         [.enter(point: position.start, type: _type)]
             + childDescriptions
-            + [.exit(point: position.start, type: _type)]
+            + [.exit(point: position.end, type: _type)]
     }
     
     /// Join ``children``'s descriptions.
