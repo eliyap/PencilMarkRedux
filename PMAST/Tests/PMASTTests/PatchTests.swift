@@ -189,6 +189,36 @@ class PatchTests: XCTestCase {
         )
     }
     
+    func testBreakQuotation() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            > quote line 1
+            > quote line 2
+            """,
+            new: """
+            > quote line 1
+            
+            > quote line 2
+            """
+        )
+    }
+    
+    func testJoinQuotation() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            > quote line 1
+            
+            > quote line 2
+            """,
+            new: """
+            > quote line 1
+            > quote line 2
+            """
+        )
+    }
+    
     /// Generic function for checking ``Markdown.patch``.
     func checkPatch(old: String, new: String) {
         var oldMD = Markdown(old)
