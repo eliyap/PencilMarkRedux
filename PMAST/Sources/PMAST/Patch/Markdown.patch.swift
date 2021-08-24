@@ -7,6 +7,8 @@
 
 import Foundation
 
+fileprivate typealias ChunkChangeDetails = (offset: Int, element: Chunk, associatedWith: Int?)
+
 extension Markdown {
     public mutating func patch(with new: String) {
         let oldChunks = plain.makeLines().chunked()
@@ -17,34 +19,6 @@ extension Markdown {
         let chunkDiff = newChunks.difference(from: oldChunks)
         
         chunkDiff.report() /// - Warning: DEBUG
-        
-        func insert(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
-            let node = Parser.shared.parse(markdown: new.contents(of: element))
-            
-            /// Shift new nodes into the correct ``position``.
-            let offset = Point(column: 0, line: element.startIndex, offset: element.lowerBound)
-            node.offsetPosition(by: offset)
-            
-            /// Locate immediately preceding node.
-            let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= element.lowerBound }
-            
-            let insertionIndex = precedingIndex != nil
-                ? precedingIndex! + 1     /// Insertion point should be after the identified node.
-                : ast.children.startIndex /// assume start of tree if not found.
-            
-            /// Offset following nodes to account for inserted lines.
-            ast.children[insertionIndex..<ast.children.endIndex].forEach {
-                $0.offsetPosition(by: element.chunkSize)
-            }
-            
-            /// Also offset the document end to account for inserted lines.
-            ast.position.end += element.chunkSize
-            
-            /// Insert node into tree structure.
-            ast.graft(node, at: insertionIndex)
-            
-            print(ast.description)
-        }
         
         func remove(offset: Int, element: Chunk, associatedWith: Int?, new: String) -> Void {
             let targetIndex: Int? = ast.children.firstIndex { element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= element.upperBound }
@@ -75,10 +49,38 @@ extension Markdown {
                 print("Change \(chunkChange.startIndex)")
                 switch chunkChange {
                 case .insert(let offset, let element, let associatedWith):
-                    insert(offset: offset, element: element, associatedWith: associatedWith, new: new)
+                    insert(details: (offset, element, associatedWith), new: new, newLines: newLines)
                 case .remove(let offset, let element, let associatedWith):
                     remove(offset: offset, element: element, associatedWith: associatedWith, new: new)
                 }
             }
+    }
+    
+    fileprivate mutating func insert(details: ChunkChangeDetails, new: String, newLines: [Line]) -> Void {
+        let node = Parser.shared.parse(markdown: new.contents(of: details.element))
+        
+        /// Shift new nodes into the correct ``position``.
+        let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)
+        node.offsetPosition(by: offset)
+        
+        /// Locate immediately preceding node.
+        let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= details.element.lowerBound }
+        
+        let insertionIndex = precedingIndex != nil
+            ? precedingIndex! + 1     /// Insertion point should be after the identified node.
+            : ast.children.startIndex /// assume start of tree if not found.
+        
+        /// Offset following nodes to account for inserted lines.
+        ast.children[insertionIndex..<ast.children.endIndex].forEach {
+            $0.offsetPosition(by: details.element.chunkSize)
+        }
+        
+        /// Also offset the document end to account for inserted lines.
+        ast.position.end += details.element.chunkSize
+        
+        /// Insert node into tree structure.
+        ast.graft(node, at: insertionIndex)
+        
+        print(ast.description)
     }
 }
