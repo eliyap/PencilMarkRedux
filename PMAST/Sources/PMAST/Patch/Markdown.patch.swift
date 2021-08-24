@@ -13,14 +13,16 @@ extension Markdown {
         let newChunks = new.makeLines().chunked()
         
         let diff = newChunks.difference(from: oldChunks)
-        diff.report()
         
-        diff.forEach { change in
+        diff
+            .sorted()
+            .forEach { change in
             switch change {
             case .insert(let offset, let element, let associatedWith):
                 let (_, _) = (offset, associatedWith) /// Hush now, Swift.
                 let node = Parser.shared.parse(markdown: new.contents(of: element))
-                /// Adjust node positions.
+                
+                /// Shift new nodes into the correct ``position``.
                 let offset = Point(column: 0, line: element.startIndex, offset: element.lowerBound)
                 node.offsetPosition(by: offset)
                 
@@ -45,7 +47,8 @@ extension Markdown {
                 
                 print(ast.description)
             case .remove(let offset, let element, let associatedWith):
-                break
+                let (_, _) = (offset, associatedWith) /// Hush now, Swift.
+                
             }
         }
     }
