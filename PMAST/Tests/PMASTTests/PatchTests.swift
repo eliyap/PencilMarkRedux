@@ -238,6 +238,25 @@ class PatchTests: XCTestCase {
         )
     }
     
+    func testContractFencedCodeBlock() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            ```
+            var x = (()=>{})
+            
+            var y = (()=>{})
+            ```
+            """,
+            new: """
+            ```
+            var x = (()=>{})
+            var y = (()=>{})
+            ```
+            """
+        )
+    }
+    
     /// Generic function for checking ``Markdown.patch``.
     func checkPatch(old: String, new: String) {
         var oldMD = Markdown(old)
