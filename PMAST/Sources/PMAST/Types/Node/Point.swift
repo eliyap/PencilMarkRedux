@@ -13,7 +13,7 @@ import Foundation
 public struct Point {
     
     /// Column in a source file (1-indexed integer).
-    let column: Int
+    var column: Int
     
     /// Line in a source file (1-indexed integer).
     let line: Int

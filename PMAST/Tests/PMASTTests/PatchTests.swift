@@ -80,6 +80,18 @@ class PatchTests: XCTestCase {
             New Text
             """
         )
+        
+        /// Insert After
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            Old Text
+
+            New Text Long Line
+            """
+        )
     }
     
     func testModifyLines() throws {
@@ -121,6 +133,126 @@ class PatchTests: XCTestCase {
             new: """
             ~~Old Text 1
             Old Text 2~~
+            """
+        )
+    }
+    
+    func testCloseFormatting() throws {
+        /// Close at the end.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2~~
+            """
+        )
+        
+        /// Close at the beginning.
+        checkPatch(
+            old: """
+            Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2~~
+            """
+        )
+    }
+    
+    func testUncloseFormatting() throws {
+        /// Unclose at the end.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            ~~Old Text 1
+            Old Text 2
+            """
+        )
+        
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            ~~Old Text 1
+            Old Text 2~~
+            """,
+            new: """
+            Old Text 1
+            Old Text 2~~
+            """
+        )
+    }
+    
+    func testBreakQuotation() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            > quote line 1
+            > quote line 2
+            """,
+            new: """
+            > quote line 1
+            
+            > quote line 2
+            """
+        )
+    }
+    
+    func testJoinQuotation() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            > quote line 1
+            
+            > quote line 2
+            """,
+            new: """
+            > quote line 1
+            > quote line 2
+            """
+        )
+    }
+    
+    func testExtendFencedCodeBlock() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            ```
+            var x = (()=>{})
+            var y = (()=>{})
+            ```
+            """,
+            new: """
+            ```
+            var x = (()=>{})
+            
+            var y = (()=>{})
+            ```
+            """
+        )
+    }
+    
+    func testContractFencedCodeBlock() throws {
+        /// Unclose at the beginning.
+        checkPatch(
+            old: """
+            ```
+            var x = (()=>{})
+            
+            var y = (()=>{})
+            ```
+            """,
+            new: """
+            ```
+            var x = (()=>{})
+            var y = (()=>{})
+            ```
             """
         )
     }
