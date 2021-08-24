@@ -12,14 +12,14 @@ extension Markdown {
         let oldChunks = plain.makeLines().chunked()
         let newChunks = new.makeLines().chunked()
         
-        let diff = newChunks.difference(from: oldChunks)
+        let chunkDiff = newChunks.difference(from: oldChunks)
         
-        diff.report() /// - Warning: DEBUG
+        chunkDiff.report() /// - Warning: DEBUG
         
-        diff
-            .forEach { change in
-                print("Change \(change.startIndex)")
-                switch change {
+        chunkDiff
+            .forEach { (chunkChange: ChunkChange) in
+                print("Change \(chunkChange.startIndex)")
+                switch chunkChange {
                 case .insert(let offset, let element, let associatedWith):
                     insert(offset: offset, element: element, associatedWith: associatedWith, new: new)
                 case .remove(let offset, let element, let associatedWith):
