@@ -35,8 +35,11 @@ extension Array where Element == Line {
             
             /// Check if preceding line (if any) is blank,
             /// and that the line could not be continuing a block (besides a fenced code block).
-            if idx == 0 || (self[idx - 1].string.isBlank && (line.string.isPotentiallyContinuation == false)) {
-                boundaries.append(idx + 1) /// adjust for 1 indexing
+            if
+                (idx == 0 || self[idx - 1].string.isBlank),
+                line.string.isPotentiallyContinuation == false
+            {
+                boundaries.append(idx)
             }
         }
         
