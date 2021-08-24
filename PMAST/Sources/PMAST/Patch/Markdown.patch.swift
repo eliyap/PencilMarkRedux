@@ -18,15 +18,23 @@ extension Markdown {
         diff.forEach { change in
             switch change {
             case .insert(let offset, let element, let associatedWith):
+                let (_, _) = (offset, associatedWith) /// Hush now, Swift.
                 let node = Parser.shared.parse(markdown: new.contents(of: element))
-                #warning("TODO: insert this into tree")
-                /// adjust node positions
+                /// Adjust node positions.
+                let offset = Point(column: 0, line: element.startIndex, offset: element.lowerBound)
+                node.offsetPosition(by: offset)
                 
                 /// adjust following positions
-                /// insert node into tree structure
-                    /// locate insertion point
-                let insertionIndex = ast.children.firstIndex { $0.position.end.offset < element.lowerBound }
-                    ?? 0 /// assume start of tree if not found.
+                #warning("TODO: ^")
+                
+                /// Locate immediately preceding node.
+                let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= element.lowerBound }
+                
+                let insertionIndex = precedingIndex != nil
+                    ? precedingIndex! + 1   /// Insertion point should be after the identified node.
+                    : ast.children.endIndex /// assume end of tree if not found.
+                
+                /// Insert node into tree structure.
                 ast.graft(node, at: insertionIndex)
             case .remove(let offset, let element, let associatedWith):
                 break
