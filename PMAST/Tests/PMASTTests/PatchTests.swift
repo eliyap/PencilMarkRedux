@@ -31,18 +31,26 @@ class PatchTests: XCTestCase {
     
     func testInsert() throws {
         /// Insert Before
-        XCTExpectFailure() {
-            checkPatch(
-                old: """
-                Old Text
-                """,
-                new: """
-                New Text
-                
-                Old Text
-                """
-            )
-        }
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            
+            Old Text
+            """
+        )
+        
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            New Text
+            
+            Old Text
+            """
+        )
         
         /// Insert After
         checkPatch(
@@ -51,7 +59,7 @@ class PatchTests: XCTestCase {
             """,
             new: """
             Old Text
-            
+
             New Text
             """
         )
