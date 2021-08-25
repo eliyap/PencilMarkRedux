@@ -23,6 +23,8 @@ public struct Markdown {
     
     public init(_ text: String) {
         self.plain = text
+        
+        /// Perform initial tree construction.
         self.reconstructTree()
     }
 }
@@ -31,8 +33,11 @@ public struct Markdown {
 extension Markdown {
     /// Call this function to update after the text is updated.
     public mutating func reconstructTree() -> Void {
-        /// re-formulate AST
-        ast = constructTree(from: Parser.shared.parse(plain))
+        /// Parse Markdown into JavaScript MDAST.
+        dict = Parser.shared.parse(plain)
+        
+        /// Convert JS AST to Swift AST.
+        ast = constructTree(from: dict)
     }
     
     /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!
