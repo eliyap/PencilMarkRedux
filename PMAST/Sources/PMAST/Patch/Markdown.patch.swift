@@ -16,11 +16,6 @@ extension Markdown {
         
         let newLines = new.makeLines()
         let boundaries = newLines.findBoundaries()
-        let newChunks = newLines.chunked(along: boundaries)
-        
-        let chunkDiff = newChunks.difference(from: oldChunks)
-        
-        chunkDiff.report() /// - Warning: DEBUG
         
         var test = false
         
