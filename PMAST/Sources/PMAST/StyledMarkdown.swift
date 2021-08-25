@@ -23,7 +23,7 @@ public struct Markdown {
     
     public init(_ text: String) {
         self.plain = text
-        self.ast = constructTree(from: Parser.shared.parse(text))
+        self.reconstructTree()
     }
 }
 
