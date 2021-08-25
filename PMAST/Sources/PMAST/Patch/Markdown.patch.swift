@@ -17,15 +17,22 @@ extension Markdown {
         let newLines = new.makeLines()
         let boundaries = newLines.findBoundaries()
         
-        var test = false
+        var didEncounterUnclosedFence = false
         
-        ast.patch(
+        #warning("TODO: implement conditional loop here!")
+        
+        /// Construct and patch temporary tree.
+        let temp = constructTree(from: dict)
+        temp.patch(
             oldChunks: oldChunks,
             new: new,
             newLines: newLines,
             boundaries: boundaries,
-            flag: &test
+            flag: &didEncounterUnclosedFence
         )
+        
+        /// Finalize tree adjustments.
+        ast = temp
     }
 }
 
