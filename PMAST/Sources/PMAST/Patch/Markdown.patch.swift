@@ -37,7 +37,7 @@ extension Markdown {
         new: String,
         newLines: [Line]
     ) -> Void {
-        let node = Parser.shared.parse(markdown: new.contents(of: details.element))
+        let node = constructTree(from: Parser.shared.parse(new.contents(of: details.element)))
         
         /// Shift new nodes into the correct ``position``.
         let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)
@@ -91,6 +91,4 @@ extension Markdown {
         ast.children[targetIndex].parent = nil
         ast.children.remove(at: targetIndex)
     }
-    
-    
 }

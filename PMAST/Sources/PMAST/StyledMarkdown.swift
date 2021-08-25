@@ -18,7 +18,7 @@ public struct Markdown {
     
     public init(_ text: String) {
         self.plain = text
-        self.ast = Parser.shared.parse(markdown: text)
+        self.ast = constructTree(from: Parser.shared.parse(text))
     }
 }
 
@@ -27,7 +27,7 @@ extension Markdown {
     /// Call this function to update after the text is updated.
     public mutating func updateAttributes() -> Void {
         /// re-formulate AST
-        ast = Parser.shared.parse(markdown: plain)
+        ast = constructTree(from: Parser.shared.parse(plain))
     }
     
     /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!

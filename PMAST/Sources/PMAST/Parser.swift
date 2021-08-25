@@ -22,7 +22,7 @@ final internal class Parser {
         context.evaluateScript(try! String(contentsOf: url), withSourceURL: url)
     }
     
-    func parse(markdown: String) -> Root {
+    func parse(_ markdown: String) -> [AnyHashable: Any] {
         /// Mark point of interest for profiling.
         /// Guide: https://www.donnywals.com/measuring-performance-with-os_signpost/
         os_signpost(.begin, log: ParseHandler, name: "Parse Markdown", "Begin Parse")
@@ -35,12 +35,15 @@ final internal class Parser {
         
         #warning("Unsafe Unwrap!")
         let dict = result!.toDictionary()!
-        
-        let ast = Root(dict: dict, parent: nil)!
-        
-        /// assert tree is ok
-        try! ast.linkCheck()
-        
-        return ast   
+        return dict
     }
+}
+
+func constructTree(from dict: [AnyHashable: Any]) -> Root {
+    let ast = Root(dict: dict, parent: nil)!
+    
+    /// assert tree is ok
+    try! ast.linkCheck()
+    
+    return ast
 }
