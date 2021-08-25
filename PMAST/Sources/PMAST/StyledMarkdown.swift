@@ -19,7 +19,7 @@ public struct Markdown {
     /// A cached copy of the JavaScript MDAST.
     /// Allows us to restore the Swift MDAST after ``ast`` has been modified,
     /// in the event that we want to revert changes, especially duing chunk diffing. constructTree(from: Parser.shared.parse(text))
-    internal var dict: [AnyHashable: Any]! = nil
+    internal private(set) var dict: [AnyHashable: Any]! = nil
     
     public init(_ text: String) {
         self.plain = text
