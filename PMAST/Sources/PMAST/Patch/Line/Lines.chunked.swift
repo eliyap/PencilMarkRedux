@@ -20,6 +20,17 @@ extension Array where Element == Line {
             }
     }
     
+    internal func chunked(along boundaries: [Boundary]) -> [Chunk] {
+        return (1..<boundaries.count)
+            .map { idx in
+                self[boundaries[idx-1]..<boundaries[idx]]
+            }
+            .filter {
+                /// Discard empty chunks
+                $0.isEmpty == false
+            }
+    }
+    
     fileprivate func findBoundaries() -> [Boundary] {
         var boundaries: [Array<Line>.Index] = []
         

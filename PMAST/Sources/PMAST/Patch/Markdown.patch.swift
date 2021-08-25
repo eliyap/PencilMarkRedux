@@ -10,10 +10,43 @@ import Foundation
 fileprivate typealias ChunkChangeDetails = (offset: Int, element: Chunk, associatedWith: Int?)
 
 extension Markdown {
+    public mutating func patch2(with new: String) {
+        let oldChunks = plain.makeLines().chunked()
+        
+        let newLines = new.makeLines()
+        let newChunks = newLines.chunked()
+        
+    }
+    
     public mutating func patch(with new: String) {
         let oldChunks = plain.makeLines().chunked()
         
         let newLines = new.makeLines()
+        let newChunks = newLines.chunked()
+        
+        let chunkDiff = newChunks.difference(from: oldChunks)
+        
+        chunkDiff.report() /// - Warning: DEBUG
+        
+        var test = false
+        
+        ast.patch(
+            oldChunks: oldChunks, new: new,
+            newLines: newLines,
+            boundaries: [],
+            flag: &test
+        )
+    }
+}
+
+extension Root {
+    func patch(
+        oldChunks: [Chunk],
+        new: String,
+        newLines: [Line],
+        boundaries: [Boundary],
+        flag: inout Bool
+    ) -> Void {
         let newChunks = newLines.chunked()
         
         let chunkDiff = newChunks.difference(from: oldChunks)
@@ -32,7 +65,7 @@ extension Markdown {
             }
     }
     
-    fileprivate mutating func insert(
+    fileprivate func insert(
         details: ChunkChangeDetails,
         new: String,
         newLines: [Line]
@@ -44,51 +77,51 @@ extension Markdown {
         node.offsetPosition(by: offset)
         
         /// Locate immediately preceding node.
-        let precedingIndex = ast.children.lastIndex { $0.position.end.offset <= details.element.lowerBound }
+        let precedingIndex = children.lastIndex { $0.position.end.offset <= details.element.lowerBound }
         
         let insertionIndex = precedingIndex != nil
             ? precedingIndex! + 1     /// Insertion point should be after the identified node.
-            : ast.children.startIndex /// assume start of tree if not found.
+            : children.startIndex /// assume start of tree if not found.
         
         /// Offset following nodes to account for inserted lines.
-        ast.children[insertionIndex..<ast.children.endIndex].forEach {
+        children[insertionIndex..<children.endIndex].forEach {
             $0.offsetPosition(by: details.element.chunkSize)
         }
         
         /// Also offset the document end to account for inserted lines.
-        ast.position.end += details.element.chunkSize
+        position.end += details.element.chunkSize
         
         /// Insert node into tree structure.
-        ast.graft(node, at: insertionIndex)
+        graft(node, at: insertionIndex)
         
-        print(ast.description)
+        print(description)
     }
     
-    fileprivate mutating func remove(
+    fileprivate func remove(
         details: ChunkChangeDetails,
         new: String,
         newLines: [Line]
     ) -> Void {
-        let targetIndex: Int? = ast.children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
+        let targetIndex: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
         guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
             assert(false, "Could not find target node!")
             return
         }
         
         /// Offset following nodes to account for removed lines.
-        ast.children[targetIndex..<ast.children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
+        children[targetIndex..<children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
         
         /// Also offset the document end to account for removed lines.
-        ast.position.end -= details.element.chunkSize
+        position.end -= details.element.chunkSize
         
         /// Manually set `root` column to be consistent with text.
         if let lastLine = newLines.last {
             /// Add one to account for 1-indexing.
-            ast.position.end.column = lastLine.string.utf16.count + 1
+            position.end.column = lastLine.string.utf16.count + 1
         }
         
         /// Disconnect node, allowing it to be de-allocated.
-        ast.children[targetIndex].parent = nil
-        ast.children.remove(at: targetIndex)
+        children[targetIndex].parent = nil
+        children.remove(at: targetIndex)
     }
 }
