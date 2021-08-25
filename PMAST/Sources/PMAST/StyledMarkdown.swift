@@ -16,6 +16,11 @@ public struct Markdown {
     /// A Swift representation of a Unified.JS MarkDown Abstract Syntax Tree (AST).
     internal var ast: Root! = nil
     
+    /// A cached copy of the JavaScript MDAST.
+    /// Allows us to restore the Swift MDAST after ``ast`` has been modified,
+    /// in the event that we want to revert changes, especially duing chunk diffing. constructTree(from: Parser.shared.parse(text))
+    internal var dict: [AnyHashable: Any]! = nil
+    
     public init(_ text: String) {
         self.plain = text
         self.ast = constructTree(from: Parser.shared.parse(text))
