@@ -10,19 +10,13 @@ import Foundation
 fileprivate typealias ChunkChangeDetails = (offset: Int, element: Chunk, associatedWith: Int?)
 
 extension Markdown {
-    public mutating func patch2(with new: String) {
-        let oldChunks = plain.makeLines().chunked()
-        
-        let newLines = new.makeLines()
-        let newChunks = newLines.chunked()
-        
-    }
-    
     public mutating func patch(with new: String) {
-        let oldChunks = plain.makeLines().chunked()
+        let oldLines = plain.makeLines()
+        let oldChunks = oldLines.chunked(along: oldLines.findBoundaries())
         
         let newLines = new.makeLines()
-        let newChunks = newLines.chunked()
+        let boundaries = newLines.findBoundaries()
+        let newChunks = newLines.chunked(along: boundaries)
         
         let chunkDiff = newChunks.difference(from: oldChunks)
         
@@ -31,9 +25,10 @@ extension Markdown {
         var test = false
         
         ast.patch(
-            oldChunks: oldChunks, new: new,
+            oldChunks: oldChunks,
+            new: new,
             newLines: newLines,
-            boundaries: [],
+            boundaries: boundaries,
             flag: &test
         )
     }
@@ -47,7 +42,7 @@ extension Root {
         boundaries: [Boundary],
         flag: inout Bool
     ) -> Void {
-        let newChunks = newLines.chunked()
+        let newChunks = newLines.chunked(along: boundaries)
         
         let chunkDiff = newChunks.difference(from: oldChunks)
         
