@@ -64,7 +64,7 @@ extension KeyboardViewController {
         
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.updateAttributes()
+        coordinator.document?.markdown.reconstructTree()
         styleText()
     }
     

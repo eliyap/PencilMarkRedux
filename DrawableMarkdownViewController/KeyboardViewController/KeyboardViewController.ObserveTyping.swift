@@ -32,7 +32,7 @@ extension KeyboardViewController {
                 }
                 
                 /// Rebuild AST, recalculate text styling.
-                ref.coordinator.document?.markdown.updateAttributes()
+                ref.coordinator.document?.markdown.reconstructTree()
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 

@@ -30,7 +30,7 @@ public struct Markdown {
 // MARK:- Styling Methods
 extension Markdown {
     /// Call this function to update after the text is updated.
-    public mutating func updateAttributes() -> Void {
+    public mutating func reconstructTree() -> Void {
         /// re-formulate AST
         ast = constructTree(from: Parser.shared.parse(plain))
     }
