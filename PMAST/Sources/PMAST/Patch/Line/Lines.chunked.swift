@@ -8,8 +8,7 @@
 import Foundation
 
 extension Array where Element == Line {
-    internal func chunked() -> [Chunk] {
-        let boundaries = findBoundaries()
+    internal func chunked(along boundaries: [Boundary]) -> [Chunk] {
         return (1..<boundaries.count)
             .map { idx in
                 self[boundaries[idx-1]..<boundaries[idx]]
@@ -20,7 +19,7 @@ extension Array where Element == Line {
             }
     }
     
-    fileprivate func findBoundaries() -> [Boundary] {
+    internal func findBoundaries() -> [Boundary] {
         var boundaries: [Array<Line>.Index] = []
         
         indices.forEach { idx in
