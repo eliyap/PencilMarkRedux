@@ -92,6 +92,7 @@
 		22E6BEAD26CF5C080000A3B3 /* FragmentModel_Ranges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEAC26CF5C080000A3B3 /* FragmentModel_Ranges.swift */; };
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
+		22EB0B9426D93D12003594A4 /* Eraser.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22EB0B9326D93D12003594A4 /* Eraser.mp4 */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
@@ -203,6 +204,7 @@
 		22E6BEAC26CF5C080000A3B3 /* FragmentModel_Ranges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentModel_Ranges.swift; sourceTree = "<group>"; };
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
+		22EB0B9326D93D12003594A4 /* Eraser.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Eraser.mp4; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				2228357726C728340026D468 /* Strike.mp4 */,
+				22EB0B9326D93D12003594A4 /* Eraser.mp4 */,
 				2228357A26C72A810026D468 /* Example.mp4 */,
 				2228357C26C733370026D468 /* Scribble.mp4 */,
 			);
@@ -594,6 +597,7 @@
 				2228357B26C72A810026D468 /* Example.mp4 in Resources */,
 				22AF74BE269BA5F2007D9891 /* Assets.xcassets in Resources */,
 				2228357826C7283A0026D468 /* Strike.mp4 in Resources */,
+				22EB0B9426D93D12003594A4 /* Eraser.mp4 in Resources */,
 				22C9F5D826AB934B003FD426 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
