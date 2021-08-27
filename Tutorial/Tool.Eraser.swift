@@ -21,7 +21,7 @@ extension Tool {
         var url: URL {
             switch self {
             case .erase:
-                return Bundle.main.url(forResource: "Example", withExtension: "mp4")!
+                return Bundle.main.url(forResource: "Eraser", withExtension: "mp4")!
             }
         }
         
