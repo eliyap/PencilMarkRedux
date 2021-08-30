@@ -17,6 +17,8 @@
   "dependencies": {
     "mdast-util-from-markdown": "^1.0.0",
     "mdast-util-gfm": "^1.0.0",
-    "micromark-extension-gfm": "^1.0.0"
+    "mdast-util-mark": "^1.0.0",
+    "micromark-extension-gfm": "^1.0.0",
+    "micromark-extension-mark": "^1.0.1"
   }
 }
