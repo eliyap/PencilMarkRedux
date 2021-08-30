@@ -33,12 +33,16 @@ extension DrawableMarkdownViewController {
             super.init(nibName: nil, bundle: nil)
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
+            #warning("TODO: design custom set highlighter method!")
+            highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
                 pencilBtn,
                 Padding(width: 6),
                 eraserBtn,
+                Padding(width: 6),
+                highlighterBtn,
                 Padding(width: 6),
             ])
             stackView.axis = .horizontal
