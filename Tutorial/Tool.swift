@@ -11,6 +11,7 @@ import PencilKit
 enum Tool: Int, CaseIterable {
     case pencil
     case eraser
+    case highlighter
     
     var inkingTool: PencilKit.PKInkingTool {
         switch self {
@@ -22,6 +23,8 @@ enum Tool: Int, CaseIterable {
             return PKInkingTool(.pen, color: .systemBlue, width: 3)
         case .eraser:
             return PKInkingTool(.pen, color: .clear, width: 0)
+        case .highlighter:
+            return PKInkingTool(.pen, color: .clear, width: 0)
         }
     }
     
@@ -31,6 +34,8 @@ enum Tool: Int, CaseIterable {
             return "Pencil"
         case .eraser:
             return "Eraser"
+        case .highlighter:
+            return "Highlighter"
         }
     }
 }

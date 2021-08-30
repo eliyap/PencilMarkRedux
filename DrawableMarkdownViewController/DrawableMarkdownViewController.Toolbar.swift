@@ -27,6 +27,7 @@ extension DrawableMarkdownViewController {
         /// Unwrapped optional allows us to use `#selectors` in init
         private var pencilBtn: Button! = nil
         private var eraserBtn: Button! = nil
+        private var highlighterBtn: Button! = nil
         
         init() {
             super.init(nibName: nil, bundle: nil)
@@ -53,9 +54,15 @@ extension DrawableMarkdownViewController {
             case .pencil:
                 pencilBtn.toolSelected = true
                 eraserBtn.toolSelected = false
+                highlighterBtn.toolSelected = false
             case .eraser:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = true
+                highlighterBtn.toolSelected = false
+            case .highlighter:
+                pencilBtn.toolSelected = false
+                eraserBtn.toolSelected = false
+                highlighterBtn.toolSelected = true
             }
         }
         
