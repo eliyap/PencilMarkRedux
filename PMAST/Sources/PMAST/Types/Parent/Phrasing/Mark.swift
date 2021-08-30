@@ -23,7 +23,7 @@ public final class Mark: Parent, InlineJoinable {
     
     override func style(_ string: NSMutableAttributedString) {
         super.style(string)
-        string.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: position.nsRange)
+        string.addAttribute(.backgroundColor, value: UIColor.yellow, range: position.nsRange)
         
         /// Style surrounding syntax marks
         if let leading = leadingRange, let trailing = trailingRange {
