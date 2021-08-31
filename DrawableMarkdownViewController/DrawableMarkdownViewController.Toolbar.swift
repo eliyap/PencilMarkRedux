@@ -42,10 +42,9 @@ extension DrawableMarkdownViewController {
                 Padding(width: 6),
                 eraserBtn,
                 Padding(width: 6),
-//                highlighterBtn,
-//                Padding(width: 6),
+                highlighterBtn,
+                Padding(width: 6),
             ])
-            #warning("^ Temporarily disabled button!")
             stackView.axis = .horizontal
             stackView.alignment = .center
             view = stackView
