@@ -42,7 +42,6 @@ extension PMCanvasView {
         }
         
         guard
-            delegate.coordinator.tool == .eraser,
             let touch = touches.first,
             /// a perfectly perpendicular input indicates a finger is being used
             touch.altitudeAngle != CGFloat.pi / 2
@@ -50,11 +49,15 @@ extension PMCanvasView {
             return
         }
         
-        eraserDown = true
-        
-        let location = touch.preciseLocation(in: self)
-        trackCircle(location: location)
-        PencilConduit.shared.eraser = location
+        switch delegate.coordinator.tool {
+        case .eraser:
+            eraserDown = true
+            let location = touch.preciseLocation(in: self)
+            trackCircle(location: location)
+            PencilConduit.shared.eraser = location
+        default:
+            break
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
