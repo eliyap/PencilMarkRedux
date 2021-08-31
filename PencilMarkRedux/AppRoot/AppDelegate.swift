@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             #warning("Todo: log failure here!")
+            #warning("TODO: Activating Siri can cause this to trigger!")
             assert(false, "Failed to mute!")
         }
         
