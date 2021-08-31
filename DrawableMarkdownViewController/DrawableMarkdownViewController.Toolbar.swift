@@ -27,11 +27,14 @@ extension DrawableMarkdownViewController {
         /// Unwrapped optional allows us to use `#selectors` in init
         private var pencilBtn: Button! = nil
         private var eraserBtn: Button! = nil
+        private var highlighterBtn: Button! = nil
         
         init() {
             super.init(nibName: nil, bundle: nil)
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
+            #warning("TODO: replace with custom asset!")
+            highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setHighlighter))
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
@@ -39,7 +42,10 @@ extension DrawableMarkdownViewController {
                 Padding(width: 6),
                 eraserBtn,
                 Padding(width: 6),
+//                highlighterBtn,
+//                Padding(width: 6),
             ])
+            #warning("^ Temporarily disabled button!")
             stackView.axis = .horizontal
             stackView.alignment = .center
             view = stackView
@@ -53,9 +59,15 @@ extension DrawableMarkdownViewController {
             case .pencil:
                 pencilBtn.toolSelected = true
                 eraserBtn.toolSelected = false
+                highlighterBtn.toolSelected = false
             case .eraser:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = true
+                highlighterBtn.toolSelected = false
+            case .highlighter:
+                pencilBtn.toolSelected = false
+                eraserBtn.toolSelected = false
+                highlighterBtn.toolSelected = true
             }
         }
         
@@ -88,6 +100,11 @@ extension DrawableMarkdownViewController {
         @objc
         func setEraser() {
             coordinator.tool = .eraser
+        }
+        
+        @objc
+        func setHighlighter() {
+            coordinator.tool = .highlighter
         }
         
         func coordinate(with coordinator: Coordinator) {

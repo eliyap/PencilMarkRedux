@@ -128,7 +128,7 @@ final class PickerDelegate: NSObject, UIDocumentPickerDelegate {
         assert(fileBrowser.splitViewController != nil, "Could not find ancestor split view!")
         fileBrowser.splitViewController?.show(.secondary)
         
-        fileBrowser.selectionDelegate.select(urls[0])
+        fileBrowser.selectionDelegate.select(urls[0], onClose: { })
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {

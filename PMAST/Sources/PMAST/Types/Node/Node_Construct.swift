@@ -40,6 +40,8 @@ func construct(from dict: [AnyHashable: Any]?, parent: Parent?) -> Node? {
         return Delete(dict: dict, parent: parent)
     case Strong.type:
         return Strong(dict: dict, parent: parent)
+    case Mark.type:
+        return Mark(dict: dict, parent: parent)
     case Emphasis.type:
         return Emphasis(dict: dict, parent: parent)
     case Text.type:

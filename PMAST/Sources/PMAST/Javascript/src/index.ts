@@ -1,12 +1,13 @@
 import { fromMarkdown } from "mdast-util-from-markdown";
-import { gfmFromMarkdown, gfmToMarkdown } from 'mdast-util-gfm';
+import { gfmFromMarkdown } from 'mdast-util-gfm';
 import { gfm } from 'micromark-extension-gfm';
-import { Root } from "mdast-util-from-markdown/lib";
+import { pandocMark } from 'micromark-extension-mark/dev/index.js';
+import { pandocMarkFromMarkdown } from 'mdast-util-mark';
 
 function parse(markdown: string): any {
     return fromMarkdown(markdown, {
-        extensions: [gfm()],
-        mdastExtensions: [gfmFromMarkdown]
+        extensions: [gfm(), pandocMark()],
+        mdastExtensions: [gfmFromMarkdown, pandocMarkFromMarkdown]
     });
 }
 

@@ -2,3 +2,5 @@ Javascript/venv/*
 Javascript/env/*
 Javascript/node_modules/*
 Javascript/dist/*
+
+**/xcuserdata/

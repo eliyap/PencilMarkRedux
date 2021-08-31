@@ -42,7 +42,6 @@ extension PMCanvasView {
         }
         
         guard
-            delegate.coordinator.tool == .eraser,
             let touch = touches.first,
             /// a perfectly perpendicular input indicates a finger is being used
             touch.altitudeAngle != CGFloat.pi / 2
@@ -50,11 +49,19 @@ extension PMCanvasView {
             return
         }
         
-        eraserDown = true
-        
         let location = touch.preciseLocation(in: self)
-        trackCircle(location: location)
-        PencilConduit.shared.eraser = location
+        
+        switch delegate.coordinator.tool {
+        case .eraser:
+            eraserDown = true
+            trackCircle(location: location, tool: .eraser)
+            PencilConduit.shared.eraser = location
+        case .highlighter:
+            eraserDown = true
+            trackCircle(location: location, tool: .highlighter)
+        default:
+            break
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,7 +80,7 @@ extension PMCanvasView {
 extension PMCanvasView {
 
     /// Places a visual representation of the eraser under the pencil tip.
-    fileprivate func trackCircle(location: CGPoint) -> Void {
+    fileprivate func trackCircle(location: CGPoint, tool: Tool) -> Void {
         
         let cl = getOrInitCircleLayer()
         
@@ -85,7 +92,17 @@ extension PMCanvasView {
         location.y -= size / 2
         
         cl.path = UIBezierPath(ovalIn: CGRect(x: location.x, y: location.y, width: size, height: size)).cgPath
-        cl.fillColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+        
+        switch tool {
+        case .eraser:
+            cl.fillColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+        case .highlighter:
+            cl.fillColor = CGColor(red: 0, green: 1, blue: 1, alpha: 0.5)
+        default:
+            /// invisible by default
+            cl.fillColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
+        }
+        
     }
     
     /// Removes circle when eraser is lifted.
