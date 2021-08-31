@@ -49,12 +49,16 @@ extension PMCanvasView {
             return
         }
         
+        let location = touch.preciseLocation(in: self)
+        
         switch delegate.coordinator.tool {
         case .eraser:
             eraserDown = true
-            let location = touch.preciseLocation(in: self)
             trackCircle(location: location)
             PencilConduit.shared.eraser = location
+        case .highlighter:
+            eraserDown = true
+            trackCircle(location: location)
         default:
             break
         }
