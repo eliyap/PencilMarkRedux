@@ -9,13 +9,23 @@ import UIKit
 
 extension KeyboardViewController {
     func observeEraser() {
-        let eraser = PencilConduit.shared.$eraser
-            .sink { [weak self] (point: CGPoint?) in
-                switch point {
-                case .none:
-                    self?.erase()
-                case .some(let point):
-                    self?.add(point: point)
+        let eraser = PencilConduit.shared.$location
+            .compactMap { $0 } /// Ignore  initial`nil`.
+            .sink { [weak self] (location: (point: CGPoint?, tool: Tool)) in
+                switch location.tool {
+                case .eraser:
+                    switch location.point {
+                    case .none:
+                        self?.erase()
+                    case .some(let point):
+                        self?.add(point: point)
+                    }
+                case .highlighter:
+                    #warning("TODO: Program Highlighter!")
+                    break
+                default:
+                    assert(false, "Unhandled Tool!")
+                    break
                 }
             }
         store(eraser)

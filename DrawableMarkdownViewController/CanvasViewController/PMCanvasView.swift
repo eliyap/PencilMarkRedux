@@ -50,18 +50,15 @@ extension PMCanvasView {
         }
         
         let location = touch.preciseLocation(in: self)
-        
         switch delegate.coordinator.tool {
-        case .eraser:
-            eraserDown = true
-            trackCircle(location: location, tool: .eraser)
-            PencilConduit.shared.eraser = location
-        case .highlighter:
-            eraserDown = true
-            trackCircle(location: location, tool: .highlighter)
+        case .eraser, .highlighter:
+            dragtool = delegate.coordinator.tool
+            trackCircle(location: location, tool: delegate.coordinator.tool)
+            PencilConduit.shared.location = (location, delegate.coordinator.tool)
         default:
             break
         }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,9 +67,12 @@ extension PMCanvasView {
         /// Reject end events that result from finger taps.
         guard let tool = dragtool else { return }
 
+        /// End visual drag indication.
         removeCircle()
-        PencilConduit.shared.eraser = nil
         dragtool = nil
+        
+        /// Signal termination of drag.
+        PencilConduit.shared.location = (nil, tool)
     }
 }
 
