@@ -32,6 +32,32 @@ extension Markdown {
         makeReplacements()
     }
     
+    #warning("Experimental")
+    /// Note: view controllers should register undo before this method mutates the model.
+    public mutating func apply<T: Parent>(
+        lineStyle: T.Type,
+        to ranges: [NSRange]
+    ) -> Void {
+        /// reject empty ranges
+        let ranges = ranges.filter { $0.length > 0 }
+        
+        for range in ranges {
+            /// Find which parts of the document were partially or completely intersected by this line.
+            let (partial, complete) = ast.intersectingText(in: range)
+            
+            print("DEBUG: \(partial.count) partial, \(complete.count) complete")
+            
+            /// Apply changes to AST
+            partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
+            complete.forEach { $0.apply(style: lineStyle, in: self) }
+            consume(style: lineStyle)
+            
+            combine()
+        }
+        
+        makeReplacements()
+    }
+    
     /**
      Gather nodes that changed, determine what changes to the next are needed to enact those changes,
      make those replacements.

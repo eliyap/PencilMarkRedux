@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PMAST
 
 extension KeyboardViewController {
     func observeEraser() {
@@ -24,7 +25,7 @@ extension KeyboardViewController {
                     #warning("TODO: Program Highlighter!")
                     switch location.point {
                     case .none:
-                        self?.erase()
+                        self?.highlight()
                     case .some(let point):
                         self?.add(point: point, tool: .highlighter)
                     }
@@ -78,6 +79,35 @@ extension KeyboardViewController {
         registerUndo(restyle: true) /// register before model changes
         
         coordinator.document?.markdown.erase(ranges)
+        coordinator.document?.updateChangeCount(.done)
+        
+        /// Set and style contents
+        textView.text = coordinator.document?.markdown.plain
+        coordinator.document?.markdown.reconstructTree()
+        styleText()
+    }
+    
+    /// Highlight marked regions.
+    fileprivate func highlight() -> Void {
+        /// Reset model state.
+        defer {
+            /// Update state variable.
+            eraserDown = false
+            
+            /// Discard model in light of updates.
+            textView.fragmentModel.invalidate()
+        }
+        
+        /// Update model, then report update, then update view.
+        let ranges = textView.fragmentModel.getMergedRanges()
+        
+        guard ranges.isEmpty == false else { return }
+        
+        /// - Warning: Crashes the app if document is not already open!
+        ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
+        registerUndo(restyle: true) /// register before model changes
+        
+        coordinator.document?.markdown.apply(lineStyle: Mark.self, to: ranges)
         coordinator.document?.updateChangeCount(.done)
         
         /// Set and style contents
