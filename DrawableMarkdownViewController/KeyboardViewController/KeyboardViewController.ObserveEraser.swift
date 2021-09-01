@@ -18,11 +18,16 @@ extension KeyboardViewController {
                     case .none:
                         self?.erase()
                     case .some(let point):
-                        self?.add(point: point)
+                        self?.add(point: point, tool: .eraser)
                     }
                 case .highlighter:
                     #warning("TODO: Program Highlighter!")
-                    break
+                    switch location.point {
+                    case .none:
+                        self?.erase()
+                    case .some(let point):
+                        self?.add(point: point, tool: .highlighter)
+                    }
                 default:
                     assert(false, "Unhandled Tool!")
                     break
@@ -32,7 +37,7 @@ extension KeyboardViewController {
     }
     
     /// Mark the region around this point to this point to be erased.
-    fileprivate func add(point: CGPoint) -> Void {
+    fileprivate func add(point: CGPoint, tool: Tool) -> Void {
         
         /// Update state variable.
         eraserDown = true
@@ -46,7 +51,10 @@ extension KeyboardViewController {
         /// Add one line of height.
         point.y += UIFont.dynamicSize
         
-        hitTestFragments(against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2))
+        hitTestFragments(
+            against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2),
+            tool: tool
+        )
     }
     
     /// Erase marked regions.
@@ -78,7 +86,7 @@ extension KeyboardViewController {
         styleText()
     }
     
-    func hitTestFragments(against circle: Circle) {
+    func hitTestFragments(against circle: Circle, tool: Tool) {
         let fragments = textView.fragmentModel.fragments
         
         /// Find the sub-array of line fragments whose characters might intersect the circle.
@@ -87,9 +95,11 @@ extension KeyboardViewController {
         let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.usedRect.intersectsY(circle)})
         let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.usedRect.intersectsY(circle)})
         
+        
+        
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
-            (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: LineFragment.redText) }
+            (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: tool.style) }
         case (.none, .none): /// out of bounds
             break
         case (.some, .none), (.none, .some):

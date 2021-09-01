@@ -38,4 +38,15 @@ enum Tool: Int, CaseIterable {
             return "Highlighter"
         }
     }
+    
+    var style: LineFragment.Style {
+        switch self {
+        case .pencil:
+            return [:]
+        case .eraser:
+            return [.foregroundColor: UIColor.red]
+        case .highlighter:
+            return [.backgroundColor: UIColor.yellow.withAlphaComponent(0.5)]
+        }
+    }
 }
