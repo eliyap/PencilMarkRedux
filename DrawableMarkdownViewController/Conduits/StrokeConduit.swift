@@ -17,7 +17,7 @@ final class PencilConduit: ObservableObject {
     @Published var stroke: PKStroke? = nil
     
     /// Conduit for eraser points.
-    @Published var eraser: CGPoint? = nil
+    @Published var location: (CGPoint?, Tool)? = nil
     
     /// Eraser diameter.
     var eraserDiameter: CGFloat = 20
