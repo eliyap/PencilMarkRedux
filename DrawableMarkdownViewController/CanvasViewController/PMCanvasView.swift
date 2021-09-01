@@ -13,8 +13,8 @@ final class PMCanvasView: PKCanvasView {
     /// Contains a circle that indicates the eraser's position.
     var circleLayer: CAShapeLayer? = nil
     
-    /// Tracks whether the eraser tool is currently being dragged.
-    var eraserDown = false
+    /// Tracks what tool is currently being dragged.
+    var dragtool: Tool? = nil
     
     /// Currently a no-op
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -68,11 +68,11 @@ extension PMCanvasView {
         super.touchesEnded(touches, with: event)
         
         /// Reject end events that result from finger taps.
-        guard eraserDown else { return }
+        guard let tool = dragtool else { return }
 
         removeCircle()
         PencilConduit.shared.eraser = nil
-        eraserDown = false
+        dragtool = nil
     }
 }
 
