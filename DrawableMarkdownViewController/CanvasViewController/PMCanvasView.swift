@@ -13,8 +13,8 @@ final class PMCanvasView: PKCanvasView {
     /// Contains a circle that indicates the eraser's position.
     var circleLayer: CAShapeLayer? = nil
     
-    /// Tracks whether the eraser tool is currently being dragged.
-    var eraserDown = false
+    /// Tracks what tool is currently being dragged.
+    var dragtool: Tool? = nil
     
     /// Currently a no-op
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,29 +50,35 @@ extension PMCanvasView {
         }
         
         let location = touch.preciseLocation(in: self)
-        
         switch delegate.coordinator.tool {
         case .eraser:
-            eraserDown = true
-            trackCircle(location: location, tool: .eraser)
-            PencilConduit.shared.eraser = location
+            dragtool = delegate.coordinator.tool
+            trackCircle(location: location, tool: delegate.coordinator.tool)
+            PencilConduit.shared.location = (location, delegate.coordinator.tool)
+        #if HIGHLIGHT_ENABLED
         case .highlighter:
-            eraserDown = true
-            trackCircle(location: location, tool: .highlighter)
+            dragtool = delegate.coordinator.tool
+            trackCircle(location: location, tool: delegate.coordinator.tool)
+            PencilConduit.shared.location = (location, delegate.coordinator.tool)
+        #endif
         default:
             break
         }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
         /// Reject end events that result from finger taps.
-        guard eraserDown else { return }
+        guard let tool = dragtool else { return }
 
+        /// End visual drag indication.
         removeCircle()
-        PencilConduit.shared.eraser = nil
-        eraserDown = false
+        dragtool = nil
+        
+        /// Signal termination of drag.
+        PencilConduit.shared.location = (nil, tool)
     }
 }
 
@@ -96,8 +102,10 @@ extension PMCanvasView {
         switch tool {
         case .eraser:
             cl.fillColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+        #if HIGHLIGHT_ENABLED
         case .highlighter:
             cl.fillColor = CGColor(red: 0, green: 1, blue: 1, alpha: 0.5)
+        #endif
         default:
             /// invisible by default
             cl.fillColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)

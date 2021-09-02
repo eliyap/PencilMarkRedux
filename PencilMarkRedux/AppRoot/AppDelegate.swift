@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             #warning("Todo: log failure here!")
             #warning("TODO: Activating Siri can cause this to trigger!")
-            assert(false, "Failed to mute!")
+//            assert(false, "Failed to mute!")
         }
         
         return true
