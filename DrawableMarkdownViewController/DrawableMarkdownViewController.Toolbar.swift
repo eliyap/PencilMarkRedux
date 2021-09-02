@@ -39,15 +39,22 @@ extension DrawableMarkdownViewController {
             highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setHighlighter))
             #endif
             
-            let stackView = UIStackView(arrangedSubviews: [
+            var subviews: [UIView] = [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
                 pencilBtn,
                 Padding(width: 6),
                 eraserBtn,
                 Padding(width: 6),
+            ]
+            
+            #if HIGHLIGHT_ENABLED
+            subviews += [
                 highlighterBtn,
                 Padding(width: 6),
-            ])
+            ]
+            #endif
+            
+            let stackView = UIStackView(arrangedSubviews: subviews)
             stackView.axis = .horizontal
             stackView.alignment = .center
             view = stackView
@@ -61,11 +68,15 @@ extension DrawableMarkdownViewController {
             case .pencil:
                 pencilBtn.toolSelected = true
                 eraserBtn.toolSelected = false
+                #if HIGHLIGHT_ENABLED
                 highlighterBtn.toolSelected = false
+                #endif
             case .eraser:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = true
+                #if HIGHLIGHT_ENABLED
                 highlighterBtn.toolSelected = false
+                #endif
             #if HIGHLIGHT_ENABLED
             case .highlighter:
                 pencilBtn.toolSelected = false
