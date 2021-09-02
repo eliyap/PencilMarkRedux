@@ -33,8 +33,11 @@ extension DrawableMarkdownViewController {
             super.init(nibName: nil, bundle: nil)
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
+            
+            #if HIGHLIGHT_ENABLED
             #warning("TODO: replace with custom asset!")
             highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setHighlighter))
+            #endif
             
             let stackView = UIStackView(arrangedSubviews: [
                 UIView(), /// spacer view, fills space because it is first: https://developer.apple.com/documentation/uikit/uistackview/distribution/fill
@@ -63,10 +66,12 @@ extension DrawableMarkdownViewController {
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = true
                 highlighterBtn.toolSelected = false
+            #if HIGHLIGHT_ENABLED
             case .highlighter:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = false
                 highlighterBtn.toolSelected = true
+            #endif
             }
         }
         
@@ -101,10 +106,12 @@ extension DrawableMarkdownViewController {
             coordinator.tool = .eraser
         }
         
+        #if HIGHLIGHT_ENABLED
         @objc
         func setHighlighter() {
             coordinator.tool = .highlighter
         }
+        #endif
         
         func coordinate(with coordinator: Coordinator) {
             self.coordinator = coordinator
