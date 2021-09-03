@@ -9,24 +9,6 @@ import Foundation
 import UIKit
 
 extension Markdown {
-    /// A straight line erase operation.
-    public mutating func erase(to range: NSRange) -> Void {
-        /// Reject empty ranges.
-        guard range.length > 0 else { return }
-        
-        let intersected: [Text] = ast.intersectingText(in: range)
-        
-        /// Mark nodes that were directly erased along this range in the AST.
-        intersected.forEach { $0.erase(in: range, in: self) }
-        
-        /// Mark nodes that need to be removed as a result of previous removals.
-        ast.infect()
-        
-        combine()
-        
-        makeReplacements()
-    }
-    
     #warning("Experimental")
     /// A straight line erase operation.
     public mutating func erase(_ ranges: [NSRange]) -> Void {
