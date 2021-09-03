@@ -14,13 +14,13 @@ public final class ListItem: Parent {
     let checked: Bool?
     let spread: Bool?
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         let checked = dict?["checked"] as? Bool
         let spread = dict?["spread"] as? Bool
     
         self.checked = checked
         self.spread = spread
-        super.init(dict: dict, parent: parent)
+        super.init(dict: dict, parent: parent, text: text)
     }
     
     override func style(_ string: NSMutableAttributedString) {

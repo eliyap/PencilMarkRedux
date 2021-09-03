@@ -14,7 +14,7 @@ public final class Heading: Parent {
     
     let depth: Int
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         guard
             let depth = dict?["depth"] as? Int
         else {
@@ -22,7 +22,7 @@ public final class Heading: Parent {
             return nil
         }
         self.depth = depth
-        super.init(dict: dict, parent: parent)
+        super.init(dict: dict, parent: parent, text: text)
     }
     
     override func style(_ string: NSMutableAttributedString) {

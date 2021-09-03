@@ -18,13 +18,13 @@ public final class Code: Literal {
     /// Not sure what this is.
     var meta: String?
     
-    required init?(dict: [AnyHashable : Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable : Any]?, parent: Parent?, text: String) {
         let lang = dict?["lang"] as? String
         let meta = dict?["meta"] as? String
     
         self.lang = lang
         self.meta = meta
-        super.init(dict: dict, parent: parent)
+        super.init(dict: dict, parent: parent, text: text)
     }
     
     override func style(_ string: NSMutableAttributedString) {

@@ -115,7 +115,8 @@ extension Node {
                 "type": style.type,
                 "children": [],
             ],
-            parent: parent /// attach node to own parent
+            parent: parent, /// attach node to own parent,
+            text: "" /// NOTHING!
         )!
         styled._leading_change = .toAdd
         styled._trailing_change = .toAdd
@@ -165,7 +166,8 @@ extension Text {
                 "type": style.type,
                 "children": [],
             ],
-            parent: parent
+            parent: parent,
+            text: "" /// NOTHING!
         )!
         
         /// Flag `style` node as newly added.

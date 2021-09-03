@@ -48,7 +48,7 @@ final internal class Parser {
 /// Since coercing the Swift AST from JS is cheap, this method allows us to make copies of a tree
 /// easily without making a complex copying method, or re-incurring the parse cost.
 func constructTree(from dict: [AnyHashable: Any], text: String) -> Root {
-    let ast = Root(dict: dict, parent: nil)!
+    let ast = Root(dict: dict, parent: nil, text: text)!
     
     /// assert tree is ok
     try! ast.linkCheck()

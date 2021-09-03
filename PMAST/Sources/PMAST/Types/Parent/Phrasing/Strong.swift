@@ -11,8 +11,8 @@ import UIKit
 public final class Strong: Parent, InlineJoinable {
     override class var type: String { "strong" }
     
-    required init?(dict: [AnyHashable : Any]?, parent: Parent?) {
-        super.init(dict: dict, parent: parent)
+    required init?(dict: [AnyHashable : Any]?, parent: Parent?, text: String) {
+        super.init(dict: dict, parent: parent, text: text)
     }
     
     /// Conformance to ``InlineJoinable``, allow no-child `init`.
