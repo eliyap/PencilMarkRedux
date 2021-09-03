@@ -31,7 +31,6 @@ extension Markdown {
             )
         } while success == false
         
-        
         /// Finalize tree adjustments.
         ast = temp
     }
@@ -52,8 +51,6 @@ extension Root {
         let newChunks = newLines.chunked(along: boundaries)
         
         let chunkDiff = newChunks.difference(from: oldChunks)
-        
-        chunkDiff.report() /// - Warning: DEBUG
         
         for chunkChange in chunkDiff {
             print("Change \(chunkChange.startIndex)")
@@ -95,7 +92,6 @@ extension Root {
             if trailingFence != "~~~" && trailingFence != "```" {
                 hasUnclosedFence = true
             }
-            print("trailingFence \(trailingFence)")
         }
         
         /// Shift new nodes into the correct ``position``.
@@ -119,8 +115,6 @@ extension Root {
         
         /// Insert node into tree structure.
         graft(node, at: insertionIndex)
-        
-        print(description) /// DEBUG
     }
     
     fileprivate func remove(
