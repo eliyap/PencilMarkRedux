@@ -109,6 +109,24 @@ class PatchCorrectnessTests: XCTestCase {
         )
     }
     
+    func testInsertLineBetween() throws {
+        checkPatch(
+            old: """
+            Old Text
+            - Old Text
+            
+            Old Text
+            """,
+            new: """
+            Old Text
+            
+            - Old Text
+            
+            Old Text
+            """
+        )
+    }
+    
     func testModifyLines() throws {
         checkPatch(
             old: """
