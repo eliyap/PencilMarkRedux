@@ -63,7 +63,11 @@ extension Root {
             case .insert(let offset, let element, let associatedWith):
                 var hasUnclosedFence = false
                 insert(details: (offset, element, associatedWith), newText: newText, newLines: newLines, hasUnclosedFence: &hasUnclosedFence)
-                if hasUnclosedFence {
+                if
+                    hasUnclosedFence,
+                    /// If we reach the end of the document, that necessarily ends the code block, so we don't remove that boundary.
+                    element.endIndex != boundaries.last
+                {
                     /// Remove the offending boundary, and immediately exit to try again.
                     precondition(boundaries.contains(where: { $0 == element.endIndex }), "Could not locate boundary!")
                     boundaries = boundaries.filter { $0 != element.endIndex }
