@@ -53,7 +53,6 @@ extension Root {
         let chunkDiff = newChunks.difference(from: oldChunks)
         
         for chunkChange in chunkDiff {
-            print("Change \(chunkChange.startIndex)")
             switch chunkChange {
             case .insert(let offset, let element, let associatedWith):
                 var hasUnclosedFence = false

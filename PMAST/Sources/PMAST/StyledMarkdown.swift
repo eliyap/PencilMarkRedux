@@ -59,7 +59,6 @@ extension Markdown {
             assert(false, "Cannot style non matching string!")
             return
         }
-        precondition(string.string == plain, "Cannot style non matching string!")
         
         /// Clear all attributes so that typed text is plain by default.
         string.setAttributes(`default`, range: NSMakeRange(0, string.length))
