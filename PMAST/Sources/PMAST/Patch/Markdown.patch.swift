@@ -15,11 +15,12 @@ extension Markdown {
         let newLines = new.makeLines()
         var newBoundaries = newLines.findBoundaries()
         
+        /// A disposable AST.
         var temp: Root
         var success = false
         
         repeat {
-            /// Construct and patch temporary tree.
+            /// Construct, then patch, new tree.
             temp = constructTree(from: dict, text: plain)
             success = temp.patch(
                 oldChunks: plain.makeLines().chunked(along: self.boundaries),
