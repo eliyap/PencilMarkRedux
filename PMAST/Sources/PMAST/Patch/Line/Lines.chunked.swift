@@ -9,6 +9,10 @@ import Foundation
 
 extension Array where Element == Line {
     internal func chunked(along boundaries: [Boundary]) -> [Chunk] {
+        guard boundaries.isEmpty == false else {
+            return []
+        }
+        
         return (1..<boundaries.count)
             .map { idx in
                 self[boundaries[idx-1]..<boundaries[idx]]

@@ -16,6 +16,9 @@ public struct Markdown {
     /// A Swift representation of a Unified.JS MarkDown Abstract Syntax Tree (AST).
     internal var ast: Root! = nil
     
+    /// Set of boundaries between chunks of plain text.
+    internal var boundaries: [Boundary] = []
+    
     /// A cached copy of the JavaScript MDAST.
     /// Allows us to restore the Swift MDAST after ``ast`` has been modified,
     /// in the event that we want to revert changes, especially duing chunk diffing. constructTree(from: Parser.shared.parse(text))
@@ -26,6 +29,17 @@ public struct Markdown {
         
         /// Perform initial tree construction.
         self.reconstructTree()
+        
+        /// Hack: construct boundaries by patching an empty tree
+        var empty = Markdown()
+        empty.patch(with: plain)
+        boundaries = empty.boundaries
+    }
+    
+    /// An empty document.
+    fileprivate init() {
+        plain = ""
+        reconstructTree()
     }
 }
 
@@ -53,7 +67,6 @@ extension Markdown {
             assert(false, "Cannot style non matching string!")
             return
         }
-        precondition(string.string == plain, "Cannot style non matching string!")
         
         /// Clear all attributes so that typed text is plain by default.
         string.setAttributes(`default`, range: NSMakeRange(0, string.length))

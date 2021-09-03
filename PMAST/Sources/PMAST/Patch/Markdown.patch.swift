@@ -11,31 +11,29 @@ fileprivate typealias ChunkChangeDetails = (offset: Int, element: Chunk, associa
 
 extension Markdown {
     public mutating func patch(with new: String) {
-        let oldLines = plain.makeLines()
-        let oldChunks = oldLines.chunked(along: oldLines.findBoundaries())
         
         let newLines = new.makeLines()
-        var boundaries = newLines.findBoundaries()
+        var newBoundaries = newLines.findBoundaries()
         
-        #warning("TODO: implement conditional loop here!")
-        
+        /// A disposable AST.
         var temp: Root
         var success = false
         
+        /// Running at least once ensures (for compiler) that tree is initialized.
         repeat {
-            /// Construct and patch temporary tree.
+            /// Construct, then patch, new tree.
             temp = constructTree(from: dict, text: plain)
             success = temp.patch(
-                oldChunks: oldChunks,
+                oldChunks: plain.makeLines().chunked(along: self.boundaries),
                 newText: new,
                 newLines: newLines,
-                boundaries: &boundaries
+                boundaries: &newBoundaries
             )
         } while success == false
         
-        
         /// Finalize tree adjustments.
         ast = temp
+        boundaries = newBoundaries
     }
 }
 
@@ -55,10 +53,7 @@ extension Root {
         
         let chunkDiff = newChunks.difference(from: oldChunks)
         
-        chunkDiff.report() /// - Warning: DEBUG
-        
         for chunkChange in chunkDiff {
-            print("Change \(chunkChange.startIndex)")
             switch chunkChange {
             case .insert(let offset, let element, let associatedWith):
                 var hasUnclosedFence = false
@@ -97,7 +92,6 @@ extension Root {
             if trailingFence != "~~~" && trailingFence != "```" {
                 hasUnclosedFence = true
             }
-            print("trailingFence \(trailingFence)")
         }
         
         /// Shift new nodes into the correct ``position``.
@@ -121,8 +115,6 @@ extension Root {
         
         /// Insert node into tree structure.
         graft(node, at: insertionIndex)
-        
-        print(description) /// DEBUG
     }
     
     fileprivate func remove(

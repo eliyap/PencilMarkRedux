@@ -37,9 +37,10 @@ class PatchSpeedTests: XCTestCase {
             ...Eat your vegetables!
             """
         
-        var oldMD = Markdown(old)
+        
         
         measure {
+            var oldMD = Markdown(old)
             oldMD.patch(with: new)
         }
     }
@@ -66,9 +67,9 @@ class PatchSpeedTests: XCTestCase {
             ...Eat your vegetables!
             """
         
-        var oldMD = Markdown(old)
         
         measure {
+            var oldMD = Markdown(old)
             oldMD.patch(with: new)
         }
     }
