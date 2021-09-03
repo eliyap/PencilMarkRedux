@@ -30,8 +30,10 @@ public struct Markdown {
         /// Perform initial tree construction.
         self.reconstructTree()
         
-        let lines = plain.makeLines()
-        boundaries = lines.findBoundaries()
+        /// Hack: construct boundaries by patching an empty tree
+        var empty = Markdown()
+        empty.patch(with: plain)
+        boundaries = empty.boundaries
     }
     
     /// An empty document.
