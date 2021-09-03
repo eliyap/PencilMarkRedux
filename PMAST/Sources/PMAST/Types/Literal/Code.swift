@@ -18,7 +18,6 @@ public final class Code: Literal {
     /// Not sure what this is.
     var meta: String?
     
-    
     required init?(dict: [AnyHashable : Any]?, parent: Parent?) {
         let lang = dict?["lang"] as? String
         let meta = dict?["meta"] as? String
