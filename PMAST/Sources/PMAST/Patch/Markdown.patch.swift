@@ -25,7 +25,7 @@ extension Markdown {
         let temp = constructTree(from: dict)
         temp.patch(
             oldChunks: oldChunks,
-            new: new,
+            newText: new,
             newLines: newLines,
             boundaries: boundaries,
             flag: &didEncounterUnclosedFence
@@ -39,7 +39,7 @@ extension Markdown {
 extension Root {
     func patch(
         oldChunks: [Chunk],
-        new: String,
+        newText: String,
         newLines: [Line],
         boundaries: [Boundary],
         flag: inout Bool
@@ -55,9 +55,9 @@ extension Root {
                 print("Change \(chunkChange.startIndex)")
                 switch chunkChange {
                 case .insert(let offset, let element, let associatedWith):
-                    insert(details: (offset, element, associatedWith), new: new, newLines: newLines)
+                    insert(details: (offset, element, associatedWith), new: newText, newLines: newLines)
                 case .remove(let offset, let element, let associatedWith):
-                    remove(details: (offset, element, associatedWith), new: new, newLines: newLines)
+                    remove(details: (offset, element, associatedWith), new: newText, newLines: newLines)
                 }
             }
     }
