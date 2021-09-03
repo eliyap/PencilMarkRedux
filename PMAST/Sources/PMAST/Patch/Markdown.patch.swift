@@ -33,6 +33,7 @@ extension Markdown {
         
         /// Finalize tree adjustments.
         ast = temp
+        boundaries = newBoundaries
     }
 }
 
