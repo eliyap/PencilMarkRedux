@@ -335,7 +335,6 @@ class PatchCorrectnessTests: XCTestCase {
     }
     
     func testContractFencedCodeBlock() throws {
-        throw XCTSkip("Causes Array Bounds Crash!")
         /// Unclose at the beginning.
         checkPatch(
             old: """
