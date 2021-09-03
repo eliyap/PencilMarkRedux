@@ -27,7 +27,10 @@ public final class Code: Literal {
         self.lang = lang
         self.meta = meta
         super.init(dict: dict, parent: parent, text: text)
-        
+        codeRange = getCodeRange(text: text)
+    }
+    
+    fileprivate func getCodeRange(text: String) -> NSRange {
         let contents: String = String(text[position.nsRange])
         let nsContents = NSString(string: contents)
         
@@ -37,18 +40,19 @@ public final class Code: Literal {
             if contents.contains(where: \.isNewline) {
                 let newlineRange: NSRange = nsContents.rangeOfCharacter(from: .newlines)
                 precondition(newlineRange.lowerBound != NSNotFound)
-                codeRange = NSMakeRange(newlineRange.upperBound, 0)
+                return NSMakeRange(newlineRange.upperBound, 0)
             } else {
                 /// Filter out corner case `~~~~~~` (3 open, 3 close)
-                codeRange = NSMakeRange(3, 0)
+                return NSMakeRange(3, 0)
             }
         } else {
-            codeRange = nsContents.range(of: value)
-            precondition(codeRange.lowerBound != NSNotFound, """
+            let range = nsContents.range(of: value)
+            precondition(range.lowerBound != NSNotFound, """
                 Could not find value in fence!
                 V: '\(value)'
                 C: '\(contents)'
                 """)
+            return range
         }
     }
     
