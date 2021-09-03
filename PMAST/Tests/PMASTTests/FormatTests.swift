@@ -24,14 +24,14 @@ class FormatTests: XCTestCase {
     func testStrikethroughAvailable() throws {
         var document = Markdown( "a FORMAT a")
         
-        document.apply(lineStyle: Delete.self, to: NSMakeRange(2, 6))
+        document.apply(lineStyle: Delete.self, to: [NSMakeRange(2, 6)])
         XCTAssertEqual(document.plain, "a ~~FORMAT~~ a")
     }
     
     func testEmphasisAvailable() throws {
         var document = Markdown( "a FORMAT a")
         
-        document.apply(lineStyle: Emphasis.self, to: NSMakeRange(2, 6))
+        document.apply(lineStyle: Emphasis.self, to: [NSMakeRange(2, 6)])
         /// accept either kind of emphasis marker
         XCTAssertTrue(document.plain == "a _FORMAT_ a" || document.plain == "a *FORMAT* a", document.plain)
     }
@@ -39,7 +39,7 @@ class FormatTests: XCTestCase {
     func testStrongAvailable() throws {
         var document = Markdown( "a FORMAT a")
         
-        document.apply(lineStyle: Strong.self, to: NSMakeRange(2, 6))
+        document.apply(lineStyle: Strong.self, to: [NSMakeRange(2, 6)])
         /// accept either kind of emphasis marker
         XCTAssertTrue(document.plain == "a __FORMAT__ a" || document.plain == "a **FORMAT** a", document.plain)
     }
