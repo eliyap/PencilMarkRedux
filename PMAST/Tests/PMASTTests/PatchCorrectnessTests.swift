@@ -316,7 +316,7 @@ class PatchCorrectnessTests: XCTestCase {
         )
     }
     
-    func testExtendFencedCodeBlock() throws {
+    func testExpandFencedCodeBlock() throws {
         checkPatch(
             old: """
             ```
