@@ -19,6 +19,7 @@ extension Markdown {
         var temp: Root
         var success = false
         
+        /// Running at least once ensures (for compiler) that tree is initialized.
         repeat {
             /// Construct, then patch, new tree.
             temp = constructTree(from: dict, text: plain)
