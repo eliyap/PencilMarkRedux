@@ -64,10 +64,10 @@ extension Root {
     
     fileprivate func insert(
         details: ChunkChangeDetails,
-        new: String,
+        newText: String,
         newLines: [Line]
     ) -> Void {
-        let node = constructTree(from: Parser.shared.parse(new.contents(of: details.element)))
+        let node = constructTree(from: Parser.shared.parse(newText.contents(of: details.element)))
         
         /// Shift new nodes into the correct ``position``.
         let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)
@@ -96,7 +96,7 @@ extension Root {
     
     fileprivate func remove(
         details: ChunkChangeDetails,
-        new: String,
+        newText: String,
         newLines: [Line]
     ) -> Void {
         let targetIndex: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
