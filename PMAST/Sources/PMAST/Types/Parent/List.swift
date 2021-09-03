@@ -15,7 +15,7 @@ public final class List: Parent {
     let start: Int?
     let spread: Bool?
     
-    required init?( dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         let ordered = dict?["ordered"] as? Bool
         let start = dict?["start"] as? Int
         let spread = dict?["spread"] as? Bool
@@ -23,6 +23,6 @@ public final class List: Parent {
         self.ordered = ordered
         self.start = start
         self.spread = spread
-        super.init(dict: dict, parent: parent)
+        super.init(dict: dict, parent: parent, text: text)
     }
 }

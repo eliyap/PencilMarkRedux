@@ -37,7 +37,7 @@ extension Markdown {
         dict = Parser.shared.parse(plain)
         
         /// Convert JS AST to Swift AST.
-        ast = constructTree(from: dict)
+        ast = constructTree(from: dict, text: plain)
     }
     
     /// Applies styling to the passed text, whose contents **must** be equivalent to the plain markdown!

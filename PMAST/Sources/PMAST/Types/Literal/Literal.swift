@@ -13,7 +13,7 @@ public class Literal: Node {
     
     let value: String
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let value = dict?["value"] as? String,

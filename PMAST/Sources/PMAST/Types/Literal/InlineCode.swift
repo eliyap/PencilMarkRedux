@@ -12,8 +12,8 @@ public final class InlineCode: Literal, InlineJoinable {
 
     override class var type: String { "inlineCode" }
     
-    required init?(dict: [AnyHashable : Any]?, parent: Parent?) {
-        super.init(dict: dict, parent: parent)
+    required init?(dict: [AnyHashable : Any]?, parent: Parent?, text: String) {
+        super.init(dict: dict, parent: parent, text: text)
     }
     
     /// Conformance to ``InlineJoinable``, allow no-value `init`.

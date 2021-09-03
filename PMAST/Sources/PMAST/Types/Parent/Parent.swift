@@ -14,7 +14,7 @@ public class Parent: Node {
     /// Child Nodes
     var children: [Node]
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let children = dict?["children"] as? [[AnyHashable: Any]],
@@ -23,7 +23,7 @@ public class Parent: Node {
             
             self.children = [] /// initialize before self is captured in closure below
             super.init(parent: parent, position: position, _type: _type)
-            self.children = children.compactMap{ construct(from: $0, parent: self) }
+            self.children = children.compactMap{ construct(from: $0, parent: self, text: text) }
         } else {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
             print("Dict: \(String(describing: dict))")

@@ -29,7 +29,7 @@ public class Node {
     /// The string marking the node's class in JavaScript.
     class var type: String { "thematicBreak" }
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
             let position = Position(dict: dict?["position"] as? [AnyHashable: Any]),
             let _type = dict?["type"] as? String

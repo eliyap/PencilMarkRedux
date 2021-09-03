@@ -10,11 +10,11 @@ import Foundation
 final class Root: Parent {
     override class var type: String { "root" }
     
-    required init?(dict: [AnyHashable: Any]?, parent: Parent?) {
+    required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
             let dict = dict
         {
-            super.init(dict: dict, parent: nil)
+            super.init(dict: dict, parent: nil, text: text)
         } else {
             print("Failed to initialize \(Self.type)")
             return nil

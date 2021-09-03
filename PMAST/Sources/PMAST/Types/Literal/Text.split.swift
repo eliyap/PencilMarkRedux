@@ -42,7 +42,8 @@ extension Text {
                     "type": Text.type,
                     "value": "", /// NOTHING!
                 ],
-                parent: nil
+                parent: nil,
+                text: "" /// NOTHING!
             )
         }
         
@@ -63,7 +64,8 @@ extension Text {
                 "type": Text.type,
                 "value": "", /// NOTHING!
             ],
-            parent: nil
+            parent: nil,
+            text: "" /// NOTHING!
         )! /// force unwrap!
         
         /// Check non empty range to avoid inserting empty text nodes, which mess up ``consume``.
@@ -85,7 +87,8 @@ extension Text {
                     "type": Text.type,
                     "value": "", /// NOTHING!
                 ],
-                parent: nil
+                parent: nil,
+                text: "" /// NOTHING!
             )
         }
         
