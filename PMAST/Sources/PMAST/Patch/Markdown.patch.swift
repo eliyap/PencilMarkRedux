@@ -99,14 +99,19 @@ extension Root {
         details: ChunkChangeDetails,
         newLines: [Line]
     ) -> Void {
-        let targetIndex: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
-        guard let targetIndex = targetIndex else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
+        /// Find all nodes in this chunk.
+        let targetStart: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
+        let targetEnd: Int? = children.lastIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
+        guard
+            let targetStart = targetStart,
+            let targetEnd = targetEnd
+        else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
             assert(false, "Could not find target node!")
             return
         }
         
         /// Offset following nodes to account for removed lines.
-        children[targetIndex..<children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize)}
+        children[(targetEnd + 1)..<children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize) }
         
         /// Also offset the document end to account for removed lines.
         position.end -= details.element.chunkSize
@@ -118,7 +123,9 @@ extension Root {
         }
         
         /// Disconnect node, allowing it to be de-allocated.
-        children[targetIndex].parent = nil
-        children.remove(at: targetIndex)
+        (targetStart...targetEnd).forEach { idx in
+            children[idx].parent = nil
+        }
+        children.removeSubrange(targetStart...targetEnd)
     }
 }
