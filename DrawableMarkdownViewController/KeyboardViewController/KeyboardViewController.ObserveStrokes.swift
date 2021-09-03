@@ -59,7 +59,7 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.apply(lineStyle: Delete.self, to: nsRange)
+        coordinator.document?.markdown.apply(lineStyle: Delete.self, to: [nsRange])
         coordinator.document?.updateChangeCount(.done)
         
         /// Set and style contents

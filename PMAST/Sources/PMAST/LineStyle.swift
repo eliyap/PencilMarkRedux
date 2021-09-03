@@ -9,29 +9,6 @@ import Foundation
 import UIKit
 
 extension Markdown {
-    /// Note: view controllers should register undo before this method mutates the model.
-    public mutating func apply<T: Parent>(
-        lineStyle: T.Type,
-        to range: NSRange
-    ) -> Void {
-        /// reject empty ranges
-        guard range.length > 0 else { return }
-        
-        /// Find which parts of the document were partially or completely intersected by this line.
-        let (partial, complete) = ast.intersectingText(in: range)
-        
-        print("DEBUG: \(partial.count) partial, \(complete.count) complete")
-        
-        /// Apply changes to AST
-        partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
-        complete.forEach { $0.apply(style: lineStyle, in: self) }
-        consume(style: lineStyle)
-        
-        combine()
-        
-        makeReplacements()
-    }
-    
     #warning("Experimental")
     /// Note: view controllers should register undo before this method mutates the model.
     public mutating func apply<T: Parent>(
