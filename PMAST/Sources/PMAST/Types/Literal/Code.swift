@@ -33,27 +33,31 @@ public final class Code: Literal {
     fileprivate func getCodeRange(text: String) -> NSRange {
         let contents: String = String(text[position.nsRange])
         let nsContents = NSString(string: contents)
+        var range: NSRange
         
         if value.isEmpty {
+            
             /// Must be a fenced (not indented) block!
             precondition(contents[0..<3] == "~~~" || contents[0..<3] == "```")
             if contents.contains(where: \.isNewline) {
                 let newlineRange: NSRange = nsContents.rangeOfCharacter(from: .newlines)
                 precondition(newlineRange.lowerBound != NSNotFound)
-                return NSMakeRange(newlineRange.upperBound, 0)
+                range = NSMakeRange(newlineRange.upperBound, 0)
             } else {
                 /// Filter out corner case `~~~~~~` (3 open, 3 close)
-                return NSMakeRange(3, 0)
+                range = NSMakeRange(3, 0)
             }
         } else {
-            let range = nsContents.range(of: value)
+            range = nsContents.range(of: value)
             precondition(range.lowerBound != NSNotFound, """
                 Could not find value in fence!
                 V: '\(value)'
                 C: '\(contents)'
                 """)
-            return range
         }
+        
+        /// Adjust range into document position.
+        return NSMakeRange(position.nsRange.lowerBound + range.lowerBound, range.length)
     }
     
     override func style(_ string: NSMutableAttributedString) {
