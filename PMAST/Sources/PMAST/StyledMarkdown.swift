@@ -33,6 +33,12 @@ public struct Markdown {
         let lines = plain.makeLines()
         boundaries = lines.findBoundaries()
     }
+    
+    /// An empty document.
+    fileprivate init() {
+        plain = ""
+        reconstructTree()
+    }
 }
 
 // MARK:- Styling Methods
