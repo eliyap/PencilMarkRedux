@@ -11,13 +11,9 @@ fileprivate typealias ChunkChangeDetails = (offset: Int, element: Chunk, associa
 
 extension Markdown {
     public mutating func patch(with new: String) {
-        let oldLines = plain.makeLines()
-        let oldChunks = oldLines.chunked(along: oldLines.findBoundaries())
         
         let newLines = new.makeLines()
-        var boundaries = newLines.findBoundaries()
-        
-        #warning("TODO: implement conditional loop here!")
+        var newBoundaries = newLines.findBoundaries()
         
         var temp: Root
         var success = false
@@ -26,10 +22,10 @@ extension Markdown {
             /// Construct and patch temporary tree.
             temp = constructTree(from: dict, text: plain)
             success = temp.patch(
-                oldChunks: oldChunks,
+                oldChunks: plain.makeLines().chunked(along: self.boundaries),
                 newText: new,
                 newLines: newLines,
-                boundaries: &boundaries
+                boundaries: &newBoundaries
             )
         } while success == false
         
