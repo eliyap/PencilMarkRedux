@@ -17,8 +17,6 @@ extension Markdown {
         let newLines = new.makeLines()
         var boundaries = newLines.findBoundaries()
         
-        var didEncounterUnclosedFence = false
-        
         #warning("TODO: implement conditional loop here!")
         
         var temp: Root
@@ -31,8 +29,7 @@ extension Markdown {
                 oldChunks: oldChunks,
                 newText: new,
                 newLines: newLines,
-                boundaries: &boundaries,
-                flag: &didEncounterUnclosedFence
+                boundaries: &boundaries
             )
         } while success == false
         
@@ -43,12 +40,16 @@ extension Markdown {
 }
 
 extension Root {
+    /**
+     Modifies this MDAST to fit the new text.
+     Elements in`boundaries` are removed if we find that they divide a fenced code block from the rest of its contents.
+     Returns: `true` if there were no problems with the patch.
+     */
     func patch(
         oldChunks: [Chunk],
         newText: String,
         newLines: [Line],
-        boundaries: inout [Boundary],
-        flag: inout Bool
+        boundaries: inout [Boundary]
     ) -> Bool {
         let newChunks = newLines.chunked(along: boundaries)
         
@@ -63,6 +64,7 @@ extension Root {
                 var hasUnclosedFence = false
                 insert(details: (offset, element, associatedWith), newText: newText, newLines: newLines, hasUnclosedFence: &hasUnclosedFence)
                 if hasUnclosedFence {
+                    /// Remove the offending boundary, and immediately exit to try again.
                     precondition(boundaries.contains(where: { $0 == element.endIndex }), "Could not locate boundary!")
                     boundaries = boundaries.filter { $0 != element.endIndex }
                     return false
