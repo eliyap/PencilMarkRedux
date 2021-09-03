@@ -55,9 +55,9 @@ extension Root {
                 print("Change \(chunkChange.startIndex)")
                 switch chunkChange {
                 case .insert(let offset, let element, let associatedWith):
-                    insert(details: (offset, element, associatedWith), new: newText, newLines: newLines)
+                    insert(details: (offset, element, associatedWith), newText: newText, newLines: newLines)
                 case .remove(let offset, let element, let associatedWith):
-                    remove(details: (offset, element, associatedWith), new: newText, newLines: newLines)
+                    remove(details: (offset, element, associatedWith), newLines: newLines)
                 }
             }
     }
@@ -67,7 +67,8 @@ extension Root {
         newText: String,
         newLines: [Line]
     ) -> Void {
-        let node = constructTree(from: Parser.shared.parse(newText.contents(of: details.element)))
+        let chunkText: String = newText.contents(of: details.element)
+        let node = constructTree(from: Parser.shared.parse(chunkText))
         
         /// Shift new nodes into the correct ``position``.
         let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)
@@ -96,7 +97,6 @@ extension Root {
     
     fileprivate func remove(
         details: ChunkChangeDetails,
-        newText: String,
         newLines: [Line]
     ) -> Void {
         let targetIndex: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
