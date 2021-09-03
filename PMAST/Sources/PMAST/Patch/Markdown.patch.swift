@@ -22,7 +22,7 @@ extension Markdown {
         #warning("TODO: implement conditional loop here!")
         
         /// Construct and patch temporary tree.
-        let temp = constructTree(from: dict)
+        let temp = constructTree(from: dict, text: plain)
         temp.patch(
             oldChunks: oldChunks,
             newText: new,
@@ -68,7 +68,7 @@ extension Root {
         newLines: [Line]
     ) -> Void {
         let chunkText: String = newText.contents(of: details.element)
-        let node = constructTree(from: Parser.shared.parse(chunkText))
+        let node = constructTree(from: Parser.shared.parse(chunkText), text: chunkText)
         
         /// Shift new nodes into the correct ``position``.
         let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)

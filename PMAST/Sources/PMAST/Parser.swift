@@ -39,7 +39,15 @@ final internal class Parser {
     }
 }
 
-func constructTree(from dict: [AnyHashable: Any]) -> Root {
+/// Constructs a Swift AST from:
+/// - Parameters:
+///   - dict: a JavaScript AST parsed from`text`
+///   - text: the source Markdown text
+/// - Important: `dict` **must** be the JS AST of `text`!
+///
+/// Since coercing the Swift AST from JS is cheap, this method allows us to make copies of a tree
+/// easily without making a complex copying method, or re-incurring the parse cost.
+func constructTree(from dict: [AnyHashable: Any], text: String) -> Root {
     let ast = Root(dict: dict, parent: nil)!
     
     /// assert tree is ok
