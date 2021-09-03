@@ -64,8 +64,7 @@ extension KeyboardViewController {
         
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.reconstructTree()
-        styleText()
+        styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
     /// Erase along the provided line
@@ -93,8 +92,7 @@ extension KeyboardViewController {
         
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.reconstructTree()
-        styleText()
+        styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
     /// Animates a rejected stroke as red and fading out, to indicate that to the user that it was not recognized.
