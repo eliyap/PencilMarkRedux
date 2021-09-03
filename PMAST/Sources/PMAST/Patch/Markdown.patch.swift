@@ -15,21 +15,27 @@ extension Markdown {
         let oldChunks = oldLines.chunked(along: oldLines.findBoundaries())
         
         let newLines = new.makeLines()
-        let boundaries = newLines.findBoundaries()
+        var boundaries = newLines.findBoundaries()
         
         var didEncounterUnclosedFence = false
         
         #warning("TODO: implement conditional loop here!")
         
-        /// Construct and patch temporary tree.
-        let temp = constructTree(from: dict, text: plain)
-        temp.patch(
-            oldChunks: oldChunks,
-            newText: new,
-            newLines: newLines,
-            boundaries: boundaries,
-            flag: &didEncounterUnclosedFence
-        )
+        var temp: Root
+        var success = false
+        
+        repeat {
+            /// Construct and patch temporary tree.
+            temp = constructTree(from: dict, text: plain)
+            success = temp.patch(
+                oldChunks: oldChunks,
+                newText: new,
+                newLines: newLines,
+                boundaries: &boundaries,
+                flag: &didEncounterUnclosedFence
+            )
+        } while success == false
+        
         
         /// Finalize tree adjustments.
         ast = temp
@@ -41,34 +47,52 @@ extension Root {
         oldChunks: [Chunk],
         newText: String,
         newLines: [Line],
-        boundaries: [Boundary],
+        boundaries: inout [Boundary],
         flag: inout Bool
-    ) -> Void {
+    ) -> Bool {
         let newChunks = newLines.chunked(along: boundaries)
         
         let chunkDiff = newChunks.difference(from: oldChunks)
         
         chunkDiff.report() /// - Warning: DEBUG
         
-        chunkDiff
-            .forEach { (chunkChange: ChunkChange) in
-                print("Change \(chunkChange.startIndex)")
-                switch chunkChange {
-                case .insert(let offset, let element, let associatedWith):
-                    insert(details: (offset, element, associatedWith), newText: newText, newLines: newLines)
-                case .remove(let offset, let element, let associatedWith):
-                    remove(details: (offset, element, associatedWith), newLines: newLines)
+        for chunkChange in chunkDiff {
+            print("Change \(chunkChange.startIndex)")
+            switch chunkChange {
+            case .insert(let offset, let element, let associatedWith):
+                var hasUnclosedFence = false
+                insert(details: (offset, element, associatedWith), newText: newText, newLines: newLines, hasUnclosedFence: &hasUnclosedFence)
+                if hasUnclosedFence {
+                    precondition(boundaries.contains(where: { $0 == element.endIndex }), "Could not locate boundary!")
+                    boundaries = boundaries.filter { $0 != element.endIndex }
+                    return false
                 }
+            case .remove(let offset, let element, let associatedWith):
+                remove(details: (offset, element, associatedWith), newLines: newLines)
             }
+        }
+        
+        return true
     }
     
+    /// Returns a flag indicating whether an unclosed fence was found!
     fileprivate func insert(
         details: ChunkChangeDetails,
         newText: String,
-        newLines: [Line]
+        newLines: [Line],
+        hasUnclosedFence: inout Bool
     ) -> Void {
         let chunkText: String = newText.contents(of: details.element)
         let node = constructTree(from: Parser.shared.parse(chunkText), text: chunkText)
+        
+        let codeChildren: [Code] = node.children.compactMap { $0 as? Code }
+        for child in codeChildren {
+            let trailingFence = chunkText[child.position.nsRange].suffix(3)
+            if trailingFence != "~~~" && trailingFence != "```" {
+                hasUnclosedFence = true
+            }
+            print("trailingFence \(trailingFence)")
+        }
         
         /// Shift new nodes into the correct ``position``.
         let offset = Point(column: 0, line: details.element.startIndex, offset: details.element.lowerBound)
@@ -92,7 +116,7 @@ extension Root {
         /// Insert node into tree structure.
         graft(node, at: insertionIndex)
         
-        print(description)
+        print(description) /// DEBUG
     }
     
     fileprivate func remove(
