@@ -10,9 +10,7 @@ import PencilKit
 
 final class CanvasViewController: PMViewController {
     
-    /// Force unwrap container VC
-    /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
-    var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
+    let model: DrawableMarkdownViewController.Model
     
     let canvasView = PMCanvasView()
 
@@ -20,7 +18,8 @@ final class CanvasViewController: PMViewController {
     private let _undoManager = CanvasViewController.UndoManager()
     override var undoManager: UndoManager? { _undoManager }
     
-    init() {
+    init(model: DrawableMarkdownViewController.Model) {
+        self.model = model
         super.init(nibName: nil, bundle: nil)
         _undoManager.controller = self /// immediately attach to child
         

@@ -57,8 +57,12 @@ final class DrawableMarkdownViewController: PMViewController {
     
     init(fileURL: URL?) {
         if let fileURL = fileURL {
-            document = StyledMarkdownDocument(fileURL: fileURL)
+            model = Model(document: StyledMarkdownDocument(fileURL: fileURL))
+        } else {
+            model = Model(document: nil)
         }
+        
+        canvas = CanvasViewController(model: model)
         super.init(nibName: nil, bundle: nil)
         
         /// Add subviews into hierarchy.
