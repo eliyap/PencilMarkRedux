@@ -11,16 +11,17 @@ import Combine
 final class DrawableMarkdownViewController: PMViewController {
 
     final class Model {
-        /// Combine Conduits
+        
+        /// Combine Conduits.
         let frameC = FrameConduit()
         let cmdC = CommandConduit()
         let typingC = PassthroughSubject<Void, Never>()
         
-        /// Controls which view gets to set the scroll position
+        /// Controls which view gets to set the scroll position.
         enum ScrollLead { case keyboard, canvas }
         var scrollLead = ScrollLead.canvas
         
-        /// Model object
+        /// Model object.
         public var document: StyledMarkdownDocument?
         
         init(document: StyledMarkdownDocument?) {
