@@ -15,7 +15,10 @@ extension Markdown {
         lineStyle: T.Type,
         to ranges: [NSRange]
     ) -> Void {
-        /// reject empty ranges
+        /// Freeze a copy of the AST before mutation.
+        var backup = self
+        
+        /// Reject empty ranges.
         let ranges = ranges.filter { $0.length > 0 }
         
         for range in ranges {
@@ -24,7 +27,7 @@ extension Markdown {
             
             print("DEBUG: \(partial.count) partial, \(complete.count) complete")
             
-            /// Apply changes to AST
+            /// Apply changes to AST.
             partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
             complete.forEach { $0.apply(style: lineStyle, in: self) }
             consume(style: lineStyle)
@@ -33,11 +36,16 @@ extension Markdown {
         }
         
         makeReplacements()
+        
+        /// Finally, reformat document based on updated source Markdown.
+        backup.updateAST(new: plain)
+        ast = backup.ast
     }
     
     /**
      Gather nodes that changed, determine what changes to the next are needed to enact those changes,
      make those replacements.
+     - Important: this should be the **last** call made when mutating the document.
      */
     mutating func makeReplacements() -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
@@ -52,9 +60,6 @@ extension Markdown {
         
         /// Perform replacements in source Markdown.
         replacements.forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
-        
-        /// Finally, reformat document based on updated source Markdown.
-        reconstructTree()
     }
 }
 

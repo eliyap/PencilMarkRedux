@@ -131,7 +131,7 @@ extension KeyboardViewController {
             
             /// Roll back model state.
             view.controller.coordinator.document?.markdown.plain = view.text
-            view.controller.coordinator.document?.markdown.reconstructTree()
+            view.controller.coordinator.document?.markdown.updateAST(new: view.text)
             
             /// Re-calculate styling if desired.
             if restyle {
