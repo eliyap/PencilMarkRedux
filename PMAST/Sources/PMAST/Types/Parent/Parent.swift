@@ -9,7 +9,7 @@ import Foundation
 
 public class Parent: Node {
         
-    override class var type: String { "Node" }
+    override class var type: String { "Parent" }
         
     /// Child Nodes
     var children: [Node]
