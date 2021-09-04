@@ -25,7 +25,7 @@ public struct Markdown {
         /// Perform initial tree construction.
         reparseTree()
         
-        /// Hack: construct boundaries by patching an empty tree
+        /// Hack: construct boundaries by patching an empty tree.
         var empty = Markdown()
         empty.patch(with: plain)
         boundaries = empty.boundaries
@@ -37,6 +37,7 @@ public struct Markdown {
         reparseTree()
     }
     
+    /// Create a deep copy of the model object.
     public func deepCopy() -> Self {
         var shell = Self()
         
