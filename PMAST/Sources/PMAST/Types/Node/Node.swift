@@ -27,7 +27,7 @@ public class Node {
     var _trailing_change: Change? = nil /// trailing syntax changes
     
     /// The string marking the node's class in JavaScript.
-    class var type: String { "" }
+    class var type: String { "node" }
     
     required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
