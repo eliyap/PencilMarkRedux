@@ -20,7 +20,7 @@ extension DrawableMarkdownViewController {
     /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
     fileprivate func restoreDocument() {
         /// Only restore state if document is not already open.
-        guard document?.fileURL == nil else { return }
+        guard model.document?.fileURL == nil else { return }
         
         /// Assert control over iCloud drive
         /// If we do not do this, `UIDocument` reports a permissions failure.

@@ -12,17 +12,17 @@ extension KeyboardViewController {
     /// Attach `Combine` sinks to events from `frameC`.
     func observeTouchEvents() -> Void {
         /// Coordinate scroll position with `PKCanvasView`.
-        let scroll: AnyCancellable = coordinator.frameC.$scrollY
+        let scroll: AnyCancellable = model.frameC.$scrollY
             .sink { [weak self] in
                 /// Reject events from own delegate
-                guard self?.coordinator.scrollLead != .keyboard else { return }
+                guard self?.model.scrollLead != .keyboard else { return }
                 
                 self?.textView.contentOffset.y = $0
             }
         store(scroll)
         
         /// Set cursor when user taps on `PKCanvasView`.
-        let tap: AnyCancellable = coordinator.frameC.$tapLocation
+        let tap: AnyCancellable = model.frameC.$tapLocation
             .compactMap { $0 }
             .sink { [weak self] in
                 print("received")

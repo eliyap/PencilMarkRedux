@@ -10,9 +10,9 @@ import Combine
 extension KeyboardViewController {
     /// Listen for commands and execute them.
     func observeCommands() -> Void {
-        let undo: AnyCancellable = coordinator.cmdC.undo
+        let undo: AnyCancellable = model.cmdC.undo
             .sink { [weak self] in
-                guard self?.coordinator.document != nil else {
+                guard self?.model.document != nil else {
                     assert(false, "Attempted to undo on nil document!")
                     return
                 }
@@ -24,9 +24,9 @@ extension KeyboardViewController {
             }
         store(undo)
         
-        let redo: AnyCancellable = coordinator.cmdC.redo
+        let redo: AnyCancellable = model.cmdC.redo
             .sink { [weak self] in
-                guard self?.coordinator.document != nil else {
+                guard self?.model.document != nil else {
                     assert(false, "Attempted to redo on nil document!")
                     return
                 }

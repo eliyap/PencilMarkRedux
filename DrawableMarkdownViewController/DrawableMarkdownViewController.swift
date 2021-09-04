@@ -96,7 +96,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     @objc
     func documentStateChanged() -> Void {
-        guard let state = document?.documentState else { return }
+        guard let state = model.document?.documentState else { return }
         if state == .normal { }
         if state.contains(.closed) { print("Document Closed") }
         if state.contains(.inConflict) { print("Document Conflicted") }

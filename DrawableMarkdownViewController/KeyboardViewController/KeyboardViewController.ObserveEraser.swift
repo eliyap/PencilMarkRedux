@@ -80,11 +80,11 @@ extension KeyboardViewController {
         ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
         registerUndo(restyle: true) /// register before model changes
         
-        coordinator.document?.markdown.erase(ranges)
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.erase(ranges)
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
@@ -108,11 +108,11 @@ extension KeyboardViewController {
         ///            Make sure this is not triggered on initial publication of ``PencilConduit``!
         registerUndo(restyle: true) /// register before model changes
         
-        coordinator.document?.markdown.apply(lineStyle: Mark.self, to: ranges)
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.apply(lineStyle: Mark.self, to: ranges)
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     

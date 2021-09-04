@@ -59,11 +59,11 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.apply(lineStyle: Delete.self, to: [nsRange])
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.apply(lineStyle: Delete.self, to: [nsRange])
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
@@ -87,11 +87,11 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.erase([nsRange])
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.erase([nsRange])
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     

@@ -26,7 +26,7 @@ extension KeyboardViewController {
     func keyboardWillAdjust(_ notification: Notification) {
         /// Allow `textView` to control scroll position.
         /// Is reset after keyboard finishes showing.
-        coordinator.scrollLead = .keyboard
+        model.scrollLead = .keyboard
         
         guard let inset = view.bottomInset(for: notification) else { return }
         
@@ -48,7 +48,7 @@ extension KeyboardViewController {
         defer {
             /// Relinquish control of scroll position.
             /// Is set when keyboard starts showing.
-            coordinator.scrollLead = .canvas
+            model.scrollLead = .canvas
         }
         
         /// Docs: https://developer.apple.com/documentation/uikit/uiresponder/1621578-keyboardframeenduserinfokey

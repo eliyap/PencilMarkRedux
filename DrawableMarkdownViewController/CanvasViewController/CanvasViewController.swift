@@ -83,12 +83,12 @@ extension CanvasViewController {
     
     @objc
     func undo() -> Void {
-        coordinator.cmdC.undo.send()
+        model.cmdC.undo.send()
     }
     
     @objc
     func redo() -> Void {
-        coordinator.cmdC.redo.send()
+        model.cmdC.redo.send()
     }
 }
 
@@ -98,7 +98,7 @@ extension CanvasViewController {
     /// Action to perform on tap gesture.
     @objc /// expose to `#selector`
     func didTapView(_ sender: UITapGestureRecognizer) -> Void {
-        coordinator.frameC.tapLocation = sender.location(in: canvasView)
+        model.frameC.tapLocation = sender.location(in: canvasView)
     }
 }
 

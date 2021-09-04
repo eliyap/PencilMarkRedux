@@ -14,7 +14,7 @@ final class KeyboardViewController: PMViewController {
     let textView = PMTextView()
     
     /// Use document's undo manager instead of our own.
-    override var undoManager: UndoManager? { coordinator.document?.undoManager }
+    override var undoManager: UndoManager? { model.document?.undoManager }
     
     var model: DrawableMarkdownViewController.Model
     
@@ -73,7 +73,7 @@ final class KeyboardViewController: PMViewController {
         canvasSize.width = max(view.frame.width, contentSize.width)
         canvasSize.height = max(view.frame.height, contentSize.height)
         
-        coordinator.frameC.contentSize = canvasSize
+        model.frameC.contentSize = canvasSize
         
         /// 10% is an arbitrary choice, may wish to revisit it in future.
         let horizontalPadding: CGFloat = frameWidth * 0.1
@@ -126,8 +126,8 @@ extension KeyboardViewController {
             
             /// Roll back model state.
             /// - Note: since `patch` relies on having the old `plain` to reference, set `plain` _after_ fixing AST.
-            self?.coordinator.document?.markdown.updateAST(new: view.text)
-            self?.coordinator.document?.markdown.plain = view.text
+            self?.model.document?.markdown.updateAST(new: view.text)
+            self?.model.document?.markdown.plain = view.text
             
             /// Re-calculate styling if desired.
             if restyle {
@@ -151,7 +151,7 @@ extension KeyboardViewController {
     /// Call when a new document is opened and the view needs to present it
     func present(topInset: CGFloat) {
         /// Set and style the `textView` contents.
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText()
         
         textView.contentOffset.y = -topInset /// scroll back to top, clearing the nav bar
@@ -180,7 +180,7 @@ extension KeyboardViewController {
     /// Applies model styling to text, using our preferred defaults
     /// - Note: does **not** rebuild the AST!
     func styleText() {
-        guard let md = coordinator?.document?.markdown else { return }
+        guard let md = model.document?.markdown else { return }
         md.setAttributes(textView.textStorage, default: defaultAttributes)
     }
 }

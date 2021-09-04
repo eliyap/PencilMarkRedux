@@ -15,10 +15,10 @@ extension DrawableMarkdownViewController {
     
     /// Save very frequently when the user makes changes.
     func observeTyping() {
-        let typing: AnyCancellable = typingC
+        let typing: AnyCancellable = model.typingC
             .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
             .sink { [weak self] in
-                if let document = self?.document {
+                if let document = self?.model.document {
                     document.save(to: document.fileURL, for: .forOverwriting) { (success) in
                         if success == false {
                             print("Failed to save!")

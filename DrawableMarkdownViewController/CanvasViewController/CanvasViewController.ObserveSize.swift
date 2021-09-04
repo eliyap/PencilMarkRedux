@@ -10,7 +10,7 @@ import Combine
 extension CanvasViewController {
     /// Update canvas size to match `UITextView`.
     func observeSize() {
-        let size: AnyCancellable = coordinator.frameC.$contentSize
+        let size: AnyCancellable = model.frameC.$contentSize
             .compactMap { $0 }
             .sink { [weak self] in
                 self?.canvasView.contentSize = $0
