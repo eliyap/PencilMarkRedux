@@ -17,7 +17,7 @@ extension DrawableMarkdownViewController {
     }
     
     /// Close whatever document is currently open, and open the provided URL instead
-    func present(fileURL: URL?) {
+    func present(fileURL: URL?, onClose: @escaping () -> ()) {
         /// If URL is already open, do nothing
         guard document?.fileURL != fileURL else { return }
         
@@ -27,26 +27,20 @@ extension DrawableMarkdownViewController {
         keyboard.textView.endEditing(true)
         
         /// Close document, if any, then open new.
-        if let document = document {
-            
-            /// Disable undo / redo buttons.
-            cmdC.undoStatus.send(false)
-            cmdC.redoStatus.send(false)
-            
-            document.close { (success) in
-                guard success else {
-                    assert(false, "Failed to close document!")
-                    return
-                }
-                self.open(fileURL: fileURL)
-            }
+        if document != nil {
+            /// `closeCurrentDocument` clears `onClose`, so only re-equip it on completion.
+            closeCurrentDocument(then: { [weak self] in
+                self?.open(fileURL: fileURL)
+                self?.onClose = onClose
+            })
         } else {
             self.open(fileURL: fileURL)
+            self.onClose = onClose
         }
     }
     
     /// Open new document, if any
-    private func open(fileURL: URL?) {
+    fileprivate func open(fileURL: URL?) {
         if let fileURL = fileURL {
             print("File URL is \(fileURL)")
             document = StyledMarkdownDocument(fileURL: fileURL)
@@ -90,6 +84,11 @@ extension DrawableMarkdownViewController {
         /// Update Navigation Bar Title
         navigationItem.title = ""
         
+        closeCurrentDocument(then: { /* nothing */})
+    }
+    
+    /// Close the current document. Only if successful, perform action.
+    fileprivate func closeCurrentDocument(then action: @escaping () -> ()) -> Void {
         document?.close { (success) in
             guard success else {
                 assert(false, "Failed to save document!")
@@ -100,6 +99,8 @@ extension DrawableMarkdownViewController {
             self.document = nil
             self.onClose() /// invoke passed closure
             self.onClose = {} /// reset to do nothing
+            
+            action()
         }
         
         /// Disable undo / redo buttons.

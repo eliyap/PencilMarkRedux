@@ -77,10 +77,10 @@ class FilesViewController: UITableViewController {
             assert(splitViewController != nil, "Could not find ancestor split view!")
             splitViewController?.show(.secondary)
             
-            selectionDelegate.select(cellURL) {
+            selectionDelegate.select(cellURL, onClose: {
                 /// Fade cell back to normal color, so that the cell doesn't stay gray.
                 tableView.deselectRow(at: indexPath, animated: true)
-            }
+            }) 
         }
     }
     
