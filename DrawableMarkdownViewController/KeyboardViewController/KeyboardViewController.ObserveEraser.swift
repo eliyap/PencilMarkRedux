@@ -85,8 +85,7 @@ extension KeyboardViewController {
         
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.reconstructTree()
-        styleText()
+        styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
     /// Highlight marked regions.
@@ -114,8 +113,7 @@ extension KeyboardViewController {
         
         /// Set and style contents
         textView.text = coordinator.document?.markdown.plain
-        coordinator.document?.markdown.reconstructTree()
-        styleText()
+        styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
     func hitTestFragments(against circle: Circle, tool: Tool) {
