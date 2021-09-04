@@ -20,6 +20,10 @@ final class Root: Parent {
             return nil
         }
     }
+    
+    required init(_ node: Node) {
+        super.init(node)
+    }
 }
 
 extension Root {

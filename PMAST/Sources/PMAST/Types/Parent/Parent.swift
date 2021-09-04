@@ -31,6 +31,14 @@ public class Parent: Node {
         }
     }
     
+    required init(_ node: Node) {
+        /// Call deep copy on each of `children`.
+        children = (node as! Parent).children.map {
+            Swift.type(of: $0).init($0)
+        }
+        super.init(node)
+    }
+    
     /// Explicit member wise `init`.
     init(
         parent: Parent?,

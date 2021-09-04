@@ -30,6 +30,14 @@ public final class Code: Literal {
         codeRange = getCodeRange(text: text)
     }
     
+    required init(_ node: Node) {
+        let code = (node as! Code)
+        self.lang = code.lang
+        self.meta = code.meta
+        
+        super.init(node)
+    }
+    
     fileprivate func getCodeRange(text: String) -> NSRange {
         let contents: String = String(text[position.nsRange])
         let nsContents = NSString(string: contents)

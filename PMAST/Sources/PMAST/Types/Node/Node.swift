@@ -44,6 +44,13 @@ public class Node {
         }
     }
     
+    /// A deep copy constructor.
+    required init(_ node: Node) {
+        self.parent = node.parent
+        self.position = node.position
+        self._type = node._type
+    }
+    
     init(parent: Parent?, position: Position, _type: String) {
         self.parent = parent
         self.position = position

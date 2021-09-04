@@ -15,6 +15,10 @@ public final class Strong: Parent, InlineJoinable {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    required init(_ node: Node) {
+        super.init(node)
+    }
+    
     /// Conformance to ``InlineJoinable``, allow no-child `init`.
     init(parent: Parent?, position: Position, _type: String) {
         super.init(parent: parent, position: position, _type: _type, children: [])

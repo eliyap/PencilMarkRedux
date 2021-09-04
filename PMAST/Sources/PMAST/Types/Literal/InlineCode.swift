@@ -16,6 +16,10 @@ public final class InlineCode: Literal, InlineJoinable {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    required init(_ node: Node) {
+        super.init(node)
+    }
+    
     /// Conformance to ``InlineJoinable``, allow no-value `init`.
     init(parent: Parent?, position: Position, _type: String) {
         super.init(parent: parent, position: position, _type: _type, value: "")

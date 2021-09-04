@@ -28,6 +28,11 @@ public class Literal: Node {
         }
     }
     
+    required init(_ node: Node) {
+        value = (node as! Literal).value
+        super.init(node)
+    }
+    
     /// Explicit member wise `init`.
     init(
         parent: Parent?,

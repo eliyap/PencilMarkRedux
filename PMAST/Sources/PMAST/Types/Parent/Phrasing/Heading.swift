@@ -25,6 +25,11 @@ public final class Heading: Parent {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    required init(_ node: Node) {
+        depth = (node as! Heading).depth
+        super.init(node)
+    }
+    
     override func style(_ string: NSMutableAttributedString) {
         super.style(string)
         /// Match system's preferred heading font size.
