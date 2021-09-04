@@ -130,8 +130,9 @@ extension KeyboardViewController {
             }
             
             /// Roll back model state.
-            view.controller.coordinator.document?.markdown.plain = view.text
+            /// - Note: since `patch` relies on having the old `plain` to reference, set `plain` _after_ fixing AST.
             view.controller.coordinator.document?.markdown.updateAST(new: view.text)
+            view.controller.coordinator.document?.markdown.plain = view.text
             
             /// Re-calculate styling if desired.
             if restyle {
