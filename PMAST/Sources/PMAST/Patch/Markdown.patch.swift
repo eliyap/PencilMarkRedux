@@ -22,7 +22,8 @@ extension Markdown {
         /// Running at least once ensures (for compiler) that tree is initialized.
         repeat {
             /// Construct, then patch, new tree.
-            temp = constructTree(from: dict, text: plain)
+            temp = Root(ast, parent: nil)
+            
             success = temp.patch(
                 oldChunks: plain.makeLines().chunked(along: self.boundaries),
                 newText: new,
@@ -128,7 +129,7 @@ extension Root {
             let targetStart = targetStart,
             let targetEnd = targetEnd
         else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
-            assert(false, "Could not find target node!")
+            assert(false, "Could not find target node! \(details.element.lowerBound)–\(details.element.upperBound)")
             return
         }
         

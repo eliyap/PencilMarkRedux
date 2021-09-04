@@ -31,8 +31,13 @@ extension KeyboardViewController {
                     return
                 }
                 
+                /// First check if document contents are consistent with textView contents
                 /// Rebuild AST, recalculate text styling.
-                ref.coordinator.document?.markdown.reconstructTree()
+                if ref.coordinator.document?.markdown.plain == ref.textView.text {
+                    ref.coordinator.document?.markdown.updateAST(new: ref.textView.text)
+                } else {
+                    #warning("TODO: log warning about inconsistency!")
+                }
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 

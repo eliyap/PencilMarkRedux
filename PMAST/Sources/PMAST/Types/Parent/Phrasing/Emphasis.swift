@@ -15,6 +15,10 @@ public final class Emphasis: Parent, InlineJoinable {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    required init(_ node: Node, parent: Parent!) {
+        super.init(node, parent: parent)
+    }
+    
     /// Conformance to ``InlineJoinable``, allow no-child `init`.
     init(parent: Parent?, position: Position, _type: String) {
         super.init(parent: parent, position: position, _type: _type, children: [])

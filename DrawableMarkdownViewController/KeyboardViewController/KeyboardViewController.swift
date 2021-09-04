@@ -130,8 +130,9 @@ extension KeyboardViewController {
             }
             
             /// Roll back model state.
+            /// - Note: since `patch` relies on having the old `plain` to reference, set `plain` _after_ fixing AST.
+            view.controller.coordinator.document?.markdown.updateAST(new: view.text)
             view.controller.coordinator.document?.markdown.plain = view.text
-            view.controller.coordinator.document?.markdown.reconstructTree()
             
             /// Re-calculate styling if desired.
             if restyle {
@@ -140,13 +141,13 @@ extension KeyboardViewController {
             
             /// Update undo buttons.
             /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
-            /// do **not** fire on Pencil changes, so we fire this manually!
+            ///         do **not** fire on Pencil changes, so we fire this manually!
             view.controller.updateCommandStatus()
         }
         
         /// Update undo buttons.
         /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
-        /// do **not** fire on Pencil changes, so we fire this manually!
+        ///         do **not** fire on Pencil changes, so we fire this manually!
         updateCommandStatus()
     }
 }

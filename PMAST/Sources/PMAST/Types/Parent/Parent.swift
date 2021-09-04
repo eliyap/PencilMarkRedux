@@ -9,7 +9,7 @@ import Foundation
 
 public class Parent: Node {
         
-    override class var type: String { "Node" }
+    override class var type: String { "parent" }
         
     /// Child Nodes
     var children: [Node]
@@ -28,6 +28,17 @@ public class Parent: Node {
             print("Failed to initalize node of type \(dict?["type"] as? String ?? "No Type")!")
             print("Dict: \(String(describing: dict))")
             return nil
+        }
+    }
+    
+    required init(_ node: Node, parent: Parent!) {
+        children = [] /// wait until `self` can be injected as a `parent`.
+        super.init(node, parent: parent)
+        
+        /// Call deep copy on each of `children`.
+        /// * Note: very cool that Swift compiler can guarantee existence of `init(Node)` signature due to `required` keyword!
+        children = (node as! Parent).children.map {
+            Swift.type(of: $0).init($0, parent: self)
         }
     }
     

@@ -25,4 +25,12 @@ public final class List: Parent {
         self.spread = spread
         super.init(dict: dict, parent: parent, text: text)
     }
+    
+    required init(_ node: Node, parent: Parent!) {
+        let list = (node as! List)
+        self.ordered = list.ordered
+        self.start = list.start
+        self.spread = list.spread
+        super.init(node, parent: parent)
+    }
 }

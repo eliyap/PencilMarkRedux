@@ -19,16 +19,11 @@ public struct Markdown {
     /// Set of boundaries between chunks of plain text.
     internal var boundaries: [Boundary] = []
     
-    /// A cached copy of the JavaScript MDAST.
-    /// Allows us to restore the Swift MDAST after ``ast`` has been modified,
-    /// in the event that we want to revert changes, especially duing chunk diffing. constructTree(from: Parser.shared.parse(text))
-    internal private(set) var dict: [AnyHashable: Any]! = nil
-    
     public init(_ text: String) {
-        self.plain = text
+        plain = text
         
         /// Perform initial tree construction.
-        self.reconstructTree()
+        reparseTree()
         
         /// Hack: construct boundaries by patching an empty tree
         var empty = Markdown()
@@ -39,16 +34,48 @@ public struct Markdown {
     /// An empty document.
     fileprivate init() {
         plain = ""
-        reconstructTree()
+        reparseTree()
+    }
+    
+    public func deepCopy() -> Self {
+        var shell = Self()
+        
+        /// Copy Reference Types.
+        shell.plain = plain
+        shell.boundaries = boundaries
+        
+        /// Deep copy reference types, without incurring JavaScript cost.
+        shell.ast = Root(ast, parent: nil)
+        
+        return shell
     }
 }
 
 // MARK:- Styling Methods
 extension Markdown {
+    
+    public enum UpdateMode {
+        /// Rebuild the AST from scratch, which is expensive.
+        case reparse
+        
+        /// Lazily adjust the existing tree, which may be more error prone.
+        case patch
+    }
+    
+    /// - Note: Choose `patch` by default, in future I may wish to revise this decision!
+    public mutating func updateAST(new: String, mode: UpdateMode = .patch) -> Void {
+        switch mode {
+        case .reparse:
+            reparseTree()
+        case .patch:
+            patch(with: new)
+        }
+    }
+    
     /// Call this function to update after the text is updated.
-    public mutating func reconstructTree() -> Void {
+    private mutating func reparseTree() -> Void {
         /// Parse Markdown into JavaScript MDAST.
-        dict = Parser.shared.parse(plain)
+        let dict = Parser.shared.parse(plain)
         
         /// Convert JS AST to Swift AST.
         ast = constructTree(from: dict, text: plain)

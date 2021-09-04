@@ -12,6 +12,9 @@ extension Markdown {
     #warning("Experimental")
     /// A straight line erase operation.
     public mutating func erase(_ ranges: [NSRange]) -> Void {
+        /// Freeze a copy of the AST before mutation.
+        var backup = deepCopy()
+        
         /// Reject empty ranges.
         let ranges = ranges.filter { $0.length > 0 }
         
@@ -28,6 +31,13 @@ extension Markdown {
         combine()
         
         makeReplacements()
+        
+        /// Finally, reformat document based on updated source Markdown.
+        backup.updateAST(new: plain)
+        ast = backup.ast
+        
+        /// Check tree links.
+        try! ast.linkCheck()
     }
 }
 

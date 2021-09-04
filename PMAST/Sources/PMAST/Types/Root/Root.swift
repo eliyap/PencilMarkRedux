@@ -20,6 +20,13 @@ final class Root: Parent {
             return nil
         }
     }
+    
+    required init(_ node: Node, parent: Parent!) {
+        super.init(node, parent: parent)
+        
+        /// Assert tree is ok after deep copy.
+        try! linkCheck()
+    }
 }
 
 extension Root {

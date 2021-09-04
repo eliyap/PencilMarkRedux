@@ -27,7 +27,7 @@ public class Node {
     var _trailing_change: Change? = nil /// trailing syntax changes
     
     /// The string marking the node's class in JavaScript.
-    class var type: String { "thematicBreak" }
+    class var type: String { "node" }
     
     required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         if
@@ -42,6 +42,13 @@ public class Node {
             print("Dict: \(String(describing: dict))")
             return nil
         }
+    }
+    
+    /// A deep copy constructor.
+    required init(_ node: Node, parent: Parent!) {
+        self.parent = parent
+        self.position = node.position
+        self._type = node._type
     }
     
     init(parent: Parent?, position: Position, _type: String) {

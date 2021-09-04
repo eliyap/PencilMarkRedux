@@ -23,6 +23,14 @@ public final class ListItem: Parent {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    required init(_ node: Node, parent: Parent!) {
+        let listItem = (node as! ListItem)
+        self.checked = listItem.checked
+        self.spread = listItem.spread
+        
+        super.init(node, parent: parent)
+    }
+    
     override func style(_ string: NSMutableAttributedString) {
         super.style(string)
         if let leading = leadingRange, let trailing = trailingRange {
