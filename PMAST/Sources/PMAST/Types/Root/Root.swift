@@ -23,6 +23,9 @@ final class Root: Parent {
     
     required init(_ node: Node) {
         super.init(node)
+        
+        /// Assert tree is ok after deep copy.
+        try! linkCheck()
     }
 }
 
