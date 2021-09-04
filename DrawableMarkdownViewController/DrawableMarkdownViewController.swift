@@ -10,24 +10,32 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
 
-    /// Model object
-    public var document: StyledMarkdownDocument?
+    final class Model {
+        /// Combine Conduits
+        let frameC = FrameConduit()
+        let cmdC = CommandConduit()
+        let typingC = PassthroughSubject<Void, Never>()
+        
+        /// Controls which view gets to set the scroll position
+        enum ScrollLead { case keyboard, canvas }
+        var scrollLead = ScrollLead.canvas
+        
+        /// Model object
+        public var document: StyledMarkdownDocument?
+        
+        init(document: StyledMarkdownDocument?) {
+            self.document = document
+        }
+    }
     
     /// Child View Controllers
-    let keyboard = KeyboardViewController()
-    let canvas = CanvasViewController()
+    let keyboard: KeyboardViewController
+    let canvas: CanvasViewController
     let noDocument = NoDocumentHost()
     let tutorial = TutorialMenuViewController()
     let toolbar = ToolbarViewController()
     
-    /// Combine Conduits
-    let frameC = FrameConduit()
-    let cmdC = CommandConduit()
-    let typingC = PassthroughSubject<Void, Never>()
-    
-    /// Controls which view gets to set the scroll position
-    enum ScrollLead { case keyboard, canvas }
-    var scrollLead = ScrollLead.canvas
+    let model: Model
     
     /// Action to perform when document is closed
     var onClose: () -> () = {} /// does nothing by default
