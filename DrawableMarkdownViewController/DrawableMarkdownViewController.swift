@@ -60,15 +60,31 @@ final class DrawableMarkdownViewController: PMViewController {
     var redoButton: UIBarButtonItem!
     
     init(fileURL: URL?) {
+        var document: StyledMarkdownDocument? = nil
         if let fileURL = fileURL {
-            model = Model(document: StyledMarkdownDocument(fileURL: fileURL))
-        } else {
-            model = Model(document: nil)
+            document = StyledMarkdownDocument(fileURL: fileURL)
         }
+        
+        ///
+        model = Model(document: document, onSetTool: { /* self not available... */ })
         
         keyboard = KeyboardViewController(model: model)
         canvas = CanvasViewController(model: model)
+        toolbar = ToolbarViewController(model: model)
         super.init(nibName: nil, bundle: nil)
+        
+        /**
+         Can only be set after `self` is initialized!
+         Since `self` owns `model`, which owns the closure, which references `self`,
+         this **must** be a `weak` reference!
+         */
+        model.onSetTool = { [weak self] in
+            guard let ref = self else {
+                assert(false, "DMVC was destroyed!")
+            }
+            ref.toolbar.highlight(tool: ref.model.tool)
+            ref.canvas.set(tool: ref.model.tool)
+        }
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
