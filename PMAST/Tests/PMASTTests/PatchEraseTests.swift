@@ -37,10 +37,26 @@ class PatchEraseTests: XCTestCase {
         XCTAssertEqual(oldMD.plain, new)
         checkPatch(old: oldMD.ast, new: Markdown(new).ast)
         
-        /// Here comes trouble!
+        /// Further test tree by ensuring that subsequent operations do not fail.
         oldMD.erase([
             NSMakeRange(0, 1),
+            NSMakeRange(4, 1),
         ])
+        
+        XCTAssertEqual(oldMD.plain, """
+            34
+            34
+            """)
+        
+        oldMD.erase([
+            NSMakeRange(0, 1),
+            NSMakeRange(3, 1),
+        ])
+        
+        XCTAssertEqual(oldMD.plain, """
+            4
+            4
+            """)
     }
     
     /// Generic function for checking ``Markdown.patch``.
