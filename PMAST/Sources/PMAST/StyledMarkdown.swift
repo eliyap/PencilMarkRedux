@@ -46,7 +46,7 @@ public struct Markdown {
 // MARK:- Styling Methods
 extension Markdown {
     /// Call this function to update after the text is updated.
-    public mutating func reconstructTree() -> Void {
+    public mutating func reparseTree() -> Void {
         /// Parse Markdown into JavaScript MDAST.
         dict = Parser.shared.parse(plain)
         
