@@ -26,8 +26,13 @@ extension DrawableMarkdownViewController {
         canvas.resignFirstResponder()
         keyboard.textView.endEditing(true)
         
-        /// close document, if any, then open new
+        /// Close document, if any, then open new.
         if let document = document {
+            
+            /// Disable undo / redo buttons.
+            cmdC.undoStatus.send(false)
+            cmdC.redoStatus.send(false)
+            
             document.close { (success) in
                 guard success else {
                     assert(false, "Failed to close document!")

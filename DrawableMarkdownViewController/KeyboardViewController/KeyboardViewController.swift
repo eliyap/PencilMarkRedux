@@ -24,13 +24,7 @@ final class KeyboardViewController: PMViewController {
     var strokeLayer: CAShapeLayer? = nil
     
     /// Tracks whether the eraser is currently being used.
-    var eraserDown = false {
-        willSet {
-            if eraserDown == false && newValue == true {
-                print("Started Erasing!")
-            }
-        }
-    }
+    var eraserDown = false
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -42,7 +36,6 @@ final class KeyboardViewController: PMViewController {
         
         /// Observe `textView` events.
         textView.delegate = self
-        textView.controller = self
         
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
@@ -111,9 +104,11 @@ extension KeyboardViewController {
         
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText
-        textView.undoManager?.registerUndo(withTarget: textView) { view in
+        textView.undoManager?.registerUndo(withTarget: textView) { [weak self] view in
+            assert(self != nil, "Lost reference to controller!")
+            
             /// Before reversing the change, store the current state as a *redo* operation.
-            view.controller.registerUndo()
+            self?.registerUndo()
             
             /// Freeze current selection to be restored after text is rolled back.
             let selection: UITextRange? = view.selectedTextRange
@@ -131,18 +126,18 @@ extension KeyboardViewController {
             
             /// Roll back model state.
             /// - Note: since `patch` relies on having the old `plain` to reference, set `plain` _after_ fixing AST.
-            view.controller.coordinator.document?.markdown.updateAST(new: view.text)
-            view.controller.coordinator.document?.markdown.plain = view.text
+            self?.coordinator.document?.markdown.updateAST(new: view.text)
+            self?.coordinator.document?.markdown.plain = view.text
             
             /// Re-calculate styling if desired.
             if restyle {
-                view.controller.styleText()
+                self?.styleText()
             }
             
             /// Update undo buttons.
             /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
             ///         do **not** fire on Pencil changes, so we fire this manually!
-            view.controller.updateCommandStatus()
+            self?.updateCommandStatus()
         }
         
         /// Update undo buttons.
