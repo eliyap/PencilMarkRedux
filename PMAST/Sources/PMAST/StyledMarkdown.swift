@@ -45,6 +45,24 @@ public struct Markdown {
 
 // MARK:- Styling Methods
 extension Markdown {
+    
+    public enum UpdateMode {
+        /// Rebuild the AST from scratch, which is expensive.
+        case reparse
+        
+        /// Lazily adjust the existing tree, which may be more error prone.
+        case patch
+    }
+    
+    public mutating func updateAST(new: String, mode: UpdateMode) -> Void {
+        switch mode {
+        case .reparse:
+            reparseTree()
+        case .patch:
+            patch(with: new)
+        }
+    }
+    
     /// Call this function to update after the text is updated.
     public mutating func reparseTree() -> Void {
         /// Parse Markdown into JavaScript MDAST.
