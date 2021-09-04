@@ -28,9 +28,9 @@ public class Literal: Node {
         }
     }
     
-    required init(_ node: Node) {
+    required init(_ node: Node, parent: Parent!) {
         value = (node as! Literal).value
-        super.init(node)
+        super.init(node, parent: parent)
     }
     
     /// Explicit member wise `init`.

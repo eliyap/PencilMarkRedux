@@ -45,7 +45,7 @@ public struct Markdown {
         shell.boundaries = boundaries
         
         /// Deep copy reference types, without incurring JavaScript cost.
-        shell.ast = Root(ast)
+        shell.ast = Root(ast, parent: nil)
         
         return shell
     }

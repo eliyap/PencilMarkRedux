@@ -25,9 +25,9 @@ public final class Heading: Parent {
         super.init(dict: dict, parent: parent, text: text)
     }
     
-    required init(_ node: Node) {
+    required init(_ node: Node, parent: Parent!) {
         depth = (node as! Heading).depth
-        super.init(node)
+        super.init(node, parent: parent)
     }
     
     override func style(_ string: NSMutableAttributedString) {

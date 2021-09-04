@@ -26,11 +26,11 @@ public final class List: Parent {
         super.init(dict: dict, parent: parent, text: text)
     }
     
-    required init(_ node: Node) {
+    required init(_ node: Node, parent: Parent!) {
         let list = (node as! List)
         self.ordered = list.ordered
         self.start = list.start
         self.spread = list.spread
-        super.init(node)
+        super.init(node, parent: parent)
     }
 }

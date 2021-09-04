@@ -22,7 +22,7 @@ extension Markdown {
         /// Running at least once ensures (for compiler) that tree is initialized.
         repeat {
             /// Construct, then patch, new tree.
-            temp = Root(ast)
+            temp = Root(ast, parent: nil)
             
             success = temp.patch(
                 oldChunks: plain.makeLines().chunked(along: self.boundaries),
