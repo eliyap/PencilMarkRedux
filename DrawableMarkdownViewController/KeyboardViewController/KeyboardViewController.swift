@@ -36,7 +36,6 @@ final class KeyboardViewController: PMViewController {
         
         /// Observe `textView` events.
         textView.delegate = self
-        textView.controller = self
         
         /// Disable Scribble interactions.
         textView.addInteraction(UIScribbleInteraction(delegate: ScribbleBlocker()))
@@ -132,7 +131,7 @@ extension KeyboardViewController {
             
             /// Re-calculate styling if desired.
             if restyle {
-                view.controller.styleText()
+                self?.styleText()
             }
             
             /// Update undo buttons.
