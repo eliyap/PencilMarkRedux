@@ -25,10 +25,10 @@ public struct Markdown {
     internal private(set) var dict: [AnyHashable: Any]! = nil
     
     public init(_ text: String) {
-        self.plain = text
+        plain = text
         
         /// Perform initial tree construction.
-        self.reconstructTree()
+        reparseTree()
         
         /// Hack: construct boundaries by patching an empty tree
         var empty = Markdown()
@@ -39,7 +39,7 @@ public struct Markdown {
     /// An empty document.
     fileprivate init() {
         plain = ""
-        reconstructTree()
+        reparseTree()
     }
 }
 
@@ -54,7 +54,8 @@ extension Markdown {
         case patch
     }
     
-    public mutating func updateAST(new: String, mode: UpdateMode) -> Void {
+    /// - Note: Choose `patch` by default, in future I may wish to revise this decision!
+    public mutating func updateAST(new: String, mode: UpdateMode = .patch) -> Void {
         switch mode {
         case .reparse:
             reparseTree()
@@ -64,7 +65,7 @@ extension Markdown {
     }
     
     /// Call this function to update after the text is updated.
-    public mutating func reparseTree() -> Void {
+    private mutating func reparseTree() -> Void {
         /// Parse Markdown into JavaScript MDAST.
         dict = Parser.shared.parse(plain)
         
