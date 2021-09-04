@@ -24,8 +24,19 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Model object.
         public var document: StyledMarkdownDocument?
         
-        init(document: StyledMarkdownDocument?) {
+        /// Active tool.
+        var tool: Tool = .pencil {
+            didSet {
+                onSetTool()
+            }
+        }
+        
+        /// Action to perform when tool is selected.
+        var onSetTool: () -> ()
+        
+        init(document: StyledMarkdownDocument?, onSetTool: @escaping () -> ()) {
             self.document = document
+            self.onSetTool = onSetTool
         }
     }
     
