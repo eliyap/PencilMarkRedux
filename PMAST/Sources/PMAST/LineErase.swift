@@ -35,6 +35,9 @@ extension Markdown {
         /// Finally, reformat document based on updated source Markdown.
         backup.updateAST(new: plain)
         ast = backup.ast
+        
+        /// Check tree links.
+        try! ast.linkCheck()
     }
 }
 
