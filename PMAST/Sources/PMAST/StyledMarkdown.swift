@@ -41,6 +41,20 @@ public struct Markdown {
         plain = ""
         reparseTree()
     }
+    
+    public func deepCopy() -> Self {
+        var shell = Self()
+        
+        /// Copy Reference Types.
+        shell.plain = plain
+        shell.boundaries = boundaries
+        shell.dict = dict
+        
+        /// Re-construct reference types, without incurring JavaScript cost.
+        shell.ast = constructTree(from: dict, text: plain)
+        
+        return shell
+    }
 }
 
 // MARK:- Styling Methods

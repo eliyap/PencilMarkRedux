@@ -13,7 +13,7 @@ extension Markdown {
     /// A straight line erase operation.
     public mutating func erase(_ ranges: [NSRange]) -> Void {
         /// Freeze a copy of the AST before mutation.
-        var backup = self
+        var backup = deepCopy()
         
         /// Reject empty ranges.
         let ranges = ranges.filter { $0.length > 0 }

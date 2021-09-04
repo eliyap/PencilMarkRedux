@@ -16,7 +16,7 @@ extension Markdown {
         to ranges: [NSRange]
     ) -> Void {
         /// Freeze a copy of the AST before mutation.
-        var backup = self
+        var backup = deepCopy()
         
         /// Reject empty ranges.
         let ranges = ranges.filter { $0.length > 0 }
