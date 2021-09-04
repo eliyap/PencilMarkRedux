@@ -19,11 +19,6 @@ public struct Markdown {
     /// Set of boundaries between chunks of plain text.
     internal var boundaries: [Boundary] = []
     
-    /// A cached copy of the JavaScript MDAST.
-    /// Allows us to restore the Swift MDAST after ``ast`` has been modified,
-    /// in the event that we want to revert changes, especially duing chunk diffing. constructTree(from: Parser.shared.parse(text))
-    internal private(set) var dict: [AnyHashable: Any]! = nil
-    
     public init(_ text: String) {
         plain = text
         
@@ -48,10 +43,9 @@ public struct Markdown {
         /// Copy Reference Types.
         shell.plain = plain
         shell.boundaries = boundaries
-        shell.dict = dict
         
-        /// Re-construct reference types, without incurring JavaScript cost.
-        shell.ast = constructTree(from: dict, text: plain)
+        /// Deep copy reference types, without incurring JavaScript cost.
+        shell.ast = Root(ast)
         
         return shell
     }
@@ -81,7 +75,7 @@ extension Markdown {
     /// Call this function to update after the text is updated.
     private mutating func reparseTree() -> Void {
         /// Parse Markdown into JavaScript MDAST.
-        dict = Parser.shared.parse(plain)
+        let dict = Parser.shared.parse(plain)
         
         /// Convert JS AST to Swift AST.
         ast = constructTree(from: dict, text: plain)

@@ -33,6 +33,7 @@ public class Parent: Node {
     
     required init(_ node: Node) {
         /// Call deep copy on each of `children`.
+        /// * Note: very cool that Swift compiler can guarantee existence of `init(Node)` signature due to `required` keyword!
         children = (node as! Parent).children.map {
             Swift.type(of: $0).init($0)
         }
