@@ -146,7 +146,7 @@ extension KeyboardViewController {
         
         /// Update undo buttons.
         /// - Note: found that `textViewDidChange` and `textDidChangeNotification`
-        /// do **not** fire on Pencil changes, so we fire this manually!
+        ///         do **not** fire on Pencil changes, so we fire this manually!
         updateCommandStatus()
     }
 }
