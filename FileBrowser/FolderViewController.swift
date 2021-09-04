@@ -140,14 +140,19 @@ extension FolderViewController {
                 return
             }
             
-            /// Animate row insertion
-            self.files.filesView.reveal(IndexPath(
-                row: self.files.contents!.firstIndex(of: fileURL)!,
+            /// Animate row insertion.
+            let index = self.files.contents!.firstIndex(of: fileURL)!
+            let indexPath = IndexPath(
+                row: index,
                 section: 0
-            ), select: true)
+            )
+            self.files.filesView.reveal(indexPath, select: true)
             
             /// Open Document In Editor
-            self.selectionDelegate.present(fileURL: fileURL)
+            self.selectionDelegate.present(fileURL: fileURL, onClose: {
+                /// Fade cell back to normal color, so that the cell doesn't stay gray.
+                self.files.filesView.deselectRow(at: indexPath, animated: true)
+            })
         }
     }
     

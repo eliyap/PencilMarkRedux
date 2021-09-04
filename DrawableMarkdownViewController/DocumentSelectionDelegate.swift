@@ -20,8 +20,7 @@ extension DrawableMarkdownViewController: DocumentSelectionDelegate {
     ///   - fileURL: `UIDocument` URL to open
     ///   - onClose: closure to invoke when document is ``close``d
     func select(_ fileURL: URL, onClose: @escaping () -> ()) {
-        present(fileURL: fileURL)
-        self.onClose = onClose
+        present(fileURL: fileURL, onClose: onClose)
     }
     
     /// Passed file URL was deleted

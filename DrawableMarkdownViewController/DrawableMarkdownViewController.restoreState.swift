@@ -28,6 +28,6 @@ extension DrawableMarkdownViewController {
         _ = try? FileManager.default.contentsOfDirectory(at: iCloudURL, includingPropertiesForKeys: .none)
         
         /// Open stored document
-        present(fileURL: StateModel.shared.url)
+        present(fileURL: StateModel.shared.url, onClose: { /* nothing */ })
     }
 }
