@@ -62,6 +62,7 @@ final class DrawableMarkdownViewController: PMViewController {
             model = Model(document: nil)
         }
         
+        keyboard = KeyboardViewController(model: model)
         canvas = CanvasViewController(model: model)
         super.init(nibName: nil, bundle: nil)
         

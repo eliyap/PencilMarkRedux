@@ -16,9 +16,7 @@ final class KeyboardViewController: PMViewController {
     /// Use document's undo manager instead of our own.
     override var undoManager: UndoManager? { coordinator.document?.undoManager }
     
-    /// Force unwrap container VC
-    /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
-    var coordinator: DrawableMarkdownViewController! { parent as? DrawableMarkdownViewController }
+    var model: DrawableMarkdownViewController.Model
     
     /// CoreAnimation layer used to render rejected strokes.
     var strokeLayer: CAShapeLayer? = nil
@@ -26,7 +24,9 @@ final class KeyboardViewController: PMViewController {
     /// Tracks whether the eraser is currently being used.
     var eraserDown = false
     
-    init() {
+    init(model: DrawableMarkdownViewController.Model) {
+        self.model = model
+        
         super.init(nibName: nil, bundle: nil)
         
         view = textView
