@@ -29,6 +29,21 @@ class PatchCorrectnessTests: XCTestCase {
         )
     }
     
+    func testRemoveAll() throws {
+        checkPatch([
+            "Old",
+            ""
+        ])
+        checkPatch([
+            "Old\n\n",
+            ""
+        ])
+        checkPatch([
+            "Old\n\nOld",
+            ""
+        ])
+    }
+    
     func testNewlineBefore() throws {
         /// Insert Before
         checkPatch(
