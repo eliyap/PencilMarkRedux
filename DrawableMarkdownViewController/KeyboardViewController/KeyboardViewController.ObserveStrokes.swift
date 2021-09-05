@@ -69,7 +69,7 @@ extension KeyboardViewController {
     
     /// Erase along the provided line
     func erase(along stroke: PKStroke) -> Void {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         /// Use the same straightened version of a stroke as ``strikethrough``.
         let (leading, trailing) = stroke.straightened()

@@ -90,6 +90,11 @@ final class KeyboardViewController: PMViewController {
         }
     }
     
+    /// Make sure we are not editing the temporary document or a `nil` document.
+    func assertDocumentIsValid() {
+        precondition(model.document?.fileURL != nil, "Edits made to nil document!")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not use")
     }
@@ -100,7 +105,7 @@ extension KeyboardViewController {
     /// - `restyle`: Whether to re-style the text after rollback.
     ///             Useful if some temporary styling had been applied to the text.
     func registerUndo(restyle: Bool = false) {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         /// Register Undo Operation before affecting model object
         let currentStyledText = textView.attributedText

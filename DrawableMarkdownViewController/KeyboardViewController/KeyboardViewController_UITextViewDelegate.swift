@@ -9,7 +9,7 @@ import UIKit
 
 extension KeyboardViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         model.document?.markdown.plain = textView.text
         model.document?.updateChangeCount(.done)
@@ -20,7 +20,7 @@ extension KeyboardViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         model.document?.markdown.plain = textView.text
         model.document?.updateChangeCount(.done)

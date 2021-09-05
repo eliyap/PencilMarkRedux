@@ -11,11 +11,6 @@ import CoreGraphics
 // MARK: - Document Methods
 extension DrawableMarkdownViewController {
     
-    /// Make sure we are not editing the temporary document or a `nil` document.
-    func assertDocumentIsValid() {
-        precondition(model.document?.fileURL != nil, "Edits made to nil document!")
-    }
-    
     /// Close whatever document is currently open, and open the provided URL instead
     func present(fileURL: URL?, onClose: @escaping () -> ()) {
         /// If URL is already open, do nothing
