@@ -18,8 +18,12 @@ final class CanvasViewController: PMViewController {
     private let _undoManager = CanvasViewController.UndoManager()
     override var undoManager: UndoManager? { _undoManager }
     
-    init(model: DrawableMarkdownViewController.Model) {
+    /// Unavoidable reference to sibling view controller. Avoid use as much as possible.
+    internal private(set) weak var _kvc: KeyboardViewController?
+    
+    init(model: DrawableMarkdownViewController.Model, _kvc: KeyboardViewController) {
         self.model = model
+        self._kvc = _kvc
         super.init(nibName: nil, bundle: nil)
         _undoManager.controller = self /// immediately attach to child
         

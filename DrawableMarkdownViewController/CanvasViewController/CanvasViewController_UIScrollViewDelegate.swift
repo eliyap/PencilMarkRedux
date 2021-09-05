@@ -18,7 +18,10 @@ extension CanvasViewController: UIScrollViewDelegate {
      */
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         /// Calculate difference in scroll positions
-        let keyboardY = coordinator.keyboard.textView.contentOffset.y
+        guard let keyboardY = _kvc?.textView.contentOffset.y else {
+            assert(false, "Unable to reference sibling!")
+            return
+        }
         let diff = scrollView.contentOffset.y - keyboardY
         
         /// If there is any non-trivial difference, defer to text position to prevent a visual jump

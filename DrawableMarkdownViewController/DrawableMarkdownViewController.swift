@@ -69,7 +69,7 @@ final class DrawableMarkdownViewController: PMViewController {
         model = Model(document: document, onSetTool: { /* self not available... */ })
         
         keyboard = KeyboardViewController(model: model)
-        canvas = CanvasViewController(model: model)
+        canvas = CanvasViewController(model: model, _kvc: keyboard)
         toolbar = ToolbarViewController(model: model)
         super.init(nibName: nil, bundle: nil)
         

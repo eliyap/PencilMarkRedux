@@ -21,7 +21,6 @@ extension DrawableMarkdownViewController {
     
     final class ToolbarViewController: UIViewController {
         
-        #error("REMOVE THIS!")
         typealias Coordinator = DrawableMarkdownViewController
         
         /// Unwrapped optional allows us to use `#selectors` in init
