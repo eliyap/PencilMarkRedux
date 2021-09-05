@@ -24,19 +24,19 @@ final class MockDocument: MockableDocument {
     var localizedName: String = "DO NOT USE"
     
     func close(completionHandler: ((Bool) -> Void)?) {
-        /// Nothing.
+        print("\(#function) called, but not implemented!")
     }
     
     func updateChangeCount(_ change: UIDocument.ChangeKind) {
-        /// Nothing.
+        print("\(#function) called, but not implemented!")
     }
     
     func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)?) {
-        /// Nothing.
+        print("\(#function) called, but not implemented!")
     }
     
     func open(completionHandler: ((Bool) -> Void)?) {
-        /// Nothing.
+        print("\(#function) called, but not implemented!")
     }
     
     init(_ string: String) {
