@@ -44,6 +44,8 @@ final class KeyboardViewController: PMViewController {
         /// Disable editing until document is ``present``ed
         textView.isEditable = false
         
+        textView.backgroundColor = .documentBackgroundColor
+        
         setupNotifications()
     }
     
