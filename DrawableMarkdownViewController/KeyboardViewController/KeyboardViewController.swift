@@ -173,6 +173,12 @@ extension KeyboardViewController {
 
 extension KeyboardViewController {
     
+    fileprivate var paragraphStyle: NSParagraphStyle {
+        let style = NSMutableParagraphStyle()
+        style.lineHeightMultiple = 1.5
+        return style
+    }
+    
     /// Default styling for plain text.
     var defaultAttributes: [NSAttributedString.Key: Any] {[
         /// Monospaced font to make character targetting easier.
@@ -180,6 +186,8 @@ extension KeyboardViewController {
         
         /// Dark mode sensitive primary color.
         .foregroundColor: UIColor.label,
+        
+        .paragraphStyle: paragraphStyle
     ]}
     
     /// Applies model styling to text, using our preferred defaults
