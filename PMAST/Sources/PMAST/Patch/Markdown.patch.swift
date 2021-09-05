@@ -74,6 +74,17 @@ extension Root {
             }
         }
         
+        /// Manually set the end position of the document.
+        if newLines.isEmpty {
+            position.end.line = 1
+            position.end.column = 1
+            position.end.offset = 0
+        } else {
+            position.end.line = newLines.count /// accounts for 1-indexing
+            position.end.column = newLines.last!.string.utf16.count + 1 /// account for 1-indexing
+            position.end.offset = newText.utf16.count
+        }
+        
         return true
     }
     
@@ -111,21 +122,6 @@ extension Root {
             $0.offsetPosition(by: details.element.chunkSize)
         }
         
-        let lastLine = details.element.last!
-        /// Check if there is space indicating a trailing newline.
-        if lastLine.enclosingNsRange.upperBound == lastLine.substringNsRange.upperBound {
-            precondition(details.element.endIndex == newLines.endIndex, "No newline found at end of line that was not the last line!")
-            
-            /// Manually adjust document end into correct position,
-            position.end.column = lastLine.substringNsRange.length + 1 /// account for 1-indexing
-            position.end.line = newLines.endIndex
-            position.end.offset += details.element.chunkSize.offset
-        } else {
-            /// Also offset the document end to account for inserted lines.
-            position.end += details.element.chunkSize
-        }
-        
-        
         /// Insert node into tree structure.
         graft(node, at: insertionIndex)
     }
@@ -152,15 +148,6 @@ extension Root {
         
         /// Offset following nodes to account for removed lines.
         children[(targetEnd + 1)..<children.endIndex].forEach { $0.offsetPosition(by: -details.element.chunkSize) }
-        
-        /// Also offset the document end to account for removed lines.
-        position.end -= details.element.chunkSize
-        
-        /// Manually set `root` column to be consistent with text.
-        if let lastLine = newLines.last {
-            /// Add one to account for 1-indexing.
-            position.end.column = lastLine.string.utf16.count + 1
-        }
         
         /// Disconnect node, allowing it to be de-allocated.
         (targetStart...targetEnd).forEach { idx in
