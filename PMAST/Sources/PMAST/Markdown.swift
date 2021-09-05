@@ -64,13 +64,14 @@ extension Markdown {
     }
     
     /// - Note: Choose `patch` by default, in future I may wish to revise this decision!
-    public mutating func updateAST(new: String, mode: UpdateMode = .patch) -> Void {
+    public mutating func update(with new: String, mode: UpdateMode = .patch) -> Void {
         switch mode {
         case .reparse:
             reparseTree()
         case .patch:
             patch(with: new)
         }
+        plain = new
     }
     
     /// Call this function to update after the text is updated.

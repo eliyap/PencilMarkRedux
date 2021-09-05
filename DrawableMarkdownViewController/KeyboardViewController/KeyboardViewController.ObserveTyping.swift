@@ -31,10 +31,8 @@ extension KeyboardViewController {
                     return
                 }
                 
-                /// Rebuild AST.
-                ref.model.document?.markdown.updateAST(new: text)
-                ref.model.document?.markdown.plain = text
-                
+                /// Update document model
+                ref.model.document?.markdown.update(with: text)
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 

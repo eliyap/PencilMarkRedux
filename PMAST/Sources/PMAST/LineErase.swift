@@ -33,7 +33,7 @@ extension Markdown {
         makeReplacements()
         
         /// Finally, reformat document based on updated source Markdown.
-        backup.updateAST(new: plain)
+        backup.update(with: plain)
         ast = backup.ast
         
         /// Check tree links.
