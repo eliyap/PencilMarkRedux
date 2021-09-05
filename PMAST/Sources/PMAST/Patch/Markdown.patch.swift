@@ -111,8 +111,20 @@ extension Root {
             $0.offsetPosition(by: details.element.chunkSize)
         }
         
-        /// Also offset the document end to account for inserted lines.
-        position.end += details.element.chunkSize
+        let lastLine = details.element.last!
+        /// Check if there is space indicating a trailing newline.
+        if lastLine.enclosingNsRange.upperBound == lastLine.substringNsRange.upperBound {
+            precondition(details.element.endIndex == newLines.endIndex, "No newline found at end of line that was not the last line!")
+            
+            /// Manually adjust document end into correct position,
+            position.end.column = lastLine.substringNsRange.length + 1 /// account for 1-indexing
+            position.end.line = newLines.endIndex
+            position.end.offset += details.element.chunkSize.offset
+        } else {
+            /// Also offset the document end to account for inserted lines.
+            position.end += details.element.chunkSize
+        }
+        
         
         /// Insert node into tree structure.
         graft(node, at: insertionIndex)
