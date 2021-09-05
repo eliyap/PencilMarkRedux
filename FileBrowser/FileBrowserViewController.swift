@@ -74,6 +74,18 @@ final class FileBrowserViewController: UITableViewController {
         /// Fade cell back to normal color, so that "Open" doesn't stay gray.
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        /// In testing, this was the earliest setting the color actually worked.
+        /// `init` and `viewDidLoad`did not work.
+        tableView.backgroundColor = .tableBackgroundColor
+    }
 }
 
 final class FileBrowserView: UITableView {
@@ -99,6 +111,8 @@ final class FileBrowserDataSource: NSObject, UITableViewDataSource {
         default:
             fatalError("Index Out of Bounds \(indexPath.row)")
         }
+        
+        cell.backgroundColor = .tableBackgroundColor
         
         return cell
     }

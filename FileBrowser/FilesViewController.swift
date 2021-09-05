@@ -43,6 +43,8 @@ class FilesViewController: UITableViewController {
         
         /// Attach custom data source.
         self.tableView.dataSource = self
+        
+        self.tableView.backgroundColor = .tableBackgroundColor
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +82,7 @@ class FilesViewController: UITableViewController {
             selectionDelegate.select(cellURL, onClose: {
                 /// Fade cell back to normal color, so that the cell doesn't stay gray.
                 tableView.deselectRow(at: indexPath, animated: true)
-            }) 
+            })
         }
     }
     
