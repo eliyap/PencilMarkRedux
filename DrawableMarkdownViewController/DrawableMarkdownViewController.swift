@@ -37,7 +37,7 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Action to perform when tool is selected.
         var onSetTool: () -> ()
         
-        init(document: StyledMarkdownDocument?, onSetTool: @escaping () -> ()) {
+        init(document: MockableDocument?, onSetTool: @escaping () -> ()) {
             self.document = document
             self.onSetTool = onSetTool
         }
