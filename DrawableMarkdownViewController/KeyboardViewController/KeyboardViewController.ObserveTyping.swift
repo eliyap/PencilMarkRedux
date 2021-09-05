@@ -36,6 +36,7 @@ extension KeyboardViewController {
                 if ref.model.document?.markdown.plain == ref.textView.text {
                     ref.model.document?.markdown.updateAST(new: ref.textView.text)
                 } else {
+                    assert(false, "Inconsistent Contents!")
                     #warning("TODO: log warning about inconsistency!")
                 }
                 
