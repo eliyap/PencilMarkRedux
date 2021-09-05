@@ -51,11 +51,8 @@ final class CanvasViewController: PMViewController {
         
         /// Setup notifications
         setupNotifications()
-    }
-    
-    /// Perform with with ``coordinator`` after initialization is complete.
-    func coordinate(with _: DrawableMarkdownViewController) {
-        /// Coordinate via `Combine` with ``coordinator``.
+        
+        /// Coordinate via `Combine` with ``model``.
         observeSize()
         observeScroll()
     }

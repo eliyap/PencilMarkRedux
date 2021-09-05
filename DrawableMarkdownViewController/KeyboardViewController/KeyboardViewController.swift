@@ -47,11 +47,8 @@ final class KeyboardViewController: PMViewController {
         textView.backgroundColor = .documentBackgroundColor
         
         setupNotifications()
-    }
-    
-    /// Perform with with ``coordinator`` after initialization is complete.
-    func coordinate(with _: DrawableMarkdownViewController) {
-        /// Coordinate via `Combine` with ``coordinator``.
+        
+        /// Coordinate via `Combine` with ``model``.
         observeTyping()
         observeStrokes()
         observeEraser()

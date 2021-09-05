@@ -91,9 +91,7 @@ final class DrawableMarkdownViewController: PMViewController {
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
-        keyboard.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(canvas)
-        canvas.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(noDocument)
         
         adopt(toolbar)
