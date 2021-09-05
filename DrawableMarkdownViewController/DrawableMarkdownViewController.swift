@@ -10,6 +10,9 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
 
+    /**
+     - Important: **must** be a class since it is referenced from multiple areas!
+     */
     final class Model {
         
         /// Combine Conduits.
