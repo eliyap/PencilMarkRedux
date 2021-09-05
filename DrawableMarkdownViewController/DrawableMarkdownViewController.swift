@@ -25,7 +25,7 @@ final class DrawableMarkdownViewController: PMViewController {
         var scrollLead = ScrollLead.canvas
         
         /// Model object.
-        public var document: StyledMarkdownDocument?
+        public var document: MockableDocument?
         
         /// Active tool.
         var tool: Tool = .pencil {

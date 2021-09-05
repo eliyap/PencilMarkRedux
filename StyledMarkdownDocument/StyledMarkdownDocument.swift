@@ -9,7 +9,19 @@ import UIKit
 import Combine
 import PMAST
 
-final class StyledMarkdownDocument: UIDocument {
+protocol MockableDocument {
+    var documentState: UIDocument.State { get }
+    var fileURL: URL { get }
+    var markdown: Markdown { get set }
+    var undoManager: UndoManager! { get }
+    var localizedName: String { get }
+    func close(completionHandler: ((Bool) -> Void)?)
+    func updateChangeCount(_ change: UIDocument.ChangeKind)
+    func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)?)
+    func open(completionHandler: ((Bool) -> Void)?)
+}
+
+final class StyledMarkdownDocument: UIDocument, MockableDocument {
     
     /// Custom Markdown Model Object
     public var markdown = Markdown("")
