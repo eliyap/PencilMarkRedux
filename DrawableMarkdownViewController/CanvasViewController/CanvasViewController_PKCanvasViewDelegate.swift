@@ -27,7 +27,7 @@ extension CanvasViewController: PKCanvasViewDelegate {
         }
         
         /// Only forwards pencil strokes.
-        if coordinator.tool == .pencil {
+        if model.tool == .pencil {
             PencilConduit.shared.stroke = lastStroke
         }
         

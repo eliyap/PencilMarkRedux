@@ -45,7 +45,7 @@ final class DrawableMarkdownViewController: PMViewController {
     let canvas: CanvasViewController
     let noDocument = NoDocumentHost()
     let tutorial = TutorialMenuViewController()
-    let toolbar = ToolbarViewController()
+    let toolbar: ToolbarViewController
     
     let model: Model
     

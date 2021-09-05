@@ -29,7 +29,10 @@ extension DrawableMarkdownViewController {
         private var eraserBtn: Button! = nil
         private var highlighterBtn: Button! = nil
         
-        init() {
+        private var model: DrawableMarkdownViewController.Model
+        
+        init(model: DrawableMarkdownViewController.Model) {
+            self.model = model
             super.init(nibName: nil, bundle: nil)
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
@@ -109,12 +112,12 @@ extension DrawableMarkdownViewController {
         
         @objc
         func setPencil() {
-            coordinator.tool = .pencil
+            model.tool = .pencil
         }
         
         @objc
         func setEraser() {
-            coordinator.tool = .eraser
+            model.tool = .eraser
         }
         
         #if HIGHLIGHT_ENABLED

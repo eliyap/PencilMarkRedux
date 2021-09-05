@@ -14,7 +14,7 @@ extension DrawableMarkdownViewController {
         restoreDocument()
         
         /// Simply set enum, doesn't matter if this happens repeatedly.
-        tool = StateModel.shared.tool
+        model.tool = StateModel.shared.tool
     }
     
     /// - Note: expect that this might be called multiple times, in order to restore the state ASAP.
