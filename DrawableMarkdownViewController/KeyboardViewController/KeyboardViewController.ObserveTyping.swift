@@ -9,8 +9,8 @@ import Foundation
 
 extension KeyboardViewController {
     
-    /// How long to wait between saving operations.
-    static let period = 0.5
+    /// How long to wait between operations.
+    static let period = 0.1
     
     /**
      Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
@@ -31,10 +31,8 @@ extension KeyboardViewController {
                     return
                 }
                 
-                /// Rebuild AST.
-                ref.model.document?.markdown.updateAST(new: text)
-                ref.model.document?.markdown.plain = text
-                
+                /// Update document model
+                ref.model.document?.markdown.update(with: text)
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 
