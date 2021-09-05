@@ -22,4 +22,3 @@ public protocol MockableDocument {
     func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)?)
     func open(completionHandler: ((Bool) -> Void)?)
 }
-
