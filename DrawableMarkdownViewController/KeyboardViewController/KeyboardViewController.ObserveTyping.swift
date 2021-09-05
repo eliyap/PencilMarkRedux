@@ -9,8 +9,8 @@ import Foundation
 
 extension KeyboardViewController {
     
-    /// How long to wait between saving operations.
-    static let period = 0.5
+    /// How long to wait between operations.
+    static let period = 0.1
     
     /**
      Periodically update Markdown styling by rebuilding Abstract Syntax Tree.
