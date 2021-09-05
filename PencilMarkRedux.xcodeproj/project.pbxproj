@@ -52,6 +52,7 @@
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
+		22B51A1826E558F60060E2DF /* KVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B51A1726E558F60060E2DF /* KVCTests.swift */; };
 		22C035C526B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */; };
 		22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BC26CB39EA000BAD55 /* Tutorial.swift */; };
 		22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */; };
@@ -160,6 +161,7 @@
 		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
+		22B51A1726E558F60060E2DF /* KVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVCTests.swift; sourceTree = "<group>"; };
 		22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshablePlaceholderViewController.swift; sourceTree = "<group>"; };
 		22C767BC26CB39EA000BAD55 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Pencil.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				22DA1412269DE06600D90EA7 /* Info.plist */,
+				22B51A1726E558F60060E2DF /* KVCTests.swift */,
 			);
 			path = PencilMarkReduxTests;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 					};
 					22DA140D269DE06600D90EA7 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 						TestTargetID = 22AF74B5269BA5F1007D9891;
 					};
 				};
@@ -709,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B51A1826E558F60060E2DF /* KVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +902,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949D776DFQ;
 				INFOPLIST_FILE = PencilMarkReduxTests/Info.plist;
@@ -907,6 +913,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMarkReduxTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PencilMarkRedux.app/PencilMarkRedux";
@@ -917,6 +924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949D776DFQ;
 				INFOPLIST_FILE = PencilMarkReduxTests/Info.plist;
