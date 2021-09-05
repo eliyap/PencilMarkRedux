@@ -19,4 +19,5 @@ let popoverWidth: CGFloat = 320
 /// Colors in my `xcassets`.
 extension UIColor {
     static let tableBackgroundColor = UIColor(named: "tableBackgroundColor")
+    static let documentBackgroundColor = UIColor(named: "documentBackgroundColor")
 }
