@@ -21,13 +21,13 @@ extension CanvasViewController: PKCanvasViewDelegate {
         }
         
         /// Safety check, ensure document is available for editing.
-        guard coordinator.document != nil else {
+        guard model.document != nil else {
             assert(false, "Should not be able to draw on closed document!")
             return
         }
         
         /// Only forwards pencil strokes.
-        if coordinator.tool == .pencil {
+        if model.tool == .pencil {
             PencilConduit.shared.stroke = lastStroke
         }
         

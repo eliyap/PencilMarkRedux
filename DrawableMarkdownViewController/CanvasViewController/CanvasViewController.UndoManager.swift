@@ -18,8 +18,8 @@ extension CanvasViewController {
 
         /// Reference `textView` for undo / redo status.
         /// Default to ``true`` in case something goes wrong so that it doesn't break.
-        override var canUndo: Bool { controller?.coordinator.keyboard.textView.undoManager?.canUndo ?? true }
-        override var canRedo: Bool { controller?.coordinator.keyboard.textView.undoManager?.canRedo ?? true }
+        override var canUndo: Bool { controller?._kvc?.textView.undoManager?.canUndo ?? true }
+        override var canRedo: Bool { controller?._kvc?.textView.undoManager?.canRedo ?? true }
         
         override func undo() {
             super.undo()

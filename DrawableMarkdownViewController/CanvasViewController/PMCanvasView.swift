@@ -50,11 +50,11 @@ extension PMCanvasView {
         }
         
         let location = touch.preciseLocation(in: self)
-        switch delegate.coordinator.tool {
+        switch delegate.model.tool {
         case .eraser:
-            dragtool = delegate.coordinator.tool
-            trackCircle(location: location, tool: delegate.coordinator.tool)
-            PencilConduit.shared.location = (location, delegate.coordinator.tool)
+            dragtool = delegate.model.tool
+            trackCircle(location: location, tool: delegate.model.tool)
+            PencilConduit.shared.location = (location, delegate.model.tool)
         #if HIGHLIGHT_ENABLED
         case .highlighter:
             dragtool = delegate.coordinator.tool

@@ -10,10 +10,10 @@ import Combine
 extension CanvasViewController {
     /// Update canvas size to match `UITextView`.
     func observeScroll() {
-        let scroll: AnyCancellable = coordinator.frameC.$scrollY
+        let scroll: AnyCancellable = model.frameC.$scrollY
             .sink { [weak self] in
                 /// Reject events from own delegate
-                guard self?.coordinator.scrollLead != .canvas else { return }
+                guard self?.model.scrollLead != .canvas else { return }
                 
                 self?.canvasView.contentOffset.y = $0
             }

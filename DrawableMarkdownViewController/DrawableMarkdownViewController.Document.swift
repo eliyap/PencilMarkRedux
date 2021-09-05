@@ -11,15 +11,10 @@ import CoreGraphics
 // MARK: - Document Methods
 extension DrawableMarkdownViewController {
     
-    /// Make sure we are not editing the temporary document or a `nil` document.
-    func assertDocumentIsValid() {
-        precondition(document?.fileURL != nil, "Edits made to nil document!")
-    }
-    
     /// Close whatever document is currently open, and open the provided URL instead
     func present(fileURL: URL?, onClose: @escaping () -> ()) {
         /// If URL is already open, do nothing
-        guard document?.fileURL != fileURL else { return }
+        guard model.document?.fileURL != fileURL else { return }
         
         /// Stop interaction with the document
         keyboard.resignFirstResponder()
@@ -27,7 +22,7 @@ extension DrawableMarkdownViewController {
         keyboard.textView.endEditing(true)
         
         /// Close document, if any, then open new.
-        if document != nil {
+        if model.document != nil {
             /// `closeCurrentDocument` clears `onClose`, so only re-equip it on completion.
             closeCurrentDocument(then: { [weak self] in
                 self?.open(fileURL: fileURL)
@@ -43,8 +38,8 @@ extension DrawableMarkdownViewController {
     fileprivate func open(fileURL: URL?) {
         if let fileURL = fileURL {
             print("File URL is \(fileURL)")
-            document = StyledMarkdownDocument(fileURL: fileURL)
-            document?.open { (success) in
+            model.document = StyledMarkdownDocument(fileURL: fileURL)
+            model.document?.open { (success) in
                 guard success else {
                     assert(false, "Failed to open document!")
                     return
@@ -61,19 +56,19 @@ extension DrawableMarkdownViewController {
                 self.canvas.present(topInset: topInset)
             }
         } else {
-            document = nil
+            model.document = nil
             
             /// Show placeholder view.
             view.bringSubviewToFront(noDocument.view)
         }
         
         /// Update Navigation Bar Title
-        navigationItem.title = document?.localizedName ?? ""
+        navigationItem.title = model.document?.localizedName ?? ""
     }
     
     @objc
     func close() {
-        guard document != nil else { return }
+        guard model.document != nil else { return }
         
         /// Show placeholder view.
         self.view.bringSubviewToFront(self.noDocument.view)
@@ -89,14 +84,14 @@ extension DrawableMarkdownViewController {
     
     /// Close the current document. Only if successful, perform action.
     fileprivate func closeCurrentDocument(then action: @escaping () -> ()) -> Void {
-        document?.close { (success) in
+        model.document?.close { (success) in
             guard success else {
                 assert(false, "Failed to save document!")
                 return
             }
             
             print("closed")
-            self.document = nil
+            self.model.document = nil
             self.onClose() /// invoke passed closure
             self.onClose = {} /// reset to do nothing
             
@@ -104,7 +99,7 @@ extension DrawableMarkdownViewController {
         }
         
         /// Disable undo / redo buttons.
-        cmdC.undoStatus.send(false)
-        cmdC.redoStatus.send(false)
+        model.cmdC.undoStatus.send(false)
+        model.cmdC.redoStatus.send(false)
     }
 }

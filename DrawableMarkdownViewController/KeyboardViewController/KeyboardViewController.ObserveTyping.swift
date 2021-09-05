@@ -20,29 +20,26 @@ extension KeyboardViewController {
              updating the text here does not cause an infinite loop.
      */
     func observeTyping() {
-        let typing = coordinator.typingC
+        let typing = model.typingC
             /// Rate limiter. `latest` doesn't matter since the subject is `Void`.
             /// Throttle rate is arbitrary, may want to change it in future.
             .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
-            .sink { [weak self] in
+            .sink { [weak self] text in
                 /// Assert `self` is actually available.
                 guard let ref = self else {
                     assert(false, "Weak Self Reference returned nil!")
                     return
                 }
                 
-                /// First check if document contents are consistent with textView contents
-                /// Rebuild AST, recalculate text styling.
-                if ref.coordinator.document?.markdown.plain == ref.textView.text {
-                    ref.coordinator.document?.markdown.updateAST(new: ref.textView.text)
-                } else {
-                    #warning("TODO: log warning about inconsistency!")
-                }
+                /// Rebuild AST.
+                ref.model.document?.markdown.updateAST(new: text)
+                ref.model.document?.markdown.plain = text
+                
                 
                 let canUndoBefore: Bool? = ref.textView.undoManager?.canUndo
 
                 /// - Note: setting `textView.attributedText` wipes the `undoManager`,
-                /// which is very bad, but calling `setAttributes` does not!
+                ///         which is very bad, but calling `setAttributes` does not!
                 ref.styleText()
                 
                 let canUndoAfter: Bool? = ref.textView.undoManager?.canUndo

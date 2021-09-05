@@ -26,7 +26,7 @@ extension DrawableMarkdownViewController: DocumentSelectionDelegate {
     /// Passed file URL was deleted
     func delete(_ fileURL: URL) {
         /// If document was open when deleted, close it first.
-        guard fileURL == document?.fileURL else { return }
+        guard fileURL == model.document?.fileURL else { return }
         close()
     }
 }

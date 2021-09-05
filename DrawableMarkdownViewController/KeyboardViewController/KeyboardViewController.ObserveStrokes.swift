@@ -41,7 +41,7 @@ extension KeyboardViewController {
      which is assumed to have been recognized as a horizontal line.
      */
     func strikethrough(with stroke: PKStroke) -> Void {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         /// Get a straightened version of the stroke.
         let (leading, trailing) = stroke.straightened()
@@ -59,17 +59,17 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.apply(lineStyle: Delete.self, to: [nsRange])
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.apply(lineStyle: Delete.self, to: [nsRange])
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     
     /// Erase along the provided line
     func erase(along stroke: PKStroke) -> Void {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         /// Use the same straightened version of a stroke as ``strikethrough``.
         let (leading, trailing) = stroke.straightened()
@@ -87,11 +87,11 @@ extension KeyboardViewController {
         
         /// Update model, then report update, then update view.
         let nsRange = textView.nsRange(from: range)
-        coordinator.document?.markdown.erase([nsRange])
-        coordinator.document?.updateChangeCount(.done)
+        model.document?.markdown.erase([nsRange])
+        model.document?.updateChangeCount(.done)
         
         /// Set and style contents
-        textView.text = coordinator.document?.markdown.plain
+        textView.text = model.document?.markdown.plain
         styleText() /// Note: tree is patched `markdown.apply` call.
     }
     

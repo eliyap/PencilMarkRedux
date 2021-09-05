@@ -30,7 +30,7 @@ extension DrawableMarkdownViewController {
         
         /// Cast to allowed NS types
         /// Docs: https://developer.apple.com/documentation/foundation/nsuseractivity/1411706-userinfo
-        if let url = document?.fileURL {
+        if let url = model.document?.fileURL {
             let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: url as NSURL]
             activity.addUserInfoEntries(from: newInfo)
         } else {
@@ -38,7 +38,7 @@ extension DrawableMarkdownViewController {
             activity.addUserInfoEntries(from: newInfo)
         }
         
-        let toolInfo: [AnyHashable: Any] = [ActivityInfo.activeTool.rawValue: tool.rawValue as NSInteger]
+        let toolInfo: [AnyHashable: Any] = [ActivityInfo.activeTool.rawValue: model.tool.rawValue as NSInteger]
         activity.addUserInfoEntries(from: toolInfo)
     }
 }

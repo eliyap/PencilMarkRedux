@@ -10,24 +10,47 @@ import Combine
 
 final class DrawableMarkdownViewController: PMViewController {
 
-    /// Model object
-    public var document: StyledMarkdownDocument?
+    /**
+     - Important: **must** be a class since it is referenced from multiple areas!
+     */
+    final class Model {
+        
+        /// Combine Conduits.
+        let frameC = FrameConduit()
+        let cmdC = CommandConduit()
+        let typingC = PassthroughSubject<String, Never>()
+        
+        /// Controls which view gets to set the scroll position.
+        enum ScrollLead { case keyboard, canvas }
+        var scrollLead = ScrollLead.canvas
+        
+        /// Model object.
+        public var document: StyledMarkdownDocument?
+        
+        /// Active tool.
+        var tool: Tool = .pencil {
+            didSet {
+                onSetTool()
+            }
+        }
+        
+        /// Action to perform when tool is selected.
+        var onSetTool: () -> ()
+        
+        init(document: StyledMarkdownDocument?, onSetTool: @escaping () -> ()) {
+            self.document = document
+            self.onSetTool = onSetTool
+        }
+    }
     
     /// Child View Controllers
-    let keyboard = KeyboardViewController()
-    let canvas = CanvasViewController()
+    let keyboard: KeyboardViewController
+    let canvas: CanvasViewController
     let noDocument = NoDocumentHost()
     let tutorial = TutorialMenuViewController()
-    let toolbar = ToolbarViewController()
+    let toolbar: ToolbarViewController
     
-    /// Combine Conduits
-    let frameC = FrameConduit()
-    let cmdC = CommandConduit()
-    let typingC = PassthroughSubject<Void, Never>()
-    
-    /// Controls which view gets to set the scroll position
-    enum ScrollLead { case keyboard, canvas }
-    var scrollLead = ScrollLead.canvas
+    let model: Model
     
     /// Action to perform when document is closed
     var onClose: () -> () = {} /// does nothing by default
@@ -39,19 +62,32 @@ final class DrawableMarkdownViewController: PMViewController {
     var undoButton: UIBarButtonItem!
     var redoButton: UIBarButtonItem!
     
-    /// Active tool
-    var tool: Tool = .pencil {
-        didSet {
-            toolbar.highlight(tool: tool)
-            canvas.set(tool: tool)
-        }
-    }
-    
     init(fileURL: URL?) {
+        var document: StyledMarkdownDocument? = nil
         if let fileURL = fileURL {
             document = StyledMarkdownDocument(fileURL: fileURL)
         }
+        
+        ///
+        model = Model(document: document, onSetTool: { /* self not available... */ })
+        
+        keyboard = KeyboardViewController(model: model)
+        canvas = CanvasViewController(model: model, _kvc: keyboard)
+        toolbar = ToolbarViewController(model: model)
         super.init(nibName: nil, bundle: nil)
+        
+        /**
+         Can only be set after `self` is initialized!
+         Since `self` owns `model`, which owns the closure, which references `self`,
+         this **must** be a `weak` reference!
+         */
+        model.onSetTool = { [weak self] in
+            guard let ref = self else {
+                assert(false, "DMVC was destroyed!")
+            }
+            ref.toolbar.highlight(tool: ref.model.tool)
+            ref.canvas.set(tool: ref.model.tool)
+        }
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
@@ -83,7 +119,7 @@ final class DrawableMarkdownViewController: PMViewController {
     
     @objc
     func documentStateChanged() -> Void {
-        guard let state = document?.documentState else { return }
+        guard let state = model.document?.documentState else { return }
         if state == .normal { }
         if state.contains(.closed) { print("Document Closed") }
         if state.contains(.inConflict) { print("Document Conflicted") }

@@ -10,9 +10,7 @@ import PencilKit
 
 final class CanvasViewController: PMViewController {
     
-    /// Force unwrap container VC
-    /// - Note: since coordinator is not set at ``init``, do not access it until after ``init`` is complete.
-    var coordinator: DrawableMarkdownViewController { parent as! DrawableMarkdownViewController }
+    let model: DrawableMarkdownViewController.Model
     
     let canvasView = PMCanvasView()
 
@@ -20,7 +18,12 @@ final class CanvasViewController: PMViewController {
     private let _undoManager = CanvasViewController.UndoManager()
     override var undoManager: UndoManager? { _undoManager }
     
-    init() {
+    /// Unavoidable reference to sibling view controller. Avoid use as much as possible.
+    internal private(set) weak var _kvc: KeyboardViewController?
+    
+    init(model: DrawableMarkdownViewController.Model, _kvc: KeyboardViewController) {
+        self.model = model
+        self._kvc = _kvc
         super.init(nibName: nil, bundle: nil)
         _undoManager.controller = self /// immediately attach to child
         
@@ -84,12 +87,12 @@ extension CanvasViewController {
     
     @objc
     func undo() -> Void {
-        coordinator.cmdC.undo.send()
+        model.cmdC.undo.send()
     }
     
     @objc
     func redo() -> Void {
-        coordinator.cmdC.redo.send()
+        model.cmdC.redo.send()
     }
 }
 
@@ -99,7 +102,7 @@ extension CanvasViewController {
     /// Action to perform on tap gesture.
     @objc /// expose to `#selector`
     func didTapView(_ sender: UITapGestureRecognizer) -> Void {
-        coordinator.frameC.tapLocation = sender.location(in: canvasView)
+        model.frameC.tapLocation = sender.location(in: canvasView)
     }
 }
 
