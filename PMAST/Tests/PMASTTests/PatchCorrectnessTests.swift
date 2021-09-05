@@ -43,19 +43,17 @@ class PatchCorrectnessTests: XCTestCase {
     }
     
     func testNewlineAfter() throws {
-        XCTExpectFailure {
-            /// Fails due to quibble about wrapping end of line to next line.
-            /// Ignore for now, as difference is not meaningful.
-            checkPatch(
-                old: """
-                Old Text
-                """,
-                new: """
-                Old Text
-                
-                """
-            )
-        }
+        /// Fails due to quibble about wrapping end of line to next line.
+        /// Ignore for now, as difference is not meaningful.
+        checkPatch(
+            old: """
+            Old Text
+            """,
+            new: """
+            Old Text
+            
+            """
+        )
         
         checkPatch(
             old: """

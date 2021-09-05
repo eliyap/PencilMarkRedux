@@ -32,6 +32,12 @@ internal extension String {
         let nsString = NSString(string: self)
         nsString.enumerateSubstrings(in: NSMakeRange(0, nsString.length), options: .byLines, using: block)
         
+        /// If the document terminates with a newline, insert a zero-wdith line to validate certain assumptions in the code.
+        /// Specifically, this prevents the MDAST `Root` end from sitting on the wrong line after patching.
+        if last?.isNewline == true {
+            result.append(Line(string: "", substringNsRange: NSMakeRange(nsString.length, 0), enclosingNsRange: NSMakeRange(nsString.length, 0)))
+        }
+        
         return result
     }
 }
