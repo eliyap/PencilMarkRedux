@@ -41,7 +41,7 @@ extension KeyboardViewController {
      which is assumed to have been recognized as a horizontal line.
      */
     func strikethrough(with stroke: PKStroke) -> Void {
-        coordinator.assertDocumentIsValid()
+        assertDocumentIsValid()
         
         /// Get a straightened version of the stroke.
         let (leading, trailing) = stroke.straightened()
