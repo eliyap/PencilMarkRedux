@@ -362,4 +362,28 @@ class PatchCorrectnessTests: XCTestCase {
         /// Check that there are no differences, and print a detailed report of the differences if there are any.
         XCTAssertEqual(diff.count, 0, "\(diff.report())\nPatch: \(oldDescription)\nFresh: \(newDescription)")
     }
+    
+    func testDoubleTrailingNewline() throws {
+        checkPatch([
+            "Old Text",
+            "Old Text\n",
+            "Old Text\n\n",
+        ])
+    }
+    
+    /// Array version of checker.
+    func checkPatch(_ strings: [String]) {
+        var md = Markdown("")
+        for string in strings {
+            md.patch(with: string)
+            let old = md.ast.description
+            let new = Markdown(string).ast.description
+            let diff = old.difference(from: new)
+            /// Check that there are no differences, and print a detailed report of the differences if there are any.
+            XCTAssertEqual(diff.count, 0, "\(diff.report())\nPatch: \(old)\nFresh: \(new)")
+            
+            /// Remember to set the text also!
+            md.plain = string
+        }
+    }
 }
