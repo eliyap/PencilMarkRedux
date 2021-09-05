@@ -32,8 +32,8 @@ class PatchStressTests: XCTestCase {
         })
     }
     
-    func testDoubleTrailingNewline() throws {
-        (0..<100).forEach { _ in
+    func testRandomStrings() throws {
+        (0..<10).forEach { _ in
             checkPatch([
                 randString(length: 1000),
                 randString(length: 1000),
