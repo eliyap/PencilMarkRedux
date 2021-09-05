@@ -20,13 +20,22 @@ class KVCTests: XCTestCase {
     }
 
     func testBasic() throws {
-        let document = MockDocument("SOME TEXT")
+        /// Erase everything.
+        let text = "SOME TEXT"
+        let document = MockDocument(text)
         let model = DrawableMarkdownViewController.Model(document: document, onSetTool: { /* nothing */})
         let kvc = KeyboardViewController(model: model)
         kvc.__erase(NSMakeRange(0, 9))
         
-        XCTAssert(document.markdown.plain == "")
-        checkASTConsistent(document.markdown.ast, with: "")
+        /// Check state.
+        let newValue = ""
+        XCTAssert(document.markdown.plain == newValue)
+        checkASTConsistent(document.markdown.ast, with: newValue)
+        
+        /// Undo it.
+        model.cmdC.undo.send()
+        XCTAssertEqual(document.markdown.plain, text)
+        checkASTConsistent(document.markdown.ast, with: text)
     }
     
     func checkASTConsistent(_ ast: Root, with string: String) {
