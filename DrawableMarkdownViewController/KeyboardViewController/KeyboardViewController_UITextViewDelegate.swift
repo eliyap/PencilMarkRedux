@@ -11,9 +11,8 @@ extension KeyboardViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         assertDocumentIsValid()
         
-        model.document?.markdown.plain = textView.text
+        model.typingC.send(textView.text)
         model.document?.updateChangeCount(.done)
-        model.typingC.send()
         
         /// Update undo buttons.
         updateCommandStatus()
@@ -22,9 +21,8 @@ extension KeyboardViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         assertDocumentIsValid()
         
-        model.document?.markdown.plain = textView.text
+        model.typingC.send(textView.text)
         model.document?.updateChangeCount(.done)
-        model.typingC.send()
     }
 }
 

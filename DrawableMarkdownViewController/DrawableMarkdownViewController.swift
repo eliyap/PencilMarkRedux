@@ -18,7 +18,7 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Combine Conduits.
         let frameC = FrameConduit()
         let cmdC = CommandConduit()
-        let typingC = PassthroughSubject<Void, Never>()
+        let typingC = PassthroughSubject<String, Never>()
         
         /// Controls which view gets to set the scroll position.
         enum ScrollLead { case keyboard, canvas }

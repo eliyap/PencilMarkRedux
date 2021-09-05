@@ -17,7 +17,7 @@ extension DrawableMarkdownViewController {
     func observeTyping() {
         let typing: AnyCancellable = model.typingC
             .throttle(for: .seconds(Self.period), scheduler: RunLoop.main, latest: true)
-            .sink { [weak self] in
+            .sink { [weak self] _ in
                 if let document = self?.model.document {
                     document.save(to: document.fileURL, for: .forOverwriting) { (success) in
                         if success == false {
