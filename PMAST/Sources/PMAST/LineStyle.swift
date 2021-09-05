@@ -35,11 +35,7 @@ extension Markdown {
             combine()
         }
         
-        makeReplacements()
-        
-        /// Finally, reformat document based on updated source Markdown.
-        backup.update(with: plain)
-        ast = backup.ast
+        commitTreeChanges(backup: &backup)
     }
     
     /**

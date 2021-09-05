@@ -30,11 +30,23 @@ extension Markdown {
         
         combine()
         
+        commitTreeChanges(backup: &backup)
+    }
+}
+
+extension Markdown {
+    /**
+     Assumes the tree has some changes indicated on it.
+     Applies those changes to the current tree, using an old state stored in `backup` to perform the patch.
+     */
+    internal mutating func commitTreeChanges(backup: inout Markdown) -> Void {
+        /// Apply changes to source Markdown.
         makeReplacements()
         
-        /// Finally, reformat document based on updated source Markdown.
+        /// Update internal document model based on changed Markdown.
         backup.update(with: plain)
         ast = backup.ast
+        boundaries = backup.boundaries
         
         /// Check tree links.
         try! ast.linkCheck()
