@@ -15,7 +15,7 @@ final class CanvasViewController: PMViewController {
     let canvasView = PMCanvasView()
 
     /// Custom `UndoManager`.
-    private let _undoManager = CanvasViewController.UndoManager()
+    private let _undoManager = CanvasViewControllerUndoManager()
     override var undoManager: UndoManager? { _undoManager }
     
     /// Unavoidable reference to sibling view controller. Avoid use as much as possible.
