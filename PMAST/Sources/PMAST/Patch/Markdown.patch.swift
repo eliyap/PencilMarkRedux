@@ -134,6 +134,11 @@ extension Root {
         details: ChunkChangeDetails,
         newLines: [Line]
     ) -> Void {
+        guard details.element.nsRange.length > 0 else {
+            /// If the element is zero length (which can happen, due to the trailing empty line we insert ourselves), exit.
+            return
+        }
+        
         /// Find all nodes in this chunk.
         let targetStart: Int? = children.firstIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }
         let targetEnd: Int? = children.lastIndex { details.element.lowerBound <= $0.position.start.offset && $0.position.end.offset <= details.element.upperBound }

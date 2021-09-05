@@ -369,6 +369,12 @@ class PatchCorrectnessTests: XCTestCase {
             "Old Text\n",
             "Old Text\n\n",
         ])
+        
+        checkPatch([
+            "Old Text\n\n",
+            "Old Text\n",
+            "Old Text",
+        ])
     }
     
     /// Array version of checker.
