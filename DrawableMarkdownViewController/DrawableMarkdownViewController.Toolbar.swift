@@ -21,8 +21,8 @@ extension DrawableMarkdownViewController {
     
     final class ToolbarViewController: UIViewController {
         
+        #error("REMOVE THIS!")
         typealias Coordinator = DrawableMarkdownViewController
-        private weak var coordinator: Coordinator!
         
         /// Unwrapped optional allows us to use `#selectors` in init
         private var pencilBtn: Button! = nil
@@ -128,8 +128,6 @@ extension DrawableMarkdownViewController {
         #endif
         
         func coordinate(with coordinator: Coordinator) {
-            self.coordinator = coordinator
-            
             view.translatesAutoresizingMaskIntoConstraints = false
             
             /**
