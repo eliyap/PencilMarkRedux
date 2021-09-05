@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import PMAST
 
-final class StyledMarkdownDocument: UIDocument {
+final class StyledMarkdownDocument: UIDocument, MockableDocument {
     
     /// Custom Markdown Model Object
     public var markdown = Markdown("")

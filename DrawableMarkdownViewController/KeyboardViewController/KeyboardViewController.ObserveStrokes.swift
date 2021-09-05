@@ -83,10 +83,16 @@ extension KeyboardViewController {
             return
         }
         
+        let nsRange = textView.nsRange(from: range)
+        __erase(nsRange)
+        
+        /// `@testable` midpoint: erase with knowledge of internal text.
+        /// Do not call directly!
+    }; func __erase(_ nsRange: NSRange) -> Void {
+        
         registerUndo() /// register before model changes
         
         /// Update model, then report update, then update view.
-        let nsRange = textView.nsRange(from: range)
         model.document?.markdown.erase([nsRange])
         model.document?.updateChangeCount(.done)
         

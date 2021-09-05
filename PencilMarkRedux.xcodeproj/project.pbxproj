@@ -52,6 +52,7 @@
 		22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D2269BABA1007D9891 /* StrokeConduit.swift */; };
 		22AF74D9269BAC37007D9891 /* PKStroke_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */; };
 		22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */; };
+		22B51A1826E558F60060E2DF /* KVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B51A1726E558F60060E2DF /* KVCTests.swift */; };
 		22C035C526B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */; };
 		22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BC26CB39EA000BAD55 /* Tutorial.swift */; };
 		22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */; };
@@ -83,6 +84,8 @@
 		22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA377926A22B9300E95009 /* PMCanvasView.swift */; };
 		22CF007726A5099500A12F88 /* ScribbleBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007626A5099500A12F88 /* ScribbleBlockers.swift */; };
 		22CF007B26A516F400A12F88 /* CommandConduit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF007A26A516F400A12F88 /* CommandConduit.swift */; };
+		22E28DA126E570EE00DEC491 /* MockableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E28DA026E570EE00DEC491 /* MockableDocument.swift */; };
+		22E28DA426E5725000DEC491 /* MockDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E28DA326E5725000DEC491 /* MockDocument.swift */; };
 		22E6BEA126CEAF110000A3B3 /* CGPoint.distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */; };
 		22E6BEA326CEAF2E0000A3B3 /* CGRect.intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */; };
 		22E6BEA526CEAF550000A3B3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6BEA426CEAF550000A3B3 /* Circle.swift */; };
@@ -160,6 +163,7 @@
 		22AF74D2269BABA1007D9891 /* StrokeConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeConduit.swift; sourceTree = "<group>"; };
 		22AF74D8269BAC37007D9891 /* PKStroke_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStroke_Init.swift; sourceTree = "<group>"; };
 		22AF74DA269BAC64007D9891 /* PKStrokePoint_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKStrokePoint_Init.swift; sourceTree = "<group>"; };
+		22B51A1726E558F60060E2DF /* KVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVCTests.swift; sourceTree = "<group>"; };
 		22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshablePlaceholderViewController.swift; sourceTree = "<group>"; };
 		22C767BC26CB39EA000BAD55 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		22C767BE26CB3AA8000BAD55 /* Tool.Pencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.Pencil.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 		22CF007A26A516F400A12F88 /* CommandConduit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandConduit.swift; sourceTree = "<group>"; };
 		22DA140E269DE06600D90EA7 /* PencilMarkReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PencilMarkReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DA1412269DE06600D90EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22E28DA026E570EE00DEC491 /* MockableDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableDocument.swift; sourceTree = "<group>"; };
+		22E28DA326E5725000DEC491 /* MockDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocument.swift; sourceTree = "<group>"; };
 		22E6BEA026CEAF110000A3B3 /* CGPoint.distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.distance.swift; sourceTree = "<group>"; };
 		22E6BEA226CEAF2E0000A3B3 /* CGRect.intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.intersects.swift; sourceTree = "<group>"; };
 		22E6BEA426CEAF550000A3B3 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
@@ -460,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				22C9F5FE26ABA27F003FD426 /* StyledMarkdownDocument.swift */,
+				22E28DA026E570EE00DEC491 /* MockableDocument.swift */,
 				2215B88626AD9E0600D2A0AE /* TextDocumentError.swift */,
 			);
 			path = StyledMarkdownDocument;
@@ -480,8 +487,18 @@
 			isa = PBXGroup;
 			children = (
 				22DA1412269DE06600D90EA7 /* Info.plist */,
+				22B51A1726E558F60060E2DF /* KVCTests.swift */,
+				22E28DA326E5725000DEC491 /* MockDocument.swift */,
+				22E28DA226E5724600DEC491 /* Mocks */,
 			);
 			path = PencilMarkReduxTests;
+			sourceTree = "<group>";
+		};
+		22E28DA226E5724600DEC491 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		22E6BE9F26CEAEF30000A3B3 /* Eraser */ = {
@@ -562,6 +579,7 @@
 					};
 					22DA140D269DE06600D90EA7 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 						TestTargetID = 22AF74B5269BA5F1007D9891;
 					};
 				};
@@ -621,6 +639,7 @@
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */,
 				229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */,
+				22E28DA126E570EE00DEC491 /* MockableDocument.swift in Sources */,
 				22E6BEAD26CF5C080000A3B3 /* FragmentModel_Ranges.swift in Sources */,
 				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
 				220B851226AC844D00081536 /* DrawableMarkdownViewController.swift in Sources */,
@@ -709,6 +728,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E28DA426E5725000DEC491 /* MockDocument.swift in Sources */,
+				22B51A1826E558F60060E2DF /* KVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +918,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949D776DFQ;
 				INFOPLIST_FILE = PencilMarkReduxTests/Info.plist;
@@ -907,6 +929,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-.PencilMarkReduxTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PencilMarkRedux.app/PencilMarkRedux";
@@ -917,6 +940,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949D776DFQ;
 				INFOPLIST_FILE = PencilMarkReduxTests/Info.plist;

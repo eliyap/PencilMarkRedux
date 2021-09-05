@@ -25,7 +25,7 @@ final class DrawableMarkdownViewController: PMViewController {
         var scrollLead = ScrollLead.canvas
         
         /// Model object.
-        public var document: StyledMarkdownDocument?
+        public var document: MockableDocument?
         
         /// Active tool.
         var tool: Tool = .pencil {
@@ -37,7 +37,7 @@ final class DrawableMarkdownViewController: PMViewController {
         /// Action to perform when tool is selected.
         var onSetTool: () -> ()
         
-        init(document: StyledMarkdownDocument?, onSetTool: @escaping () -> ()) {
+        init(document: MockableDocument?, onSetTool: @escaping () -> ()) {
             self.document = document
             self.onSetTool = onSetTool
         }
@@ -91,9 +91,7 @@ final class DrawableMarkdownViewController: PMViewController {
         
         /// Add subviews into hierarchy.
         adopt(keyboard)
-        keyboard.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(canvas)
-        canvas.coordinate(with: self) /// call after `init` and `adopt` are complete
         adopt(noDocument)
         
         adopt(toolbar)
