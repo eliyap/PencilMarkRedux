@@ -16,7 +16,7 @@ public struct Point {
     var column: Int
     
     /// Line in a source file (1-indexed integer).
-    let line: Int
+    var line: Int
     
     /// Character in a source file (0-indexed integer).
     var offset: Int
