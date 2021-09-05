@@ -73,6 +73,7 @@ extension FilesViewController {
             cell.imageView?.image = UIImage(systemName: "doc.text")
             cell.imageView?.tintColor = tint
         }
+        cell.backgroundColor = .tableBackgroundColor
         return cell
     }
     
