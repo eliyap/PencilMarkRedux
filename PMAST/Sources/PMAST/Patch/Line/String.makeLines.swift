@@ -9,6 +9,7 @@ import Foundation
 
 internal extension String {
     /// Generate ``Line`` structs.
+    /// - Note: if the string terminates in a newline, e.g. `mytext\n`, we consider this to be 2 lines, where the second one is simply ''.
     func makeLines() -> [Line] {
         
         var result: [Line] = []
