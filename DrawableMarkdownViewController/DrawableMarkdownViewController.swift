@@ -84,6 +84,7 @@ final class DrawableMarkdownViewController: PMViewController {
         model.onSetTool = { [weak self] in
             guard let ref = self else {
                 assert(false, "DMVC was destroyed!")
+                return
             }
             ref.toolbar.highlight(tool: ref.model.tool)
             ref.canvas.set(tool: ref.model.tool)
