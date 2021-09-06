@@ -97,7 +97,6 @@ final class DrawableMarkdownViewController: PMViewController {
         
         adopt(toolbar)
         toolbar.coordinate(with: self) /// call after `init` and `adopt` are complete
-        setToolbarInsets()
         
         canvas.view.translatesAutoresizingMaskIntoConstraints = false
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
