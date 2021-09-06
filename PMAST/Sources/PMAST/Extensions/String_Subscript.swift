@@ -25,7 +25,7 @@ extension String {
         let utf16start: UTF16View.Index = utf16.index(utf16.startIndex, offsetBy: start)
         let strStart = utf16start.samePosition(in: self)!
         
-        let utf16end: UTF16View.Index = utf16.index(utf16.startIndex, offsetBy: start)
+        let utf16end: UTF16View.Index = utf16.index(utf16.startIndex, offsetBy: end)
         let strEnd = utf16end.samePosition(in: self)!
         
         replaceSubrange(strStart..<strEnd, with: replacement)
