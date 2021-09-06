@@ -24,12 +24,4 @@ class EmojiTests: XCTestCase {
         
         XCTAssertEqual(md.plain, "~~💩~~")
     }
-    
-    func testEmphasisAvailable() throws {
-
-    }
-    
-    func testStrongAvailable() throws {
-
-    }
 }

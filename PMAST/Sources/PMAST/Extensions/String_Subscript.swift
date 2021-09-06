@@ -11,7 +11,7 @@ import Foundation
 extension String {
     subscript(idx: Int) -> Index {
         get {
-            index(startIndex, offsetBy: idx)
+            index(from: idx)
         }
     }
     
