@@ -105,7 +105,10 @@ final class LineFragment {
         let range = NSMakeRange(glyphIndex, 1)
         let r = textView.layoutManager.boundingRect(forGlyphRange: range, in: textView.textContainer)
         assert(r.width == rect.width)
-        assert(r.height == rect.height)
+        
+        /// We do not check height since it is `clipped`.
+        // assert(r.height == rect.height)
+        
         assert(r.origin.x == rect.origin.x)
         if r.origin.x != rect.origin.x {
             print("Y Diff: \(r.origin.y - rect.origin.y)")
@@ -119,7 +122,9 @@ final class LineFragment {
         for glyphIndex in (glyphRange.lowerBound..<glyphRange.upperBound) {
             let glyphRange = NSMakeRange(glyphIndex, 1)
             let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textView.textContainer)
-            table[glyphIndex] = glyphRect
+            
+            /// Clip height to make hitbox more reasonable.
+            table[glyphIndex] = glyphRect.clipped(to: UIFont.dynamicSize)
         }
         return table
     }
