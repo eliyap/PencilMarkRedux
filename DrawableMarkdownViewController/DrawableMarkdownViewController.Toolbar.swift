@@ -53,6 +53,7 @@ extension DrawableMarkdownViewController {
             stackView.alignment = .center
             view = stackView
             
+            /// Make toolbar clear.
             view.backgroundColor = .clear
         }
         
