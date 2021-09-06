@@ -10,14 +10,8 @@ import SwiftUI
 
 extension DrawableMarkdownViewController {
 
-    /// Height of our custom toolbar.
-    var additionalToolbarHeight: CGFloat { 50 }
-    
-    func setToolbarInsets() -> Void {
-        /// Help child views clear the toolbar.
-        canvas.canvasView.verticalScrollIndicatorInsets.top = additionalToolbarHeight
-        keyboard.textView.textContainerInset.top = additionalToolbarHeight
-    }
+    /// Width of our custom toolbar.
+    var additionalToolbarWidth: CGFloat { 50 }
     
     final class ToolbarViewController: UIViewController {
         
@@ -57,11 +51,11 @@ extension DrawableMarkdownViewController {
             #endif
             
             let stackView = UIStackView(arrangedSubviews: subviews)
-            stackView.axis = .horizontal
+            stackView.axis = .vertical
             stackView.alignment = .center
             view = stackView
             
-            view.backgroundColor = .tertiarySystemBackground
+            view.backgroundColor = .clear
         }
         
         /// Updates which tools are selected, which in turn should update their background colors.
@@ -136,10 +130,9 @@ extension DrawableMarkdownViewController {
              - have a fixed height
              */
             let constraints = [
-                view.leftAnchor.constraint(equalTo: coordinator.view.leftAnchor),
                 view.rightAnchor.constraint(equalTo: coordinator.view.rightAnchor),
                 view.topAnchor.constraint(equalTo: coordinator.view.safeAreaLayoutGuide.topAnchor),
-                view.heightAnchor.constraint(equalToConstant: coordinator.additionalToolbarHeight)
+                view.widthAnchor.constraint(equalToConstant: coordinator.additionalToolbarWidth)
             ]
             NSLayoutConstraint.activate(constraints)
         }
