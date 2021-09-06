@@ -22,13 +22,7 @@ extension String {
     }
     
     mutating func replace<T: StringProtocol>(from start: Int, to end: Int, with replacement: T) -> Void {
-        let utf16start: UTF16View.Index = utf16.index(utf16.startIndex, offsetBy: start)
-        let strStart = utf16start.samePosition(in: self)!
-        
-        let utf16end: UTF16View.Index = utf16.index(utf16.startIndex, offsetBy: start)
-        let strEnd = utf16end.samePosition(in: self)!
-        
-        replaceSubrange(strStart..<strEnd, with: replacement)
+        replaceSubrange(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end), with: replacement)
     }
 }
 
