@@ -16,7 +16,7 @@ extension KeyboardViewController {
                     assert(false, "Attempted to undo on nil document!")
                     return
                 }
-                print("Command, Can undo: " + String(describing: self?.textView.undoManager?.canUndo))
+
                 self?.textView.undoManager?.undo()
                 
                 /// Update undo buttons.
@@ -30,7 +30,7 @@ extension KeyboardViewController {
                     assert(false, "Attempted to redo on nil document!")
                     return
                 }
-                print("Command, Can redo: " + String(describing: self?.textView.undoManager?.canRedo))
+
                 self?.textView.undoManager?.redo()
                 
                 /// Update undo buttons.
