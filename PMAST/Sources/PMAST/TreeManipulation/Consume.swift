@@ -118,14 +118,14 @@ extension Parent {
         }
     }
     
-    enum Edge {
+    fileprivate enum Edge {
         case leading
         case trailing
     }
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
-    func contractWhitespace(for edge: Edge, in document: Markdown, consumed: inout OrderedSet<Parent>) -> Point {
+    fileprivate func contractWhitespace(for edge: Edge, in document: Markdown, consumed: inout OrderedSet<Parent>) -> Point {
         switch edge {
         case .leading:
             while
