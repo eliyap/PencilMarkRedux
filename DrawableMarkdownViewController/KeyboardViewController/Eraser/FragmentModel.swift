@@ -56,7 +56,12 @@ final class FragmentModel {
             /// Validate assumption that closure runs from top to bottom of document.
             precondition((lastRect?.origin.y ?? -.infinity) < rect.origin.y, "Last rect was below this rect! \(lastRect ?? .zero), \(rect)")
             
-            fragments.append(LineFragment(rect: rect, usedRect: usedRect, textView: textView, glyphRange: glyphRange))
+            fragments.append(LineFragment(
+                rect: rect,
+                usedRect: usedRect.clipped(to: UIFont.dynamicSize),
+                textView: textView,
+                glyphRange: glyphRange
+            ))
         }
         
         /// Invoke with block
