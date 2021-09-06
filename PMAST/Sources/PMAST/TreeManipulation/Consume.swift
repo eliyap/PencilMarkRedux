@@ -118,20 +118,20 @@ extension Parent {
         }
     }
     
-    enum Edge {
+    fileprivate enum Edge {
         case leading
         case trailing
     }
     
     /// Removes leading or trailing whitespace from formatted range.
     /// If nothing is left, this destroys the node, returning `nil`
-    func contractWhitespace(for edge: Edge, in document: Markdown, consumed: inout OrderedSet<Parent>) -> Point {
+    fileprivate func contractWhitespace(for edge: Edge, in document: Markdown, consumed: inout OrderedSet<Parent>) -> Point {
         switch edge {
         case .leading:
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let firstCharScalar: UnicodeScalar = document.plain[position.nsRange].first?.unicodeScalars.first,
+                let firstCharScalar: UnicodeScalar = NSString(string: document.plain).substring(with: position.nsRange).first?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(firstCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range
@@ -141,7 +141,7 @@ extension Parent {
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let lastCharScalar: UnicodeScalar = document.plain[position.nsRange].last?.unicodeScalars.first,
+                let lastCharScalar: UnicodeScalar = NSString(string: document.plain).substring(with: position.nsRange).last?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(lastCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range

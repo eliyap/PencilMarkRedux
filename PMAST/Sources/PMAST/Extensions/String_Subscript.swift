@@ -11,7 +11,7 @@ import Foundation
 extension String {
     subscript(idx: Int) -> Index {
         get {
-            index(startIndex, offsetBy: idx)
+            index(from: idx)
         }
     }
     
@@ -22,7 +22,16 @@ extension String {
     }
     
     mutating func replace<T: StringProtocol>(from start: Int, to end: Int, with replacement: T) -> Void {
-        replaceSubrange(index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end), with: replacement)
+        replaceSubrange(index(from: start)..<index(from: end), with: replacement)
+    }
+}
+
+extension String {
+    /// Convert integer offset to `String` offset.
+    func index(from utf16offset: Int) -> Index {
+        utf16
+            .index(utf16.startIndex, offsetBy: utf16offset)
+            .samePosition(in: self)!
     }
 }
 
