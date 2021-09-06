@@ -121,8 +121,6 @@ extension KeyboardViewController {
         let topIntersectingLineFragment: Int? = fragments.firstIndex(where: {$0.usedRect.intersectsY(circle)})
         let bottomIntersectingLineFragment: Int? = fragments.lastIndex(where: {$0.usedRect.intersectsY(circle)})
         
-        
-        
         switch (topIntersectingLineFragment, bottomIntersectingLineFragment) {
         case (.some(let t), .some(let b)):
             (t...b).forEach { fragments[$0].styleCharacters(intersecting: circle, with: tool.style) }
