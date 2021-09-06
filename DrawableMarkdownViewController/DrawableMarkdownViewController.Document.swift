@@ -90,7 +90,6 @@ extension DrawableMarkdownViewController {
                 return
             }
             
-            print("closed")
             self.model.document = nil
             self.onClose() /// invoke passed closure
             self.onClose = {} /// reset to do nothing

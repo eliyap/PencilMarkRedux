@@ -9,6 +9,7 @@ import XCTest
 @testable import PMAST
 @testable import PencilMarkRedux
 
+/// Integration tests working on the core `KeyboardViewController`.
 class KVCTests: XCTestCase {
     
     override func setUpWithError() throws {
