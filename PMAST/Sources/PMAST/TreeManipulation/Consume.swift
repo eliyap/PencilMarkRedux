@@ -131,7 +131,7 @@ extension Parent {
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let firstCharScalar: UnicodeScalar = document.plain[position.nsRange].first?.unicodeScalars.first,
+                let firstCharScalar: UnicodeScalar = NSString(string: document.plain).substring(with: position.nsRange).first?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(firstCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range
@@ -141,7 +141,7 @@ extension Parent {
             while
                 position.nsRange.length > 0,
                 /// for historical reasons, we need to get the Unicode Scalar instead.
-                let lastCharScalar: UnicodeScalar = document.plain[position.nsRange].last?.unicodeScalars.first,
+                let lastCharScalar: UnicodeScalar = NSString(string: document.plain).substring(with: position.nsRange).last?.unicodeScalars.first,
                 CharacterSet.whitespaces.contains(lastCharScalar)
             {
                 /// if we find a whitespace character, trim it from our range
