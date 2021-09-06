@@ -48,11 +48,7 @@ extension KeyboardViewController {
         var point = point
         
         /// Adjust point to text area coordinates.
-        point.y -= textView.safeAreaInsets.top
         point.x -= textView.textContainerInset.left
-        
-        /// Add one line of height.
-        point.y += UIFont.dynamicSize
         
         hitTestFragments(
             against: Circle(center: point, radius: PencilConduit.shared.eraserDiameter / 2),
