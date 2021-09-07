@@ -59,8 +59,6 @@ extension Markdown {
             precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!\n\(replacements.map(\.range))")
         }
         
-        print("\(replacements)")
-        print("\(replacements.flattened())")
         #warning("TODO: WhiteSpaceContraction")
         /**
          1. flatten replacements by combining them
