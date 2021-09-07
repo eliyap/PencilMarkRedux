@@ -45,25 +45,27 @@ extension Markdown {
      */
     mutating func makeReplacements() -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
-        let replacements = ast
+        var replacements = ast
             .gatherChanges()
             .flatMap { $0.getReplacement() }
             .filter(\.isNotNoOp)
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted()
         
-        guard replacements.isEmpty == false else { return }
-        
         /// Check that ranges are non-overlapping.
+        guard replacements.isEmpty == false else { return }
         (1..<replacements.count).forEach { idx in
             precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!\n\(replacements.map(\.range))")
         }
         
+        /// Combine adjacent replacements together.
+        replacements = replacements.flattened()
+        
         #warning("TODO: WhiteSpaceContraction")
         /**
-         1. flatten replacements by combining them
-         2. for each replacement, look ahead and behind.
-         3. if both are whitespaces, or both are newlines, remove one. Bias to remove trailing?
+         - [x] flatten replacements by combining them
+         - [ ] for each replacement, look ahead and behind.
+         - [ ] if both are whitespaces, or both are newlines, remove one. Bias to remove trailing?
          */
         
         /// Assert tree is ok.
@@ -71,7 +73,6 @@ extension Markdown {
         
         /// Perform replacements in source Markdown.
         replacements
-            .flattened()
             .forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
     }
 }
