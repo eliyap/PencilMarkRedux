@@ -53,7 +53,7 @@ extension Markdown {
         
         /// Check that ranges are non-overlapping.
         (1..<replacements.count).forEach { idx in
-            precondition(replacements[idx - 1].range.upperBound <= replacements[idx].range.lowerBound, "Range Overlap!")
+            precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!")
         }
         
         /// Assert tree is ok.
