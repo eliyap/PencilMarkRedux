@@ -35,7 +35,7 @@ extension Markdown {
             combine()
         }
         
-        commitTreeChanges(backup: &backup)
+        commitTreeChanges(backup: &backup, contractWhitespaces: false)
     }
     
     /**
@@ -43,7 +43,7 @@ extension Markdown {
      make those replacements.
      - Important: this should be the **last** call made when mutating the document.
      */
-    mutating func makeReplacements() -> Void {
+    mutating func makeReplacements(contractWhitespace: Bool) -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         var replacements = ast
             .gatherChanges()
