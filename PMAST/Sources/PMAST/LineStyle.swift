@@ -75,11 +75,8 @@ extension Markdown {
                 var prev: PosChar? = nil
                 var next: PosChar? = nil
                 if replacement.range.lowerBound > 0 {
-                    let lowerBoundIndex = plain.index(from: replacement.range.lowerBound)
-                    let prevCharIndex: String.Index = plain.index(before: lowerBoundIndex)
-                    let nsPrevCharStart = prevCharIndex.utf16Offset(in: plain)
-                    let nsPrevCharEnd = lowerBoundIndex.utf16Offset(in: plain)
-                    let prevRange = NSMakeRange(nsPrevCharStart, nsPrevCharEnd - nsPrevCharStart)
+                    let nsPrevCharStart = plain.utf16offset(before: replacement.range.lowerBound)
+                    let prevRange = NSMakeRange(nsPrevCharStart, replacement.range.lowerBound - nsPrevCharStart)
                     let prevChar: Character = plain[prevRange].first!
                     prev = (prevRange, prevChar)
                 }
@@ -175,6 +172,16 @@ extension Node {
         parent = styled
     }
 }
+
+extension String {
+    func utf16offset(before idx: Int) -> Int {
+        let strIdx = index(from: idx)
+        let prevStrIdx: String.Index = index(before: strIdx)
+        return prevStrIdx.utf16Offset(in: self)
+    }
+}
+
+
 extension Text {
     /**
      Applies `style` to `range` in the context of `document`
