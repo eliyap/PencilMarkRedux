@@ -51,6 +51,11 @@ extension Markdown {
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted { $0.range.lowerBound > $1.range.lowerBound }
         
+        /// Check that ranges are non-overlapping.
+        (1..<replacements.count).forEach { idx in
+            precondition(replacements[idx - 1].range.upperBound <= replacements[idx].range.lowerBound, "Range Overlap!")
+        }
+        
         /// Assert tree is ok.
         try! ast.linkCheck()
         
