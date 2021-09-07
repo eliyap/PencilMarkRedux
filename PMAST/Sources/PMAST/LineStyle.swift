@@ -66,16 +66,16 @@ extension Markdown {
              - any `isEmpty` replacement genuinely removes everything (and doesn't just replace it).
              */
             replacements = replacements.flattened()
-            #warning("Unhandled Edge Case!")
-            /// what if 2 ranges are 1 char apart, and both try to remove the same space char?
             
+            /// A character with a known position.
             typealias PosChar = (range: NSRange, char: Character)
-            for r in replacements where r.replacement.isEmpty {
+            
+            for replacement in replacements where replacement.replacement.isEmpty {
                 
                 var prev: PosChar? = nil
                 var next: PosChar? = nil
-                if r.range.lowerBound > 0 {
-                    let lowerBoundIndex = plain.index(from: r.range.lowerBound)
+                if replacement.range.lowerBound > 0 {
+                    let lowerBoundIndex = plain.index(from: replacement.range.lowerBound)
                     let prevCharIndex: String.Index = plain.index(before: lowerBoundIndex)
                     let nsPrevCharStart = prevCharIndex.utf16Offset(in: plain)
                     let nsPrevCharEnd = lowerBoundIndex.utf16Offset(in: plain)
@@ -83,8 +83,8 @@ extension Markdown {
                     let prevChar: Character = plain[prevRange].first!
                     prev = (prevRange, prevChar)
                 }
-                if r.range.upperBound < plain.utf16.count {
-                    let upperBoundIndex = plain.index(from: r.range.upperBound)
+                if replacement.range.upperBound < plain.utf16.count {
+                    let upperBoundIndex = plain.index(from: replacement.range.upperBound)
                     let nextCharIndex: String.Index = plain.index(after: upperBoundIndex)
                     let nsNextCharStart = upperBoundIndex.utf16Offset(in: plain)
                     let nsNextCharEnd = nextCharIndex.utf16Offset(in: plain)

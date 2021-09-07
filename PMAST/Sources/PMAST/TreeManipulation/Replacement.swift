@@ -61,9 +61,9 @@ extension Array where Element == Replacement {
         /// Signals that we found two contiguous ``Replacement``s.
         var tripped: Bool
         
+        /// Repeat until no contiguous ranges are found.
         repeat {
-            /// Reset trigger.
-            tripped = false
+            tripped = false /// Reset trigger.
             
             /// Iterate over adjacent pairs of ``Replacement``s.
             inner: for idx in 1..<result.count {
@@ -77,6 +77,7 @@ extension Array where Element == Replacement {
                 }
             }
         } while tripped
+        
         return result
     }
 }
