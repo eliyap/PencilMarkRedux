@@ -8,6 +8,13 @@
 import Foundation
 
 extension Markdown {
+    /**
+     Attempt to "combine" directly adjacent elements to avoid incorrect syntax.
+     e.g. `~~strike~~~~me~~` should become `~~strikeme~~`
+     This is achieved by marking the trailing edge or the former and the leading edge of the latter for deletion.
+     - Warning: This is essentially an elaborate hack, and leaves the AST in an even stranger state than usual.
+                Therefore it should probably be called last before `makeReplacements`.
+     */
     func combine() {
         /**
          A list of nodes, such that nodes that are adjacent in this list are also adjacent in the text,
