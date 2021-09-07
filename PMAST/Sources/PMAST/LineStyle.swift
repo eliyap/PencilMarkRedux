@@ -48,12 +48,16 @@ extension Markdown {
         let replacements = ast
             .gatherChanges()
             .flatMap { $0.getReplacement() }
+            /// Discard empty ranges.
+            .filter { $0.range.length > 0 }
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted { $0.range.lowerBound > $1.range.lowerBound }
         
+        guard replacements.isEmpty == false else { return }
+        
         /// Check that ranges are non-overlapping.
         (1..<replacements.count).forEach { idx in
-            precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!")
+            precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!\n\(replacements.map(\.range))")
         }
         
         /// Assert tree is ok.
