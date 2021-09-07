@@ -53,6 +53,12 @@ class LineEraseTests: XCTestCase {
         XCTExpectFailure("Haven't implemented smart whitespace removal") {
             XCTAssertEqual(document.plain, "a a") /// is actually "a  a" (two spaces)
         }
+        
+        document = Markdown("~~DELETE LEAVE~~")
+        document.erase([NSMakeRange(2, 6)]) /// target 'DELETE'
+        XCTExpectFailure("Haven't implemented smart whitespace removal") {
+            XCTAssertEqual(document.plain, "~~LEAVE~~") /// is actually `~~ LEAVE~~` (broken syntax)
+        }
     }
     
     func testJoin() throws {
