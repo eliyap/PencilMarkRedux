@@ -69,12 +69,6 @@ extension Markdown {
             #warning("Unhandled Edge Case!")
             /// what if 2 ranges are 1 char apart, and both try to remove the same space char?
             
-            #warning("TODO: WhiteSpaceContraction")
-            /**
-             - [x] flatten replacements by combining them
-             - [ ] for each replacement, look ahead and behind.
-             - [ ] if both are whitespaces, or both are newlines, remove one. Bias to remove trailing?
-             */
             typealias PosChar = (range: NSRange, char: Character)
             for r in replacements where r.replacement.isEmpty {
                 
