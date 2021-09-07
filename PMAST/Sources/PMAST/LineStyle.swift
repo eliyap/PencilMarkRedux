@@ -81,11 +81,8 @@ extension Markdown {
                     prev = (prevRange, prevChar)
                 }
                 if replacement.range.upperBound < plain.utf16.count {
-                    let upperBoundIndex = plain.index(from: replacement.range.upperBound)
-                    let nextCharIndex: String.Index = plain.index(after: upperBoundIndex)
-                    let nsNextCharStart = upperBoundIndex.utf16Offset(in: plain)
-                    let nsNextCharEnd = nextCharIndex.utf16Offset(in: plain)
-                    let nextRange = NSMakeRange(nsNextCharStart, nsNextCharEnd - nsNextCharStart)
+                    let nsNextCharEnd = plain.utf16Offset(after: replacement.range.upperBound)
+                    let nextRange = NSMakeRange(replacement.range.upperBound, nsNextCharEnd - replacement.range.upperBound)
                     let nextChar: Character = plain[nextRange].first!
                     next = (nextRange, nextChar)
                 }

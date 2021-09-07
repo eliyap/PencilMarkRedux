@@ -13,4 +13,10 @@ extension String {
         let prevStrIdx: String.Index = index(before: strIdx)
         return prevStrIdx.utf16Offset(in: self)
     }
+    
+    func utf16Offset(after idx: Int) -> Int {
+        let strIdx = index(from: idx)
+        let nextStrIdx: String.Index = index(after: strIdx)
+        return nextStrIdx.utf16Offset(in: self)
+    }
 }
