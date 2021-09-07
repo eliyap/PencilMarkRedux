@@ -48,10 +48,9 @@ extension Markdown {
         let replacements = ast
             .gatherChanges()
             .flatMap { $0.getReplacement() }
-            /// Discard empty ranges.
-            .filter { $0.range.length > 0 }
+            .filter(\.isNotNoOp)
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
-            .sorted { $0.range.lowerBound > $1.range.lowerBound }
+            .sorted()
         
         guard replacements.isEmpty == false else { return }
         
