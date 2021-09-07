@@ -59,11 +59,22 @@ extension Markdown {
             precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!\n\(replacements.map(\.range))")
         }
         
+        print("\(replacements)")
+        print("\(replacements.flattened())")
+        #warning("TODO: WhiteSpaceContraction")
+        /**
+         1. flatten replacements by combining them
+         2. for each replacement, look ahead and behind.
+         3. if both are whitespaces, or both are newlines, remove one. Bias to remove trailing?
+         */
+        
         /// Assert tree is ok.
         try! ast.linkCheck()
         
         /// Perform replacements in source Markdown.
-        replacements.forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
+        replacements
+            .flattened()
+            .forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
     }
 }
 
