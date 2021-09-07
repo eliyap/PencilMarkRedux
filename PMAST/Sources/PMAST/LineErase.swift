@@ -30,7 +30,7 @@ extension Markdown {
         
         combine()
         
-        commitTreeChanges(backup: &backup)
+        commitTreeChanges(backup: &backup, contractWhitespaces: true)
     }
 }
 
@@ -39,9 +39,9 @@ extension Markdown {
      Assumes the tree has some changes indicated on it.
      Applies those changes to the current tree, using an old state stored in `backup` to perform the patch.
      */
-    internal mutating func commitTreeChanges(backup: inout Markdown) -> Void {
+    internal mutating func commitTreeChanges(backup: inout Markdown, contractWhitespaces: Bool) -> Void {
         /// Apply changes to source Markdown.
-        makeReplacements()
+        makeReplacements(contractWhitespace: contractWhitespaces)
         
         /// Update internal document model based on changed Markdown.
         backup.update(with: plain)

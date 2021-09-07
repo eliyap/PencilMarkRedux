@@ -35,7 +35,7 @@ extension Markdown {
             combine()
         }
         
-        commitTreeChanges(backup: &backup)
+        commitTreeChanges(backup: &backup, contractWhitespaces: false)
     }
     
     /**
@@ -43,37 +43,80 @@ extension Markdown {
      make those replacements.
      - Important: this should be the **last** call made when mutating the document.
      */
-    mutating func makeReplacements() -> Void {
+    mutating func makeReplacements(contractWhitespace: Bool) -> Void {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
-        let replacements = ast
+        var replacements = ast
             .gatherChanges()
             .flatMap { $0.getReplacement() }
             .filter(\.isNotNoOp)
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted()
         
-        guard replacements.isEmpty == false else { return }
-        
         /// Check that ranges are non-overlapping.
+        guard replacements.isEmpty == false else { return }
         (1..<replacements.count).forEach { idx in
             precondition(replacements[idx - 1].range.lowerBound >= replacements[idx].range.upperBound, "Range Overlap!\n\(replacements.map(\.range))")
         }
         
-        print("\(replacements)")
-        print("\(replacements.flattened())")
-        #warning("TODO: WhiteSpaceContraction")
-        /**
-         1. flatten replacements by combining them
-         2. for each replacement, look ahead and behind.
-         3. if both are whitespaces, or both are newlines, remove one. Bias to remove trailing?
-         */
-        
+        if contractWhitespace {
+            
+            /**
+             Combine adjacent replacements together. This guarantees that:
+             - adding one-char replacements doesn't cause an overlap (UNHANDLED EDGE CASE!)
+             - any `isEmpty` replacement genuinely removes everything (and doesn't just replace it).
+             */
+            replacements = replacements.flattened()
+            
+            /// A character with a known position.
+            typealias PosChar = (range: NSRange, char: Character)
+            
+            for replacement in replacements where replacement.replacement.isEmpty {
+                
+                var prev: PosChar? = nil
+                var next: PosChar? = nil
+                if replacement.range.lowerBound > 0 {
+                    let nsPrevCharStart = plain.utf16Offset(before: replacement.range.lowerBound)
+                    let prevRange = NSMakeRange(nsPrevCharStart, replacement.range.lowerBound - nsPrevCharStart)
+                    let prevChar: Character = plain[prevRange].first!
+                    prev = (prevRange, prevChar)
+                }
+                if replacement.range.upperBound < plain.utf16.count {
+                    let nsNextCharEnd = plain.utf16Offset(after: replacement.range.upperBound)
+                    let nextRange = NSMakeRange(replacement.range.upperBound, nsNextCharEnd - replacement.range.upperBound)
+                    let nextChar: Character = plain[nextRange].first!
+                    next = (nextRange, nextChar)
+                }
+                
+                switch (prev, next) {
+                case (nil, nil):
+                    break
+                case (.some(let x), .some(let y)) where x.char.isNonNewlineWhitespace && y.char.isNonNewlineWhitespace:
+                    /// Arbitrarily pick to delete trailing (instead of leading) space.
+                    replacements.append(Replacement(range: y.range, replacement: ""))
+                    break
+                case (.some(let x), .some(let y)) where x.char.isNewline && y.char.isNewline:
+                    print("Newline + Newline")
+                    break
+                case (.some(let x), _) where x.char.isNonNewlineWhitespace:
+                    replacements.append(Replacement(range: x.range, replacement: ""))
+                    break
+                case (_, .some(let y)) where y.char.isNonNewlineWhitespace:
+                    replacements.append(Replacement(range: y.range, replacement: ""))
+                    break
+                default:
+                    break
+                }
+            }
+            
+            /// Re-sort after potential insertion.
+            replacements = replacements.sorted()
+            
+        }
         /// Assert tree is ok.
         try! ast.linkCheck()
         
         /// Perform replacements in source Markdown.
         replacements
-            .flattened()
             .forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
     }
 }
@@ -126,6 +169,7 @@ extension Node {
         parent = styled
     }
 }
+
 extension Text {
     /**
      Applies `style` to `range` in the context of `document`
