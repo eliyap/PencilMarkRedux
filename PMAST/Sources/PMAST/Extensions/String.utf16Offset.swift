@@ -8,12 +8,14 @@
 import Foundation
 
 extension String {
+    /// Get the UTF16 offset of the previous Swift `Character`.
     func utf16Offset(before idx: Int) -> Int {
         let strIdx = index(from: idx)
         let prevStrIdx: String.Index = index(before: strIdx)
         return prevStrIdx.utf16Offset(in: self)
     }
     
+    /// Get the UTF16 offset of the next Swift `Character`.
     func utf16Offset(after idx: Int) -> Int {
         let strIdx = index(from: idx)
         let nextStrIdx: String.Index = index(after: strIdx)
