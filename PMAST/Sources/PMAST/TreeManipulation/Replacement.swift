@@ -62,11 +62,15 @@ extension Array where Element == Replacement {
         var tripped: Bool
         
         repeat {
+            /// Reset trigger.
             tripped = false
+            
+            /// Iterate over adjacent pairs of ``Replacement``s.
             inner: for idx in 1..<result.count {
                 let prev = result[idx - 1]
                 let curr = result[idx]
                 if prev.range.lowerBound == curr.range.upperBound {
+                    /// Combine ranges and start again.
                     tripped = true
                     result.replaceSubrange(idx-1...idx, with: [prev+curr])
                     break inner
