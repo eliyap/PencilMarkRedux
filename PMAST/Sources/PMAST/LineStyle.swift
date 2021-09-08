@@ -35,7 +35,10 @@ extension Markdown {
             combine()
         }
         
-        commitTreeChanges(backup: &backup, contractWhitespaces: false)
+        /// Apply changes to source Markdown.
+        makeReplacements(contractWhitespace: false)
+        
+        commitTreeChanges(backup: &backup)
     }
     
     /**
