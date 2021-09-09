@@ -88,6 +88,10 @@ extension Markdown {
         /// A character with a known position.
         typealias PosChar = (range: NSRange, char: Character)
         
+        /// Track new removals to avoid duplication.
+        var addedRanges = Set<NSRange>()
+        
+        /// Only target replacements that remove all their contents.
         for replacement in replacements where replacement.replacement.isEmpty {
             
             var prev: PosChar? = nil
@@ -105,24 +109,30 @@ extension Markdown {
                 next = (nextRange, nextChar)
             }
             
+            var newRange: NSRange? = nil
             switch (prev, next) {
             case (nil, nil):
                 break
             case (.some(let x), .some(let y)) where x.char.isNonNewlineWhitespace && y.char.isNonNewlineWhitespace:
                 /// Arbitrarily pick to delete trailing (instead of leading) space.
-                replacements.append(Replacement(range: y.range, replacement: ""))
-                break
+                newRange = y.range
             case (.some(let x), .some(let y)) where x.char.isNewline && y.char.isNewline:
                 print("Newline + Newline")
-                break
             case (.some(let x), _) where x.char.isNonNewlineWhitespace:
-                replacements.append(Replacement(range: x.range, replacement: ""))
-                break
+                newRange = x.range
             case (_, .some(let y)) where y.char.isNonNewlineWhitespace:
-                replacements.append(Replacement(range: y.range, replacement: ""))
-                break
+                newRange = y.range
             default:
                 break
+            }
+            
+            /// Guard against adding a range multiple times.
+            if
+                let newRange = newRange,
+                addedRanges.contains(newRange) == false
+            {
+                addedRanges.insert(newRange)
+                replacements.append(Replacement(range: newRange, replacement: ""))
             }
         }
         
