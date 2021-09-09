@@ -62,58 +62,7 @@ extension Markdown {
         }
         
         if contractWhitespace {
-            
-            /**
-             Combine adjacent replacements together. This guarantees that:
-             - adding one-char replacements doesn't cause an overlap (UNHANDLED EDGE CASE!)
-             - any `isEmpty` replacement genuinely removes everything (and doesn't just replace it).
-             */
-            replacements = replacements.flattened()
-            
-            /// A character with a known position.
-            typealias PosChar = (range: NSRange, char: Character)
-            
-            for replacement in replacements where replacement.replacement.isEmpty {
-                
-                var prev: PosChar? = nil
-                var next: PosChar? = nil
-                if replacement.range.lowerBound > 0 {
-                    let nsPrevCharStart = plain.utf16Offset(before: replacement.range.lowerBound)
-                    let prevRange = NSMakeRange(nsPrevCharStart, replacement.range.lowerBound - nsPrevCharStart)
-                    let prevChar: Character = plain[prevRange].first!
-                    prev = (prevRange, prevChar)
-                }
-                if replacement.range.upperBound < plain.utf16.count {
-                    let nsNextCharEnd = plain.utf16Offset(after: replacement.range.upperBound)
-                    let nextRange = NSMakeRange(replacement.range.upperBound, nsNextCharEnd - replacement.range.upperBound)
-                    let nextChar: Character = plain[nextRange].first!
-                    next = (nextRange, nextChar)
-                }
-                
-                switch (prev, next) {
-                case (nil, nil):
-                    break
-                case (.some(let x), .some(let y)) where x.char.isNonNewlineWhitespace && y.char.isNonNewlineWhitespace:
-                    /// Arbitrarily pick to delete trailing (instead of leading) space.
-                    replacements.append(Replacement(range: y.range, replacement: ""))
-                    break
-                case (.some(let x), .some(let y)) where x.char.isNewline && y.char.isNewline:
-                    print("Newline + Newline")
-                    break
-                case (.some(let x), _) where x.char.isNonNewlineWhitespace:
-                    replacements.append(Replacement(range: x.range, replacement: ""))
-                    break
-                case (_, .some(let y)) where y.char.isNonNewlineWhitespace:
-                    replacements.append(Replacement(range: y.range, replacement: ""))
-                    break
-                default:
-                    break
-                }
-            }
-            
-            /// Re-sort after potential insertion.
-            replacements = replacements.sorted()
-            
+            getSurroundingWhitespace(for: &replacements)
         }
         /// Assert tree is ok.
         try! ast.linkCheck()
@@ -121,6 +70,61 @@ extension Markdown {
         /// Perform replacements in source Markdown.
         replacements
             .forEach { plain.replace(from: $0.range.lowerBound, to: $0.range.upperBound, with: $0.replacement) }
+    }
+}
+
+extension Markdown {
+    func getSurroundingWhitespace(for replacements: inout [Replacement]) -> Void {
+        /**
+         Combine adjacent replacements together. This guarantees that:
+         - adding one-char replacements doesn't cause an overlap (UNHANDLED EDGE CASE!)
+         - any `isEmpty` replacement genuinely removes everything (and doesn't just replace it).
+         */
+        replacements = replacements.flattened()
+        
+        /// A character with a known position.
+        typealias PosChar = (range: NSRange, char: Character)
+        
+        for replacement in replacements where replacement.replacement.isEmpty {
+            
+            var prev: PosChar? = nil
+            var next: PosChar? = nil
+            if replacement.range.lowerBound > 0 {
+                let nsPrevCharStart = plain.utf16Offset(before: replacement.range.lowerBound)
+                let prevRange = NSMakeRange(nsPrevCharStart, replacement.range.lowerBound - nsPrevCharStart)
+                let prevChar: Character = plain[prevRange].first!
+                prev = (prevRange, prevChar)
+            }
+            if replacement.range.upperBound < plain.utf16.count {
+                let nsNextCharEnd = plain.utf16Offset(after: replacement.range.upperBound)
+                let nextRange = NSMakeRange(replacement.range.upperBound, nsNextCharEnd - replacement.range.upperBound)
+                let nextChar: Character = plain[nextRange].first!
+                next = (nextRange, nextChar)
+            }
+            
+            switch (prev, next) {
+            case (nil, nil):
+                break
+            case (.some(let x), .some(let y)) where x.char.isNonNewlineWhitespace && y.char.isNonNewlineWhitespace:
+                /// Arbitrarily pick to delete trailing (instead of leading) space.
+                replacements.append(Replacement(range: y.range, replacement: ""))
+                break
+            case (.some(let x), .some(let y)) where x.char.isNewline && y.char.isNewline:
+                print("Newline + Newline")
+                break
+            case (.some(let x), _) where x.char.isNonNewlineWhitespace:
+                replacements.append(Replacement(range: x.range, replacement: ""))
+                break
+            case (_, .some(let y)) where y.char.isNonNewlineWhitespace:
+                replacements.append(Replacement(range: y.range, replacement: ""))
+                break
+            default:
+                break
+            }
+        }
+        
+        /// Re-sort after potential insertion.
+        replacements = replacements.sorted()
     }
 }
 
