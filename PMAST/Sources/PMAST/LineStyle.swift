@@ -74,6 +74,9 @@ extension Markdown {
 }
 
 extension Markdown {
+    /**
+     Expand the user's `erase` ``replacements`` so that remaining whitespace does not "disrupt" a syntax block.
+     */
     func getSurroundingWhitespace(for replacements: inout [Replacement]) -> Void {
         /**
          Combine adjacent replacements together. This guarantees that:
