@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class Code: Literal {
+public final class Code: Literal, LeafBlock {
     
     override class var type: String { "code" }
     

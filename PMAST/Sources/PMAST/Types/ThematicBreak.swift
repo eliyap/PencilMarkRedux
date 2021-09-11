@@ -7,6 +7,6 @@
 
 import Foundation
 
-public final class ThematicBreak: Node {
+public final class ThematicBreak: Node, LeafBlock {
     override class var type: String { "thematicBreak" }
 }

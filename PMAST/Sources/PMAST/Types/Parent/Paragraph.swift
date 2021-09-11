@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Paragraph: Parent {
+public class Paragraph: Parent, LeafBlock {
     override class var type: String { "paragraph" }
     
     override public var description: [Event] {
