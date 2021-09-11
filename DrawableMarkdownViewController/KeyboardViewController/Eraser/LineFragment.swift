@@ -85,9 +85,7 @@ final class LineFragment {
             }
             /// Don't style newlines.
             /// Assumes we're filtering **single character** ranges.
-            .filter {
-                textView.text[$0].allSatisfy(\.isNewline) == false
-            }
+            .filter { textView.text[$0].allSatisfy(\.isNewline) == false }
             .forEach { textView.textStorage.addAttributes(style, range: $0) }
     }
     
