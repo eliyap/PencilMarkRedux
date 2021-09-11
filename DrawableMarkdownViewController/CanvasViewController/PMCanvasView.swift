@@ -55,12 +55,10 @@ extension PMCanvasView {
             dragtool = delegate.model.tool
             trackCircle(location: location, tool: delegate.model.tool)
             PencilConduit.shared.location = (location, delegate.model.tool)
-        #if HIGHLIGHT_ENABLED
         case .highlighter:
-            dragtool = delegate.coordinator.tool
-            trackCircle(location: location, tool: delegate.coordinator.tool)
-            PencilConduit.shared.location = (location, delegate.coordinator.tool)
-        #endif
+            dragtool = delegate.model.tool
+            trackCircle(location: location, tool: delegate.model.tool)
+            PencilConduit.shared.location = (location, delegate.model.tool)
         default:
             break
         }
@@ -102,10 +100,8 @@ extension PMCanvasView {
         switch tool {
         case .eraser:
             cl.fillColor = CGColor(red: 1, green: 0, blue: 0, alpha: 0.5)
-        #if HIGHLIGHT_ENABLED
         case .highlighter:
             cl.fillColor = CGColor(red: 0, green: 1, blue: 1, alpha: 0.5)
-        #endif
         default:
             /// invisible by default
             cl.fillColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)

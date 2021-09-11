@@ -21,7 +21,6 @@ extension KeyboardViewController {
                     case .some(let point):
                         self?.add(point: point, tool: .eraser)
                     }
-                #if HIGHLIGHT_ENABLED
                 case .highlighter:
                     #warning("TODO: Program Highlighter!")
                     switch location.point {
@@ -30,7 +29,6 @@ extension KeyboardViewController {
                     case .some(let point):
                         self?.add(point: point, tool: .highlighter)
                     }
-                #endif
                 default:
                     assert(false, "Unhandled Tool!")
                     break
