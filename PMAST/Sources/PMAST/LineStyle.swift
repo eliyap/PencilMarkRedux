@@ -11,7 +11,7 @@ import UIKit
 extension Markdown {
     #warning("Experimental")
     /// Note: view controllers should register undo before this method mutates the model.
-    public mutating func apply<T: Parent>(
+    public mutating func apply<T: Phrasing>(
         lineStyle: T.Type,
         to ranges: [NSRange]
     ) -> Void {
@@ -147,7 +147,6 @@ extension Node {
      Flags the `style` node as being added.
      - ported from TypeScript "complete apply"
      */
-    func apply<T: Parent>(style: T.Type, in document: Markdown) -> Void {
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
