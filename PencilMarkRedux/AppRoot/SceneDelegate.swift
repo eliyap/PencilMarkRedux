@@ -68,8 +68,9 @@ extension SceneDelegate {
             fatalError("Unrecognized activity type: \(activity.activityType)")
         }
         
-        /// Restore file URL.
-        StateModel.shared.url = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
+        /// Try bookmark, then URL.
+        StateModel.shared.url = fileURL(from: activity)
+            ?? activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
         
         /// Restore active tool.
         if
@@ -81,4 +82,26 @@ extension SceneDelegate {
         
         return succeeded
     }
+}
+
+/// Checks various failure conditions when restoring a bookmark.
+fileprivate func fileURL(from activity: NSUserActivity) -> URL? {
+    /// Restore bookmark
+    var stale = false
+    
+    guard let bookmarkData = activity.userInfo?[ActivityInfo.bookmarks.rawValue] as? NSData as Data? else {
+        SceneRestoration.log("Bookmark Data Load Failed")
+        return nil
+    }
+    
+    guard let resolvedURL = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &stale) else {
+        SceneRestoration.log("Bookmark URL Restore Failed")
+        return nil
+    }
+    
+    if stale {
+        SceneRestoration.log("Stale data!")
+    }
+    
+    return resolvedURL
 }

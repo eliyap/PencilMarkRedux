@@ -28,16 +28,35 @@ extension DrawableMarkdownViewController {
             activity.userInfo = [:]
         }
         
-        /// Cast to allowed NS types
+        saveFileURL(in: activity)
+        saveFileBookmark(in: activity)
+        saveTool(in: activity)
+    }
+    
+    fileprivate func saveFileURL(in activity: NSUserActivity) -> Void {
+        /// Work around lack of `NSURL?`, which must be approximated using allowed NS types.
         /// Docs: https://developer.apple.com/documentation/foundation/nsuseractivity/1411706-userinfo
+        let fileNsUrl: Any
         if let url = model.document?.fileURL {
-            let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: url as NSURL]
-            activity.addUserInfoEntries(from: newInfo)
+            fileNsUrl = url as NSURL
         } else {
-            let newInfo: [AnyHashable: Any] = [ActivityInfo.fileURL.rawValue: NSNull()]
-            activity.addUserInfoEntries(from: newInfo)
+            fileNsUrl = NSNull()
         }
+        activity.addUserInfoEntries(from: [ActivityInfo.fileURL.rawValue: fileNsUrl])
+    }
+    
+    fileprivate func saveFileBookmark(in activity: NSUserActivity) -> Void {
+        guard let url = model.document?.fileURL else { return }
         
+        if let bookmarkData = try? url.bookmarkData() {
+            let bookmarkInfo: [AnyHashable: Any] = [ActivityInfo.bookmarks.rawValue: bookmarkData as NSData]
+            activity.addUserInfoEntries(from: bookmarkInfo)
+        } else {
+            SceneRestoration.log("Failed to create bookmark data!")
+        }
+    }
+    
+    fileprivate func saveTool(in activity: NSUserActivity) -> Void {
         let toolInfo: [AnyHashable: Any] = [ActivityInfo.activeTool.rawValue: model.tool.rawValue as NSInteger]
         activity.addUserInfoEntries(from: toolInfo)
     }

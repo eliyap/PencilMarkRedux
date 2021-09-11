@@ -8,6 +8,9 @@
 import Foundation
 
 protocol Logger {
+    /// Subsystem name.
+    static var name: String { get }
+    
     /// Whether this logger is enabled.
     static var enabled: Bool { get }
     
@@ -19,11 +22,12 @@ protocol Logger {
 extension Logger {
     static func log<S: CustomStringConvertible>(_ s: S) -> Void {
         if enabled {
-            print(s)
+            print(name, s)
         }
     }
 }
 
 enum SceneRestoration: Logger {
+    static var name: String { "SceneRestoration" }
     static var enabled: Bool { true }
 }
