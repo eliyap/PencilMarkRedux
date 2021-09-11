@@ -199,8 +199,10 @@ extension KeyboardViewController {
 extension KeyboardViewController {
     
     override var keyCommands: [UIKeyCommand]? {
-        (super.keyCommands ?? []) + [
-            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(escape)),
+        let esc = UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(escape))
+        esc.discoverabilityTitle = "Stop Editing"
+        return (super.keyCommands ?? []) + [
+            esc,
         ]
     }
     
