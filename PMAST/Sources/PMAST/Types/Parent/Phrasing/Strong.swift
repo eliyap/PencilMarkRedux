@@ -44,7 +44,7 @@ public final class Strong: Parent, InlineJoinable {
         }
     }
     
-    override func getReplacement() -> [Replacement] {
+    override func getReplacement(in text: String) -> [Replacement] {
         var result: [Replacement] = []
         
         switch _leading_change {

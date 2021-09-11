@@ -10,7 +10,7 @@ import Foundation
 public final class Text: Literal {
     override class var type: String { "text" }
     
-    override func getReplacement() -> [Replacement] {
+    override func getReplacement(in text: String) -> [Replacement] {
         switch _content_change {
         case .none:
             return []
