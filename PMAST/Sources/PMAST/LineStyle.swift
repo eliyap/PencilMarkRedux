@@ -157,19 +157,35 @@ extension Node {
             node.unwrap(style: style)
         }
         
-        /// construct styled node
+//        if self is LeafBlock || self is ContainerBlock {
+//            /// do something else...
+//        } else {
+//            applyToSelf(style: style)
+//        }
+        parent.children[(indexInParent!)..<(indexInParent! + 1)].wrap(in: style)
+    }
+}
+
+fileprivate extension ArraySlice where Element == Node {
+    func wrap<T: Parent>(in style: T.Type) -> Void {
+        guard isEmpty == false else { return }
+        let start = first!.position.start
+        let end = last!.position.end
+        let parent: Parent = first!.parent
+        
+        /// Construct styled `Node`.
         let styled: Parent = style.init(
             dict: [
                 "position": [
                     "start": [
-                        "line": position.start.line,
-                        "column": position.start.column,
-                        "offset": position.nsRange.lowerBound,
+                        "line": start.line,
+                        "column": start.column,
+                        "offset": start.offset,
                     ],
                     "end": [
-                        "line": position.end.line,
-                        "column": position.end.column,
-                        "offset": position.nsRange.upperBound,
+                        "line": end.line,
+                        "column": end.column,
+                        "offset": end.offset,
                     ],
                 ],
                 "type": style.type,
@@ -178,15 +194,17 @@ extension Node {
             parent: parent, /// attach node to own parent,
             text: "" /// NOTHING!
         )!
+        
+        /// Mark node as newly added.
         styled._leading_change = .toAdd
         styled._trailing_change = .toAdd
         
-        /// replace self in parent's children
-        parent.children.replaceSubrange(indexInParent!..<(indexInParent! + 1), with: [styled])
+        /// Replace `self` in `parent`'s `children`.
+        parent.children.replaceSubrange(startIndex..<endIndex, with: [styled])
         
-        /// attach self as `styled`'s only child
-        styled.children = [self]
-        parent = styled
+        /// Attach `self` as `styled`'s children.
+        styled.children = Array(self)
+        forEach { $0.parent = styled }
     }
 }
 
