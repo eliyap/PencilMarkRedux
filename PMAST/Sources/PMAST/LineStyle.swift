@@ -147,6 +147,7 @@ extension Node {
      Flags the `style` node as being added.
      - ported from TypeScript "complete apply"
      */
+    func apply<T: Phrasing>(style: T.Type, in document: Markdown) -> Void {
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
@@ -156,12 +157,54 @@ extension Node {
             node.unwrap(style: style)
         }
         
-//        if self is LeafBlock || self is ContainerBlock {
-//            /// do something else...
-//        } else {
-//            applyToSelf(style: style)
-//        }
-        parent.children[(indexInParent!)..<(indexInParent! + 1)].wrap(in: style)
+        if let leaf = self as? LeafBlock {
+            /// Non-parent leaf blocks, which should only be `ThematicBreak` and `Code`,
+            /// cannot be styled and may be ignored.
+            guard let leafParent = leaf as? Parent else { return }
+            leafParent.applyToChildren(style: style)
+        } else if let container = self as? ContainerBlock {
+            container.applyToChildren(style: style)
+        } else {
+            parent.children[(indexInParent!)..<(indexInParent! + 1)].wrap(in: style)
+        }
+    }
+}
+
+fileprivate extension Parent {
+    func applyToChildren<T: Phrasing>(style: T.Type) -> Void {
+        /// ArraySlice indices.
+        var start: Int = children.startIndex
+        var end: Int = children.startIndex
+        
+        /// Apply style to eligible children.
+        func styleChunk() -> Void {
+            guard start < end else { return }
+            children[start..<end].wrap(in: style)
+            start = end
+        }
+        
+        for idx in 0..<children.count {
+            let child = children[idx]
+            if let leaf = child as? LeafBlock {
+                /// Non-parent leaf blocks, which should only be `ThematicBreak` and `Code`,
+                /// cannot be styled and may be ignored.
+                guard let leafParent = leaf as? Parent else { continue }
+                
+                /// Recursively apply, and kick chunk out.
+                leafParent.applyToChildren(style: style)
+                styleChunk()
+                start = idx + 1
+            } else if let container = child as? ContainerBlock {
+                /// Recursively apply, and kick chunk out.
+                container.applyToChildren(style: style)
+                styleChunk()
+                start = idx + 1
+            }
+            end = idx + 1
+        }
+        
+        /// Style final chunk.
+        styleChunk()
     }
 }
 
