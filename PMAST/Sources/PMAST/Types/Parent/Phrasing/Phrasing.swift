@@ -17,6 +17,7 @@ extension Phrasing {
     /// Typically, both start and end will return the same offset, yielding a blank range.
     var defaultOffset: Point { position.start }
     
+    /// Get the start `Point` after contracting whitespace around contents.
     func whitespaceContractedStart(in text: String) -> Point {
         let rangeEnd = text.index(from: position.end.offset)
         var strIdx: String.Index = text.index(from: position.start.offset)
@@ -39,6 +40,7 @@ extension Phrasing {
         return Point(index: strIdx, in: text)
     }
     
+    /// Get the end `Point` after contracting whitespace around contents.
     func whitespaceContractedEnd(in text: String) -> Point {
         let rangeStart = text.index(from: position.start.offset)
         var strIdx: String.Index = text.index(from: position.end.offset)

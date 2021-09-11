@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class Emphasis: Parent, InlineJoinable {
+public final class Emphasis: Parent, InlineJoinable, Phrasing {
     override class var type: String { "emphasis" }
     
     required init?(dict: [AnyHashable : Any]?, parent: Parent?, text: String) {
@@ -55,7 +55,7 @@ public final class Emphasis: Parent, InlineJoinable {
             break
         case .toAdd:
             result.append(Replacement(
-                range: NSMakeRange(position.nsRange.lowerBound, 0),
+                range: NSMakeRange(whitespaceContractedStart(in: text).offset, 0),
                 replacement: "*"
             ))
         case .toRemove:
@@ -70,7 +70,7 @@ public final class Emphasis: Parent, InlineJoinable {
             break
         case .toAdd:
             result.append(Replacement(
-                range: NSMakeRange(position.nsRange.upperBound, 0),
+                range: NSMakeRange(whitespaceContractedEnd(in: text).offset, 0),
                 replacement: "*"
             ))
         case .toRemove:

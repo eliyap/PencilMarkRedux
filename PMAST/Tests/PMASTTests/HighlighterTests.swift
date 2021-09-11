@@ -27,6 +27,18 @@ class HighlighterTests: XCTestCase {
         document = Markdown("AAA\nBBB")
         document.apply(lineStyle: Mark.self, to: [NSMakeRange(0, 4)]) /// Target `AAA\n`
         XCTAssertEqual(document.plain, "==AAA==\nBBB")
+        
+        document = Markdown("AAA\nBBB")
+        document.apply(lineStyle: Delete.self, to: [NSMakeRange(0, 4)]) /// Target `AAA\n`
+        XCTAssertEqual(document.plain, "~~AAA~~\nBBB")
+        
+        document = Markdown("AAA\nBBB")
+        document.apply(lineStyle: Emphasis.self, to: [NSMakeRange(0, 4)]) /// Target `AAA\n`
+        XCTAssertTrue(document.plain == "*AAA*\nBBB" || document.plain == "_AAA_\nBBB")
+        
+        document = Markdown("AAA\nBBB")
+        document.apply(lineStyle: Strong.self, to: [NSMakeRange(0, 4)]) /// Target `AAA\n`
+        XCTAssertTrue(document.plain == "**AAA**\nBBB" || document.plain == "__AAA__\nBBB")
     }
     
     func testListItem() throws {
