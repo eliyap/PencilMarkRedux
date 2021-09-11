@@ -50,7 +50,10 @@ extension Phrasing {
         
         repeat {
             strIdx = text.index(before: strIdx)
-            guard strIdx != rangeStart else {
+            if
+                text[strIdx].isWhitespace,
+                strIdx == rangeStart
+            {
                 isBlank = true
                 break
             }
@@ -62,7 +65,7 @@ extension Phrasing {
         
         /// Step forwards to get the "past the end" index.
         strIdx = text.index(after: strIdx)
-        
+
         return Point(index: strIdx, in: text)
     }
 }

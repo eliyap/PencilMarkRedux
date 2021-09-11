@@ -54,8 +54,14 @@ public struct Point {
         precondition(utf16Offset <= string.utf16.count, "Out of bounds!")
         
         let lines = string.makeLines()
-        let lineNo = lines.firstIndex { $0.enclosingNsRange.lowerBound <= utf16Offset && utf16Offset < $0.enclosingNsRange.upperBound }
-        self.line = lineNo! + 1 /// account for one-indexing
+        var lineNo = lines.firstIndex { $0.enclosingNsRange.lowerBound <= utf16Offset && utf16Offset < $0.enclosingNsRange.upperBound }
+        if let lineNo = lineNo {
+            self.line = lineNo + 1 /// account for one-indexing
+        } else {
+            precondition(utf16Offset == string.utf16.count, "Failed to find line!")
+            lineNo = lines.endIndex - 1
+            self.line = lines.endIndex
+        }
         
         self.column = utf16Offset - lines[lineNo!].enclosingNsRange.lowerBound
         self.column += 1 /// account for one-indexing
