@@ -50,7 +50,7 @@ public final class Heading: Parent {
         }
     }
     
-    override func getReplacement() -> [Replacement] {
+    override func getReplacement(in text: String) -> [Replacement] {
         var result: [Replacement] = []
         
         switch _leading_change {

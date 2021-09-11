@@ -11,9 +11,7 @@ import PencilKit
 enum Tool: Int, CaseIterable {
     case pencil
     case eraser
-    #if HIGHLIGHT_ENABLED
     case highlighter
-    #endif
     
     var inkingTool: PencilKit.PKInkingTool {
         switch self {
@@ -25,10 +23,8 @@ enum Tool: Int, CaseIterable {
             return PKInkingTool(.pen, color: .systemBlue, width: 3)
         case .eraser:
             return PKInkingTool(.pen, color: .clear, width: 0)
-        #if HIGHLIGHT_ENABLED
         case .highlighter:
             return PKInkingTool(.pen, color: .clear, width: 0)
-        #endif
         }
     }
     
@@ -38,10 +34,8 @@ enum Tool: Int, CaseIterable {
             return "Pencil"
         case .eraser:
             return "Eraser"
-        #if HIGHLIGHT_ENABLED
         case .highlighter:
             return "Highlighter"
-        #endif
         }
     }
     
@@ -51,10 +45,8 @@ enum Tool: Int, CaseIterable {
             return [:]
         case .eraser:
             return [.foregroundColor: UIColor.red]
-        #if HIGHLIGHT_ENABLED
         case .highlighter:
             return [.backgroundColor: UIColor.yellow.withAlphaComponent(0.5)]
-        #endif
         }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class Mark: Parent, InlineJoinable {
+public final class Mark: Parent, InlineJoinable, Phrasing {
     
     override class var type: String { "mark" }
     
@@ -36,7 +36,7 @@ public final class Mark: Parent, InlineJoinable {
         }
     }
     
-    override func getReplacement() -> [Replacement] {
+    override func getReplacement(in text: String) -> [Replacement] {
         var result: [Replacement] = []
         
         switch _leading_change {
@@ -44,7 +44,7 @@ public final class Mark: Parent, InlineJoinable {
             break
         case .toAdd:
             result.append(Replacement(
-                range: NSMakeRange(position.nsRange.lowerBound, 0),
+                range: NSMakeRange(whitespaceContractedStart(in: text).offset, 0),
                 replacement: "=="
             ))
         case .toRemove:
@@ -59,7 +59,7 @@ public final class Mark: Parent, InlineJoinable {
             break
         case .toAdd:
             result.append(Replacement(
-                range: NSMakeRange(position.nsRange.upperBound, 0),
+                range: NSMakeRange(whitespaceContractedEnd(in: text).offset, 0),
                 replacement: "=="
             ))
         case .toRemove:

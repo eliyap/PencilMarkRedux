@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         if let userActivity = window?.windowScene?.userActivity {
             userActivity.becomeCurrent()
-            print("Scene resuming with activity")
+            SceneRestoration.log("Scene resuming with activity")
         }
     }
 
@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         if let userActivity = window?.windowScene?.userActivity {
             userActivity.resignCurrent()
-            print("Scene resigning with activity")
+            SceneRestoration.log("Scene resigning with activity")
         }
     }
 
@@ -68,8 +68,9 @@ extension SceneDelegate {
             fatalError("Unrecognized activity type: \(activity.activityType)")
         }
         
-        /// Restore file URL.
-        StateModel.shared.url = activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
+        /// Try bookmark, then URL.
+        StateModel.shared.url = fileURL(from: activity)
+            ?? activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
         
         /// Restore active tool.
         if
@@ -81,4 +82,26 @@ extension SceneDelegate {
         
         return succeeded
     }
+}
+
+/// Checks various failure conditions when restoring a bookmark.
+fileprivate func fileURL(from activity: NSUserActivity) -> URL? {
+    /// Restore bookmark
+    var stale = false
+    
+    guard let bookmarkData = activity.userInfo?[ActivityInfo.bookmarks.rawValue] as? NSData as Data? else {
+        SceneRestoration.log("Bookmark Data Load Failed")
+        return nil
+    }
+    
+    guard let resolvedURL = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &stale) else {
+        SceneRestoration.log("Bookmark URL Restore Failed")
+        return nil
+    }
+    
+    if stale {
+        SceneRestoration.log("Stale data!")
+    }
+    
+    return resolvedURL
 }

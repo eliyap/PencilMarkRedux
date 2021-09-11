@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class Strong: Parent, InlineJoinable {
+public final class Strong: Parent, InlineJoinable, Phrasing {
     override class var type: String { "strong" }
     
     required init?(dict: [AnyHashable : Any]?, parent: Parent?, text: String) {
@@ -44,7 +44,7 @@ public final class Strong: Parent, InlineJoinable {
         }
     }
     
-    override func getReplacement() -> [Replacement] {
+    override func getReplacement(in text: String) -> [Replacement] {
         var result: [Replacement] = []
         
         switch _leading_change {
@@ -52,7 +52,7 @@ public final class Strong: Parent, InlineJoinable {
             break
         case .toAdd:
             result += [Replacement(
-                range: NSMakeRange(position.nsRange.lowerBound, 0),
+                range: NSMakeRange(whitespaceContractedStart(in: text).offset, 0),
                 replacement: "**"
             )]
         case .toRemove:
@@ -67,7 +67,7 @@ public final class Strong: Parent, InlineJoinable {
             break
         case .toAdd:
             result += [Replacement(
-                range: NSMakeRange(position.nsRange.upperBound, 0),
+                range: NSMakeRange(whitespaceContractedEnd(in: text).offset, 0),
                 replacement: "**"
             )]
         case .toRemove:

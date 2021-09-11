@@ -36,6 +36,7 @@
 		222835A126C8A4E70026D468 /* DrawableMarkdownViewController.Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222835A026C8A4E70026D468 /* DrawableMarkdownViewController.Document.swift */; };
 		222835A326C8A53E0026D468 /* DrawableMarkdownViewController.Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222835A226C8A53E0026D468 /* DrawableMarkdownViewController.Buttons.swift */; };
 		222835A526C994EE0026D468 /* DrawableMarkdownViewController.Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222835A426C994EE0026D468 /* DrawableMarkdownViewController.Toolbar.swift */; };
+		225B0A0226ED20BD006B7942 /* Loggem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225B0A0126ED20BD006B7942 /* Loggem.swift */; };
 		225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */; };
 		229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */; };
 		229B6D0326B467D10096FE45 /* CanvasViewController.UndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */; };
@@ -147,6 +148,7 @@
 		222835A026C8A4E70026D468 /* DrawableMarkdownViewController.Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.Document.swift; sourceTree = "<group>"; };
 		222835A226C8A53E0026D468 /* DrawableMarkdownViewController.Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.Buttons.swift; sourceTree = "<group>"; };
 		222835A426C994EE0026D468 /* DrawableMarkdownViewController.Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableMarkdownViewController.Toolbar.swift; sourceTree = "<group>"; };
+		225B0A0126ED20BD006B7942 /* Loggem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loggem.swift; sourceTree = "<group>"; };
 		225D7AFC26C30FA40005A543 /* TutorialMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMenuViewController.swift; sourceTree = "<group>"; };
 		229B6D0026B460FA0096FE45 /* UIFont.dynamicSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.dynamicSize.swift; sourceTree = "<group>"; };
 		229B6D0226B467D10096FE45 /* CanvasViewController.UndoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.UndoManager.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				22F70B3E26AE4B0300CC8935 /* NewDocumentURL.swift */,
+				225B0A0126ED20BD006B7942 /* Loggem.swift */,
 				22AF74D4269BABF4007D9891 /* Extensions */,
 			);
 			path = Misc;
@@ -673,6 +676,7 @@
 				220B851026AC819A00081536 /* KeyboardViewController.swift in Sources */,
 				220B852326AC973700081536 /* KeyboardViewController_UITextViewDelegate.swift in Sources */,
 				22E6BEA526CEAF550000A3B3 /* Circle.swift in Sources */,
+				225B0A0226ED20BD006B7942 /* Loggem.swift in Sources */,
 				22E6BEA926CEAFA70000A3B3 /* LineFragment.swift in Sources */,
 				22E6BEA126CEAF110000A3B3 /* CGPoint.distance.swift in Sources */,
 				22F70B3F26AE4B0300CC8935 /* NewDocumentURL.swift in Sources */,

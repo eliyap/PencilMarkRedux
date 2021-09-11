@@ -50,7 +50,7 @@ extension Markdown {
         /// Figure out what replacements to make in the Markdown, in order to match the AST changes.
         var replacements = ast
             .gatherChanges()
-            .flatMap { $0.getReplacement() }
+            .flatMap { $0.getReplacement(in: plain) }
             .filter(\.isNotNoOp)
             /// Sort in descending order of lower bound. This prevents changes early in the document knocking later ranges out of place.
             .sorted()
