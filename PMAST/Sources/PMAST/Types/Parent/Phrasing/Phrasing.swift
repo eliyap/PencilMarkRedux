@@ -8,11 +8,11 @@
 import Foundation
 
 /// Effectively a mixin.
-protocol Phrasing: Parent {
+public protocol Phrasing: Parent {
     func whitespaceContractedEnd(in text: String) -> Point
 }
 
-extension Phrasing {
+public extension Phrasing {
     /// In the event of an error, return this offset.
     /// Typically, both start and end will return the same offset, yielding a blank range.
     var defaultOffset: Point { position.start }

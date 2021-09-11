@@ -42,8 +42,9 @@ class HighlighterTests: XCTestCase {
     }
     
     func testListItem() throws {
-        var document = Markdown("AAA\n- BBB")
+        var document: Markdown
         
+        document = Markdown("AAA\n- BBB")
         document.apply(lineStyle: Mark.self, to: [NSMakeRange(4, 5)]) /// Target `- BBB`
         XCTAssertEqual(document.plain, "AAA\n- ==BBB==")
     }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-public final class Blockquote: Parent {
+public final class Blockquote: Parent, ContainerBlock {
     override class var type: String { "blockquote" }
 }

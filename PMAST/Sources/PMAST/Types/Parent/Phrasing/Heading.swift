@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class Heading: Parent {
+public final class Heading: Parent, LeafBlock {
     
     override class var type: String { "heading" }
     

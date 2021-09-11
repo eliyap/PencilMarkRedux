@@ -74,6 +74,7 @@ final class LineFragment {
     public func styleCharacters(intersecting circle: Circle, with style: Style) {
         glyphRects.keys
             .compactMap { characterRange(intersecting: circle, at: $0) }
+            /// Only style ranges that are not already styled.
             .compactMap {
                 if _styledRanges.contains($0) {
                     return nil
@@ -82,6 +83,9 @@ final class LineFragment {
                     return $0
                 }
             }
+            /// Don't style newlines.
+            /// Assumes we're filtering **single character** ranges.
+            .filter { textView.text[$0].allSatisfy(\.isNewline) == false }
             .forEach { textView.textStorage.addAttributes(style, range: $0) }
     }
     

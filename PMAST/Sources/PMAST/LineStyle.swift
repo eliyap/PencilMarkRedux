@@ -11,7 +11,7 @@ import UIKit
 extension Markdown {
     #warning("Experimental")
     /// Note: view controllers should register undo before this method mutates the model.
-    public mutating func apply<T: Parent>(
+    public mutating func apply<T: Phrasing>(
         lineStyle: T.Type,
         to ranges: [NSRange]
     ) -> Void {
@@ -147,7 +147,7 @@ extension Node {
      Flags the `style` node as being added.
      - ported from TypeScript "complete apply"
      */
-    func apply<T: Parent>(style: T.Type, in document: Markdown) -> Void {
+    func apply<T: Phrasing>(style: T.Type, in document: Markdown) -> Void {
         guard has(style: style) == false else {
             /// Style is already applied, no need to continue.
             return
@@ -157,19 +157,77 @@ extension Node {
             node.unwrap(style: style)
         }
         
-        /// construct styled node
+        if let leaf = self as? LeafBlock {
+            /// Non-parent leaf blocks, which should only be `ThematicBreak` and `Code`,
+            /// cannot be styled and may be ignored.
+            guard let leafParent = leaf as? Parent else { return }
+            leafParent.applyToChildren(style: style)
+        } else if let container = self as? ContainerBlock {
+            container.applyToChildren(style: style)
+        } else {
+            parent.children[(indexInParent!)..<(indexInParent! + 1)].wrap(in: style)
+        }
+    }
+}
+
+fileprivate extension Parent {
+    func applyToChildren<T: Phrasing>(style: T.Type) -> Void {
+        /// ArraySlice indices.
+        var start: Int = children.startIndex
+        var end: Int = children.startIndex
+        
+        /// Apply style to eligible children.
+        func styleChunk() -> Void {
+            guard start < end else { return }
+            children[start..<end].wrap(in: style)
+            start = end
+        }
+        
+        for idx in 0..<children.count {
+            let child = children[idx]
+            if let leaf = child as? LeafBlock {
+                /// Non-parent leaf blocks, which should only be `ThematicBreak` and `Code`,
+                /// cannot be styled and may be ignored.
+                guard let leafParent = leaf as? Parent else { continue }
+                
+                /// Recursively apply, and kick chunk out.
+                leafParent.applyToChildren(style: style)
+                styleChunk()
+                start = idx + 1
+            } else if let container = child as? ContainerBlock {
+                /// Recursively apply, and kick chunk out.
+                container.applyToChildren(style: style)
+                styleChunk()
+                start = idx + 1
+            }
+            end = idx + 1
+        }
+        
+        /// Style final chunk.
+        styleChunk()
+    }
+}
+
+fileprivate extension ArraySlice where Element == Node {
+    func wrap<T: Parent>(in style: T.Type) -> Void {
+        guard isEmpty == false else { return }
+        let start = first!.position.start
+        let end = last!.position.end
+        let parent: Parent = first!.parent
+        
+        /// Construct styled `Node`.
         let styled: Parent = style.init(
             dict: [
                 "position": [
                     "start": [
-                        "line": position.start.line,
-                        "column": position.start.column,
-                        "offset": position.nsRange.lowerBound,
+                        "line": start.line,
+                        "column": start.column,
+                        "offset": start.offset,
                     ],
                     "end": [
-                        "line": position.end.line,
-                        "column": position.end.column,
-                        "offset": position.nsRange.upperBound,
+                        "line": end.line,
+                        "column": end.column,
+                        "offset": end.offset,
                     ],
                 ],
                 "type": style.type,
@@ -178,15 +236,17 @@ extension Node {
             parent: parent, /// attach node to own parent,
             text: "" /// NOTHING!
         )!
+        
+        /// Mark node as newly added.
         styled._leading_change = .toAdd
         styled._trailing_change = .toAdd
         
-        /// replace self in parent's children
-        parent.children.replaceSubrange(indexInParent!..<(indexInParent! + 1), with: [styled])
+        /// Replace `self` in `parent`'s `children`.
+        parent.children.replaceSubrange(startIndex..<endIndex, with: [styled])
         
-        /// attach self as `styled`'s only child
-        styled.children = [self]
-        parent = styled
+        /// Attach `self` as `styled`'s children.
+        styled.children = Array(self)
+        forEach { $0.parent = styled }
     }
 }
 

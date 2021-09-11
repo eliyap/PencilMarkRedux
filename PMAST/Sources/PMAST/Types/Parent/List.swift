@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class List: Parent {
+public final class List: Parent, ContainerBlock {
     
     override class var type: String { "list" }
     
