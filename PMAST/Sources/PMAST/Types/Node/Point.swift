@@ -44,6 +44,24 @@ public struct Point {
         self.line = line
         self.offset = offset
     }
+    
+    /// Derive a "two dimensional" `Point` from a "one dimensional" string offset.
+    init(index: String.Index, in string: String) {
+        self.init(utf16Offset: index.utf16Offset(in: string), in: string)
+    }
+    init(utf16Offset: Int, in string: String) {
+        precondition(utf16Offset >= 0, "Out of bounds!")
+        precondition(utf16Offset <= string.utf16.count, "Out of bounds!")
+        
+        let lines = string.makeLines()
+        let lineNo = lines.firstIndex { $0.enclosingNsRange.lowerBound <= utf16Offset && utf16Offset < $0.enclosingNsRange.upperBound }
+        self.line = lineNo! + 1 /// account for one-indexing
+        
+        self.column = utf16Offset - lines[lineNo!].enclosingNsRange.lowerBound
+        self.column += 1 /// account for one-indexing
+        
+        self.offset = utf16Offset
+    }
 }
 
 extension Point: Equatable {
