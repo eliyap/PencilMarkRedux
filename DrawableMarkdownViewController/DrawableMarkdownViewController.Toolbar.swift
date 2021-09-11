@@ -30,10 +30,8 @@ extension DrawableMarkdownViewController {
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
             
-            #if HIGHLIGHT_ENABLED
             #warning("TODO: replace with custom asset!")
             highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setHighlighter))
-            #endif
             
             var subviews: [UIView] = [
                 Padding(height: 6),
@@ -41,12 +39,9 @@ extension DrawableMarkdownViewController {
                 eraserBtn,
             ]
             
-            #if HIGHLIGHT_ENABLED
             subviews += [
                 highlighterBtn,
-                Padding(width: 6),
             ]
-            #endif
             
             let stackView = UIStackView(arrangedSubviews: subviews)
             stackView.axis = .vertical
@@ -63,21 +58,15 @@ extension DrawableMarkdownViewController {
             case .pencil:
                 pencilBtn.toolSelected = true
                 eraserBtn.toolSelected = false
-                #if HIGHLIGHT_ENABLED
                 highlighterBtn.toolSelected = false
-                #endif
             case .eraser:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = true
-                #if HIGHLIGHT_ENABLED
                 highlighterBtn.toolSelected = false
-                #endif
-            #if HIGHLIGHT_ENABLED
             case .highlighter:
                 pencilBtn.toolSelected = false
                 eraserBtn.toolSelected = false
                 highlighterBtn.toolSelected = true
-            #endif
             }
         }
         
@@ -112,12 +101,10 @@ extension DrawableMarkdownViewController {
             model.tool = .eraser
         }
         
-        #if HIGHLIGHT_ENABLED
         @objc
         func setHighlighter() {
-            coordinator.tool = .highlighter
+            model.tool = .highlighter
         }
-        #endif
         
         func coordinate(with coordinator: Coordinator) {
             view.translatesAutoresizingMaskIntoConstraints = false
