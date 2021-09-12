@@ -29,17 +29,12 @@ extension DrawableMarkdownViewController {
             super.init(nibName: nil, bundle: nil)
             pencilBtn = makeButton(image: UIImage(named: "pencil.square"), action: #selector(setPencil))
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
-            
-            #warning("TODO: replace with custom asset!")
             highlighterBtn = makeButton(image: UIImage(named: "highlighter.square"), action: #selector(setHighlighter))
             
             var subviews: [UIView] = [
                 Padding(height: 6),
                 pencilBtn,
                 eraserBtn,
-            ]
-            
-            subviews += [
                 highlighterBtn,
             ]
             
