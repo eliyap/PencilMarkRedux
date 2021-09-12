@@ -31,7 +31,7 @@ extension DrawableMarkdownViewController {
             eraserBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setEraser))
             
             #warning("TODO: replace with custom asset!")
-            highlighterBtn = makeButton(image: UIImage(named: "eraser.square"), action: #selector(setHighlighter))
+            highlighterBtn = makeButton(image: UIImage(named: "highlighter.square"), action: #selector(setHighlighter))
             
             var subviews: [UIView] = [
                 Padding(height: 6),
