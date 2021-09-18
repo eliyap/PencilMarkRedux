@@ -12,8 +12,11 @@ public final class Heading: Parent, LeafBlock {
     
     override class var type: String { "heading" }
     
-    static let maxDepth = 6
+    /// The heading's level, e.g. `h1` through `h6`.
     let depth: Int
+    
+    /// Font size based on heading depth.
+    static let maxDepth = 6
     var fontProportion: CGFloat {
         1 + CGFloat(Self.maxDepth - depth) * 0.15
     }
