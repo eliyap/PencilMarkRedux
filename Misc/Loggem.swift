@@ -13,14 +13,14 @@ internal class PMLogger {
     
     static let AppSystem = "md.pencil"
     
-    let subsystem: String
+    let category: String
     let enabled: Bool
     let logger: Logger
     
-    init(name: String, enabled: Bool) {
-        self.subsystem = Self.AppSystem + name
+    init(category: String, enabled: Bool) {
+        self.category = category
         self.enabled = enabled
-        self.logger = Logger(subsystem: subsystem, category: "")
+        self.logger = Logger(subsystem: Self.AppSystem, category: category)
     }
     
     func log<S: CustomStringConvertible>(_ s: S) -> Void {
@@ -32,4 +32,4 @@ internal class PMLogger {
     }
 }
 
-let SceneRestoration = PMLogger(name: "SceneRestoration", enabled: true)
+let SceneRestoration = PMLogger(category: "SceneRestoration", enabled: true)
