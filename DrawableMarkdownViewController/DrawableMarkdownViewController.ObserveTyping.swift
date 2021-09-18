@@ -20,8 +20,16 @@ extension DrawableMarkdownViewController {
             .sink { [weak self] _ in
                 if let document = self?.model.document {
                     document.save(to: document.fileURL, for: .forOverwriting) { (success) in
+                        assert(document.documentState != UIDocument.State.savingError)
+                        
                         if success == false {
-                            print("Failed to save!")
+                            AutoSave.log("""
+                                Failed to Save
+                                - fileURL: \(document.fileURL)
+                                - localizedName: \(document.localizedName)
+                                """)
+                        } else {
+                            AutoSave.log("Saved")
                         }
                     }
                 }
