@@ -33,3 +33,4 @@ internal class PMLogger {
 }
 
 let SceneRestoration = PMLogger(category: "SceneRestoration", enabled: true)
+let AutoSave = PMLogger(category: "AutoSave", enabled: true)
