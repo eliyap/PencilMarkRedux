@@ -63,7 +63,6 @@ extension StringProtocol {
             if let range = self[idx..<index(idx, offsetBy: substr.count)].range(of: substr) {
                 let low = range.lowerBound.utf16Offset(in: self)
                 let upp = range.upperBound.utf16Offset(in: self)
-                print(low, upp)
                 result.append(NSMakeRange(low, upp - low))
             }
             idx = index(after: idx)
