@@ -32,6 +32,7 @@ public final class Heading: Parent, LeafBlock {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    /// Deep Copy Constructor.
     required init(_ node: Node, parent: Parent!) {
         depth = (node as! Heading).depth
         super.init(node, parent: parent)
