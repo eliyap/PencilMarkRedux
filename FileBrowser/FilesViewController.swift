@@ -156,5 +156,10 @@ class FilesViewController: UITableViewController {
         tableView.performBatchUpdates {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+        
+        /// If folder is now empty, reflect that.
+        if contents?.isEmpty == true {
+            folder.show(.empty)
+        }
     }
 }
