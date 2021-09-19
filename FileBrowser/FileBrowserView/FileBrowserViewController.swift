@@ -14,7 +14,7 @@ final class ViewController: UITableViewController {
     typealias DocumentDelegate = DrawableMarkdownViewController
     
     /// Keep a strong reference to the data source, as the `UITableView` does not.
-    let source: FileBrowserDataSource
+    let source: DataSource
     
     weak var selectionDelegate: DocumentDelegate!
     
@@ -28,12 +28,12 @@ final class ViewController: UITableViewController {
     }
     
     init(selectionDelegate: DocumentDelegate) {
-        self.source = FileBrowserDataSource()
+        self.source = DataSource()
         self.selectionDelegate = selectionDelegate
         super.init(style: .plain)
         
         /// Assign custom view.
-        tableView = FileBrowserView()
+        tableView = View()
         
         /// Assign custom Data Source.
         tableView.dataSource = source

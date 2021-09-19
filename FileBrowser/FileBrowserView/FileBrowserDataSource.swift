@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class FileBrowserDataSource: NSObject, UITableViewDataSource {
+extension FileBrowser{
+final class DataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
         
@@ -36,4 +37,5 @@ final class FileBrowserDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2
     }
+}
 }

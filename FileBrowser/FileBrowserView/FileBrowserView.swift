@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class FileBrowserView: UITableView {
+extension FileBrowser{
+final class View: UITableView {
     /// Initialize new cell if one is not available
     override func dequeueReusableCell(withIdentifier identifier: String) -> UITableViewCell? {
         super.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell()
     }
+}
 }
