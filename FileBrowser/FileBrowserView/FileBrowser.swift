@@ -9,5 +9,8 @@ import UIKit
 
 /// Shell for all FileBrowser classes.
 enum FileBrowser {
-
+    static var iCloudURL: URL? {
+        FileManager.default.url(forUbiquityContainerIdentifier: nil)?
+            .appendingPathComponent("Documents")
+    }
 }
