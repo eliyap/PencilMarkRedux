@@ -135,9 +135,9 @@ final class PickerDelegate: NSObject, UIDocumentPickerDelegate {
         precondition(urls.count == 1, "\(urls.count) documents picked!")
         
         /**
-         In compact width mode, it seems as though the `.secondary` view controller in `UISplitViewController` is lazily loaded,
-         so it's possible that ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
-         Therefore, as the active view we need to push the detail view onto the stack.
+         In compact width, `UISplitViewController`'s `.secondary` view controller seems to be lazily loaded,
+         then, ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
+         Therefore, we explicitly push the detail view onto the stack.
          */
         assert(fileBrowser.splitViewController != nil, "Could not find ancestor split view!")
         fileBrowser.splitViewController?.show(.secondary)
