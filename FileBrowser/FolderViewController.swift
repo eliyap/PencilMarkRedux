@@ -154,6 +154,9 @@ extension FolderViewController {
                 self.files.filesView.deselectRow(at: indexPath, animated: true)
             })
         }
+        
+        /// Show newly created file.
+        show(.ok)
     }
     
     @objc
@@ -179,6 +182,9 @@ extension FolderViewController {
                 row: index!,
                 section: 0
             ), select: false)
+            
+            /// Show newly created folder.
+            show(.ok)
         } catch {
             assert(false, "Failed to create folder!")
             return
