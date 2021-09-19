@@ -21,7 +21,7 @@ extension DrawableMarkdownViewController {
     @objc
     func willEnterBackground(_ notification: Notification) {
         guard let activity = view.window?.windowScene?.userActivity else {
-            print("TODO: Log missing scene here!")
+            SceneRestoration.log("Cannot Save State Due to Missing Scene!")
             return
         }
         if activity.userInfo == nil {
