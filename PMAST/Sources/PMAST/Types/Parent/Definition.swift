@@ -31,7 +31,6 @@ public final class Definition: Node, Resource, Association {
         self.title = dict?["title"] as? String
         self.label = dict?["label"] as? String
         super.init(dict: dict, parent: parent, text: text)
-        print(dict)
     }
     
     required init(_ node: Node, parent: Parent!) {
