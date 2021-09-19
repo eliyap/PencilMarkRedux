@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-final class FileBrowserViewController: UITableViewController {
+extension FileBrowser{
+final class ViewController: UITableViewController {
     
     typealias DocumentDelegate = DrawableMarkdownViewController
     
@@ -96,43 +97,6 @@ final class FileBrowserViewController: UITableViewController {
         tableView.backgroundColor = .tableBackgroundColor
     }
 }
-
-final class FileBrowserView: UITableView {
-    /// Initialize new cell if one is not available
-    override func dequeueReusableCell(withIdentifier identifier: String) -> UITableViewCell? {
-        super.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell()
-    }
-}
-
-final class FileBrowserDataSource: NSObject, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        switch indexPath.row {
-        case 0:
-            cell.imageView?.image = UIImage(systemName: "icloud")
-            cell.textLabel?.text = "iCloud"
-        case 1:
-            cell.imageView?.image = UIImage(systemName: "doc.badge.plus")
-            cell.textLabel?.text = "Open Others"
-        default:
-            fatalError("Index Out of Bounds \(indexPath.row)")
-        }
-        
-        cell.backgroundColor = .tableBackgroundColor
-        
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
 }
 
 final class PickerDelegate: NSObject, UIDocumentPickerDelegate {

@@ -22,7 +22,7 @@ final class FolderViewController: UIViewController {
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
-    weak var selectionDelegate: FileBrowserViewController.DocumentDelegate!
+    weak var selectionDelegate: FileBrowser.ViewController.DocumentDelegate!
     
     /// Subviews
     let files: FilesViewController
@@ -33,7 +33,7 @@ final class FolderViewController: UIViewController {
     let iCloudURL: URL? = FileManager.default.url(forUbiquityContainerIdentifier: nil)?
         .appendingPathComponent("Documents")
     
-    init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
+    init(url: URL?, selectionDelegate: FileBrowser.ViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
         self.files = FilesViewController(url: url, selectionDelegate: selectionDelegate)

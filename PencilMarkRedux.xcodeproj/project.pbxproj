@@ -98,6 +98,10 @@
 		22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */; };
 		22E85321269CD8FD00E82CE4 /* UITextRange_NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */; };
 		22EB0B9426D93D12003594A4 /* Eraser.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22EB0B9326D93D12003594A4 /* Eraser.mp4 */; };
+		22F4F49D26F7E28D004821F3 /* FileBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F49C26F7E28D004821F3 /* FileBrowserView.swift */; };
+		22F4F49F26F7E2A8004821F3 /* FileBrowserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F49E26F7E2A8004821F3 /* FileBrowserDataSource.swift */; };
+		22F4F4A126F7E2D4004821F3 /* FileBrowserSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A026F7E2D4004821F3 /* FileBrowserSections.swift */; };
+		22F4F4A326F7E2F1004821F3 /* FileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
@@ -215,6 +219,10 @@
 		22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange_Intersects.swift; sourceTree = "<group>"; };
 		22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextRange_NSRange.swift; sourceTree = "<group>"; };
 		22EB0B9326D93D12003594A4 /* Eraser.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Eraser.mp4; sourceTree = "<group>"; };
+		22F4F49C26F7E28D004821F3 /* FileBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserView.swift; sourceTree = "<group>"; };
+		22F4F49E26F7E2A8004821F3 /* FileBrowserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserDataSource.swift; sourceTree = "<group>"; };
+		22F4F4A026F7E2D4004821F3 /* FileBrowserSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserSections.swift; sourceTree = "<group>"; };
+		22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowser.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
@@ -424,7 +432,7 @@
 		22C9F5E726AB9A3A003FD426 /* FileBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */,
+				22F4F49B26F7E272004821F3 /* FileBrowserView */,
 				22C9F5E826AB9A56003FD426 /* FolderViewController.swift */,
 				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
 				22F70B3726AE28E900CC8935 /* FilesViewController.AdjustForKeyboard.swift */,
@@ -518,6 +526,18 @@
 				22E6BEAA26CEB0130000A3B3 /* UITextView.allGlyphs.swift */,
 			);
 			path = Eraser;
+			sourceTree = "<group>";
+		};
+		22F4F49B26F7E272004821F3 /* FileBrowserView */ = {
+			isa = PBXGroup;
+			children = (
+				22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */,
+				22C9F5F626AB9AC2003FD426 /* FileBrowserViewController.swift */,
+				22F4F49C26F7E28D004821F3 /* FileBrowserView.swift */,
+				22F4F49E26F7E2A8004821F3 /* FileBrowserDataSource.swift */,
+				22F4F4A026F7E2D4004821F3 /* FileBrowserSections.swift */,
+			);
+			path = FileBrowserView;
 			sourceTree = "<group>";
 		};
 		22F70B3D26AE4AEF00CC8935 /* Misc */ = {
@@ -645,6 +665,7 @@
 				22C9F5F326AB9A57003FD426 /* iCloudBrokenView.swift in Sources */,
 				225D7AFD26C30FDB0005A543 /* TutorialMenuViewController.swift in Sources */,
 				229B6D0926B776120096FE45 /* ViewController_UIStateRestoring.swift in Sources */,
+				22F4F49F26F7E2A8004821F3 /* FileBrowserDataSource.swift in Sources */,
 				22E28DA126E570EE00DEC491 /* MockableDocument.swift in Sources */,
 				22E6BEAD26CF5C080000A3B3 /* FragmentModel_Ranges.swift in Sources */,
 				220B852126AC90FC00081536 /* KeyboardViewController.ObserveStrokes.swift in Sources */,
@@ -687,11 +708,14 @@
 				22AF74DB269BAC64007D9891 /* PKStrokePoint_Init.swift in Sources */,
 				22AF74D3269BABA1007D9891 /* StrokeConduit.swift in Sources */,
 				2228356D26C49D030026D468 /* VideoViewController.swift in Sources */,
+				22F4F4A126F7E2D4004821F3 /* FileBrowserSections.swift in Sources */,
 				2228359F26C8A4A40026D468 /* DrawableMarkdownViewController.restoreState.swift in Sources */,
 				220B853126AC9C5C00081536 /* CanvasViewController_PKCanvasViewDelegate.swift in Sources */,
 				220B853326AC9CAB00081536 /* CanvasViewController_UIScrollViewDelegate.swift in Sources */,
 				229B6D1626B980100096FE45 /* StateModel.swift in Sources */,
+				22F4F49D26F7E28D004821F3 /* FileBrowserView.swift in Sources */,
 				22C767BF26CB3AA8000BAD55 /* Tool.Pencil.swift in Sources */,
+				22F4F4A326F7E2F1004821F3 /* FileBrowser.swift in Sources */,
 				22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */,
 				22C9F5F126AB9A57003FD426 /* FilesView.swift in Sources */,
 				22CA376A26A0C86400E95009 /* StraightLine.swift in Sources */,

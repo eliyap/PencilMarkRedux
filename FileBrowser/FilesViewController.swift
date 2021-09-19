@@ -16,7 +16,7 @@ class FilesViewController: UITableViewController {
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
-    weak var selectionDelegate: FileBrowserViewController.DocumentDelegate!
+    weak var selectionDelegate: FileBrowser.ViewController.DocumentDelegate!
     
     /// Allows us to bring error views to the front.
     weak var folder: FolderViewController!
@@ -27,7 +27,7 @@ class FilesViewController: UITableViewController {
     /// Alias for `tableView` with known type.
     let filesView = FilesView()
     
-    init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
+    init(url: URL?, selectionDelegate: FileBrowser.ViewController.DocumentDelegate) {
         self.url = url
         self.selectionDelegate = selectionDelegate
         super.init(style: .plain)

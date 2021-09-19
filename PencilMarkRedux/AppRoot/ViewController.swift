@@ -10,7 +10,7 @@ import UIKit
 
 final class ViewController: UISplitViewController {
 
-    let documentDelegate: FileBrowserViewController.DocumentDelegate
+    let documentDelegate: FileBrowser.ViewController.DocumentDelegate
     
     var iCloudURL: URL? {
         FileManager.default.url(forUbiquityContainerIdentifier: nil)?
@@ -18,13 +18,13 @@ final class ViewController: UISplitViewController {
     }
     
     required init?(coder: NSCoder) {
-        documentDelegate = FileBrowserViewController.DocumentDelegate(fileURL: nil)
+        documentDelegate = FileBrowser.ViewController.DocumentDelegate(fileURL: nil)
         super.init(style: .doubleColumn)
         
         setViewController(documentDelegate, for: .secondary)
         
         /// File Browser
-        let browserVC = FileBrowserViewController(selectionDelegate: documentDelegate)
+        let browserVC = FileBrowser.ViewController(selectionDelegate: documentDelegate)
         setViewController(browserVC, for: .primary)
         
         /// Set preferred layout style
