@@ -103,6 +103,7 @@
 		22F4F4A126F7E2D4004821F3 /* FileBrowserSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A026F7E2D4004821F3 /* FileBrowserSections.swift */; };
 		22F4F4A326F7E2F1004821F3 /* FileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */; };
 		22F4F4A526F7E58B004821F3 /* FileBrowserPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A426F7E58B004821F3 /* FileBrowserPickerDelegate.swift */; };
+		22F4F4A726F7F09C004821F3 /* String.ranges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A626F7F09C004821F3 /* String.ranges.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
@@ -225,6 +226,7 @@
 		22F4F4A026F7E2D4004821F3 /* FileBrowserSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserSections.swift; sourceTree = "<group>"; };
 		22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowser.swift; sourceTree = "<group>"; };
 		22F4F4A426F7E58B004821F3 /* FileBrowserPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserPickerDelegate.swift; sourceTree = "<group>"; };
+		22F4F4A626F7F09C004821F3 /* String.ranges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.ranges.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				220B851726AC8BB100081536 /* UIViewController */,
 				22C9F5E326AB99F1003FD426 /* URL.isDirectory.swift */,
 				2214E13B269CAC3B0046EF32 /* String_Subscript.swift */,
+				22F4F4A626F7F09C004821F3 /* String.ranges.swift */,
 				22E85320269CD8FD00E82CE4 /* UITextRange_NSRange.swift */,
 				22AF74D5269BABF9007D9891 /* PencilKit */,
 				22E85315269CCF8500E82CE4 /* NSRange_Intersects.swift */,
@@ -678,6 +681,7 @@
 				22C767BD26CB39EA000BAD55 /* Tutorial.swift in Sources */,
 				22E85316269CCF8500E82CE4 /* NSRange_Intersects.swift in Sources */,
 				22C9F5DA26AB98AD003FD426 /* ViewController.swift in Sources */,
+				22F4F4A726F7F09C004821F3 /* String.ranges.swift in Sources */,
 				22CA377A26A22B9300E95009 /* PMCanvasView.swift in Sources */,
 				22C9F5D226AB9215003FD426 /* AppDelegate.swift in Sources */,
 				220B852F26AC9C1C00081536 /* CanvasViewController.ObserveSize.swift in Sources */,
