@@ -19,7 +19,7 @@ final class FileBrowserViewController: UITableViewController {
     
     /// Lets us know if the user picked a document outside the sandbox.
     /// Maintain a strong reference because the ``UIDocumentPickerViewController`` cannot.
-    let pickerDelegate: PickerDelegate!
+    var pickerDelegate: PickerDelegate? = nil
     
     static var iCloudURL: URL? {
         FileManager.default.url(forUbiquityContainerIdentifier: nil)?
@@ -29,9 +29,7 @@ final class FileBrowserViewController: UITableViewController {
     init(selectionDelegate: DocumentDelegate) {
         self.source = FileBrowserDataSource()
         self.selectionDelegate = selectionDelegate
-        self.pickerDelegate = PickerDelegate() /// need to set implicitly unwrapped weak parent
         super.init(style: .plain)
-        pickerDelegate.fileBrowser = self /// set implicitly unwrapped weak parent
         
         /// Assign custom view.
         tableView = FileBrowserView()
@@ -65,6 +63,17 @@ final class FileBrowserViewController: UITableViewController {
         case 1:
             /// Present modal document picker.
             let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.plainText])
+            pickerDelegate = PickerDelegate { [weak self] (urls: [URL]) -> () in
+                /**
+                 In compact width, `UISplitViewController`'s `.secondary` view controller seems to be lazily loaded,
+                 then, ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
+                 Therefore, we explicitly push the detail view onto the stack.
+                 */
+                assert(self?.splitViewController != nil, "Could not find ancestor split view!")
+                self?.splitViewController?.show(.secondary)
+                
+                self?.selectionDelegate.select(urls[0], onClose: { })
+            }
             picker.delegate = pickerDelegate
             present(picker, animated: true, completion: nil)
         default:
@@ -128,21 +137,17 @@ final class FileBrowserDataSource: NSObject, UITableViewDataSource {
 
 final class PickerDelegate: NSObject, UIDocumentPickerDelegate {
     
-    public weak var fileBrowser: FileBrowserViewController!
+    private let onSelect: ([URL]) -> ()
+    
+    init(onSelect: @escaping ([URL]) -> ()) {
+        self.onSelect = onSelect
+    }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         print("Picked!")
         precondition(urls.count == 1, "\(urls.count) documents picked!")
         
-        /**
-         In compact width, `UISplitViewController`'s `.secondary` view controller seems to be lazily loaded,
-         then, ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
-         Therefore, we explicitly push the detail view onto the stack.
-         */
-        assert(fileBrowser.splitViewController != nil, "Could not find ancestor split view!")
-        fileBrowser.splitViewController?.show(.secondary)
-        
-        fileBrowser.selectionDelegate.select(urls[0], onClose: { })
+        onSelect(urls)
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
