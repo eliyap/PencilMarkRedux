@@ -22,6 +22,9 @@ final class ViewController: UITableViewController {
     /// Maintain a strong reference because the ``UIDocumentPickerViewController`` cannot.
     var pickerDelegate: PickerDelegate? = nil
     
+    /// Latch variable to ensure state restoration is triggered only once.
+    var wasRestored = false
+    
     init(selectionDelegate: DocumentDelegate) {
         self.source = DataSource()
         self.selectionDelegate = selectionDelegate
@@ -32,6 +35,23 @@ final class ViewController: UITableViewController {
         
         /// Assign custom Data Source.
         tableView.dataSource = source
+    }
+    
+    fileprivate func restoreState() -> Void {
+        /// Only restore once, and only after the model is ready.
+        guard wasRestored == false, StateModel.shared.restored else { return }
+        wasRestored = true
+        
+        guard let url = StateModel.shared.url else { return }
+        guard let iCloudStr = FileBrowser.iCloudURL?.relativeString else {
+            assert(false, "Could not resolve iCloud URL")
+            return
+        }
+        if let end = url.relativeString.ranges(of: iCloudStr).first?.upperBound {
+            print("iCloud Path: ", url.relativeString[end...])
+        } else {
+            print("Non iCloud Path: ", url.relativeString)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +111,7 @@ final class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        restoreState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +119,8 @@ final class ViewController: UITableViewController {
         /// In testing, this was the earliest setting the color actually worked.
         /// `init` and `viewDidLoad`did not work.
         tableView.backgroundColor = .tableBackgroundColor
+        
+        restoreState()
     }
 }
 }
