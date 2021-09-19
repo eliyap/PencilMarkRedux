@@ -80,6 +80,9 @@ extension SceneDelegate {
             StateModel.shared.tool = tool
         }
         
+        /// Mark model as fully restored.
+        StateModel.shared.restored = true
+        
         return succeeded
     }
 }
