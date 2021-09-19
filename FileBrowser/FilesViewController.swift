@@ -27,9 +27,13 @@ class FilesViewController: UITableViewController {
     /// Alias for `tableView` with known type.
     let filesView = FilesView()
     
-    init(url: URL?, selectionDelegate: FileBrowser.ViewController.DocumentDelegate) {
+    /// Latch variable to ensure state restoration is triggered only once.
+    var shouldRestore: Bool
+    
+    init(url: URL?, selectionDelegate: FileBrowser.ViewController.DocumentDelegate, shouldRestore: Bool = false) {
         self.url = url
         self.selectionDelegate = selectionDelegate
+        self.shouldRestore = shouldRestore
         super.init(style: .plain)
        
         /// Attach custom `UITableView`
@@ -47,6 +51,57 @@ class FilesViewController: UITableViewController {
         self.tableView.backgroundColor = .tableBackgroundColor
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        restoreState()
+    }
+    
+    fileprivate func restoreState() -> Void {
+        /// Only restore once, and only after the model is ready.
+        guard shouldRestore, StateModel.shared.restored else { return }
+        shouldRestore = false
+        
+        guard let stateURL = StateModel.shared.url else { return }
+        guard let folderURL = self.url else {
+            return
+        }
+        if let end = stateURL.relativeString.ranges(of: folderURL.relativeString).first?.upperBound {
+            let components = stateURL.relativeString[end...].split(separator: "/")
+            guard
+                let contents = contents,
+                let firstComponent = components.first,
+                let first = String(firstComponent).removingPercentEncoding
+            else {
+                SceneRestoration.print("Could Not Get Folder Contents!")
+                return
+            }
+            
+            let nextURL = folderURL.appendingPathComponent(first)
+            guard let idx = contents.firstIndex(of: nextURL) else {
+                SceneRestoration.print("""
+                    Could Not Get Index!
+                    - Next: \(nextURL)
+                    - Cont: \(contents)
+                    """)
+                return
+            }
+            print("Index ", idx)
+            
+            if components.count > 1 {
+                precondition(nextURL.isDirectory, "Path Components Found In Non Directory!")
+                let vc = FolderViewController(url: nextURL, selectionDelegate: selectionDelegate)
+                navigationController?.pushViewController(vc, animated: false)
+            } else if components.count == 1 {
+                precondition(nextURL.isFileURL, "Expected FileURL!")
+                tableView.selectRow(at: IndexPath(row: idx, section: 0), animated: false, scrollPosition: .none)
+            } else {
+                assert(false, "No Trailing Components Found In \(stateURL)")
+            }
+        } else {
+            /// No File Path to Restore.
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("Do Not Use")
     }
@@ -58,6 +113,7 @@ class FilesViewController: UITableViewController {
             fatalError("Wrong type of data source!")
         }
         source.checkCache(tableView: tableView)
+        restoreState()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

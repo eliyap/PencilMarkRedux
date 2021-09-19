@@ -47,10 +47,10 @@ final class ViewController: UITableViewController {
             assert(false, "Could not resolve iCloud URL")
             return
         }
-        if let end = url.relativeString.ranges(of: iCloudStr).first?.upperBound {
-            print("iCloud Path: ", url.relativeString[end...])
+        if url.relativeString.starts(with: iCloudStr) {
+            presentICloud(restoreState: true)
         } else {
-            print("Non iCloud Path: ", url.relativeString)
+            /// No File Path to Restore.
         }
     }
     
@@ -73,9 +73,7 @@ final class ViewController: UITableViewController {
         
         switch indexPath.row {
         case Section.iCloud.rawValue:
-            /// Push over to iCloud Drive.
-            let iCloudVC = FolderViewController(url: iCloudURL, selectionDelegate: selectionDelegate)
-            navigationController?.pushViewController(iCloudVC, animated: true)
+            presentICloud()
         case Section.others.rawValue:
             presentPicker()
         default:
@@ -84,6 +82,12 @@ final class ViewController: UITableViewController {
         
         /// Fade cell back to normal color, so that "Open" doesn't stay gray.
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    fileprivate func presentICloud(restoreState: Bool = false) -> Void {
+        /// Push over to iCloud Drive.
+        let iCloudVC = FolderViewController(url: iCloudURL, selectionDelegate: selectionDelegate, shouldRestore: true)
+        navigationController?.pushViewController(iCloudVC, animated: true)
     }
     
     /// Present modal document picker.
