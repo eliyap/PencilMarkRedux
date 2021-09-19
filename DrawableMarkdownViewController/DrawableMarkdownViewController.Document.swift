@@ -34,7 +34,7 @@ extension DrawableMarkdownViewController {
         }
     }
     
-    /// Open new document, if any
+    /// Open new document, if any.
     fileprivate func open(fileURL: URL?) {
         if let fileURL = fileURL {
             print("File URL is \(fileURL)")
@@ -44,6 +44,9 @@ extension DrawableMarkdownViewController {
                     assert(false, "Failed to open document!")
                     return
                 }
+                
+                /// Prepare for Scene restoration in case of unexpected exit.
+                self.saveState()
                 
                 /// Hide placeholder view.
                 self.view.sendSubviewToBack(self.noDocument.view)
