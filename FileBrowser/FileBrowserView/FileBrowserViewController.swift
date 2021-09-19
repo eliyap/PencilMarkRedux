@@ -62,27 +62,35 @@ final class ViewController: UITableViewController {
             let iCloudVC = FolderViewController(url: Self.iCloudURL, selectionDelegate: selectionDelegate)
             navigationController?.pushViewController(iCloudVC, animated: true)
         case Section.others.rawValue:
-            /// Present modal document picker.
-            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.plainText])
-            pickerDelegate = PickerDelegate { [weak self] (urls: [URL]) -> () in
-                /**
-                 In compact width, `UISplitViewController`'s `.secondary` view controller seems to be lazily loaded,
-                 then, ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
-                 Therefore, we explicitly push the detail view onto the stack.
-                 */
-                assert(self?.splitViewController != nil, "Could not find ancestor split view!")
-                self?.splitViewController?.show(.secondary)
-                
-                self?.selectionDelegate.select(urls[0], onClose: { })
-            }
-            picker.delegate = pickerDelegate
-            present(picker, animated: true, completion: nil)
+            presentPicker()
         default:
             fatalError("Index Out of Bounds \(indexPath.row)")
         }
         
         /// Fade cell back to normal color, so that "Open" doesn't stay gray.
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    /// Present modal document picker.
+    fileprivate func presentPicker() -> Void {
+        /**
+         Construct a delegate that can inform us of picks.
+         Hold a strong reference to it, pass it to the picker (which only has a weak reference).
+         */
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.plainText])
+        pickerDelegate = PickerDelegate { [weak self] (urls: [URL]) -> () in
+            /**
+             In compact width, `UISplitViewController`'s `.secondary` view controller seems to be lazily loaded,
+             then, ``selectionDelegate``'s `splitController` resolves to `nil` (which I observed).
+             Therefore, we explicitly push the detail view onto the stack.
+             */
+            assert(self?.splitViewController != nil, "Could not find ancestor split view!")
+            self?.splitViewController?.show(.secondary)
+            
+            self?.selectionDelegate.select(urls[0], onClose: { })
+        }
+        picker.delegate = pickerDelegate
+        present(picker, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -97,24 +105,4 @@ final class ViewController: UITableViewController {
         tableView.backgroundColor = .tableBackgroundColor
     }
 }
-}
-
-final class PickerDelegate: NSObject, UIDocumentPickerDelegate {
-    
-    private let onSelect: ([URL]) -> ()
-    
-    init(onSelect: @escaping ([URL]) -> ()) {
-        self.onSelect = onSelect
-    }
-    
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print("Picked!")
-        precondition(urls.count == 1, "\(urls.count) documents picked!")
-        
-        onSelect(urls)
-    }
-    
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        print("Cancelled!")
-    }
 }
