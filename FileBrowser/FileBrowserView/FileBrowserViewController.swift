@@ -57,11 +57,11 @@ final class ViewController: UITableViewController {
         precondition(indexPath.section == 0, "Unexpected Section \(indexPath.section)")
         
         switch indexPath.row {
-        case 0:
+        case Section.iCloud.rawValue:
             /// Push over to iCloud Drive.
             let iCloudVC = FolderViewController(url: Self.iCloudURL, selectionDelegate: selectionDelegate)
             navigationController?.pushViewController(iCloudVC, animated: true)
-        case 1:
+        case Section.others.rawValue:
             /// Present modal document picker.
             let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.plainText])
             pickerDelegate = PickerDelegate { [weak self] (urls: [URL]) -> () in

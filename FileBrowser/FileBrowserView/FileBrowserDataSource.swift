@@ -14,17 +14,9 @@ final class DataSource: NSObject, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        switch indexPath.row {
-        case 0:
-            cell.imageView?.image = UIImage(systemName: "icloud")
-            cell.textLabel?.text = "iCloud"
-        case 1:
-            cell.imageView?.image = UIImage(systemName: "doc.badge.plus")
-            cell.textLabel?.text = "Open Others"
-        default:
-            fatalError("Index Out of Bounds \(indexPath.row)")
-        }
-        
+        let section = Section(rawValue: indexPath.row)!
+        cell.imageView?.image = UIImage(systemName: section.sfSymbolName)
+        cell.textLabel?.text = section.label
         cell.backgroundColor = .tableBackgroundColor
         
         return cell
@@ -35,7 +27,7 @@ final class DataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        Section.allCases.count
     }
 }
 }
