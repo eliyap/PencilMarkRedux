@@ -72,6 +72,14 @@ extension SceneDelegate {
         StateModel.shared.url = fileURL(from: activity)
             ?? activity.userInfo?[ActivityInfo.fileURL.rawValue] as? NSURL as URL?
         
+        /// Discard the URL if it doesn't exist.
+        if
+            let url = StateModel.shared.url,
+            FileManager.default.fileExists(atPath: url.path) == false
+        {
+            StateModel.shared.url = nil
+        }
+        
         /// Restore active tool.
         if
             let rawTool = activity.userInfo?[ActivityInfo.activeTool.rawValue] as? NSInteger as Int?,
