@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 import PMAST
 
 final class StyledMarkdownDocument: UIDocument, MockableDocument {
@@ -14,6 +13,8 @@ final class StyledMarkdownDocument: UIDocument, MockableDocument {
     /// Custom Markdown Model Object
     public var markdown = Markdown("")
 
+    public var errors = Set<DocumentError>()
+    
     override init(fileURL url: URL) {
         super.init(fileURL: url)
     }
@@ -45,7 +46,17 @@ final class StyledMarkdownDocument: UIDocument, MockableDocument {
     
     override func handleError(_ error: Error, userInteractionPermitted: Bool) {
         super.handleError(error, userInteractionPermitted: userInteractionPermitted)
-        print("UIDocument Error \(error.localizedDescription)")
+        switch (error as NSError).code {
+        case NSFileReadNoSuchFileError:
+            errors.insert(.noSuchFile)
+        default:
+            SMDocument.log("""
+                UIDocument Error
+                - Description: \(error.localizedDescription)
+                - Code: \((error as NSError).code)
+                """)
+            errors.insert(.other)
+        }
     }
     
     override var localizedName: String {

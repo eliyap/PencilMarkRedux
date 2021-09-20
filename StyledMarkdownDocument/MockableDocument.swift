@@ -17,8 +17,14 @@ public protocol MockableDocument {
     var markdown: Markdown { get set }
     var undoManager: UndoManager! { get }
     var localizedName: String { get }
+    var errors: Set<DocumentError> { get }
     func close(completionHandler: ((Bool) -> Void)?)
     func updateChangeCount(_ change: UIDocument.ChangeKind)
     func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)?)
     func open(completionHandler: ((Bool) -> Void)?)
+}
+
+public enum DocumentError: Error, Hashable {
+    case noSuchFile
+    case other
 }

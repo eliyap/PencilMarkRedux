@@ -10,7 +10,7 @@ import UIKit
 extension SceneDelegate {
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         if scene.userActivity == nil {
-            print("Todo: log missing userActivity, which should always be set on appear!")
+            SceneRestoration.log("Missing userActivity, which should always be set on appear!")
         }
         return scene.userActivity
     }

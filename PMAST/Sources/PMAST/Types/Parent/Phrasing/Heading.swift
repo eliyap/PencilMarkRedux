@@ -12,7 +12,14 @@ public final class Heading: Parent, LeafBlock {
     
     override class var type: String { "heading" }
     
+    /// The heading's level, e.g. `h1` through `h6`.
     let depth: Int
+    
+    /// Font size based on heading depth.
+    static let maxDepth = 6
+    var fontProportion: CGFloat {
+        1 + CGFloat(Self.maxDepth - depth) * 0.15
+    }
     
     required init?(dict: [AnyHashable: Any]?, parent: Parent?, text: String) {
         guard
@@ -25,6 +32,7 @@ public final class Heading: Parent, LeafBlock {
         super.init(dict: dict, parent: parent, text: text)
     }
     
+    /// Deep Copy Constructor.
     required init(_ node: Node, parent: Parent!) {
         depth = (node as! Heading).depth
         super.init(node, parent: parent)
@@ -32,11 +40,12 @@ public final class Heading: Parent, LeafBlock {
     
     override func style(_ string: NSMutableAttributedString) {
         super.style(string)
+        
         /// Match system's preferred heading font size.
         string.addAttribute(
             .font,
             value: UIFont.monospacedSystemFont(
-                ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize,
+                ofSize: UIFont.dynamicSize * fontProportion,
                 weight: .semibold
             ),
             range: position.nsRange

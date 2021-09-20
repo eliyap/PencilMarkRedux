@@ -24,7 +24,7 @@ extension DrawableMarkdownViewController {
         
         /// Assert control over iCloud drive
         /// If we do not do this, `UIDocument` reports a permissions failure.
-        guard let iCloudURL = FileBrowserViewController.iCloudURL else { return }
+        guard let iCloudURL = FileBrowser.iCloudURL else { return }
         _ = try? FileManager.default.contentsOfDirectory(at: iCloudURL, includingPropertiesForKeys: .none)
         
         /// Open stored document

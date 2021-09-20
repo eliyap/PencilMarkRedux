@@ -13,6 +13,9 @@ final class StateModel {
         return instance
     }()
     
+    /// Latch variable indicating whether State Model was already loaded.
+    var restored = false
+    
     /// URL of open document.
     /// By default, no document is open
     var url: URL? = nil

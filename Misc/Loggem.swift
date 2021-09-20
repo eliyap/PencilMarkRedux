@@ -32,5 +32,11 @@ internal class PMLogger {
     }
 }
 
+/// Persists app state across launches.
 let SceneRestoration = PMLogger(category: "SceneRestoration", enabled: true)
+
+/// Persists document text to disk.
 let AutoSave = PMLogger(category: "AutoSave", enabled: true)
+
+/// `UIDocument` subclass.
+let SMDocument = PMLogger(category: "SMDocument", enabled: true)

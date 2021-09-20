@@ -34,16 +34,22 @@ extension DrawableMarkdownViewController {
         }
     }
     
-    /// Open new document, if any
+    /// Open new document, if any.
     fileprivate func open(fileURL: URL?) {
         if let fileURL = fileURL {
             print("File URL is \(fileURL)")
             model.document = StyledMarkdownDocument(fileURL: fileURL)
             model.document?.open { (success) in
                 guard success else {
-                    assert(false, "Failed to open document!")
+                    if self.model.document!.errors.contains(.other) {
+                        assert(false, "Failed to open document!")
+                    }
+                    /// Ignore other errors...
                     return
                 }
+                
+                /// Prepare for Scene restoration in case of unexpected exit.
+                self.saveState()
                 
                 /// Hide placeholder view.
                 self.view.sendSubviewToBack(self.noDocument.view)

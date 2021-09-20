@@ -25,8 +25,6 @@ extension Markdown {
             /// Find which parts of the document were partially or completely intersected by this line.
             let (partial, complete) = ast.intersectingText(in: range)
             
-            print("DEBUG: \(partial.count) partial, \(complete.count) complete")
-            
             /// Apply changes to AST.
             partial.forEach { $0.apply(style: lineStyle, to: range, in: self) }
             complete.forEach { $0.apply(style: lineStyle, in: self) }

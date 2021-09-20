@@ -46,6 +46,8 @@ func construct(from dict: [AnyHashable: Any]?, parent: Parent?, text: String) ->
         return Emphasis(dict: dict, parent: parent, text: text)
     case Text.type:
         return Text(dict: dict, parent: parent, text: text)
+    case Definition.type:
+        return Definition(dict: dict, parent: parent, text: text)
     case Node.type, Parent.type, Literal.type:
         fatalError("Tried to instantiate abstract type!")
     default:

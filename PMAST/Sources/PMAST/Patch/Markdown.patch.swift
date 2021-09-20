@@ -142,7 +142,11 @@ extension Root {
             let targetStart = targetStart,
             let targetEnd = targetEnd
         else { /// Warning: conventional `let` unwrap leads to a sigtrap compile failure!
-            assert(false, "Failed to find target node! \nTarget Range: \(details.element.lowerBound)–\(details.element.upperBound)")
+            assert(false, """
+                Failed to find target node!
+                - Target Range: \(details.element.lowerBound)–\(details.element.upperBound)
+                - Ranges: \(children.map(\.position.nsRange).map{"\($0.lowerBound)–\($0.upperBound)"})
+                """)
             return
         }
         

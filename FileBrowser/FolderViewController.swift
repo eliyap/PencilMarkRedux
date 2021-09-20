@@ -22,7 +22,7 @@ final class FolderViewController: UIViewController {
     let url: URL?
     
     /// Allow direct access to set document on detail ViewController.
-    weak var selectionDelegate: FileBrowserViewController.DocumentDelegate!
+    weak var selectionDelegate: FileBrowser.ViewController.DocumentDelegate!
     
     /// Subviews
     let files: FilesViewController
@@ -33,10 +33,10 @@ final class FolderViewController: UIViewController {
     let iCloudURL: URL? = FileManager.default.url(forUbiquityContainerIdentifier: nil)?
         .appendingPathComponent("Documents")
     
-    init(url: URL?, selectionDelegate: FileBrowserViewController.DocumentDelegate) {
+    init(url: URL?, selectionDelegate: FileBrowser.ViewController.DocumentDelegate, shouldRestore: Bool = false) {
         self.url = url
         self.selectionDelegate = selectionDelegate
-        self.files = FilesViewController(url: url, selectionDelegate: selectionDelegate)
+        self.files = FilesViewController(url: url, selectionDelegate: selectionDelegate, shouldRestore: shouldRestore)
         super.init(nibName: nil, bundle: nil)
         files.folder = self /// *must* set implicitly unwrapped reference immediately
         
@@ -154,6 +154,9 @@ extension FolderViewController {
                 self.files.filesView.deselectRow(at: indexPath, animated: true)
             })
         }
+        
+        /// Show newly created file.
+        show(.ok)
     }
     
     @objc
@@ -179,6 +182,9 @@ extension FolderViewController {
                 row: index!,
                 section: 0
             ), select: false)
+            
+            /// Show newly created folder.
+            show(.ok)
         } catch {
             assert(false, "Failed to create folder!")
             return

@@ -20,8 +20,12 @@ extension DrawableMarkdownViewController {
     
     @objc
     func willEnterBackground(_ notification: Notification) {
+        saveState()
+    }
+    
+    internal func saveState() -> Void {
         guard let activity = view.window?.windowScene?.userActivity else {
-            print("TODO: Log missing scene here!")
+            SceneRestoration.log("Cannot Save State Due to Missing Scene!")
             return
         }
         if activity.userInfo == nil {
@@ -31,6 +35,7 @@ extension DrawableMarkdownViewController {
         saveFileURL(in: activity)
         saveFileBookmark(in: activity)
         saveTool(in: activity)
+        SceneRestoration.print("\(Self.self) saved state.")
     }
     
     fileprivate func saveFileURL(in activity: NSUserActivity) -> Void {
