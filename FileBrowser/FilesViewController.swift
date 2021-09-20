@@ -89,7 +89,7 @@ class FilesViewController: UITableViewController {
             
             if components.count > 1 {
                 precondition(nextURL.isDirectory, "Path Components Found In Non Directory!")
-                let vc = FolderViewController(url: nextURL, selectionDelegate: selectionDelegate)
+                let vc = FolderViewController(url: nextURL, selectionDelegate: selectionDelegate, shouldRestore: true)
                 navigationController?.pushViewController(vc, animated: false)
             } else if components.count == 1 {
                 precondition(nextURL.isFileURL, "Expected FileURL!")
