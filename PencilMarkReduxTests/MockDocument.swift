@@ -11,6 +11,8 @@ import UIKit
 @testable import PencilMarkRedux
 
 final class MockDocument: MockableDocument {
+    var errors = Set<DocumentError>()
+    
     /// FAKE DATA
     var documentState: UIDocument.State = .normal
     
