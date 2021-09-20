@@ -41,7 +41,10 @@ extension DrawableMarkdownViewController {
             model.document = StyledMarkdownDocument(fileURL: fileURL)
             model.document?.open { (success) in
                 guard success else {
-                    assert(false, "Failed to open document!")
+                    if self.model.document!.errors.contains(.other) {
+                        assert(false, "Failed to open document!")
+                    }
+                    /// Ignore other errors...
                     return
                 }
                 
