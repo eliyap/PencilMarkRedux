@@ -85,7 +85,6 @@ class FilesViewController: UITableViewController {
                     """)
                 return
             }
-            print("Index ", idx)
             
             if components.count > 1 {
                 precondition(nextURL.isDirectory, "Path Components Found In Non Directory!")
