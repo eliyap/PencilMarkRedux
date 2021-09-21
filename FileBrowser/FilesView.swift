@@ -34,42 +34,10 @@ final class FilesViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentConfiguration = ContentConfiguration()
         textLabel?.font = UIFont.monospacedSystemFont(ofSize: 100, weight: .black)
     }
     
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension FilesViewCell {
-    final class ContentConfiguration: UIContentConfiguration {
-        func makeContentView() -> UIView & UIContentView {
-            let view = ContentView(configuration: self)
-            return view
-        }
-        
-        func updated(for state: UIConfigurationState) -> Self {
-            /// Nothing...
-            self
-        }
-        
-        
-    }
-    
-    final class ContentView: UIView, UIContentView {
-        var configuration: UIContentConfiguration
-        
-        init(configuration: UIContentConfiguration) {
-            self.configuration = configuration
-            super.init(frame: .zero)
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
     }
 }
