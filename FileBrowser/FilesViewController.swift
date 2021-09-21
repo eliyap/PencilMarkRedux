@@ -39,8 +39,6 @@ class FilesViewController: UITableViewController {
         /// Attach custom `UITableView`
         self.tableView = filesView
         
-        tableView.register(FilesViewCell.self, forCellReuseIdentifier: FilesViewCell.identifier)
-        
         /// Attach refresh controller
         configureRefresh()
         

@@ -58,7 +58,7 @@ extension FilesViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: FilesViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let cellURL = contents![indexPath.row] /// if row is requested, that means there are non-zero rows, so contents is non-nil.
         
