@@ -554,8 +554,8 @@
 				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
 				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
 				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
-				22F4F4AB26F8E71A004821F3 /* FilesViewCellContent.swift */,
 				22F4F4A926F8E6FC004821F3 /* FilesViewCell.swift */,
+				22F4F4AB26F8E71A004821F3 /* FilesViewCellContent.swift */,
 			);
 			path = FilesView;
 			sourceTree = "<group>";
