@@ -104,8 +104,6 @@
 		22F4F4A326F7E2F1004821F3 /* FileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */; };
 		22F4F4A526F7E58B004821F3 /* FileBrowserPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A426F7E58B004821F3 /* FileBrowserPickerDelegate.swift */; };
 		22F4F4A726F7F09C004821F3 /* String.ranges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A626F7F09C004821F3 /* String.ranges.swift */; };
-		22F4F4AA26F8E6FC004821F3 /* FilesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4A926F8E6FC004821F3 /* FilesViewCell.swift */; };
-		22F4F4AC26F8E71A004821F3 /* FilesViewCellContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F4AB26F8E71A004821F3 /* FilesViewCellContent.swift */; };
 		22F70B2A26ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */; };
 		22F70B3026ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */; };
 		22F70B3226ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */; };
@@ -229,8 +227,6 @@
 		22F4F4A226F7E2F1004821F3 /* FileBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowser.swift; sourceTree = "<group>"; };
 		22F4F4A426F7E58B004821F3 /* FileBrowserPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserPickerDelegate.swift; sourceTree = "<group>"; };
 		22F4F4A626F7F09C004821F3 /* String.ranges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.ranges.swift; sourceTree = "<group>"; };
-		22F4F4A926F8E6FC004821F3 /* FilesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewCell.swift; sourceTree = "<group>"; };
-		22F4F4AB26F8E71A004821F3 /* FilesViewCellContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewCellContent.swift; sourceTree = "<group>"; };
 		22F70B2926ADD15200CC8935 /* KeyboardViewController.AdjustForKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.AdjustForKeyboard.swift; sourceTree = "<group>"; };
 		22F70B2F26ADF2A400CC8935 /* KeyboardViewController_UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController_UIScrollViewDelegate.swift; sourceTree = "<group>"; };
 		22F70B3126ADF2D700CC8935 /* CanvasViewController.ObserveScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.ObserveScroll.swift; sourceTree = "<group>"; };
@@ -443,7 +439,11 @@
 			children = (
 				22F4F49B26F7E272004821F3 /* FileBrowserView */,
 				22C9F5E826AB9A56003FD426 /* FolderViewController.swift */,
-				22F4F4A826F8E6DD004821F3 /* FilesView */,
+				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
+				22F70B3726AE28E900CC8935 /* FilesViewController.AdjustForKeyboard.swift */,
+				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
+				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
+				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
 				22C035C426B1AFE20027D3EE /* RefreshablePlaceholderViewController.swift */,
 				22C9F5ED26AB9A57003FD426 /* EmptyFolderView.swift */,
 				22C9F5EC26AB9A56003FD426 /* iCloudBrokenView.swift */,
@@ -544,20 +544,6 @@
 				22F4F4A426F7E58B004821F3 /* FileBrowserPickerDelegate.swift */,
 			);
 			path = FileBrowserView;
-			sourceTree = "<group>";
-		};
-		22F4F4A826F8E6DD004821F3 /* FilesView */ = {
-			isa = PBXGroup;
-			children = (
-				22C9F5E926AB9A56003FD426 /* FilesViewController.swift */,
-				22F70B3726AE28E900CC8935 /* FilesViewController.AdjustForKeyboard.swift */,
-				22C9F5EB26AB9A56003FD426 /* FilesViewController_UITableViewDataSource.swift */,
-				22C9F5EE26AB9A57003FD426 /* FilesViewController.Refresh.swift */,
-				22C9F5EA26AB9A56003FD426 /* FilesView.swift */,
-				22F4F4AB26F8E71A004821F3 /* FilesViewCellContent.swift */,
-				22F4F4A926F8E6FC004821F3 /* FilesViewCell.swift */,
-			);
-			path = FilesView;
 			sourceTree = "<group>";
 		};
 		22F70B3D26AE4AEF00CC8935 /* Misc */ = {
@@ -708,7 +694,6 @@
 				22E6BEA726CEAF6C0000A3B3 /* FragmentModel.swift in Sources */,
 				22E6BEA326CEAF2E0000A3B3 /* CGRect.intersects.swift in Sources */,
 				22CA377826A215BF00E95009 /* FrameConduit.swift in Sources */,
-				22F4F4AA26F8E6FC004821F3 /* FilesViewCell.swift in Sources */,
 				220B851626AC8AA200081536 /* DrawableMarkdownViewController.ObserveTyping.swift in Sources */,
 				2228357626C6F3E90026D468 /* SplitConduit.swift in Sources */,
 				220B852526AC978200081536 /* KeyboardViewController.ObserveTouches.swift in Sources */,
@@ -759,7 +744,6 @@
 				22C9F5F726AB9AC2003FD426 /* FileBrowserViewController.swift in Sources */,
 				22F70B3426AE253D00CC8935 /* CanvasViewController.AdjustForKeyboard.swift in Sources */,
 				229B6D0526B754A90096FE45 /* UIBarButtonItem.menuButton.swift in Sources */,
-				22F4F4AC26F8E71A004821F3 /* FilesViewCellContent.swift in Sources */,
 				229B6D0126B460FA0096FE45 /* UIFont.dynamicSize.swift in Sources */,
 				22C9F5F226AB9A57003FD426 /* FilesViewController_UITableViewDataSource.swift in Sources */,
 				22C9F5F426AB9A57003FD426 /* EmptyFolderView.swift in Sources */,
