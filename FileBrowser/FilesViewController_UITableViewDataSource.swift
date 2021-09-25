@@ -81,7 +81,7 @@ extension FilesViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let renameAction = UIContextualAction(style: .normal, title: "Rename") { (action, view, completionHandler) in
-            #warning("Todo: implement renaming functionality")
+            self.rename(at: indexPath)
             completionHandler(true)
         }
         renameAction.image = UIImage(systemName: "pencil")
@@ -94,7 +94,7 @@ extension FilesViewController {
         
         return UISwipeActionsConfiguration(actions: [
             deleteAction, /// far edge
-//            renameAction, /// closer to row
+            renameAction, /// closer to row
         ])
     }
 }

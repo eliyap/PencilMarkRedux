@@ -40,3 +40,6 @@ let AutoSave = PMLogger(category: "AutoSave", enabled: true)
 
 /// `UIDocument` subclass.
 let SMDocument = PMLogger(category: "SMDocument", enabled: true)
+
+/// Monitor document events.
+let FileSystem = PMLogger(category: "FileSystem", enabled: true)

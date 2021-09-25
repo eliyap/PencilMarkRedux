@@ -161,4 +161,39 @@ class FilesViewController: UITableViewController {
             folder.show(.empty)
         }
     }
+    
+    func rename(at indexPath: IndexPath) -> Void {
+        let cellURL: URL = contents![indexPath.row]
+        promptForAnswer(cellURL: cellURL)
+    }
+    
+    /// Source: https://www.hackingwithswift.com/example-code/uikit/how-to-add-a-uitextfield-to-a-uialertcontroller
+    fileprivate func promptForAnswer(cellURL: URL) {
+        let ac = UIAlertController(title: "Rename Folder", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac, self] _ in
+            renameFile(at: cellURL, to: ac.textFields![0].text)
+        }
+
+        ac.addAction(cancelAction)
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    fileprivate func renameFile(at cellURL: URL, to name: String?) -> Void {
+        guard let name = name else { return }
+        let fileExtension = cellURL.pathExtension
+        let newURL = cellURL
+            .deletingLastPathComponent()
+            .appendingPathComponent(name)
+            .appendingPathExtension(fileExtension)
+        do {
+            try FileManager.default.moveItem(at: cellURL, to: newURL)
+            refresh()
+        } catch {
+            FileSystem.log(error.localizedDescription)
+        }
+    }
 }
